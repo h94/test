@@ -23,9 +23,6 @@ body {
   height: 100vh;
   width: 100vw;
 }
-main {
-  height: 100vh;
-  overflow: hidden;
-}
+
 </style>
 
