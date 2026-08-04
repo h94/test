@@ -1,0 +1,173 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "APIName 2.3.0",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/version": {
+      "get": {
+        "tags": [
+          "PriceClientSystem"
+        ],
+        "summary": "\u53D6\u5F97\u7CFB\u7D71\u7248\u672C\u8CC7\u8A0A\u3002",
+        "description": "\u56DE\u50B3\u683C\u5F0F\u7BC4\u4F8B\uFF1APriceClientSystem V:1.0.0-Production,Build:2026-05-23 10:00:00,Machine:SERVER01",
+        "responses": {
+          "200": {
+            "description": "\u6210\u529F\u53D6\u5F97\u7248\u672C\u8CC7\u8A0A\u3002",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/heart": {
+      "get": {
+        "tags": [
+          "PriceClientSystem"
+        ],
+        "summary": "\u5FC3\u8DF3\u6AA2\u6E2C\u7AEF\u9EDE\uFF0C\u78BA\u8A8D\u670D\u52D9\u662F\u5426\u6B63\u5E38\u904B\u4F5C\u3002",
+        "description": "\u56DE\u50B3\u683C\u5F0F\u7BC4\u4F8B\uFF1A2026-05-23 10:00:00.123",
+        "responses": {
+          "200": {
+            "description": "\u670D\u52D9\u6B63\u5E38\uFF0C\u56DE\u50B3\u76EE\u524D\u6642\u9593\u6233\u3002",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/system/hubinfo": {
+      "get": {
+        "tags": [
+          "PriceClientSystem"
+        ],
+        "summary": "\u53D6\u5F97 SignalR Hub \u9023\u7DDA\u72C0\u614B\u8CC7\u8A0A\u3002",
+        "description": "\u56DE\u50B3\u76EE\u524D\u6240\u6709 Hub \u9023\u7DDA\u6E05\u55AE\u3002Connections \u5FC5\u5B9A\u6709\u503C\uFF08\u53EF\u80FD\u70BA\u7A7A\u6E05\u55AE\uFF09\uFF1BSiteInfo \u76EE\u524D\u5C1A\u672A\u555F\u7528\uFF0C\u53EF\u80FD\u70BA null\u3002",
+        "responses": {
+          "200": {
+            "description": "\u6210\u529F\u53D6\u5F97 Hub \u72C0\u614B\u8CC7\u8A0A\u3002",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HubInfo"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HubConnectionInfo": {
+        "required": [
+          "connectId",
+          "connTime",
+          "gameType",
+          "ip",
+          "selSite",
+          "token"
+        ],
+        "type": "object",
+        "properties": {
+          "connectId": {
+            "minLength": 1,
+            "type": "string",
+            "description": "SignalR \u9023\u7DDA\u552F\u4E00\u8B58\u5225\u78BC\uFF08ConnectionId\uFF09\u3002\u9023\u7DDA\u5B58\u5728\u6642\u5FC5\u5B9A\u6709\u503C\uFF0C\u4E0D\u70BA null\u3002"
+          },
+          "gameType": {
+            "minLength": 1,
+            "type": "string",
+            "description": "\u8A02\u95B1\u7684\u904A\u6232\u985E\u578B\u4EE3\u78BC\uFF08\u4F8B\u5982 zba\uFF09\u3002\u9023\u7DDA\u5B58\u5728\u6642\u5FC5\u5B9A\u6709\u503C\uFF1B\u505C\u6B62\u8A02\u95B1\u5F8C\u53EF\u80FD\u70BA\u7A7A\u5B57\u4E32\u3002"
+          },
+          "ip": {
+            "minLength": 1,
+            "type": "string",
+            "description": "\u5BA2\u6236\u7AEF\u9023\u7DDA IP \u4F4D\u5740\u3002\u5EFA\u7ACB\u9023\u7DDA\u6642\u5FC5\u5B9A\u6709\u503C\uFF0C\u4E0D\u70BA null\u3002"
+          },
+          "token": {
+            "minLength": 1,
+            "type": "string",
+            "description": "\u516C\u53F8\u9A57\u8B49 Token\u3002\u5EFA\u7ACB\u9023\u7DDA\u6642\u5FC5\u5B9A\u6709\u503C\uFF0C\u4E0D\u70BA null\u3002"
+          },
+          "selSite": {
+            "minLength": 1,
+            "type": "string",
+            "description": "\u9078\u64C7\u7684\u8CC7\u6599\u4F86\u6E90\u7AD9\u53F0\u4EE3\u78BC\u3002\u5EFA\u7ACB\u9023\u7DDA\u6642\u5FC5\u5B9A\u6709\u503C\uFF0C\u4E0D\u70BA null\u3002"
+          },
+          "connTime": {
+            "type": "string",
+            "description": "\u9023\u7DDA\u5EFA\u7ACB\u6642\u9593\u3002\u503C\u578B\u5225\uFF0C\u5FC5\u5B9A\u6709\u503C\u3002",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "\u55AE\u4E00 SignalR Hub \u9023\u7DDA\u8CC7\u8A0A\u3002"
+      },
+      "HubInfo": {
+        "required": [
+          "connections"
+        ],
+        "type": "object",
+        "properties": {
+          "connections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HubConnectionInfo"
+            },
+            "description": "\u76EE\u524D\u6240\u6709 SignalR Hub \u9023\u7DDA\u8CC7\u8A0A\u6E05\u55AE\u3002\u5FC5\u5B9A\u56DE\u50B3\uFF08\u4E0D\u70BA null\uFF09\uFF0C\u7121\u9023\u7DDA\u6642\u70BA\u7A7A\u6E05\u55AE\u3002"
+          },
+          "siteInfo": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HubSiteInfo"
+            },
+            "description": "\u5404\u7AD9\u53F0\u6700\u5F8C\u8CC7\u6599\u66F4\u65B0\u6642\u9593\u6E05\u55AE\u3002\u76EE\u524D\u5C1A\u672A\u555F\u7528\uFF0C\u56DE\u50B3\u6642\u53EF\u80FD\u70BA null\u3002",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Hub \u7CFB\u7D71\u72C0\u614B\u8CC7\u8A0A\uFF0C\u4F9B\u7BA1\u7406\u7AEF\u67E5\u8A62\u76EE\u524D\u9023\u7DDA\u8207\u7AD9\u53F0\u66F4\u65B0\u72C0\u614B\u3002"
+      },
+      "HubSiteInfo": {
+        "required": [
+          "lastUpdTime",
+          "site"
+        ],
+        "type": "object",
+        "properties": {
+          "site": {
+            "minLength": 1,
+            "type": "string",
+            "description": "\u7AD9\u53F0\u4EE3\u78BC\u3002\u5B58\u5728\u65BC\u6E05\u55AE\u4E2D\u6642\u5FC5\u5B9A\u6709\u503C\uFF0C\u4E0D\u70BA null\u3002"
+          },
+          "lastUpdTime": {
+            "type": "string",
+            "description": "\u8A72\u7AD9\u53F0\u8CC7\u6599\u6700\u5F8C\u66F4\u65B0\u6642\u9593\u3002\u503C\u578B\u5225\uFF0C\u5FC5\u5B9A\u6709\u503C\u3002",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "\u7AD9\u53F0\u8CC7\u6599\u6700\u5F8C\u66F4\u65B0\u6642\u9593\u8CC7\u8A0A\u3002"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "PriceClientSystem",
+      "description": "PriceClientSystem REST API \u7AEF\u9EDE\uFF0C\u63D0\u4F9B\u7248\u672C\u67E5\u8A62\u3001\u5FC3\u8DF3\u6AA2\u6E2C\u8207 Hub \u72C0\u614B\u67E5\u8A62\u3002"
+    }
+  ]
+}

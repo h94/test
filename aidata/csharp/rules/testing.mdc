@@ -1,0 +1,165 @@
+---
+description: C# 測試規範（整合測試 / 單元測試）
+globs: ["**/*Tests.cs", "**/*Test.cs", "**/Tests/**/*.cs"]
+alwaysApply: false
+---
+
+## Testing Strategy
+
+| 測試類型 | 測試對象 | Mock 目標 | 執行環境 |
+|---------|---------|-----------|---------|
+| Unit Test | Service 方法 | IProvider（+ IValidator、ITransfer 若需要） | 直接呼叫，無 HTTP |
+| Integration Test | Controller 端點 | IService | in-memory（WebApplicationFactory）|
+
+⛔ 不得使用 E2E 測試（呼叫已部署服務的真實端點）
+
+---
+
+## Integration Test — WebApplicationFactory 規則
+
+**MUST** 使用 `WebApplicationFactory<Startup>` 啟動 in-memory test server
+**MUST** Mock 所有 `IService` 並透過 `ConfigureServices` 覆蓋 DI
+**MUST NOT** 使用 `new HttpClient()` 或硬寫 URL 指向已部署的 API
+
+```csharp
+public class UserControllerTests : IClassFixture<WebApplicationFactory<Startup>>
+{
+    private readonly WebApplicationFactory<Startup> _factory;
+
+    public UserControllerTests(WebApplicationFactory<Startup> factory)
+    {
+        _factory = factory;
+    }
+
+    [Fact]
+    public async Task GetUser_ValidId_Returns200()
+    {
+        // Arrange — mock IService，透過 DI 覆蓋注入
+        var mockService = new Mock<IUserService>();
+        mockService
+            .Setup(s => s.GetUserAsync(1, It.IsAny<CancellationToken>()))
+            .ReturnsAsync(new GetUserResponse { Id = 1, Name = "Test" });
+
+        var client = _factory
+            .WithWebHostBuilder(builder =>
+                builder.ConfigureServices(services =>
+                    services.AddSingleton(mockService.Object)))
+            .CreateClient();
+
+        // Act
+        var response = await client.GetAsync("/api/user/getUserById?userId=1");
+
+        // Assert
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
+        var result = await response.Content.ReadFromJsonAsync<GetUserResponse>();
+        result!.Id.Should().Be(1);
+    }
+
+    [Fact]
+    public async Task GetUser_InvalidId_Returns4xx()
+    {
+        var mockService = new Mock<IUserService>();
+        mockService
+            .Setup(s => s.GetUserAsync(It.IsAny<int>(), It.IsAny<CancellationToken>()))
+            .ThrowsAsync(ECException.BuildNotFound("user not found"));
+
+        var client = _factory
+            .WithWebHostBuilder(builder =>
+                builder.ConfigureServices(services =>
+                    services.AddSingleton(mockService.Object)))
+            .CreateClient();
+
+        var response = await client.GetAsync("/api/user/getUserById?userId=999");
+
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+    }
+}
+```
+
+---
+
+## Unit Test — Service 層規則
+
+直接 new Service，Mock 所有 IProvider 依賴
+
+```csharp
+public class UserServiceTests
+{
+    private readonly Mock<IUserProvider> _mockProvider = new();
+    private readonly UserService _sut;
+
+    public UserServiceTests()
+    {
+        _sut = new UserService(_mockProvider.Object);
+    }
+
+    // Happy Path
+    [Fact]
+    public async Task GetUserAsync_ValidId_ReturnsResponse()
+    {
+        _mockProvider
+            .Setup(p => p.GetByIdAsync(1, It.IsAny<CancellationToken>()))
+            .ReturnsAsync(new UserDbModel { Id = 1, Name = "Test" });
+
+        var result = await _sut.GetUserAsync(1, CancellationToken.None);
+
+        result.Id.Should().Be(1);
+    }
+
+    // Error Path — Provider 回傳 null → Service 應拋出 ECException
+    [Fact]
+    public async Task GetUserAsync_NotFound_ThrowsECException()
+    {
+        _mockProvider
+            .Setup(p => p.GetByIdAsync(It.IsAny<int>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync((UserDbModel?)null);
+
+        await Assert.ThrowsAsync<ECException>(() =>
+            _sut.GetUserAsync(999, CancellationToken.None));
+    }
+
+    // Edge Case — 邊界輸入
+    [Theory]
+    [InlineData(0)]
+    [InlineData(-1)]
+    public async Task GetUserAsync_InvalidId_ThrowsECException(int id)
+    {
+        await Assert.ThrowsAsync<ECException>(() =>
+            _sut.GetUserAsync(id, CancellationToken.None));
+    }
+}
+```
+
+---
+
+## Forbidden Patterns
+
+| Pattern | Why Forbidden | Correct Alternative |
+|---------|--------------|---------------------|
+| `[Fact(Skip = "...")]` | 跳過測試偽裝通過，不得使用 | 改用 WebApplicationFactory，測試本機即可執行 |
+| `new HttpClient()` + 硬寫 URL | API 未部署時必定失敗 | `_factory.CreateClient()` |
+| Mock Controller 本身 | 跳過路由 / binding，測試失效 | Mock IService，透過 WebApplicationFactory 測試 Controller |
+| ConfigureServices 覆蓋遺漏 | 實際 Service 仍被 ECCore DI 注入，mock 無效 | 明確 `services.AddSingleton(mockInstance)` |
+| 只寫 Happy Path | Edge Case / Error Path 未覆蓋，測試品質不足 | 三類測試均須存在 |
+
+---
+
+## Required Packages（測試專案 .csproj）
+
+```xml
+<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
+<PackageReference Include="Moq" />
+<PackageReference Include="FluentAssertions" />
+```
+
+---
+
+## Self-Check for Test Files
+
+Before finishing, verify:
+- [ ] Integration tests 使用 `WebApplicationFactory<Startup>`？
+- [ ] `IService` 透過 `ConfigureServices` 中 `AddSingleton` 覆蓋注入？
+- [ ] 無 `new HttpClient()` 指向部署 URL？
+- [ ] 無 `[Fact(Skip = ...)]`？
+- [ ] Unit tests 直接 new Service，mock `IProvider`？
+- [ ] 覆蓋：Happy Path + Edge Case + Error Path 三類？

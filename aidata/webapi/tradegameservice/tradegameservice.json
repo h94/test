@@ -1,0 +1,2367 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "TradeGameService",
+    "version": "v2026-07-22 16:33"
+  },
+  "paths": {
+    "/api/tradegames/stock/{gdate}/{gtype}": {
+      "get": {
+        "tags": [
+          "trade_games"
+        ],
+        "summary": "\u53D6\u5F97\u8CFD\u4E8B\u5EAB\u5B58\u8A2D\u5B9A",
+        "operationId": "get_trade_games_stock_api_tradegames_stock__gdate___gtype__get",
+        "parameters": [
+          {
+            "name": "gdate",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u8CFD\u4E8B\u65E5\u671F\uFF08\u5FC5\u586B\uFF09\uFF0C\u683C\u5F0F YYYY-MM-DD",
+              "examples": [
+                "2026-06-18"
+              ],
+              "title": "Gdate"
+            },
+            "description": "\u8CFD\u4E8B\u65E5\u671F\uFF08\u5FC5\u586B\uFF09\uFF0C\u683C\u5F0F YYYY-MM-DD"
+          },
+          {
+            "name": "gtype",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09\uFF0C\u8207 Redis key \u7247\u6BB5\u4E00\u81F4\uFF0C\u4F8B\u5982 SC\u3001BK",
+              "title": "Gtype"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09\uFF0C\u8207 Redis key \u7247\u6BB5\u4E00\u81F4\uFF0C\u4F8B\u5982 SC\u3001BK"
+          },
+          {
+            "name": "lid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Lid"
+            }
+          },
+          {
+            "name": "gid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Gid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TradeGameStockResponse"
+                  },
+                  "title": "Response Get Trade Games Stock Api Tradegames Stock  Gdate   Gtype  Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "\u7121\u8CC7\u6599"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tradegames/{game_type}/{lid}": {
+      "get": {
+        "tags": [
+          "trade_games"
+        ],
+        "summary": "\u53D6\u5F97\u7403\u7A2E\u806F\u76DF\u8CFD\u4E8B\u80A1\u50F9\u8CC7\u6599",
+        "operationId": "get_trade_games_list_api_tradegames__game_type___lid__get",
+        "parameters": [
+          {
+            "name": "game_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09\uFF0C\u8207 Redis key \u7247\u6BB5\u4E00\u81F4\uFF0C\u4F8B\u5982 SC\u3001BK",
+              "title": "Game Type"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09\uFF0C\u8207 Redis key \u7247\u6BB5\u4E00\u81F4\uFF0C\u4F8B\u5982 SC\u3001BK"
+          },
+          {
+            "name": "lid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u806F\u76DF ID\uFF08\u5FC5\u586B\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32",
+              "title": "Lid"
+            },
+            "description": "\u806F\u76DF ID\uFF08\u5FC5\u586B\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32"
+          },
+          {
+            "name": "gdate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Gdate"
+            }
+          },
+          {
+            "name": "gid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Gid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TradeGameSnapshotResponse"
+                  },
+                  "title": "Response Get Trade Games List Api Tradegames  Game Type   Lid  Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "\u7121\u8CC7\u6599"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tradegames": {
+      "post": {
+        "tags": [
+          "trade_games"
+        ],
+        "summary": "\u53D6\u5F97\u4E0D\u540C\u7403\u7A2E\u7684\u8CFD\u4E8B\u80A1\u50F9\u8CC7\u6599",
+        "operationId": "post_trade_games_list_api_tradegames_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "items": {
+                  "$ref": "#/components/schemas/TradeGamesBodyArgs"
+                },
+                "type": "array",
+                "title": "Body Data",
+                "description": "\u8CFD\u4E8B\u67E5\u8A62\u689D\u4EF6\u9663\u5217\uFF08\u5FC5\u586B\uFF09\uFF0C\u81F3\u5C11\u4E00\u7B46\uFF1B\u6BCF\u7B46\u542B gtype\u3001lid\u3001gdate\u3001gid"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/TradeGameSnapshotResponse"
+                  },
+                  "type": "array",
+                  "title": "Response Post Trade Games List Api Tradegames Post"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "\u7121\u8CC7\u6599"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trade/{game_type}": {
+      "post": {
+        "tags": [
+          "trade"
+        ],
+        "summary": "\u65B0\u589E\u4EA4\u6613\u7D00\u9304",
+        "operationId": "post_trade_api_trade__game_type__post",
+        "parameters": [
+          {
+            "name": "game_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09\uFF0C\u8207 Cassandra \u8868\u524D\u7DB4\u4E00\u81F4\uFF0C\u4F8B\u5982 SC\u3001BK",
+              "title": "Game Type"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09\uFF0C\u8207 Cassandra \u8868\u524D\u7DB4\u4E00\u81F4\uFF0C\u4F8B\u5982 SC\u3001BK"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddTradeBodyArgs"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TradePostResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tradedata/{game_type}": {
+      "get": {
+        "tags": [
+          "trade"
+        ],
+        "summary": "\u67E5\u8A62\u7403\u7A2E\u4EA4\u6613\u6301\u6709\u5009",
+        "operationId": "get_trade_data_api_tradedata__game_type__get",
+        "parameters": [
+          {
+            "name": "game_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09\uFF0C\u8207 Cassandra \u8868\u524D\u7DB4\u4E00\u81F4\uFF0C\u4F8B\u5982 SC\u3001BK",
+              "title": "Game Type"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09\uFF0C\u8207 Cassandra \u8868\u524D\u7DB4\u4E00\u81F4\uFF0C\u4F8B\u5982 SC\u3001BK"
+          },
+          {
+            "name": "lid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Lid"
+            }
+          },
+          {
+            "name": "startdate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Startdate"
+            }
+          },
+          {
+            "name": "enddate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Enddate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StockHoldingsRowResponse"
+                  },
+                  "title": "Response Get Trade Data Api Tradedata  Game Type  Get"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/usertradedata/{account}/{game_type}": {
+      "get": {
+        "tags": [
+          "trade"
+        ],
+        "summary": "\u67E5\u8A62\u6703\u54E1\u7403\u7A2E\u4EA4\u6613\u6301\u6709\u5009",
+        "operationId": "get_user_trade_data_api_usertradedata__account___game_type__get",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u6703\u54E1\u5E33\u865F\uFF08\u5FC5\u586B\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32",
+              "title": "Account"
+            },
+            "description": "\u6703\u54E1\u5E33\u865F\uFF08\u5FC5\u586B\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32"
+          },
+          {
+            "name": "game_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09\uFF0C\u8207 Cassandra \u8868\u524D\u7DB4\u4E00\u81F4\uFF0C\u4F8B\u5982 SC\u3001BK",
+              "title": "Game Type"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09\uFF0C\u8207 Cassandra \u8868\u524D\u7DB4\u4E00\u81F4\uFF0C\u4F8B\u5982 SC\u3001BK"
+          },
+          {
+            "name": "lid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Lid"
+            }
+          },
+          {
+            "name": "startdate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Startdate"
+            }
+          },
+          {
+            "name": "enddate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Enddate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StockHoldingsRowResponse"
+                  },
+                  "title": "Response Get User Trade Data Api Usertradedata  Account   Game Type  Get"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/usertradedata/{account}": {
+      "get": {
+        "tags": [
+          "trade"
+        ],
+        "summary": "\u67E5\u8A62\u6703\u54E1\u6240\u6709\u7403\u7A2E\u4EA4\u6613\u6301\u6709\u5009",
+        "operationId": "get_user_trade_data_without_gtype_api_usertradedata__account__get",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u6703\u54E1\u5E33\u865F\uFF08\u5FC5\u586B\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32",
+              "title": "Account"
+            },
+            "description": "\u6703\u54E1\u5E33\u865F\uFF08\u5FC5\u586B\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32"
+          },
+          {
+            "name": "startdate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Startdate"
+            }
+          },
+          {
+            "name": "enddate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Enddate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StockHoldingsRowResponse"
+                  },
+                  "title": "Response Get User Trade Data Without Gtype Api Usertradedata  Account  Get"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/userdailytradedata/{account}/{game_type}/{addtime}": {
+      "get": {
+        "tags": [
+          "trade"
+        ],
+        "summary": "\u67E5\u8A62\u6703\u54E1\u7576\u65E5\u6240\u6709\u4EA4\u6613\u6301\u6709\u5009\uFF0C\u6839\u64DAaddtime\u67E5\u8A62",
+        "operationId": "get_user_daily_trade_data_api_userdailytradedata__account___game_type___addtime__get",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u6703\u54E1\u5E33\u865F\uFF08\u5FC5\u586B\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32",
+              "title": "Account"
+            },
+            "description": "\u6703\u54E1\u5E33\u865F\uFF08\u5FC5\u586B\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32"
+          },
+          {
+            "name": "game_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09\uFF0C\u8207 Cassandra \u8868\u524D\u7DB4\u4E00\u81F4\uFF0C\u4F8B\u5982 SC\u3001BK",
+              "title": "Game Type"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09\uFF0C\u8207 Cassandra \u8868\u524D\u7DB4\u4E00\u81F4\uFF0C\u4F8B\u5982 SC\u3001BK"
+          },
+          {
+            "name": "addtime",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u67E5\u8A62\u65E5\u671F\uFF08\u5FC5\u586B\uFF09\uFF0C\u683C\u5F0F YYYY-MM-DD\uFF1B\u6703\u8F49\u6210\u7576\u65E5 00:00:00\uFF5E23:59:59 \u7684 Unix \u6BEB\u79D2\u5340\u9593",
+              "examples": [
+                "2024-06-01"
+              ],
+              "title": "Addtime"
+            },
+            "description": "\u67E5\u8A62\u65E5\u671F\uFF08\u5FC5\u586B\uFF09\uFF0C\u683C\u5F0F YYYY-MM-DD\uFF1B\u6703\u8F49\u6210\u7576\u65E5 00:00:00\uFF5E23:59:59 \u7684 Unix \u6BEB\u79D2\u5340\u9593"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StockHoldingsRowResponse"
+                  },
+                  "title": "Response Get User Daily Trade Data Api Userdailytradedata  Account   Game Type   Addtime  Get"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/recalculate/{game_type}/{lid}/{gdate}/{gid}": {
+      "put": {
+        "tags": [
+          "recalculate"
+        ],
+        "summary": "\u91CD\u7B97\u4EA4\u6613\u6301\u6709\u5009\u7D50\u679C",
+        "operationId": "put_recalculate_api_recalculate__game_type___lid___gdate___gid__put",
+        "parameters": [
+          {
+            "name": "game_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09\uFF0C\u8207 Cassandra \u8868\u524D\u7DB4\u4E00\u81F4",
+              "title": "Game Type"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09\uFF0C\u8207 Cassandra \u8868\u524D\u7DB4\u4E00\u81F4"
+          },
+          {
+            "name": "lid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u806F\u76DF ID\uFF08\u5FC5\u586B\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32",
+              "title": "Lid"
+            },
+            "description": "\u806F\u76DF ID\uFF08\u5FC5\u586B\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32"
+          },
+          {
+            "name": "gdate",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u8CFD\u4E8B\u65E5\u671F\uFF08\u5FC5\u586B\uFF09\uFF0C\u683C\u5F0F YYYY-MM-DD",
+              "examples": [
+                "2026-05-20"
+              ],
+              "title": "Gdate"
+            },
+            "description": "\u8CFD\u4E8B\u65E5\u671F\uFF08\u5FC5\u586B\uFF09\uFF0C\u683C\u5F0F YYYY-MM-DD"
+          },
+          {
+            "name": "gid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u8CFD\u4E8B ID\uFF08\u5FC5\u586B\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32",
+              "title": "Gid"
+            },
+            "description": "\u8CFD\u4E8B ID\uFF08\u5FC5\u586B\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecalculateSuccessResponse"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "\u6E2C\u8A66\u74B0\u5883\u7121\u8CC7\u6599\uFF0C\u4E0D\u57F7\u884C\u91CD\u7B97"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/resultlogs/{gdate}/{gtype}": {
+      "get": {
+        "tags": [
+          "resultlogs"
+        ],
+        "summary": "\u53D6\u5F97\u65E5\u671F\u7403\u7A2E\u5DF2\u7D50\u7B97\u6BD4\u8CFD",
+        "operationId": "get_result_logs_api_resultlogs__gdate___gtype__get",
+        "parameters": [
+          {
+            "name": "gdate",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u8CFD\u4E8B\u65E5\u671F\uFF08\u5FC5\u586B\uFF09\uFF0C\u683C\u5F0F YYYY-MM-DD",
+              "examples": [
+                "2026-06-24"
+              ],
+              "title": "Gdate"
+            },
+            "description": "\u8CFD\u4E8B\u65E5\u671F\uFF08\u5FC5\u586B\uFF09\uFF0C\u683C\u5F0F YYYY-MM-DD"
+          },
+          {
+            "name": "gtype",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09\uFF0C\u8207 Cassandra \u8868\u524D\u7DB4\u4E00\u81F4",
+              "title": "Gtype"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09\uFF0C\u8207 Cassandra \u8868\u524D\u7DB4\u4E00\u81F4"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "\u6210\u529F",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ResultLogResponse"
+                  },
+                  "title": "Response Get Result Logs Api Resultlogs  Gdate   Gtype  Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "\u7121\u8CC7\u6599"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tradehistory/game/{gtype}/{gdate}/{lid}/{gid}/{mode_spread_type}": {
+      "get": {
+        "tags": [
+          "tradehistory"
+        ],
+        "summary": "\u53D6\u5F97\u8CFD\u4E8B\u73A9\u5BB6\u6301\u80A1\u4EA4\u6613\u7D00\u9304",
+        "operationId": "get_game_trade_history_api_tradehistory_game__gtype___gdate___lid___gid___mode_spread_type__get",
+        "parameters": [
+          {
+            "name": "gtype",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09\uFF0C\u8207 Cassandra \u8868\u524D\u7DB4\u4E00\u81F4",
+              "title": "Gtype"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09\uFF0C\u8207 Cassandra \u8868\u524D\u7DB4\u4E00\u81F4"
+          },
+          {
+            "name": "gdate",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u8CFD\u4E8B\u65E5\u671F\uFF08\u5FC5\u586B\uFF09\uFF0C\u683C\u5F0F YYYY-MM-DD",
+              "examples": [
+                "2026-06-17"
+              ],
+              "title": "Gdate"
+            },
+            "description": "\u8CFD\u4E8B\u65E5\u671F\uFF08\u5FC5\u586B\uFF09\uFF0C\u683C\u5F0F YYYY-MM-DD"
+          },
+          {
+            "name": "lid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u806F\u76DF ID\uFF08\u5FC5\u586B\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32",
+              "title": "Lid"
+            },
+            "description": "\u806F\u76DF ID\uFF08\u5FC5\u586B\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32"
+          },
+          {
+            "name": "gid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u8CFD\u4E8B ID\uFF08\u5FC5\u586B\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32",
+              "title": "Gid"
+            },
+            "description": "\u8CFD\u4E8B ID\uFF08\u5FC5\u586B\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32"
+          },
+          {
+            "name": "mode_spread_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u73A9\u6CD5\u8207\u7403\u982D\u3001\u8CE0\u7387\u985E\u578B\u7D44\u5408\u9375\uFF08\u5FC5\u586B\uFF09\uFF0C\u683C\u5F0F\u5982 1X2_1X2_H",
+              "title": "Mode Spread Type"
+            },
+            "description": "\u73A9\u6CD5\u8207\u7403\u982D\u3001\u8CE0\u7387\u985E\u578B\u7D44\u5408\u9375\uFF08\u5FC5\u586B\uFF09\uFF0C\u683C\u5F0F\u5982 1X2_1X2_H"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "\u6210\u529F",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "\u7121\u8CC7\u6599"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tradehistory/cancel/{gtype}": {
+      "post": {
+        "tags": [
+          "tradehistory"
+        ],
+        "summary": "\u53D6\u6D88\u4EA4\u6613\u7D00\u9304",
+        "operationId": "post_cancel_trade_api_tradehistory_cancel__gtype__post",
+        "parameters": [
+          {
+            "name": "gtype",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09\uFF0C\u8207 Cassandra \u8868\u524D\u7DB4\u4E00\u81F4",
+              "title": "Gtype"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09\uFF0C\u8207 Cassandra \u8868\u524D\u7DB4\u4E00\u81F4"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelTradeBodyArgs"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "\u6210\u529F",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "\u7121\u8CC7\u6599"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/settings/gametype/{gtype}": {
+      "post": {
+        "tags": [
+          "settings"
+        ],
+        "summary": "\u65B0\u589E\u7403\u7A2E",
+        "operationId": "create_gametype_api_settings_gametype__gtype__post",
+        "parameters": [
+          {
+            "name": "gtype",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09",
+              "title": "Gtype"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "\u6210\u529F\uFF0C\u7121\u5167\u5BB9"
+          },
+          "200": {
+            "description": "\u6210\u529F"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "\u7121\u8CC7\u6599"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "settings"
+        ],
+        "summary": "\u66F4\u65B0\u7403\u7A2E\u806F\u76DF\u8A2D\u5B9A",
+        "operationId": "update_gametype_api_settings_gametype__gtype__put",
+        "parameters": [
+          {
+            "name": "gtype",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09",
+              "title": "Gtype"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateGametypeBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "\u6210\u529F\uFF0C\u7121\u5167\u5BB9"
+          },
+          "200": {
+            "description": "\u6210\u529F"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "\u7121\u8CC7\u6599"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/settings/gametype/gtypes": {
+      "get": {
+        "tags": [
+          "settings"
+        ],
+        "summary": "\u53D6\u5F97\u7403\u7A2E\u806F\u76DF\u8A2D\u5B9A",
+        "operationId": "get_gametypes_api_settings_gametype_gtypes_get",
+        "responses": {
+          "200": {
+            "description": "\u6210\u529F",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "204": {
+            "description": "\u6210\u529F\uFF0C\u7121\u5167\u5BB9"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "\u7121\u8CC7\u6599"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/settings/stock/{gtype}": {
+      "get": {
+        "tags": [
+          "settings"
+        ],
+        "summary": "\u53D6\u5F97\u80A1\u7968\u4E0A\u9650\u8A2D\u5B9A(gtype)",
+        "operationId": "get_stock_gtype_api_settings_stock__gtype__get",
+        "parameters": [
+          {
+            "name": "gtype",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09",
+              "title": "Gtype"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "\u6210\u529F",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "204": {
+            "description": "\u6210\u529F\uFF0C\u7121\u5167\u5BB9"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "\u7121\u8CC7\u6599"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/settings/stock/{gtype}/{lid}": {
+      "get": {
+        "tags": [
+          "settings"
+        ],
+        "summary": "\u53D6\u5F97\u80A1\u7968\u4E0A\u9650\u8A2D\u5B9A(league)",
+        "operationId": "get_stock_league_api_settings_stock__gtype___lid__get",
+        "parameters": [
+          {
+            "name": "gtype",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09",
+              "title": "Gtype"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09"
+          },
+          {
+            "name": "lid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u806F\u76DF ID\uFF08\u5FC5\u586B\uFF09",
+              "title": "Lid"
+            },
+            "description": "\u806F\u76DF ID\uFF08\u5FC5\u586B\uFF09"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "\u6210\u529F",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "204": {
+            "description": "\u6210\u529F\uFF0C\u7121\u5167\u5BB9"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "\u7121\u8CC7\u6599"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "settings"
+        ],
+        "summary": "\u522A\u9664\u7403\u7A2E\u806F\u76DF\u80A1\u7968\u4E0A\u9650\u8A2D\u5B9A",
+        "operationId": "delete_stock_league_api_settings_stock__gtype___lid__delete",
+        "parameters": [
+          {
+            "name": "gtype",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09",
+              "title": "Gtype"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09"
+          },
+          {
+            "name": "lid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u806F\u76DF ID\uFF08\u5FC5\u586B\uFF09",
+              "title": "Lid"
+            },
+            "description": "\u806F\u76DF ID\uFF08\u5FC5\u586B\uFF09"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "\u6210\u529F\uFF0C\u7121\u5167\u5BB9"
+          },
+          "200": {
+            "description": "\u6210\u529F"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "\u7121\u8CC7\u6599"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/settings/stock/{gtype}/{lid}/{gdate}": {
+      "get": {
+        "tags": [
+          "settings"
+        ],
+        "summary": "\u53D6\u5F97\u80A1\u7968\u4E0A\u9650\u8A2D\u5B9A(game)",
+        "operationId": "get_stock_game_api_settings_stock__gtype___lid___gdate__get",
+        "parameters": [
+          {
+            "name": "gtype",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09",
+              "title": "Gtype"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09"
+          },
+          {
+            "name": "lid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u806F\u76DF ID\uFF08\u5FC5\u586B\uFF09",
+              "title": "Lid"
+            },
+            "description": "\u806F\u76DF ID\uFF08\u5FC5\u586B\uFF09"
+          },
+          {
+            "name": "gdate",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u8CFD\u4E8B\u65E5\u671F\uFF08\u5FC5\u586B\uFF09\uFF0C\u683C\u5F0F YYYY-MM-DD",
+              "title": "Gdate"
+            },
+            "description": "\u8CFD\u4E8B\u65E5\u671F\uFF08\u5FC5\u586B\uFF09\uFF0C\u683C\u5F0F YYYY-MM-DD"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "\u6210\u529F",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "204": {
+            "description": "\u6210\u529F\uFF0C\u7121\u5167\u5BB9"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "\u7121\u8CC7\u6599"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/settings/stock": {
+      "post": {
+        "tags": [
+          "settings"
+        ],
+        "summary": "\u5132\u5B58\u80A1\u7968\u4E0A\u9650\u8A2D\u5B9A",
+        "operationId": "save_stock_api_settings_stock_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveStockBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "\u6210\u529F\uFF0C\u7121\u5167\u5BB9"
+          },
+          "200": {
+            "description": "\u6210\u529F"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "\u7121\u8CC7\u6599"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/settings/stock/{gtype}/{lid}/{gid}": {
+      "delete": {
+        "tags": [
+          "settings"
+        ],
+        "summary": "\u522A\u9664\u7403\u7A2E\u806F\u76DF\u8CFD\u4E8B\u80A1\u7968\u4E0A\u9650\u8A2D\u5B9A",
+        "operationId": "delete_stock_game_api_settings_stock__gtype___lid___gid__delete",
+        "parameters": [
+          {
+            "name": "gtype",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09",
+              "title": "Gtype"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09"
+          },
+          {
+            "name": "lid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u806F\u76DF ID\uFF08\u5FC5\u586B\uFF09",
+              "title": "Lid"
+            },
+            "description": "\u806F\u76DF ID\uFF08\u5FC5\u586B\uFF09"
+          },
+          {
+            "name": "gid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u8CFD\u4E8B ID\uFF08\u5FC5\u586B\uFF09",
+              "title": "Gid"
+            },
+            "description": "\u8CFD\u4E8B ID\uFF08\u5FC5\u586B\uFF09"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "\u6210\u529F\uFF0C\u7121\u5167\u5BB9"
+          },
+          "200": {
+            "description": "\u6210\u529F"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "\u7121\u8CC7\u6599"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/settings/score/{gtype}": {
+      "get": {
+        "tags": [
+          "settings"
+        ],
+        "summary": "\u53D6\u5F97\u5206\u6578\u9632\u79A6\u6A5F\u5236(gtype)",
+        "operationId": "get_score_gtype_api_settings_score__gtype__get",
+        "parameters": [
+          {
+            "name": "gtype",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09",
+              "title": "Gtype"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "\u6210\u529F",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "204": {
+            "description": "\u6210\u529F\uFF0C\u7121\u5167\u5BB9"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "\u7121\u8CC7\u6599"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/settings/score/{gtype}/{lid}": {
+      "get": {
+        "tags": [
+          "settings"
+        ],
+        "summary": "\u53D6\u5F97\u5206\u6578\u9632\u79A6\u6A5F\u5236(league)",
+        "operationId": "get_score_league_api_settings_score__gtype___lid__get",
+        "parameters": [
+          {
+            "name": "gtype",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09",
+              "title": "Gtype"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09"
+          },
+          {
+            "name": "lid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u806F\u76DF ID\uFF08\u5FC5\u586B\uFF09",
+              "title": "Lid"
+            },
+            "description": "\u806F\u76DF ID\uFF08\u5FC5\u586B\uFF09"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "\u6210\u529F",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "204": {
+            "description": "\u6210\u529F\uFF0C\u7121\u5167\u5BB9"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "\u7121\u8CC7\u6599"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "settings"
+        ],
+        "summary": "\u522A\u9664\u7403\u7A2E\u806F\u76DF\u5206\u6578\u9632\u79A6\u6A5F\u5236\u8A2D\u5B9A",
+        "operationId": "delete_score_league_api_settings_score__gtype___lid__delete",
+        "parameters": [
+          {
+            "name": "gtype",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09",
+              "title": "Gtype"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09"
+          },
+          {
+            "name": "lid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "\u806F\u76DF ID\uFF08\u5FC5\u586B\uFF09",
+              "title": "Lid"
+            },
+            "description": "\u806F\u76DF ID\uFF08\u5FC5\u586B\uFF09"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "\u6210\u529F\uFF0C\u7121\u5167\u5BB9"
+          },
+          "200": {
+            "description": "\u6210\u529F"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "\u7121\u8CC7\u6599"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/settings/score": {
+      "post": {
+        "tags": [
+          "settings"
+        ],
+        "summary": "\u5132\u5B58\u5206\u6578\u9632\u79A6\u6A5F\u5236\u8A2D\u5B9A",
+        "operationId": "save_score_api_settings_score_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveScoreBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "\u6210\u529F\uFF0C\u7121\u5167\u5BB9"
+          },
+          "200": {
+            "description": "\u6210\u529F"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "\u7121\u8CC7\u6599"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AddTradeBodyArgs": {
+        "properties": {
+          "lid": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Lid",
+            "description": "\u806F\u76DF ID\uFF08\u5FC5\u586B\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32"
+          },
+          "gdate": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Gdate",
+            "description": "\u8CFD\u4E8B\u65E5\u671F\uFF08\u5FC5\u586B\uFF09\uFF0C\u683C\u5F0F YYYY-MM-DD",
+            "examples": [
+              "2024-06-01"
+            ]
+          },
+          "gid": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Gid",
+            "description": "\u8CFD\u4E8B ID\uFF08\u5FC5\u586B\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32"
+          },
+          "account": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Account",
+            "description": "\u6703\u54E1\u5E33\u865F\uFF08\u5FC5\u586B\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32"
+          },
+          "mode": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Mode",
+            "description": "\u73A9\u6CD5\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09\uFF0C\u4F8B\u5982 HA\u3001OU"
+          },
+          "oddtype": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Oddtype",
+            "description": "\u8CE0\u7387\u985E\u578B\uFF08\u5FC5\u586B\uFF09\uFF0C\u4F8B\u5982 H\u3001A\u3001O\u3001U"
+          },
+          "spread": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Spread",
+            "description": "\u7403\u982D\uFF08\u5FC5\u586B\uFF09\uFF0C\u8ACB\u6C42\u70BA\u5B57\u4E32\uFF1B\u5BEB\u5165 DB \u524D\u6703\u89E3\u6790\u70BA\u6578\u503C\u8207 ratio"
+          },
+          "stock_num": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Stock Num",
+            "description": "\u4EA4\u6613\u80A1\u6578\uFF08\u5FC5\u586B\uFF09\uFF0C\u6B63\u6574\u6578"
+          },
+          "trade_price": {
+            "type": "integer",
+            "title": "Trade Price",
+            "description": "\u6210\u4EA4\u55AE\u50F9\uFF08\u5FC5\u586B\uFF09\uFF0C\u6574\u6578\uFF0C\u9808\u8207 Redis \u7576\u524D\u76E4\u53E3\u50F9\u4E00\u81F4"
+          },
+          "trade_type": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Trade Type",
+            "description": "\u4EA4\u6613\u985E\u578B\uFF08\u5FC5\u586B\uFF09\uFF0Cbuy \u70BA\u8CB7\u5165\u3001sell \u70BA\u8CE3\u51FA",
+            "examples": [
+              "buy"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "lid",
+          "gdate",
+          "gid",
+          "account",
+          "mode",
+          "oddtype",
+          "spread",
+          "stock_num",
+          "trade_price",
+          "trade_type"
+        ],
+        "title": "AddTradeBodyArgs",
+        "description": "POST /api/trade/{game_type} \u8ACB\u6C42 body\uFF0C\u6B04\u4F4D\u7686\u5FC5\u586B\u4E14\u4E0D\u53EF\u70BA\u7A7A\u3002"
+      },
+      "CancelTradeBodyArgs": {
+        "properties": {
+          "gdate": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Gdate",
+            "description": "\u8CFD\u4E8B\u65E5\u671F\uFF08\u5FC5\u586B\uFF09\uFF0C\u683C\u5F0F YYYY-MM-DD",
+            "examples": [
+              "2026-06-17"
+            ]
+          },
+          "lid": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Lid",
+            "description": "\u806F\u76DF ID\uFF08\u5FC5\u586B\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32"
+          },
+          "gid": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Gid",
+            "description": "\u8CFD\u4E8B ID\uFF08\u5FC5\u586B\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32"
+          },
+          "account": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Account",
+            "description": "\u6703\u54E1\u5E33\u865F\uFF08\u5FC5\u586B\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32"
+          },
+          "mode_spread_type": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Mode Spread Type",
+            "description": "\u73A9\u6CD5\u8207\u7403\u982D\u3001\u8CE0\u7387\u985E\u578B\u7D44\u5408\u9375\uFF08\u5FC5\u586B\uFF09\uFF0C\u683C\u5F0F\u5982 1X2_1X2_H"
+          },
+          "trade_type": {
+            "type": "string",
+            "enum": [
+              "buy",
+              "sell"
+            ],
+            "title": "Trade Type",
+            "description": "\u4EA4\u6613\u985E\u578B\uFF08\u5FC5\u586B\uFF09\uFF0Cbuy \u6216 sell"
+          },
+          "trade_time": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Trade Time",
+            "description": "\u4EA4\u6613\u6642\u9593\uFF08\u5FC5\u586B\uFF09\uFF0C\u683C\u5F0F YYYY-MM-DD HH:MM:SS",
+            "examples": [
+              "2026-05-29 11:08:39"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "gdate",
+          "lid",
+          "gid",
+          "account",
+          "mode_spread_type",
+          "trade_type",
+          "trade_time"
+        ],
+        "title": "CancelTradeBodyArgs",
+        "description": "POST /api/tradehistory/cancel/{gtype} \u8ACB\u6C42 body\u3002"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "RecalculateSuccessResponse": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Message",
+            "description": "\u7D50\u679C\u8A0A\u606F\uFF08\u5FC5\u6709\uFF09\u3002\u6210\u529F\u6642\u901A\u5E38\u70BA Success \u6216\u696D\u52D9\u8AAA\u660E\u5B57\u4E32\uFF0C\u975E null"
+          }
+        },
+        "type": "object",
+        "required": [
+          "message"
+        ],
+        "title": "RecalculateSuccessResponse",
+        "description": "PUT /api/recalculate/{game_type}/{lid}/{gdate}/{gid} \u6210\u529F\u6642\u56DE\u61C9\u3002"
+      },
+      "ResultLogResponse": {
+        "properties": {
+          "gdate": {
+            "type": "string",
+            "title": "Gdate",
+            "description": "\u8CFD\u4E8B\u65E5\u671F\uFF08\u5FC5\u6709\uFF09\uFF0C\u683C\u5F0F YYYY-MM-DD"
+          },
+          "gtype": {
+            "type": "string",
+            "title": "Gtype",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u6709\uFF09\uFF0C\u4F8B\u5982 BK"
+          },
+          "gid": {
+            "type": "string",
+            "title": "Gid",
+            "description": "\u8CFD\u4E8B ID\uFF08\u5FC5\u6709\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32"
+          },
+          "lid": {
+            "type": "string",
+            "title": "Lid",
+            "description": "\u806F\u76DF ID\uFF08\u5FC5\u6709\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32"
+          },
+          "addtime": {
+            "type": "integer",
+            "title": "Addtime",
+            "description": "\u5BEB\u5165\u6642\u9593\uFF08\u5FC5\u6709\uFF09\uFF0CUnix \u6BEB\u79D2\u6642\u9593\u6233\uFF0813 \u4F4D\u6574\u6578\uFF09"
+          },
+          "status": {
+            "type": "integer",
+            "title": "Status",
+            "description": "\u7D50\u7B97\u72C0\u614B\uFF08\u5FC5\u6709\uFF09\uFF0C0=\u5F85\u7D50\u7B97\u30011=\u5DF2\u7D50\u7B97"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "gdate",
+          "gtype",
+          "gid",
+          "lid",
+          "addtime",
+          "status"
+        ],
+        "title": "ResultLogResponse",
+        "description": "GET /api/resultlogs/{gdate}/{gtype} \u6210\u529F\u56DE\u50B3\u9663\u5217\u4E2D\u7684\u55AE\u7B46\u3002"
+      },
+      "SaveScoreBody": {
+        "properties": {
+          "gtype": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Gtype",
+            "description": "\u7403\u7A2E"
+          },
+          "layer": {
+            "type": "string",
+            "enum": [
+              "gtype",
+              "league"
+            ],
+            "title": "Layer",
+            "description": "\u5C64\u7D1A"
+          },
+          "lid": {
+            "type": "string",
+            "title": "Lid",
+            "description": "\u806F\u76DF ID",
+            "default": ""
+          },
+          "rules": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Rules",
+            "description": "\u5206\u6578\u9632\u79A6\u898F\u5247"
+          }
+        },
+        "type": "object",
+        "required": [
+          "gtype",
+          "layer",
+          "rules"
+        ],
+        "title": "SaveScoreBody"
+      },
+      "SaveStockBody": {
+        "properties": {
+          "gtype": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Gtype",
+            "description": "\u7403\u7A2E"
+          },
+          "layer": {
+            "type": "string",
+            "enum": [
+              "gtype",
+              "league",
+              "game"
+            ],
+            "title": "Layer",
+            "description": "\u5C64\u7D1A"
+          },
+          "lid": {
+            "type": "string",
+            "title": "Lid",
+            "description": "\u806F\u76DF ID",
+            "default": ""
+          },
+          "gid": {
+            "type": "string",
+            "title": "Gid",
+            "description": "\u8CFD\u4E8B ID",
+            "default": ""
+          },
+          "gdate": {
+            "type": "string",
+            "title": "Gdate",
+            "description": "\u8CFD\u4E8B\u65E5\u671F YYYY-MM-DD",
+            "default": ""
+          },
+          "initial_stock_num": {
+            "type": "integer",
+            "title": "Initial Stock Num",
+            "description": "\u80A1\u7968\u7E3D\u91CF\u4E0A\u9650"
+          },
+          "rules": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Rules",
+            "description": "buy/sell \u6642\u9593\u898F\u5247"
+          }
+        },
+        "type": "object",
+        "required": [
+          "gtype",
+          "layer",
+          "initial_stock_num",
+          "rules"
+        ],
+        "title": "SaveStockBody"
+      },
+      "StockHoldingsRowResponse": {
+        "properties": {
+          "gdate": {
+            "type": "string",
+            "title": "Gdate",
+            "description": "\u8CFD\u4E8B\u65E5\u671F\uFF08\u5FC5\u6709\uFF09\uFF0C\u683C\u5F0F YYYY-MM-DD\uFF0C\u70BA partition key \u4E4B\u4E00"
+          },
+          "lid": {
+            "type": "string",
+            "title": "Lid",
+            "description": "\u806F\u76DF ID\uFF08\u5FC5\u6709\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32"
+          },
+          "gid": {
+            "type": "string",
+            "title": "Gid",
+            "description": "\u8CFD\u4E8B ID\uFF08\u5FC5\u6709\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32"
+          },
+          "account": {
+            "type": "string",
+            "title": "Account",
+            "description": "\u6703\u54E1\u5E33\u865F\uFF08\u5FC5\u6709\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32"
+          },
+          "mode_spread_type": {
+            "type": "string",
+            "title": "Mode Spread Type",
+            "description": "\u73A9\u6CD5\u8207\u7403\u982D\u3001\u8CE0\u7387\u985E\u578B\u7D44\u5408\u9375\uFF08\u5FC5\u6709\uFF09\uFF0C\u683C\u5F0F\u5982 {mode}_{spread}_{oddtype}"
+          },
+          "addtime": {
+            "type": "integer",
+            "title": "Addtime",
+            "description": "\u8A72\u7B46\u6301\u6709\u5009\u5EFA\u7ACB\u6642\u9593\uFF08\u5FC5\u6709\uFF09\uFF0CUnix \u6BEB\u79D2\u6642\u9593\u6233\uFF0813 \u4F4D\u6574\u6578\uFF09"
+          },
+          "mode": {
+            "type": "string",
+            "title": "Mode",
+            "description": "\u73A9\u6CD5\u4EE3\u78BC\uFF08\u5FC5\u6709\uFF09\uFF0C\u4F8B\u5982 HA\u3001OU"
+          },
+          "oddtype": {
+            "type": "string",
+            "title": "Oddtype",
+            "description": "\u8CE0\u7387\u985E\u578B\uFF08\u5FC5\u6709\uFF09\uFF0C\u4F8B\u5982 H\u3001A\u3001O\u3001U"
+          },
+          "ratio": {
+            "type": "integer",
+            "title": "Ratio",
+            "description": "\u6BD4\u4F8B\u4FC2\u6578\uFF08\u5FC5\u6709\uFF09\uFF0C\u7531\u7403\u982D\u5B57\u4E32\u89E3\u6790\u5F8C\u5BEB\u5165\u7684\u6574\u6578"
+          },
+          "spread": {
+            "type": "integer",
+            "title": "Spread",
+            "description": "\u7403\u982D\u6578\u503C\uFF08\u5FC5\u6709\uFF09\uFF0C\u5BEB\u5165 DB \u6642\u70BA\u6574\u6578"
+          },
+          "stock_num": {
+            "type": "integer",
+            "title": "Stock Num",
+            "description": "\u76EE\u524D\u6301\u6709\u80A1\u6578\uFF08\u5FC5\u6709\uFF09\uFF0C\u6574\u6578 \u2265 0"
+          },
+          "trade_history": {
+            "type": "string",
+            "title": "Trade History",
+            "description": "\u6B77\u53F2\u4EA4\u6613\u7D00\u9304 JSON \u5B57\u4E32\uFF08\u5FC5\u6709\uFF09\uFF0C\u5167\u5BB9\u70BA\u4EA4\u6613\u9663\u5217\u7684\u5E8F\u5217\u5316\u7D50\u679C"
+          },
+          "winloss": {
+            "type": "string",
+            "title": "Winloss",
+            "description": "\u52DD\u8CA0\u7D50\u679C\uFF08\u5FC5\u6709\uFF0C\u53EF\u70BA\u7A7A\u5B57\u4E32\uFF09\u3002\u672A\u7D50\u7B97\u6216\u7121\u7D50\u679C\u6642\u70BA \u0022\u0022\uFF0C\u975E null"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "gdate",
+          "lid",
+          "gid",
+          "account",
+          "mode_spread_type",
+          "addtime",
+          "mode",
+          "oddtype",
+          "ratio",
+          "spread",
+          "stock_num",
+          "trade_history",
+          "winloss"
+        ],
+        "title": "StockHoldingsRowResponse",
+        "description": "Cassandra stock_holdings \u4E00\u7B46\uFF1B\u67E5\u8A62\u6210\u529F\u4E14\u8A72\u5217\u5B58\u5728\u6642\uFF0C\u4E0B\u5217\u6B04\u4F4D\u7686\u6709\u503C\uFF08\u975E null\uFF09\u3002\u8868\u5167\u5176\u4ED6\u6B04\u4F4D\u4FDD\u7559\u65BC extra\u3002"
+      },
+      "TradeGameSnapshotResponse": {
+        "properties": {
+          "odds": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Odds",
+            "description": "\u76E4\u53E3\u8CC7\u6599\uFF08\u5FC5\u6709\uFF0C\u53EF\u70BA\u7A7A\u7269\u4EF6\uFF09\u3002\u5DE2\u72C0\u7D50\u69CB\uFF1A\u73A9\u6CD5 -\u003E \u7403\u982D -\u003E \u76E4\u53E3\u6B04\u4F4D\uFF1B\u9375\u503C\u7686\u70BA\u5B57\u4E32",
+            "examples": [
+              {}
+            ]
+          },
+          "use_spread": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Use Spread",
+            "description": "\u8A72\u5834\u555F\u7528\u7403\u982D\uFF08\u5FC5\u6709\uFF0C\u53EF\u70BA\u7A7A\u7269\u4EF6\uFF09\u3002\u73A9\u6CD5 -\u003E \u7403\u982D\u5B57\u4E32\u9663\u5217\uFF0C\u4F8B\u5982 {\u0022HA\u0022: [\u00221X2\u0022, \u00227.5\u0022]}",
+            "examples": [
+              {}
+            ]
+          },
+          "gdate": {
+            "type": "string",
+            "title": "Gdate",
+            "description": "\u8CFD\u4E8B\u65E5\u671F\uFF08\u5FC5\u6709\uFF09\uFF0C\u683C\u5F0F YYYY-MM-DD\uFF1B\u7531 Redis key \u89E3\u6790\u88DC\u4E0A\uFF0C\u975E null"
+          },
+          "gid": {
+            "type": "string",
+            "title": "Gid",
+            "description": "\u8CFD\u4E8B ID\uFF08\u5FC5\u6709\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32\uFF1B\u7531 Redis key \u89E3\u6790\u88DC\u4E0A"
+          },
+          "gtype": {
+            "type": "string",
+            "title": "Gtype",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u6709\uFF09\uFF0C\u8207\u8DEF\u5F91\u6216\u8ACB\u6C42 body \u7684 gtype \u4E00\u81F4"
+          },
+          "lid": {
+            "type": "string",
+            "title": "Lid",
+            "description": "\u806F\u76DF ID\uFF08\u5FC5\u6709\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32\uFF1B\u7531\u8DEF\u5F91\u6216\u8ACB\u6C42\u88DC\u4E0A"
+          },
+          "source": {
+            "type": "string",
+            "title": "Source",
+            "description": "\u76EE\u524D\u4F7F\u7528\u7684 Redis \u8CE0\u7387\u4F86\u6E90\u9375\uFF08\u5FC5\u6709\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32"
+          },
+          "write_time": {
+            "type": "string",
+            "title": "Write Time",
+            "description": "\u5BEB\u5165 Redis \u7684\u6642\u9593\uFF08\u5FC5\u6709\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32"
+          },
+          "first_data": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "First Data",
+            "description": "\u7B2C\u4E00\u7B46\u5B8C\u6574\u8CE0\u7387\uFF08\u5FC5\u6709\uFF09\uFF0C\u542B\u591A\u7403\u982D\u7684\u5DE2\u72C0 dict",
+            "examples": [
+              {}
+            ]
+          },
+          "first_source": {
+            "type": "string",
+            "title": "First Source",
+            "description": "\u7B2C\u4E00\u7B46\u8CE0\u7387\u4F86\u6E90\u9375\uFF08\u5FC5\u6709\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "gdate",
+          "gid",
+          "gtype",
+          "lid",
+          "source",
+          "write_time",
+          "first_data",
+          "first_source"
+        ],
+        "title": "TradeGameSnapshotResponse",
+        "description": "GET/POST /api/tradegames \u6210\u529F\u56DE\u50B3\u9663\u5217\u4E2D\u7684\u55AE\u7B46\uFF1BService \u6703\u88DC\u9F4A gdate\u3001gid\u3001gtype\u3001lid\u3002"
+      },
+      "TradeGameStockResponse": {
+        "properties": {
+          "gdate": {
+            "type": "string",
+            "title": "Gdate",
+            "description": "\u8CFD\u4E8B\u65E5\u671F\uFF08\u5FC5\u6709\uFF09\uFF0C\u683C\u5F0F YYYY-MM-DD"
+          },
+          "gtype": {
+            "type": "string",
+            "title": "Gtype",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u6709\uFF09\uFF0C\u4F8B\u5982 BK"
+          },
+          "gid": {
+            "type": "string",
+            "title": "Gid",
+            "description": "\u8CFD\u4E8B ID\uFF08\u5FC5\u6709\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32"
+          },
+          "lid": {
+            "type": "string",
+            "title": "Lid",
+            "description": "\u806F\u76DF ID\uFF08\u5FC5\u6709\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32"
+          },
+          "amount": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Amount",
+            "description": "\u5EAB\u5B58\u8A2D\u5B9A\uFF08\u5FC5\u6709\uFF09\uFF0C\u542B amountbuy \u53CA amountsell"
+          },
+          "PlayModeStocks": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Playmodestocks",
+            "description": "\u73A9\u6CD5\u5EAB\u5B58\u8A2D\u5B9A\uFF08\u5FC5\u6709\uFF09\uFF0C\u542B\u5404\u73A9\u6CD5\u5EAB\u5B58\u8A2D\u5B9A"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "gdate",
+          "gtype",
+          "gid",
+          "lid",
+          "amount",
+          "PlayModeStocks"
+        ],
+        "title": "TradeGameStockResponse",
+        "description": "GET /api/tradegames/stock/{gdate}/{gtype} \u6210\u529F\u56DE\u50B3\u9663\u5217\u4E2D\u7684\u55AE\u7B46\u3002"
+      },
+      "TradeGamesBodyArgs": {
+        "properties": {
+          "gtype": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Gtype",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09\uFF0C\u7B49\u540C\u8DEF\u5F91 game_type\uFF0C\u4F8B\u5982 SC"
+          },
+          "lid": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Lid",
+            "description": "\u806F\u76DF ID\uFF08\u5FC5\u586B\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32"
+          },
+          "gdate": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Gdate",
+            "description": "\u8CFD\u4E8B\u65E5\u671F\uFF08\u5FC5\u586B\uFF09\uFF0C\u683C\u5F0F YYYY-MM-DD",
+            "examples": [
+              "2026-05-20"
+            ]
+          },
+          "gid": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Gid",
+            "description": "\u8CFD\u4E8B ID\uFF08\u5FC5\u586B\uFF09\uFF0C\u975E\u7A7A\u5B57\u4E32"
+          }
+        },
+        "type": "object",
+        "required": [
+          "gtype",
+          "lid",
+          "gdate",
+          "gid"
+        ],
+        "title": "TradeGamesBodyArgs",
+        "description": "POST /api/tradegames \u8ACB\u6C42 body \u9663\u5217\u5143\u7D20\uFF0C\u6B04\u4F4D\u7686\u5FC5\u586B\u3002"
+      },
+      "TradePostResponse": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Message",
+            "description": "\u7D50\u679C\u8A0A\u606F\uFF08\u5FC5\u6709\uFF09\u3002\u6210\u529F\u6642\u70BA Success\uFF1B\u696D\u52D9\u5931\u6557\u6642\u70BA\u932F\u8AA4\u8AAA\u660E\uFF0C\u4F8B\u5982\u300C\u80A1\u7968\u50F9\u683C\u4E0D\u7B26\u300D"
+          },
+          "profitpoint": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Profitpoint",
+            "description": "\u7372\u5229\u9EDE\u6578\uFF08\u9078\u586B\uFF09\u3002\u50C5\u4EA4\u6613\u6210\u529F\uFF08HTTP 200 \u4E14 message \u70BA Success\uFF09\u6642\u5FC5\u6709\u6574\u6578\u503C\uFF1B\u8CB7\u5165\u901A\u5E38\u70BA\u8CA0\u503C\u3001\u8CE3\u51FA\u70BA\u6B63\u503C\uFF1B\u672A\u56DE\u50B3\u6642\u8868\u793A null"
+          }
+        },
+        "type": "object",
+        "required": [
+          "message"
+        ],
+        "title": "TradePostResponse",
+        "description": "POST /api/trade/{game_type} \u56DE\u61C9\u3002HTTP 200 \u6642\u7531\u672C\u670D\u52D9\u7D44\u88DD\uFF1B\u696D\u52D9\u5931\u6557\u6642\u591A\u70BA HTTPException \u7684 detail\u3002"
+      },
+      "UpdateGametypeBody": {
+        "properties": {
+          "lids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lids",
+            "description": "\u806F\u76DF ID \u5217\u8868"
+          },
+          "enabled": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Enabled",
+            "description": "0 \u6216 1"
+          }
+        },
+        "type": "object",
+        "title": "UpdateGametypeBody"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

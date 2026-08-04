@@ -1,0 +1,156 @@
+---
+description: C# Controller 層規範
+globs: ["**/*Controller.cs"]
+alwaysApply: false
+---
+
+## Swagger 文件（WebAPI — 必須）
+
+新增或修改 Controller / Request / Response 時，**必須**依 `./aidata/csharp/rules/swagger.mdc` 產出完整 Swagger 文件（不可只寫邏輯）。重點：
+- Request：每欄位 `<summary>`（含必填/選填說明）+ 必填 non-nullable；禁止 Model 上加 `[Required]` 等 attribute
+- Response：每欄位 `<summary>` + 依語意標記 non-nullable（如 Id）或 nullable（如 DeletedAt）
+- Action：每個端點 `<summary>`
+
+---
+
+## Controller Responsibilities
+
+**ONLY allowed:**
+- HTTP 參數綁定（見下方「參數綁定」）
+- Call **exactly one** service interface method per action
+- Map service result to HTTP response using framework helpers
+
+---
+
+## Route 設計 — MUST
+
+- Route segment 必須使用 camelCase，禁止 kebab-case / snake_case（例如禁止 `ai-merge`、`get-user-by-id`）。
+- 必填且用來定位資源、業務範圍或查詢主體的參數，必須放在 URI route segment，不可放 query string。
+- Query string 僅用於選填篩選、排序、分頁、日期範圍等查詢條件。
+- Route template 中的參數不加 `[FromRoute]` / `[FromQuery]`，由 ASP.NET Core 依名稱自動綁定。
+
+```csharp
+// ✅ Correct — gameType 是必填且定位回測球種，放 route segment
+[HttpGet("aimerge/backtest/{gameType}/latest")]
+public Task<AiBacktestResult> GetAiBacktestLatest(string gameType, string? date)
+    => _aiMergeService.GetAiBacktestLatest(gameType, date);
+
+// ❌ Wrong — route 使用 kebab-case，且必填 gameType 被放在 query string
+[HttpGet, Route("ai-merge/backtest/latest")]
+public Task<AiBacktestResult> GetAiBacktestLatest(string gameType, string date)
+    => _aiMergeService.GetAiBacktestLatest(gameType, date);
+```
+
+---
+
+## 參數綁定 — MUST
+
+依參數在 URL 中的位置決定綁定方式，**不要**對 route template 內的參數加 `[FromQuery]`，也**不要**加 `[FromRoute]`（框架會依 route template 自動綁定）。
+
+| 參數來源 | 寫法 | Attribute |
+|---------|------|-----------|
+| Route template 佔位（如 `getPgUser/{id:int}` 的 `id`） | 參數名稱與 template 一致 | **不加**（禁止 `[FromRoute]`、`[FromQuery]`） |
+| Query string（route 中**沒有**對應佔位） | 簡單型別或 GET 用的 Request DTO | `[FromQuery]` |
+| Request body（POST / PUT / PATCH 等） | Request Model | `[FromBody]` |
+
+```csharp
+// ✅ Route template 參數 — 不加 attribute
+[HttpGet("getPgUser/{id:int}")]
+public Task<PgUser> GetPgUser(int id)
+    => _pgUserService.GetPgUserAsync(id);
+
+[HttpPut("updatePgUser/{id:int}")]
+public Task<PgUser> UpdatePgUser(int id, [FromBody] UpdatePgUserRequest request)
+    => _pgUserService.UpdatePgUserAsync(id, request);
+
+// ✅ Query string 參數 — 僅在「非 route 佔位」時加 [FromQuery]
+[HttpGet("listCacheUsers")]
+public Task<List<CacheUserDTO>> ListCacheUsers([FromQuery] string pattern = "*")
+    => _cacheService.ListCacheUsersAsync(pattern);
+
+[HttpGet("getOrders")]
+public Task<GetOrdersResponse> GetOrders([FromQuery] GetOrdersRequest request)
+    => _orderService.GetOrdersAsync(request);
+
+// ✅ Body
+[HttpPost("createPgUser")]
+public Task<PgUser> CreatePgUser([FromBody] CreatePgUserRequest request)
+    => _pgUserService.CreatePgUserAsync(request);
+
+// ❌ Wrong — route 佔位卻用 FromQuery
+[HttpGet("getPgUser/{id:int}")]
+public Task<PgUser> GetPgUser([FromQuery] int id) => ...;
+
+// ❌ Wrong — 多餘的 FromRoute
+[HttpGet("getLangue/{countryCode}")]
+public Task<string> GetLangue([FromRoute] string countryCode) => ...;
+```
+
+---
+
+## Hard Constraints — MUST NOT
+
+| Forbidden | Reason |
+|-----------|--------|
+| `[FromQuery]` on parameters that appear in the route template | Route 佔位應由框架自動綁定，不需 attribute |
+| `[FromRoute]` on route template parameters | 多餘；ASP.NET Core 已依 template 名稱綁定 |
+| Business rules / `if` / `switch` interpreting input correctness | Belongs in Service |
+| Authorization / security decisions | Belongs in Service |
+| Config reads (`IConfiguration`, `IECConfig`, secrets) | Belongs in Infrastructure |
+| Serialization policy (`JsonSerializerOptions`, manual `Serialize`) | Belongs in Service |
+| Loops over domain data | Belongs in Service |
+| Read `Request.Headers` / `Query` for validation or decision | Pass `HttpContext` or snapshots to Service once |
+| Write SQL or call DB directly | Belongs in Infrastructure |
+| Instantiate dependencies with `new` | Use constructor injection |
+| Call multiple service methods per action | Use orchestration in Service |
+
+---
+
+## Response and Error Convention
+
+```csharp
+// Correct — return Task<T> directly, let EC middleware handle errors
+[HttpGet("getUserById/{userId:int}")]
+public Task<GetUserResponse> GetUserById(int userId)
+    => _userService.GetUserAsync(userId);
+
+// Correct — throw ECException in Service, not in Controller
+// Service: throw ECException.BuildNotFound("user not found");
+// Service: throw ECException.Build(HttpStatusCode.BadRequest, "invalid input");
+
+// Wrong — manual non-200 responses in Controller
+return NotFound();
+return BadRequest();
+return Conflict();
+return StatusCode(409, ...);
+return CreatedAtAction(...);  // avoid unless API contract requires 201
+return NoContent();           // avoid unless API contract requires 204
+```
+
+- Query / read actions: prefer `Task<TResponse>` return type
+- Create / delete actions: same convention, use `ECException` for errors
+- `ActionResult` / `CreatedAtAction` / `NoContent` only when API contract **explicitly** requires specific HTTP success semantics
+
+---
+
+## Layer Dependency
+
+```
+Controller → IService (interface only)
+Controller MUST NOT → Provider, Infrastructure, DbContext, raw HTTP
+```
+
+---
+
+## Self-Check for Controller Files
+
+Before finishing, verify:
+- [ ] Each action calls exactly one service method?
+- [ ] 必填識別參數已放在 route segment，而不是 query string？
+- [ ] Route template 參數未加 `[FromRoute]` / `[FromQuery]`？
+- [ ] 僅 query string（非 route 佔位）參數使用 `[FromQuery]`？
+- [ ] POST/PUT body 使用 `[FromBody]`？
+- [ ] No `if` / `switch` that decides input correctness?
+- [ ] No config reads?
+- [ ] No `NotFound()` / `BadRequest()` / `CreatedAtAction()` for business outcomes?
+- [ ] Routes use camelCase (not kebab-case)?

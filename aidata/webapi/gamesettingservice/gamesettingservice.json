@@ -1,0 +1,5473 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "GameSettingService API",
+    "description": "\u904A\u6232\u8A2D\u5B9A\u670D\u52D9\uFF1A\u5546\u52D9\u865F\u3001\u7AD9\u53F0/\u73A9\u6CD5\u914D\u7F6E\u3001\u7CFB\u7D71/\u7BC4\u672C/\u806F\u76DF/\u8CFD\u4E8B\u8A2D\u5B9A\u8207\u8A02\u95B1\u8005\u7BA1\u7406\u3002",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/v1/businesses": {
+      "post": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "\u65B0\u589E\u5546\u52D9\u865F",
+        "requestBody": {
+          "description": "\u5546\u52D9\u865F\u8CC7\u6599\u3002Body \u5FC5\u586B\uFF1ABusinessCode\u3001Email\u3001SubGameTypes\u3001SubEndDate\u3001SubPreGameSites",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Business"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Business"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/Business"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "\u53D6\u5F97\u5168\u90E8\u5546\u52D9\u865F",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Business"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "\u66F4\u65B0\u5546\u52D9\u865F",
+        "requestBody": {
+          "description": "\u5546\u52D9\u865F\u8CC7\u6599\u3002Body \u5FC5\u586B\uFF1ABusinessCode\u3001SubGameTypes\u3001SubEndDate",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Business"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Business"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/Business"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/businesses/{businessCode}/accounts": {
+      "post": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "\u65B0\u589E\u5546\u52D9\u865F\u5E33\u865F",
+        "parameters": [
+          {
+            "name": "businessCode",
+            "in": "path",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "\u5E33\u865F\u8CC7\u6599\u3002Body \u5FC5\u586B\uFF1AAccount\u3001Password\u3001Role\u3001Status",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessAccount"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessAccount"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessAccount"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "\u53D6\u5F97\u5546\u52D9\u865F\u6240\u6709\u5E33\u865F",
+        "parameters": [
+          {
+            "name": "businessCode",
+            "in": "path",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BusinessAccount"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/businesses/{businessCode}/logininfos": {
+      "post": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "\u767B\u5165\u4E26\u53D6\u5F97\u5546\u52D9\u5E33\u865F\u767B\u5165\u8CC7\u8A0A",
+        "parameters": [
+          {
+            "name": "businessCode",
+            "in": "path",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "\u767B\u5165\u8CC7\u6599\u3002Body \u5FC5\u586B\uFF1AAccount\u3001Password\u3001IP",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessAccountLogin"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessAccountLogin"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessAccountLogin"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessAccountLoginInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/businesses/{businessCode}/inplaygames": {
+      "post": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "\u8A2D\u5B9A\u5546\u52D9\u865F\u5834\u4E2D\u8CFD\u4E8B",
+        "parameters": [
+          {
+            "name": "businessCode",
+            "in": "path",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "\u8CFD\u4E8B\u8CC7\u6599\u3002Body \u5FC5\u586B\uFF1ASite\u3001LeagueID\u3001GameDate\u3001GameID\u3001GameType\u3001Enabled",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessGame"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessGame"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessGame"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/businesses/{businessCode}/logs": {
+      "post": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "\u65B0\u589E\u5546\u52D9\u865F\u64CD\u4F5C Log",
+        "parameters": [
+          {
+            "name": "businessCode",
+            "in": "path",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF0C\u5BEB\u5165 Log \u7528\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Log \u5167\u5BB9\u3002\u5EFA\u8B70\u586B\u5BEB\uFF1ABusinessCode\u3001Action\u3001Account\u3001ID\u3001AddTime",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessLog"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessLog"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessLog"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/businesses/{businessCode}": {
+      "get": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "\u53D6\u5F97\u55AE\u4E00\u5546\u52D9\u865F",
+        "parameters": [
+          {
+            "name": "businessCode",
+            "in": "path",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Business"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/businesses/{businessCode}/logininfos/{uid}": {
+      "get": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "\u53D6\u5F97\u5546\u52D9\u865F\u767B\u5165\u8CC7\u8A0A",
+        "parameters": [
+          {
+            "name": "businessCode",
+            "in": "path",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uid",
+            "in": "path",
+            "description": "\u767B\u5165 Session UID\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessAccountLoginInfo"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "\u79FB\u9664\u5546\u52D9\u865F\u767B\u5165\u8CC7\u8A0A",
+        "parameters": [
+          {
+            "name": "businessCode",
+            "in": "path",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uid",
+            "in": "path",
+            "description": "\u767B\u5165 Session UID\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/businesses/{businessCode}/inplaygames/{month}": {
+      "get": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "\u53D6\u5F97\u5546\u52D9\u865F\u6307\u5B9A\u6708\u4EFD\u5834\u4E2D\u8CFD\u4E8B ID \u6E05\u55AE",
+        "parameters": [
+          {
+            "name": "businessCode",
+            "in": "path",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "month",
+            "in": "path",
+            "description": "\u6708\u4EFD\uFF0C\u683C\u5F0F yyyy-MM\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/businesses/{businessCode}/logs/{actionType}": {
+      "get": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "\u53D6\u5F97\u5546\u52D9\u865F\u64CD\u4F5C Log",
+        "parameters": [
+          {
+            "name": "businessCode",
+            "in": "path",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "actionType",
+            "in": "path",
+            "description": "\u64CD\u4F5C\u985E\u578B\uFF0C\u4F8B\u5982 Login\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BusinessLog"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/businesses/{businessCode}/extraplayModes": {
+      "put": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "\u66F4\u65B0\u5546\u52D9\u865F\u984D\u5916\u73A9\u6CD5\uFF08\u66AB\u4E0D\u4F7F\u7528\uFF09",
+        "parameters": [
+          {
+            "name": "businessCode",
+            "in": "path",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "\u50C5\u4F7F\u7528 ExtraPlayModes \u6B04\u4F4D",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Business"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Business"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/Business"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/businesses/{businessCode}/subsites": {
+      "put": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "\u66F4\u65B0\u5546\u52D9\u865F\u8A02\u95B1\u8CC7\u8A0A\u6E90\u7AD9\u53F0",
+        "parameters": [
+          {
+            "name": "businessCode",
+            "in": "path",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "\u4F7F\u7528 SubInProgressSites\u3001SubPreGameSites \u6B04\u4F4D",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Business"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Business"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/Business"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/businesses/{businessCode}/accounts/{account}/status": {
+      "put": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "\u66F4\u65B0\u5546\u52D9\u865F\u5E33\u865F\u72C0\u614B",
+        "parameters": [
+          {
+            "name": "businessCode",
+            "in": "path",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "account",
+            "in": "path",
+            "description": "\u5E33\u865F\u540D\u7A31\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Body \u5FC5\u586B\uFF1AStatus\uFF080 \u6216 1\uFF09",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessAccount"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessAccount"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessAccount"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/businesses/{businessCode}/accounts/{account}/password": {
+      "put": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "\u66F4\u65B0\u5546\u52D9\u865F\u5E33\u865F\u5BC6\u78BC",
+        "parameters": [
+          {
+            "name": "businessCode",
+            "in": "path",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "account",
+            "in": "path",
+            "description": "\u5E33\u865F\u540D\u7A31\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Body \u5FC5\u586B\uFF1APassword",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessAccount"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessAccount"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessAccount"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/siteconfigs": {
+      "post": {
+        "tags": [
+          "Config"
+        ],
+        "summary": "\u65B0\u589E\u7AD9\u53F0\u914D\u7F6E",
+        "requestBody": {
+          "description": "Body \u5FC5\u586B\uFF1ABusinessCode\u3001GameType",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SiteConfig"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SiteConfig"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/SiteConfig"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Config"
+        ],
+        "summary": "\u66F4\u65B0\u7AD9\u53F0\u914D\u7F6E",
+        "requestBody": {
+          "description": "Body \u5FC5\u586B\uFF1ABusinessCode\u3001GameType",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SiteConfig"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SiteConfig"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/SiteConfig"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/leagueinprogressconfigs": {
+      "post": {
+        "tags": [
+          "Config"
+        ],
+        "summary": "\u65B0\u589E\u806F\u76DF\u8D70\u5730\u914D\u7F6E",
+        "requestBody": {
+          "description": "Body \u5FC5\u586B\uFF1ABusinessCode\u3001GameType\u3001Leagues\u3001Updater",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeagueInProgressConfig"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeagueInProgressConfig"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/LeagueInProgressConfig"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Config"
+        ],
+        "summary": "\u66F4\u65B0\u806F\u76DF\u8D70\u5730\u914D\u7F6E",
+        "requestBody": {
+          "description": "Body \u5FC5\u586B\uFF1ABusinessCode\u3001GameType\u3001Updater",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeagueInProgressConfig"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeagueInProgressConfig"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/LeagueInProgressConfig"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/playmodeconfigs/gametype": {
+      "post": {
+        "tags": [
+          "Config"
+        ],
+        "summary": "\u65B0\u589E\u7403\u7A2E\u73A9\u6CD5\u8A2D\u5B9A\u503C",
+        "requestBody": {
+          "description": "Body \u5FC5\u586B\uFF1ABusinessCode\u3001GameType\u3001Settings",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayModeConfig"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayModeConfig"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayModeConfig"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Config"
+        ],
+        "summary": "\u66F4\u65B0\u7403\u7A2E\u73A9\u6CD5\u8A2D\u5B9A\u503C",
+        "requestBody": {
+          "description": "Body \u5FC5\u586B\uFF1ABusinessCode\u3001GameType\u3001Settings",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayModeConfig"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayModeConfig"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayModeConfig"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/playmodeconfigs/league": {
+      "post": {
+        "tags": [
+          "Config"
+        ],
+        "summary": "\u65B0\u589E\u806F\u76DF\u73A9\u6CD5\u8A2D\u5B9A\u503C",
+        "requestBody": {
+          "description": "Body \u5FC5\u586B\uFF1ABusinessCode\u3001GameType\u3001ID\u3001Name\u3001Settings\u3001Updater",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayModeConfig"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayModeConfig"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayModeConfig"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Config"
+        ],
+        "summary": "\u66F4\u65B0\u806F\u76DF\u73A9\u6CD5\u8A2D\u5B9A\u503C",
+        "requestBody": {
+          "description": "Body \u5FC5\u586B\uFF1ABusinessCode\u3001GameType\u3001ID\u3001Name\u3001Settings\u3001Updater",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayModeConfig"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayModeConfig"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayModeConfig"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/playmodeconfigs/template": {
+      "post": {
+        "tags": [
+          "Config"
+        ],
+        "summary": "\u65B0\u589E\u7BC4\u672C\u73A9\u6CD5\u8A2D\u5B9A\u503C",
+        "requestBody": {
+          "description": "Body \u5FC5\u586B\uFF1ABusinessCode\u3001GameType\u3001ID\u3001Name\u3001Settings\u3001Updater",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayModeConfig"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayModeConfig"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayModeConfig"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Config"
+        ],
+        "summary": "\u66F4\u65B0\u7BC4\u672C\u73A9\u6CD5\u8A2D\u5B9A\u503C",
+        "requestBody": {
+          "description": "Body \u5FC5\u586B\uFF1ABusinessCode\u3001GameType\u3001ID\u3001Name\u3001Settings\u3001Updater",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayModeConfig"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayModeConfig"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayModeConfig"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/playmodeconfigs/game": {
+      "post": {
+        "tags": [
+          "Config"
+        ],
+        "summary": "\u65B0\u589E\u8CFD\u4E8B\u73A9\u6CD5\u8A2D\u5B9A\u503C",
+        "requestBody": {
+          "description": "Body \u5FC5\u586B\uFF1ABusinessCode\u3001GameType\u3001LID\u3001GDate\u3001GID\u3001Updater\uFF1B\u82E5\u5E36 CID \u5247 Name\u3001Settings \u4EA6\u5FC5\u586B",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayModeConfig"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayModeConfig"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayModeConfig"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Config"
+        ],
+        "summary": "\u66F4\u65B0\u8CFD\u4E8B\u73A9\u6CD5\u8A2D\u5B9A\u503C",
+        "requestBody": {
+          "description": "Body \u5FC5\u586B\uFF1ABusinessCode\u3001GameType\u3001LID\u3001GDate\u3001GID\u3001Updater",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayModeConfig"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayModeConfig"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayModeConfig"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/siteconfigs/{businessCode}": {
+      "get": {
+        "tags": [
+          "Config"
+        ],
+        "summary": "\u53D6\u5F97\u5546\u52D9\u865F\u6240\u6709\u7AD9\u53F0\u914D\u7F6E",
+        "parameters": [
+          {
+            "name": "businessCode",
+            "in": "path",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SiteConfig"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/siteconfigs/{businessCode}/{gameType}": {
+      "get": {
+        "tags": [
+          "Config"
+        ],
+        "summary": "\u53D6\u5F97\u5546\u52D9\u865F\u55AE\u4E00\u7403\u7A2E\u7AD9\u53F0\u914D\u7F6E",
+        "parameters": [
+          {
+            "name": "businessCode",
+            "in": "path",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SiteConfig"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/leagueinprogressconfigs/{businessCode}/{gameType}": {
+      "get": {
+        "tags": [
+          "Config"
+        ],
+        "summary": "\u53D6\u5F97\u5546\u52D9\u865F\u7403\u7A2E\u806F\u76DF\u8D70\u5730\u914D\u7F6E",
+        "parameters": [
+          {
+            "name": "businessCode",
+            "in": "path",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeagueInProgressConfig"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/playmodeconfigs/all/{businessCode}": {
+      "get": {
+        "tags": [
+          "Config"
+        ],
+        "summary": "\u53D6\u5F97\u5546\u52D9\u865F\u6240\u6709\u73A9\u6CD5\u8A2D\u5B9A\u503C",
+        "parameters": [
+          {
+            "name": "businessCode",
+            "in": "path",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dateTime",
+            "in": "query",
+            "description": "\u67E5\u8A62\u57FA\u6E96\u6642\u9593 Unix \u79D2\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlayModeConfig"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/playmodeconfigs/gametype/{businessCode}/{gameType}": {
+      "get": {
+        "tags": [
+          "Config"
+        ],
+        "summary": "\u53D6\u5F97\u5546\u52D9\u865F\u7403\u7A2E\u73A9\u6CD5\u8A2D\u5B9A\u503C",
+        "parameters": [
+          {
+            "name": "businessCode",
+            "in": "path",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayModeConfig"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/playmodeconfigs/league/{businessCode}/{gameType}": {
+      "get": {
+        "tags": [
+          "Config"
+        ],
+        "summary": "\u53D6\u5F97\u5546\u52D9\u865F\u806F\u76DF\u7403\u7A2E\u73A9\u6CD5\u8A2D\u5B9A\u503C\u6E05\u55AE",
+        "parameters": [
+          {
+            "name": "businessCode",
+            "in": "path",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlayModeConfig"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/playmodeconfigs/league/{businessCode}/{gameType}/{id}": {
+      "get": {
+        "tags": [
+          "Config"
+        ],
+        "summary": "\u53D6\u5F97\u5546\u52D9\u865F\u806F\u76DF\u7403\u7A2E\u55AE\u4E00\u73A9\u6CD5\u8A2D\u5B9A\u503C",
+        "parameters": [
+          {
+            "name": "businessCode",
+            "in": "path",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "\u8A2D\u5B9A\u6A94 ID\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayModeConfig"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/playmodeconfigs/league/{businessCode}/logs/{gameType}": {
+      "get": {
+        "tags": [
+          "Config"
+        ],
+        "summary": "\u53D6\u5F97\u5546\u52D9\u865F\u806F\u76DF\u4F7F\u7528 Log",
+        "parameters": [
+          {
+            "name": "businessCode",
+            "in": "path",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeagueLog"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/playmodeconfigs/template/{businessCode}/{gameType}": {
+      "get": {
+        "tags": [
+          "Config"
+        ],
+        "summary": "\u53D6\u5F97\u5546\u52D9\u865F\u7BC4\u672C\u7403\u7A2E\u73A9\u6CD5\u8A2D\u5B9A\u503C\u6E05\u55AE",
+        "parameters": [
+          {
+            "name": "businessCode",
+            "in": "path",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlayModeConfig"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/playmodeconfigs/template/{businessCode}/{gameType}/{id}": {
+      "get": {
+        "tags": [
+          "Config"
+        ],
+        "summary": "\u53D6\u5F97\u5546\u52D9\u865F\u7BC4\u672C\u7403\u7A2E\u55AE\u4E00\u73A9\u6CD5\u8A2D\u5B9A\u503C",
+        "parameters": [
+          {
+            "name": "businessCode",
+            "in": "path",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "\u8A2D\u5B9A\u6A94 ID\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayModeConfig"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/playmodeconfigs/game/{businessCode}/{gameType}/{gdate}": {
+      "get": {
+        "tags": [
+          "Config"
+        ],
+        "summary": "\u53D6\u5F97\u5546\u52D9\u865F\u8CFD\u4E8B\u7403\u7A2E\u6307\u5B9A\u65E5\u671F\u73A9\u6CD5\u8A2D\u5B9A\u503C\u6E05\u55AE",
+        "parameters": [
+          {
+            "name": "businessCode",
+            "in": "path",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gdate",
+            "in": "path",
+            "description": "\u8CFD\u4E8B\u65E5\u671F\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlayModeConfig"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/playmodeconfigs/game/{businessCode}/{gameType}/{gdate}/{lid}/{gid}": {
+      "get": {
+        "tags": [
+          "Config"
+        ],
+        "summary": "\u53D6\u5F97\u5546\u52D9\u865F\u55AE\u4E00\u8CFD\u4E8B\u73A9\u6CD5\u8A2D\u5B9A\u503C",
+        "parameters": [
+          {
+            "name": "businessCode",
+            "in": "path",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gdate",
+            "in": "path",
+            "description": "\u8CFD\u4E8B\u65E5\u671F\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lid",
+            "in": "path",
+            "description": "\u806F\u76DF ID\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gid",
+            "in": "path",
+            "description": "\u8CFD\u4E8B ID\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayModeConfig"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/leagueconfigs": {
+      "put": {
+        "tags": [
+          "Config"
+        ],
+        "summary": "\u6279\u6B21\u66F4\u65B0\u806F\u76DF\u73A9\u6CD5\u8A2D\u5B9A\u5C0D\u61C9",
+        "requestBody": {
+          "description": "Body \u5FC5\u586B\u6B04\u4F4D\u898B LeagueConfigChange \u6A21\u578B",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeagueConfigChange"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeagueConfigChange"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/LeagueConfigChange"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/settings/{company}": {
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u53D6\u5F97\u516C\u53F8\u4E0B\u6240\u6709\u8A2D\u5B9A\u503C",
+        "parameters": [
+          {
+            "name": "company",
+            "in": "path",
+            "description": "\u516C\u53F8\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dateTime",
+            "in": "query",
+            "description": "\u67E5\u8A62\u57FA\u6E96\u6642\u9593 Unix \u79D2\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemSettings"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/settings/system/{company}/{gameType}": {
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u53D6\u5F97\u516C\u53F8\u7CFB\u7D71\u8A2D\u5B9A\u503C",
+        "parameters": [
+          {
+            "name": "company",
+            "in": "path",
+            "description": "\u516C\u53F8\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemSettings"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/settings/playmodes/add/{gameType}": {
+      "patch": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u7403\u7A2E\u5168\u90E8\u7684\u8A2D\u5B9A\u503C\u65B0\u589E playmode",
+        "parameters": [
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "\u65B0\u589E\u73A9\u6CD5\u8A2D\u5B9A\u6E05\u55AE\uFF08Body \u5FC5\u586B\uFF0C\u4E0D\u53EF\u70BA\u7A7A\uFF09",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PlayModeSettings"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PlayModeSettings"
+                }
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PlayModeSettings"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MsgCode"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/settings/playmodes/edit/{gameType}": {
+      "patch": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u7403\u7A2E\u5168\u90E8\u7684\u8A2D\u5B9A\u503C\u4FEE\u6539 playmode",
+        "parameters": [
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "\u8B8A\u66F4\u6E05\u55AE\uFF08Body \u5FC5\u586B\uFF0C\u6BCF\u7B46 OldName\u3001NewName\u3001playModeSetting \u5FC5\u586B\uFF09",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ChangePlayMode"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ChangePlayMode"
+                }
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ChangePlayMode"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MsgCode"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/settings/playmodes/delete/{gameType}": {
+      "patch": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u7403\u7A2E\u5168\u90E8\u7684\u8A2D\u5B9A\u503C\u522A\u9664 playmode",
+        "parameters": [
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "\u5F85\u522A\u9664\u73A9\u6CD5\u4EE3\u78BC\u6E05\u55AE\uFF08Body \u5FC5\u586B\uFF09",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MsgCode"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/settings/playmodes/site": {
+      "patch": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u5168\u90E8\u8A2D\u5B9A\u503C playmode \u65B0\u589E\u652F\u63F4\u7AD9\u53F0",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "description": "\u64CD\u4F5C\u985E\u578B\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "\u7AD9\u53F0\u8207\u73A9\u6CD5\u5C0D\u7167\uFF08Body \u5FC5\u586B\uFF1ASite\u3001GamePlayModes\uFF09",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewSite"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewSite"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/NewSite"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MsgCode"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/settings/playmodes/alarm/add/{gameType}": {
+      "patch": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u7403\u7A2E\u5168\u90E8\u8A2D\u5B9A\u503C\u65B0\u589E\u5B9A\u6642\u8B8A\u66F4\u504F\u79FB\u91CF\u521D\u59CB\u503C",
+        "parameters": [
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "\u544A\u8B66\u73A9\u6CD5\u8A2D\u5B9A\u6E05\u55AE\uFF08Body \u5FC5\u586B\uFF09",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PlayModeSettings"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PlayModeSettings"
+                }
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PlayModeSettings"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MsgCode"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/subscriber/register": {
+      "post": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u65B0\u589E\u8A02\u95B1\u8005",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "\u5718\u968A\u540D\u7A31\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "description": "\u63CF\u8FF0\uFF08Query \u9078\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MsgCode"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/subscriber": {
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u53D6\u5F97\u6240\u6709\u8A02\u95B1\u8005",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Subscriber"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u66F4\u65B0\u8A02\u95B1\u8005\u555F\u7528\u72C0\u614B",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "\u5718\u968A\u540D\u7A31\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "enabled",
+            "in": "query",
+            "description": "\u555F\u7528\u72C0\u614B\uFF08Query \u5FC5\u586B\uFF0C999 \u70BA\u9810\u8A2D\u5360\u4F4D\uFF09",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 999
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MsgCode"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/subscriber/{uid}": {
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u53D6\u5F97\u8A02\u95B1\u8005",
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "description": "\u8A02\u95B1\u8005\u8B58\u5225\u6216\u5718\u968A\u540D\u7A31\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subscriber"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/subscriber/users/register": {
+      "post": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u65B0\u589E\u4F7F\u7528\u8005\u5E33\u865F",
+        "requestBody": {
+          "description": "Body \u5FC5\u586B\uFF1ACompany\u3001Account\u3001Password",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MsgCode"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/subscriber/users/login": {
+      "post": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u4F7F\u7528\u8005\u767B\u5165",
+        "requestBody": {
+          "description": "Body \u5FC5\u586B\uFF1AAccount\u3001Password\uFF1BCompany\u3001IP \u5EFA\u8B70\u586B\u5BEB",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MsgCode"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/subscriber/users/logout": {
+      "post": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u4F7F\u7528\u8005\u767B\u51FA",
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "query",
+            "description": "\u767B\u5165 Session UID\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/subscriber/users/login/check": {
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u78BA\u8A8D\u662F\u5426\u767B\u5165",
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "query",
+            "description": "\u767B\u5165 Session UID\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MsgCode"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/subscriber/users": {
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u53D6\u5F97\u8A02\u95B1\u8005\u6240\u6709\u4F7F\u7528\u8005",
+        "parameters": [
+          {
+            "name": "company",
+            "in": "query",
+            "description": "\u516C\u53F8\u4EE3\u78BC\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u66F4\u65B0\u4F7F\u7528\u8005",
+        "requestBody": {
+          "description": "Body \u5FC5\u586B\uFF1AAccount\uFF1BEnabled\u3001Password \u4F9D\u9700\u6C42\u586B\u5BEB",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MsgCode"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/subscriber/users/password/remake": {
+      "put": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u91CD\u8A2D\u4F7F\u7528\u8005\u5BC6\u78BC",
+        "requestBody": {
+          "description": "Body \u5FC5\u586B\uFF1AAccount",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MsgCode"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/system/layout/{gameType}": {
+      "post": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u65B0\u589E ZB \u7CFB\u7D71\u8A2D\u5B9A\u503C",
+        "parameters": [
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "\u7CFB\u7D71\u8A2D\u5B9A Body\uFF08\u5FC5\u586B\uFF0C\u542B GameType\u3001Settings \u7B49\uFF09",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemSettings"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemSettings"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemSettings"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MsgCode"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/system/playmodes/{gameType}": {
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u53D6\u5F97\u8CFD\u4E8B\u5168\u90E8\u73A9\u6CD5\u548C\u652F\u63F4\u7AD9\u53F0",
+        "parameters": [
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GamePlayModes"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/system/site/enabled": {
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u53D6\u5F97\u5DF2\u958B\u901A\u7AD9\u53F0\u4EE3\u78BC",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/system/site/stop/{company}": {
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u53D6\u5F97\u516C\u53F8\u505C\u7528\u7AD9\u53F0\uFF08ZB \u7528\uFF09",
+        "parameters": [
+          {
+            "name": "company",
+            "in": "path",
+            "description": "\u516C\u53F8\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SiteSetting"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/system/{gameType}": {
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u53D6\u5F97\u7CFB\u7D71\u8A2D\u5B9A\u503C\u76EE\u9304",
+        "parameters": [
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uid",
+            "in": "query",
+            "description": "\u64CD\u4F5C\u8005 UID\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemSettings"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u66F4\u65B0\u7CFB\u7D71\u8A2D\u5B9A\u503C",
+        "parameters": [
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uid",
+            "in": "query",
+            "description": "\u64CD\u4F5C\u8005 UID\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "\u8A2D\u5B9A\u5167\u5BB9 Body\uFF08\u5FC5\u586B\uFF09",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemSettings"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemSettings"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemSettings"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MsgCode"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/system/{gameType}/{name}": {
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u53D6\u5F97\u7CFB\u7D71\u8A2D\u5B9A\u503C",
+        "parameters": [
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uid",
+            "in": "query",
+            "description": "\u64CD\u4F5C\u8005 UID\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "\u8A2D\u5B9A\u540D\u7A31\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemSettings"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/system/site/stop": {
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u53D6\u5F97\u505C\u6B62\u4F7F\u7528\u7AD9\u53F0",
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "query",
+            "description": "\u64CD\u4F5C\u8005 UID\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gameType",
+            "in": "query",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SiteSetting"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/system/site/stop/{gameType}": {
+      "post": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u65B0\u589E\u6216\u66F4\u65B0\u505C\u6B62\u4F7F\u7528\u7AD9\u53F0",
+        "parameters": [
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uid",
+            "in": "query",
+            "description": "\u64CD\u4F5C\u8005 UID\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "\u505C\u7528\u7AD9\u53F0\u4EE3\u78BC\u6E05\u55AE Body\uFF08\u5FC5\u586B\uFF09",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MsgCode"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/system/overduedata": {
+      "delete": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u6E05\u9664\u904E\u671F\u8CC7\u6599\uFF08xxl-job \u5B9A\u6642\u8ACB\u6C42\uFF09",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/template/{gameType}": {
+      "post": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u65B0\u589E\u7BC4\u672C\u8A2D\u5B9A\u503C",
+        "parameters": [
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uid",
+            "in": "query",
+            "description": "\u64CD\u4F5C\u8005 UID\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "\u7BC4\u672C\u8A2D\u5B9A Body\uFF08\u5FC5\u586B\uFF09",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemSettings"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemSettings"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemSettings"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MsgCode"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u53D6\u5F97\u7BC4\u672C\u8A2D\u5B9A\u503C\u76EE\u9304",
+        "parameters": [
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uid",
+            "in": "query",
+            "description": "\u64CD\u4F5C\u8005 UID\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemSettings"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/template/{gameType}/{id}": {
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u53D6\u5F97\u7BC4\u672C\u8A2D\u5B9A\u503C",
+        "parameters": [
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "\u8A2D\u5B9A\u6A94 ID\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uid",
+            "in": "query",
+            "description": "\u64CD\u4F5C\u8005 UID\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemSettings"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u66F4\u65B0\u7BC4\u672C\u8A2D\u5B9A\u503C",
+        "parameters": [
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "\u8A2D\u5B9A\u6A94 ID\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uid",
+            "in": "query",
+            "description": "\u64CD\u4F5C\u8005 UID\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "\u7BC4\u672C\u8A2D\u5B9A Body\uFF08\u5FC5\u586B\uFF09",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemSettings"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemSettings"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemSettings"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MsgCode"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/league/{gameType}": {
+      "post": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u65B0\u589E\u806F\u76DF\u8A2D\u5B9A\u503C",
+        "parameters": [
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uid",
+            "in": "query",
+            "description": "\u64CD\u4F5C\u8005 UID\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "\u806F\u76DF\u8A2D\u5B9A Body\uFF08\u5FC5\u586B\uFF09",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemSettings"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemSettings"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemSettings"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MsgCode"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u4F9D\u806F\u76DF\u53D6\u5F97\u806F\u76DF\u8A2D\u5B9A\u503C\u76EE\u9304",
+        "parameters": [
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uid",
+            "in": "query",
+            "description": "\u64CD\u4F5C\u8005 UID\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "leagues",
+            "in": "query",
+            "description": "\u806F\u76DF ID \u6E05\u55AE\uFF0C\u9017\u865F\u5206\u9694\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemSettings"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u66FF\u63DB\u8A2D\u5B9A\u503C\u6240\u7D81\u5B9A\u7684\u806F\u76DF",
+        "parameters": [
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uid",
+            "in": "query",
+            "description": "\u64CD\u4F5C\u8005 UID\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "newSettingId",
+            "in": "query",
+            "description": "\u65B0\u8A2D\u5B9A\u6A94 ID\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "changeLeagues",
+            "in": "query",
+            "description": "\u5F85\u8B8A\u66F4\u806F\u76DF ID \u6E05\u55AE\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MsgCode"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/league/all/{gameType}": {
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u53D6\u5F97\u5168\u90E8\u806F\u76DF\u8A2D\u5B9A\u503C\u76EE\u9304",
+        "parameters": [
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uid",
+            "in": "query",
+            "description": "\u64CD\u4F5C\u8005 UID\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemSettings"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/league/{gameType}/{id}": {
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u53D6\u5F97\u806F\u76DF\u8A2D\u5B9A\u503C",
+        "parameters": [
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "\u8A2D\u5B9A\u6A94 ID\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uid",
+            "in": "query",
+            "description": "\u64CD\u4F5C\u8005 UID\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemSettings"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u66F4\u65B0\u806F\u76DF\u8A2D\u5B9A\u503C",
+        "parameters": [
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "\u8A2D\u5B9A\u6A94 ID\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uid",
+            "in": "query",
+            "description": "\u64CD\u4F5C\u8005 UID\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "\u806F\u76DF\u8A2D\u5B9A Body\uFF08\u5FC5\u586B\uFF09",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemSettings"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemSettings"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemSettings"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MsgCode"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/leaguesetting/{gameType}/{lid}": {
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u6839\u64DA\u806F\u76DF ID \u53D6\u5F97\u806F\u76DF\u8A2D\u5B9A\u503C",
+        "parameters": [
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lid",
+            "in": "path",
+            "description": "\u806F\u76DF ID\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uid",
+            "in": "query",
+            "description": "\u64CD\u4F5C\u8005 UID\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemSettings"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/league/used/{gameType}": {
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u53D6\u5F97\u5DF2\u4F7F\u7528\u806F\u76DF ID \u6E05\u55AE",
+        "parameters": [
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uid",
+            "in": "query",
+            "description": "\u64CD\u4F5C\u8005 UID\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/game/{gameType}/{gid}": {
+      "post": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u65B0\u589E\u8CFD\u4E8B\u8A2D\u5B9A\u503C",
+        "parameters": [
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gid",
+            "in": "path",
+            "description": "\u8CFD\u4E8B ID\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uid",
+            "in": "query",
+            "description": "\u64CD\u4F5C\u8005 UID\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "\u8CFD\u4E8B\u8A2D\u5B9A Body\uFF08\u5FC5\u586B\uFF09",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemSettings"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemSettings"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemSettings"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MsgCode"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/game/{gameType}": {
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u53D6\u5F97\u8CFD\u4E8B\u8A2D\u5B9A\u503C\u76EE\u9304",
+        "parameters": [
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uid",
+            "in": "query",
+            "description": "\u64CD\u4F5C\u8005 UID\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "description": "\u8CFD\u4E8B\u65E5\u671F\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemSettings"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/game/{gameType}/{id}": {
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u53D6\u5F97\u8CFD\u4E8B\u8A2D\u5B9A\u503C",
+        "parameters": [
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "\u8A2D\u5B9A\u6A94 ID\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uid",
+            "in": "query",
+            "description": "\u64CD\u4F5C\u8005 UID\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemSettings"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u66F4\u65B0\u8CFD\u4E8B\u8A2D\u5B9A\u503C",
+        "parameters": [
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "\u8A2D\u5B9A\u6A94 ID\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uid",
+            "in": "query",
+            "description": "\u64CD\u4F5C\u8005 UID\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "\u8CFD\u4E8B\u8A2D\u5B9A Body\uFF08\u5FC5\u586B\uFF09",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemSettings"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemSettings"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemSettings"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MsgCode"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/gamesetting/{gameType}/{gdate}/{gid}": {
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u4F9D\u8CFD\u4E8B\u65E5\u671F\u8207 GID \u53D6\u5F97\u8CFD\u4E8B\u8A2D\u5B9A\u503C",
+        "parameters": [
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gdate",
+            "in": "path",
+            "description": "\u8CFD\u4E8B\u65E5\u671F\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gid",
+            "in": "path",
+            "description": "\u8CFD\u4E8B ID\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uid",
+            "in": "query",
+            "description": "\u64CD\u4F5C\u8005 UID\uFF08Query \u5FC5\u586B\uFF09",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemSettings"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/log/system/setting/{company}/{gameType}": {
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u53D6\u5F97\u7CFB\u7D71\u8A2D\u5B9A\u503C Log",
+        "parameters": [
+          {
+            "name": "company",
+            "in": "path",
+            "description": "\u516C\u53F8\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ActionLog"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/log/league/setting/{company}/{gameType}": {
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u53D6\u5F97\u806F\u76DF\u8A2D\u5B9A\u503C Log",
+        "parameters": [
+          {
+            "name": "company",
+            "in": "path",
+            "description": "\u516C\u53F8\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ActionLog"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/log/template/setting/{company}/{gameType}": {
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u53D6\u5F97\u7BC4\u672C\u8A2D\u5B9A\u503C Log",
+        "parameters": [
+          {
+            "name": "company",
+            "in": "path",
+            "description": "\u516C\u53F8\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ActionLog"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/log/game/setting/{company}/{gameType}": {
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u53D6\u5F97\u8CFD\u4E8B\u8A2D\u5B9A\u503C Log",
+        "parameters": [
+          {
+            "name": "company",
+            "in": "path",
+            "description": "\u516C\u53F8\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ActionLog"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/log/site/setting/{company}/{gameType}": {
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u53D6\u5F97\u7AD9\u53F0\u8A2D\u5B9A Log",
+        "parameters": [
+          {
+            "name": "company",
+            "in": "path",
+            "description": "\u516C\u53F8\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gameType",
+            "in": "path",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ActionLog"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/log/{company}/{date}/{id}": {
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u53D6\u5F97\u55AE\u7B46\u64CD\u4F5C Log",
+        "parameters": [
+          {
+            "name": "company",
+            "in": "path",
+            "description": "\u516C\u53F8\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "description": "\u7D00\u9304\u65E5\u671F yyyy-MM-dd\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "\u7D00\u9304 ID\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionLog"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/log/login/{company}": {
+      "get": {
+        "tags": [
+          "GameSettingService"
+        ],
+        "summary": "\u53D6\u5F97\u516C\u53F8\u767B\u5165\u7D00\u9304",
+        "parameters": [
+          {
+            "name": "company",
+            "in": "path",
+            "description": "\u516C\u53F8\u4EE3\u78BC\uFF08\u8DEF\u5F91\u5FC5\u586B\uFF09",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ActionLog"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/system/autocreatetable": {
+      "post": {
+        "tags": [
+          "System"
+        ],
+        "summary": "\u81EA\u52D5\u5EFA\u7ACB\u8CC7\u6599\u8868",
+        "description": "\u4F9D\u76EE\u524D\u74B0\u5883\u8A2D\u5B9A\u5EFA\u7ACB\u7F3A\u5931\u7684\u8CC7\u6599\u8868\u7D50\u69CB\uFF0C\u7121 Request Body\u3002",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/heart": {
+      "get": {
+        "tags": [
+          "System"
+        ],
+        "summary": "\u670D\u52D9\u5FC3\u8DF3\u6AA2\u67E5",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/version": {
+      "get": {
+        "tags": [
+          "System"
+        ],
+        "summary": "\u53D6\u5F97\u670D\u52D9\u7248\u672C",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/system/fixapi": {
+      "post": {
+        "tags": [
+          "System"
+        ],
+        "summary": "\u4FEE\u5FA9 ZBA \u76F8\u95DC API \u8A2D\u5B9A\u8CC7\u6599",
+        "description": "\u57F7\u884C\u4E00\u6B21\u6027\u8CC7\u6599\u4FEE\u5FA9\uFF0C\u7121 Request Body\u3002",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ActionLog": {
+        "type": "object",
+        "properties": {
+          "company": {
+            "type": "string",
+            "description": "\u516C\u53F8\u4EE3\u78BC\uFF08\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "description": "\u7D00\u9304\u552F\u4E00 ID\uFF08\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "description": "\u7D00\u9304\u65E5\u671F yyyy-MM-dd\uFF08\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "addTime": {
+            "type": "integer",
+            "description": "\u5EFA\u7ACB\u6642\u9593 Unix \u79D2\uFF08\u5FC5\u6709\u503C\uFF09",
+            "format": "int64"
+          },
+          "sid": {
+            "type": "string",
+            "description": "\u7AD9\u53F0\u6216 Session \u8B58\u5225\uFF08\u9078\u586B\uFF09",
+            "nullable": true
+          },
+          "action": {
+            "type": "string",
+            "description": "\u64CD\u4F5C\u985E\u578B\uFF08\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "before": {
+            "type": "string",
+            "description": "\u8B8A\u66F4\u524D\u5167\u5BB9\uFF08\u9078\u586B\uFF09",
+            "nullable": true
+          },
+          "after": {
+            "type": "string",
+            "description": "\u8B8A\u66F4\u5F8C\u5167\u5BB9\uFF08\u9078\u586B\uFF09",
+            "nullable": true
+          },
+          "account": {
+            "type": "string",
+            "description": "\u64CD\u4F5C\u5E33\u865F\uFF08\u9078\u586B\uFF09",
+            "nullable": true
+          },
+          "ip": {
+            "type": "string",
+            "description": "\u64CD\u4F5C IP\uFF08\u9078\u586B\uFF09",
+            "nullable": true
+          },
+          "gameType": {
+            "type": "string",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u9078\u586B\uFF09",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "\u7CFB\u7D71\u64CD\u4F5C\u7D00\u9304"
+      },
+      "Business": {
+        "type": "object",
+        "properties": {
+          "businessCode": {
+            "type": "string",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u552F\u4E00\u8B58\u5225\uFF0C\u5EFA\u7ACB\u8207\u67E5\u8A62\u6642\u5FC5\u6709\u503C\uFF09",
+            "nullable": true,
+            "example": "ZBA"
+          },
+          "authToken": {
+            "type": "string",
+            "description": "API \u9A57\u8B49 Token\uFF08\u5EFA\u7ACB\u5F8C\u7531\u7CFB\u7D71\u7522\u751F\uFF0C\u67E5\u8A62\u56DE\u50B3\u6642\u5FC5\u6709\u503C\uFF1B\u5EFA\u7ACB\u8ACB\u6C42\u53EF\u4E0D\u50B3\uFF09",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "description": "\u7BA1\u7406\u54E1 Email\uFF0C\u4EA6\u4F5C\u70BA\u9810\u8A2D admin \u5E33\u865F\uFF08\u5EFA\u7ACB\u6642\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "extraPlayModes": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "\u984D\u5916\u73A9\u6CD5\u5C0D\u61C9\uFF0CKey \u70BA\u7403\u7A2E\u3001Value \u70BA\u73A9\u6CD5\u4EE3\u78BC",
+            "nullable": true
+          },
+          "inplayCount": {
+            "type": "integer",
+            "description": "\u5834\u4E2D\u8CFD\u4E8B\u8A02\u95B1\u6578\u91CF\u4E0A\u9650\uFF08\u56DE\u50B3\u6642\u5FC5\u6709\u503C\uFF0C\u9810\u8A2D 0\uFF09",
+            "format": "int32"
+          },
+          "subEndDate": {
+            "type": "string",
+            "description": "\u8A02\u95B1\u5230\u671F\u65E5\uFF0C\u683C\u5F0F yyyy-MM-dd\uFF08\u5EFA\u7ACB/\u66F4\u65B0\u6642\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "subGameTypes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "\u8A02\u95B1\u7403\u7A2E\u6E05\u55AE\uFF08\u5EFA\u7ACB/\u66F4\u65B0\u6642\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "subInProgressSites": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "\u8D70\u5730\u8A02\u95B1\u8CC7\u8A0A\u6E90\u7AD9\u53F0\uFF0CKey \u70BA\u7403\u7A2E\u3001Value \u70BA\u7AD9\u53F0\u4EE3\u78BC",
+            "nullable": true
+          },
+          "subPreGameSites": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "\u8CFD\u524D\u8A02\u95B1\u8CC7\u8A0A\u6E90\u7AD9\u53F0\uFF0CKey \u70BA\u7403\u7A2E\u3001Value \u70BA\u7AD9\u53F0\u4EE3\u78BC\uFF08\u5EFA\u7ACB\u6642\u81F3\u5C11\u9700\u9078\u4E00\u500B\u7AD9\u53F0\uFF09",
+            "nullable": true
+          },
+          "updateTime": {
+            "type": "integer",
+            "description": "\u6700\u5F8C\u66F4\u65B0\u6642\u9593 Unix \u79D2\uFF08\u56DE\u50B3\u6642\u5FC5\u6709\u503C\uFF09",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false,
+        "description": "\u5546\u52D9\u865F\u4E3B\u6A94\u8CC7\u6599"
+      },
+      "BusinessAccount": {
+        "type": "object",
+        "properties": {
+          "businessCode": {
+            "type": "string",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u8DEF\u5F91\u6216\u7CFB\u7D71\u586B\u5165\uFF0C\u56DE\u50B3\u6642\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "account": {
+            "type": "string",
+            "description": "\u767B\u5165\u5E33\u865F\uFF08\u5EFA\u7ACB\u6642\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "description": "\u5BC6\u78BC\u660E\u6587\uFF08\u5EFA\u7ACB/\u8B8A\u66F4\u5BC6\u78BC\u6642\u5FC5\u586B\uFF0C\u5132\u5B58\u5F8C\u4E0D\u56DE\u50B3\u660E\u6587\uFF09",
+            "nullable": true
+          },
+          "role": {
+            "type": "string",
+            "description": "\u89D2\u8272\uFF1Aadmin \u6216 trader\uFF08\u5EFA\u7ACB\u6642\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "description": "\u5E33\u865F\u72C0\u614B\uFF1A0=\u505C\u7528(Freeze)\u30011=\u555F\u7528(activation)\uFF08\u5EFA\u7ACB/\u66F4\u65B0\u72C0\u614B\u6642\u5FC5\u586B\uFF09",
+            "format": "int32"
+          },
+          "updateTime": {
+            "type": "integer",
+            "description": "\u6700\u5F8C\u66F4\u65B0\u6642\u9593 Unix \u79D2\uFF08\u56DE\u50B3\u6642\u5FC5\u6709\u503C\uFF09",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false,
+        "description": "\u5546\u52D9\u865F\u5E33\u865F"
+      },
+      "BusinessAccountLogin": {
+        "type": "object",
+        "properties": {
+          "account": {
+            "type": "string",
+            "description": "\u767B\u5165\u5E33\u865F\uFF08\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "ip": {
+            "type": "string",
+            "description": "\u767B\u5165\u4F86\u6E90 IP\uFF08\u5FC5\u586B\uFF0C\u7528\u65BC\u7522\u751F UID\uFF09",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "description": "\u767B\u5165\u5BC6\u78BC\uFF08\u5FC5\u586B\uFF09",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "\u5546\u52D9\u5E33\u865F\u767B\u5165\u8ACB\u6C42"
+      },
+      "BusinessAccountLoginInfo": {
+        "type": "object",
+        "properties": {
+          "businessCode": {
+            "type": "string",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "account": {
+            "type": "string",
+            "description": "\u767B\u5165\u5E33\u865F\uFF08\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "ip": {
+            "type": "string",
+            "description": "\u767B\u5165 IP\uFF08\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "role": {
+            "type": "string",
+            "description": "\u5E33\u865F\u89D2\u8272 admin / trader\uFF08\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "uid": {
+            "type": "string",
+            "description": "\u767B\u5165 Session \u552F\u4E00\u8B58\u5225\u78BC\uFF08\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "\u5546\u52D9\u5E33\u865F\u767B\u5165\u8CC7\u8A0A\uFF08\u767B\u5165\u6210\u529F\u5F8C\u56DE\u50B3\uFF09"
+      },
+      "BusinessGame": {
+        "type": "object",
+        "properties": {
+          "site": {
+            "type": "string",
+            "description": "\u8CC7\u8A0A\u6E90\u7AD9\u53F0\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "leagueID": {
+            "type": "string",
+            "description": "\u806F\u76DF ID\uFF08\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "gameDate": {
+            "type": "string",
+            "description": "\u8CFD\u4E8B\u65E5\u671F\uFF08\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "gameID": {
+            "type": "string",
+            "description": "\u8CFD\u4E8B ID\uFF08\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "gameType": {
+            "type": "string",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "enabled": {
+            "type": "integer",
+            "description": "\u555F\u7528\u72C0\u614B\uFF1A0=\u53D6\u6D88\u30011=\u555F\u7528\uFF08\u5FC5\u586B\uFF09",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "\u5546\u52D9\u865F\u5834\u4E2D\u8CFD\u4E8B\u8A2D\u5B9A"
+      },
+      "BusinessLog": {
+        "type": "object",
+        "properties": {
+          "businessCode": {
+            "type": "string",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "description": "\u7D00\u9304\u65E5\u671F yyyy-MM-dd\uFF08\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "account": {
+            "type": "string",
+            "description": "\u64CD\u4F5C\u5E33\u865F\uFF08\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "description": "\u7D00\u9304\u552F\u4E00 ID\uFF08\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "action": {
+            "type": "string",
+            "description": "\u64CD\u4F5C\u985E\u578B\uFF0C\u4F8B\u5982 Login\uFF08\u5EFA\u7ACB Log \u6642\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "addTime": {
+            "type": "integer",
+            "description": "\u5EFA\u7ACB\u6642\u9593 Unix \u79D2\uFF08\u5FC5\u6709\u503C\uFF09",
+            "format": "int64"
+          },
+          "after": {
+            "type": "string",
+            "description": "\u8B8A\u66F4\u5F8C\u5167\u5BB9 JSON \u5B57\u4E32\uFF08\u9078\u586B\uFF09",
+            "nullable": true
+          },
+          "before": {
+            "type": "string",
+            "description": "\u8B8A\u66F4\u524D\u5167\u5BB9 JSON \u5B57\u4E32\uFF08\u9078\u586B\uFF09",
+            "nullable": true
+          },
+          "gameType": {
+            "type": "string",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u9078\u586B\uFF09",
+            "nullable": true
+          },
+          "ip": {
+            "type": "string",
+            "description": "\u64CD\u4F5C\u4F86\u6E90 IP\uFF08\u9078\u586B\uFF09",
+            "nullable": true
+          },
+          "sid": {
+            "type": "string",
+            "description": "\u7AD9\u53F0\u6216 Session \u8B58\u5225\uFF08\u9078\u586B\uFF09",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "\u5546\u52D9\u865F\u64CD\u4F5C\u7D00\u9304"
+      },
+      "ChangePlayMode": {
+        "type": "object",
+        "properties": {
+          "oldName": {
+            "type": "string",
+            "description": "\u539F\u73A9\u6CD5\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "newName": {
+            "type": "string",
+            "description": "\u65B0\u73A9\u6CD5\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "playModeSetting": {
+            "$ref": "#/components/schemas/PlayModeSettings"
+          }
+        },
+        "additionalProperties": false,
+        "description": "\u6279\u6B21\u4FEE\u6539\u73A9\u6CD5\u540D\u7A31\u8207\u8A2D\u5B9A"
+      },
+      "GamePlayModes": {
+        "type": "object",
+        "properties": {
+          "gameType": {
+            "type": "string",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "modeSettings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ModeSetting"
+            },
+            "description": "\u73A9\u6CD5\u8207\u7248\u9762\u8A2D\u5B9A\u6E05\u55AE\uFF08\u5FC5\u6709\u503C\uFF0C\u53EF\u80FD\u70BA\u7A7A\u9663\u5217\uFF09",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "\u7403\u7A2E\u652F\u63F4\u73A9\u6CD5\u8207\u7AD9\u53F0\u5C0D\u7167"
+      },
+      "LeagueConfig": {
+        "type": "object",
+        "properties": {
+          "gameType": {
+            "type": "string",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "lid": {
+            "type": "string",
+            "description": "\u806F\u76DF ID\uFF08\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "configID": {
+            "type": "string",
+            "description": "\u73A9\u6CD5\u8A2D\u5B9A\u6A94 ID\uFF08\u5FC5\u586B\uFF09",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "\u55AE\u4E00\u806F\u76DF\u8207\u8A2D\u5B9A\u6A94\u5C0D\u61C9"
+      },
+      "LeagueConfigChange": {
+        "type": "object",
+        "properties": {
+          "businessCode": {
+            "type": "string",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "gameType": {
+            "type": "string",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "newConfigID": {
+            "type": "string",
+            "description": "\u65B0\u8A2D\u5B9A\u6A94 ID\uFF08\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "changeConfigs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LeagueConfig"
+            },
+            "description": "\u5F85\u8B8A\u66F4\u7684\u806F\u76DF\u8A2D\u5B9A\u6E05\u55AE\uFF08\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "updater": {
+            "type": "string",
+            "description": "\u64CD\u4F5C\u8005\u5E33\u865F\uFF08\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "ip": {
+            "type": "string",
+            "description": "\u64CD\u4F5C\u4F86\u6E90 IP\uFF08\u5FC5\u586B\uFF09",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "\u6279\u6B21\u8B8A\u66F4\u806F\u76DF\u73A9\u6CD5\u8A2D\u5B9A\u8ACB\u6C42"
+      },
+      "LeagueInProgressConfig": {
+        "type": "object",
+        "properties": {
+          "businessCode": {
+            "type": "string",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "gameType": {
+            "type": "string",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "leagues": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "\u8D70\u5730\u806F\u76DF ID \u6E05\u55AE\uFF08\u65B0\u589E\u6642\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "updater": {
+            "type": "string",
+            "description": "\u6700\u5F8C\u66F4\u65B0\u8005\uFF08\u5EFA\u7ACB/\u66F4\u65B0\u6642\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "updateTime": {
+            "type": "integer",
+            "description": "\u6700\u5F8C\u66F4\u65B0\u6642\u9593 Unix \u79D2\uFF08\u56DE\u50B3\u6642\u5FC5\u6709\u503C\uFF09",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false,
+        "description": "\u5546\u52D9\u865F\u7403\u7A2E\u806F\u76DF\u8D70\u5730\u914D\u7F6E"
+      },
+      "LeagueLog": {
+        "type": "object",
+        "properties": {
+          "businessCode": {
+            "type": "string",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "gameType": {
+            "type": "string",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "leagues": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "\u5DF2\u4F7F\u7528\u4E4B\u806F\u76DF ID \u6E05\u55AE\uFF08\u53EF\u80FD\u70BA\u7A7A\u9663\u5217\uFF09",
+            "nullable": true
+          },
+          "updateTime": {
+            "type": "integer",
+            "description": "\u6700\u5F8C\u66F4\u65B0\u6642\u9593 Unix \u79D2\uFF08\u5FC5\u6709\u503C\uFF09",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false,
+        "description": "\u5546\u52D9\u865F\u806F\u76DF\u4F7F\u7528\u7D00\u9304"
+      },
+      "ModeSetting": {
+        "type": "object",
+        "properties": {
+          "playMode": {
+            "type": "string",
+            "description": "\u73A9\u6CD5\u4EE3\u78BC\uFF08\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "layout": {
+            "type": "string",
+            "description": "\u7248\u9762\u914D\u7F6E\u4EE3\u78BC\uFF08\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "mappingSites": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "\u5C0D\u61C9\u652F\u63F4\u7AD9\u53F0\u6E05\u55AE\uFF08\u5FC5\u6709\u503C\uFF0C\u53EF\u80FD\u70BA\u7A7A\u9663\u5217\uFF09",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "\u55AE\u4E00\u73A9\u6CD5\u8A2D\u5B9A"
+      },
+      "MsgCode": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "description": "\u7D50\u679C\u4EE3\u78BC\uFF0C2000 \u8868\u793A\u6210\u529F\uFF08\u5FC5\u6709\u503C\uFF09",
+            "format": "int32",
+            "example": 2000
+          },
+          "message": {
+            "type": "string",
+            "description": "\u7D50\u679C\u8AAA\u660E\u6587\u5B57\uFF08\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "uid": {
+            "type": "string",
+            "description": "\u4F7F\u7528\u8005\u6216 Session UID\uFF08\u767B\u5165/\u8A3B\u518A\u6210\u529F\u6642\u56DE\u50B3\uFF0C\u5176\u4ED6\u60C5\u6CC1\u53EF\u80FD\u70BA\u7A7A\uFF09",
+            "nullable": true
+          },
+          "account": {
+            "type": "string",
+            "description": "\u76F8\u95DC\u5E33\u865F\uFF08\u9078\u586B\uFF09",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "API \u64CD\u4F5C\u7D50\u679C\u4EE3\u78BC\u8207\u8A0A\u606F"
+      },
+      "NewSite": {
+        "type": "object",
+        "properties": {
+          "site": {
+            "type": "string",
+            "description": "\u65B0\u7AD9\u53F0\u4EE3\u78BC\uFF08\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "gamePlayModes": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "\u5404\u7403\u7A2E\u9700\u65B0\u589E\u7AD9\u53F0\u7684\u73A9\u6CD5\u6E05\u55AE\uFF0CKey \u70BA\u7403\u7A2E\u3001Value \u70BA\u73A9\u6CD5\u4EE3\u78BC\u9663\u5217\uFF08\u5FC5\u586B\uFF09",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "\u6279\u6B21\u70BA\u73A9\u6CD5\u65B0\u589E\u652F\u63F4\u7AD9\u53F0"
+      },
+      "PlayModeConfig": {
+        "type": "object",
+        "properties": {
+          "businessCode": {
+            "type": "string",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "gameType": {
+            "type": "string",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "lid": {
+            "type": "string",
+            "description": "\u806F\u76DF ID\uFF08\u8CFD\u4E8B\u5C64\u7D1A\u8A2D\u5B9A\u6642\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "gDate": {
+            "type": "string",
+            "description": "\u8CFD\u4E8B\u65E5\u671F\uFF08\u8CFD\u4E8B\u5C64\u7D1A\u8A2D\u5B9A\u6642\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "gid": {
+            "type": "string",
+            "description": "\u8CFD\u4E8B ID\uFF08\u8CFD\u4E8B\u5C64\u7D1A\u8A2D\u5B9A\u6642\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "description": "\u8A2D\u5B9A\u6A94\u552F\u4E00 ID\uFF08\u806F\u76DF/\u7BC4\u672C/\u8CFD\u4E8B\u67E5\u8A62\u8207\u66F4\u65B0\u6642\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "cid": {
+            "type": "string",
+            "description": "\u8907\u88FD\u4F86\u6E90\u8A2D\u5B9A ID\uFF08\u9078\u586B\uFF09",
+            "nullable": true
+          },
+          "enabled": {
+            "type": "integer",
+            "description": "\u555F\u7528\u72C0\u614B\uFF08\u56DE\u50B3\u6642\u5FC5\u6709\u503C\uFF09",
+            "format": "int32"
+          },
+          "leagues": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "\u5957\u7528\u4E4B\u806F\u76DF ID \u6E05\u55AE\uFF08\u806F\u76DF/\u7BC4\u672C\u8A2D\u5B9A\u4F7F\u7528\uFF0C\u9078\u586B\uFF09",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "\u8A2D\u5B9A\u540D\u7A31\uFF08\u806F\u76DF/\u7BC4\u672C\u5EFA\u7ACB\u6642\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "settings": {
+            "type": "string",
+            "description": "\u73A9\u6CD5\u8A2D\u5B9A JSON \u5B57\u4E32\uFF0C\u5167\u5BB9\u70BA PlayModeSettings \u9663\u5217\uFF08\u5EFA\u7ACB/\u66F4\u65B0\u6642\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "showStopPlayMode": {
+            "type": "boolean",
+            "description": "\u662F\u5426\u986F\u793A\u505C\u7528\u73A9\u6CD5\uFF08\u56DE\u50B3\u6642\u5FC5\u6709\u503C\uFF0C\u9810\u8A2D false\uFF09"
+          },
+          "swap": {
+            "type": "boolean",
+            "description": "\u662F\u5426\u4EA4\u63DB\u4E3B\u5BA2\uFF08\u56DE\u50B3\u6642\u5FC5\u6709\u503C\uFF09"
+          },
+          "updater": {
+            "type": "string",
+            "description": "\u6700\u5F8C\u66F4\u65B0\u8005\uFF08\u806F\u76DF/\u7BC4\u672C/\u8CFD\u4E8B\u66F4\u65B0\u6642\u5FC5\u586B\uFF09",
+            "nullable": true
+          },
+          "updateTime": {
+            "type": "integer",
+            "description": "\u6700\u5F8C\u66F4\u65B0\u6642\u9593 Unix \u79D2\uFF08\u56DE\u50B3\u6642\u5FC5\u6709\u503C\uFF09",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false,
+        "description": "\u73A9\u6CD5\u8A2D\u5B9A\u503C\uFF08\u7403\u7A2E/\u806F\u76DF/\u7BC4\u672C/\u8CFD\u4E8B\u5C64\u7D1A\u5171\u7528\u6A21\u578B\uFF09"
+      },
+      "PlayModeSettings": {
+        "type": "object",
+        "properties": {
+          "playMode": {
+            "type": "string",
+            "nullable": true
+          },
+          "layout": {
+            "type": "string",
+            "nullable": true
+          },
+          "siteSetting": {
+            "$ref": "#/components/schemas/SiteSettings"
+          },
+          "radioCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "useSuggest": {
+            "type": "boolean"
+          },
+          "rate": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rateType": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "places": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "suggestInterval": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "useAlarm": {
+            "type": "boolean"
+          },
+          "alarmBeforeGameRate": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/RateSetting"
+            },
+            "nullable": true
+          },
+          "alarmRate": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/RateSetting"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": {}
+      },
+      "RateSetting": {
+        "type": "object",
+        "properties": {
+          "rateType": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rate": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SiteConfig": {
+        "type": "object",
+        "properties": {
+          "businessCode": {
+            "type": "string",
+            "description": "\u5546\u52D9\u865F\u4EE3\u78BC\uFF08\u5EFA\u7ACB/\u66F4\u65B0/\u67E5\u8A62\u6642\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "gameType": {
+            "type": "string",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF0C\u4F8B\u5982 SC\u3001BK\uFF08\u5EFA\u7ACB/\u66F4\u65B0/\u67E5\u8A62\u6642\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "sites": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "\u555F\u7528\u7AD9\u53F0\u4EE3\u78BC\u6E05\u55AE\uFF08\u9078\u586B\uFF09",
+            "nullable": true
+          },
+          "updater": {
+            "type": "string",
+            "description": "\u6700\u5F8C\u66F4\u65B0\u8005\u5E33\u865F\uFF08\u9078\u586B\uFF09",
+            "nullable": true
+          },
+          "updateTime": {
+            "type": "integer",
+            "description": "\u6700\u5F8C\u66F4\u65B0\u6642\u9593 Unix \u79D2\uFF08\u56DE\u50B3\u6642\u5FC5\u6709\u503C\uFF09",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false,
+        "description": "\u5546\u52D9\u865F\u7403\u7A2E\u7AD9\u53F0\u914D\u7F6E"
+      },
+      "SiteSetting": {
+        "type": "object",
+        "properties": {
+          "company": {
+            "type": "string",
+            "description": "\u516C\u53F8\u4EE3\u78BC\uFF08\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "gameType": {
+            "type": "string",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF08\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "sites": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "\u505C\u7528\u7AD9\u53F0\u4EE3\u78BC\u6E05\u55AE\uFF08\u5FC5\u6709\u503C\uFF0C\u53EF\u80FD\u70BA\u7A7A\u9663\u5217\uFF09",
+            "nullable": true
+          },
+          "updateTime": {
+            "type": "integer",
+            "description": "\u6700\u5F8C\u66F4\u65B0\u6642\u9593 Unix \u79D2\uFF08\u5FC5\u6709\u503C\uFF09",
+            "format": "int64"
+          },
+          "updater": {
+            "type": "string",
+            "description": "\u6700\u5F8C\u66F4\u65B0\u8005\uFF08\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "\u516C\u53F8\u7403\u7A2E\u505C\u7528\u7AD9\u53F0\u8A2D\u5B9A"
+      },
+      "SiteSettings": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "type": "string",
+            "nullable": true
+          },
+          "siteList": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "siteRate": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Subscriber": {
+        "type": "object",
+        "properties": {
+          "teamName": {
+            "type": "string",
+            "description": "\u8A02\u95B1\u8005/\u5718\u968A\u540D\u7A31\uFF08\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "\u63CF\u8FF0\uFF08\u9078\u586B\uFF09",
+            "nullable": true
+          },
+          "authToken": {
+            "type": "string",
+            "description": "API \u9A57\u8B49 Token\uFF08\u67E5\u8A62\u56DE\u50B3\u6642\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "enabled": {
+            "type": "integer",
+            "description": "\u555F\u7528\u72C0\u614B\uFF08\u56DE\u50B3\u6642\u5FC5\u6709\u503C\uFF09",
+            "format": "int32"
+          },
+          "whiteList": {
+            "type": "string",
+            "description": "IP \u767D\u540D\u55AE\uFF08\u9078\u586B\uFF09",
+            "nullable": true
+          },
+          "lastUpdTime": {
+            "type": "string",
+            "description": "\u6700\u5F8C\u66F4\u65B0\u6642\u9593\u5B57\u4E32\uFF08\u56DE\u50B3\u6642\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "API \u8A02\u95B1\u8005\uFF08\u5718\u968A\uFF09\u8CC7\u6599"
+      },
+      "SystemSettings": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "updateTime": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "gameType": {
+            "type": "string",
+            "nullable": true
+          },
+          "leagues": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "game": {
+            "type": "string",
+            "nullable": true
+          },
+          "enabled": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "swap": {
+            "type": "boolean"
+          },
+          "settingType": {
+            "type": "string",
+            "nullable": true
+          },
+          "showStopPlayMode": {
+            "type": "boolean"
+          },
+          "settings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlayModeSettings"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "company": {
+            "type": "string",
+            "description": "\u516C\u53F8/\u8A02\u95B1\u8005\u4EE3\u78BC\uFF08\u5EFA\u7ACB\u8207\u67E5\u8A62\u6642\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "account": {
+            "type": "string",
+            "description": "\u767B\u5165\u5E33\u865F\uFF08\u5EFA\u7ACB\u8207\u67E5\u8A62\u6642\u5FC5\u6709\u503C\uFF09",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "description": "\u5BC6\u78BC\uFF08\u8A3B\u518A/\u767B\u5165/\u91CD\u8A2D\u6642\u5FC5\u586B\uFF0C\u67E5\u8A62\u4E0D\u56DE\u50B3\u660E\u6587\uFF09",
+            "nullable": true
+          },
+          "enabled": {
+            "type": "integer",
+            "description": "\u555F\u7528\u72C0\u614B\uFF08\u56DE\u50B3\u6642\u5FC5\u6709\u503C\uFF09",
+            "format": "int32"
+          },
+          "updateTime": {
+            "type": "integer",
+            "description": "\u6700\u5F8C\u66F4\u65B0\u6642\u9593 Unix \u79D2\uFF08\u56DE\u50B3\u6642\u5FC5\u6709\u503C\uFF09",
+            "format": "int64"
+          },
+          "ip": {
+            "type": "string",
+            "description": "\u6700\u5F8C\u767B\u5165 IP\uFF08\u767B\u5165\u6D41\u7A0B\u4F7F\u7528\uFF0C\u9078\u586B\uFF09",
+            "nullable": true
+          },
+          "uid": {
+            "type": "string",
+            "description": "\u767B\u5165 Session UID\uFF08\u767B\u5165\u6210\u529F\u5F8C\u56DE\u50B3\uFF0C\u9078\u586B\uFF09",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "\u8A02\u95B1\u8005\u65D7\u4E0B\u4F7F\u7528\u8005\u5E33\u865F"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Business",
+      "description": "\u5546\u52D9\u865F\u3001\u5E33\u865F\u3001\u767B\u5165\u8207\u5834\u4E2D\u8CFD\u4E8B\u7BA1\u7406"
+    },
+    {
+      "name": "Config",
+      "description": "\u5546\u52D9\u865F\u7AD9\u53F0\u3001\u806F\u76DF\u8D70\u5730\u8207\u73A9\u6CD5\u8A2D\u5B9A\u503C\u7BA1\u7406"
+    },
+    {
+      "name": "GameSettingService",
+      "description": "\u516C\u53F8\u8A2D\u5B9A\u503C\u3001\u8A02\u95B1\u8005/\u4F7F\u7528\u8005\u3001\u7CFB\u7D71/\u7BC4\u672C/\u806F\u76DF/\u8CFD\u4E8B\u8A2D\u5B9A\u8207\u64CD\u4F5C Log"
+    },
+    {
+      "name": "System",
+      "description": "\u7CFB\u7D71\u7DAD\u904B\uFF1A\u5EFA\u8868\u3001\u5065\u5EB7\u6AA2\u67E5\u3001\u7248\u672C\u8207\u8CC7\u6599\u4FEE\u5FA9"
+    }
+  ]
+}

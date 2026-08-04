@@ -1,0 +1,164 @@
+---
+description: C# WebAPI Swagger 文件規範（Request / Response 欄位 XML 描述、nullable 推論，不使用 Data Annotation）
+globs: ["**/*Request.cs", "**/*Response.cs", "**/*Controller.cs", "**/*DTO.cs", "**/Model/**/*.cs", "**/Controllers/**/*.cs"]
+alwaysApply: false
+---
+
+## AI 強制要求（WebAPI 專案）
+
+處理 **ASP.NET Core WebAPI**（含 `*Controller.cs`、`*Request.cs`、`*Response.cs`、API 用 Model/DTO）時，AI **必須**一併產出完整 Swagger / OpenAPI 文件，不得只寫程式邏輯而省略文件。
+
+| 範圍 | 必須做到 |
+|------|----------|
+| **Input（Request）** | 每個欄位有 XML `<summary>` 詳細說明（含必填/選填、格式或數值限制）；必填為 non-nullable；選填為 nullable（`?`） |
+| **Output（Response）** | 每個欄位有 XML `<summary>` 詳細說明；依語意與程式推論標記 non-nullable / nullable（見下方推論表） |
+| **Controller Action** | 每個端點有 XML `<summary>` 說明用途與行為 |
+| **禁止** | 留空描述、只靠欄位名稱讓呼叫方猜測、Response 全部標成 nullable、在 Model property 上加 `[Required]` / `[Range]` / `[MaxLength]` 等 Data Annotation |
+
+修改既有 API 時：新增或變更的欄位、端點同樣必須補齊上述文件。
+
+---
+
+## 核心要求
+
+每個 WebAPI 專案的 Request / Response Model 和 Controller Action **必須**產生可讀的 Swagger 文件，不得留空描述或依賴欄位名稱讓呼叫方自行猜測語意。
+
+**Model 欄位只寫 XML `<summary>`，不加 Data Annotation。** 必填與否、長度、數值範圍等約束一律寫在 `<summary>` 內；型別用 non-nullable / nullable 表達語意。
+
+---
+
+## Request Model 規範
+
+### 必填欄位 — MUST
+
+- 所有「呼叫方必須傳入」的欄位，型別使用 **non-nullable**（`string`、`int`、`bool`），並在 `<summary>` 標明「必填」及相關限制。
+- 所有「選填」欄位，型別使用 **nullable**（`string?`、`int?`、`DateTime?`），並在 `<summary>` 標明「選填」。
+- 每個 public property 加 XML `<summary>` 說明用途；若有格式限制、數值範圍或範例值，一併寫入 summary，**不要**加 `[Required]`、`[Range]`、`[MaxLength]` 等 attribute。
+
+```csharp
+// ✅ Correct
+public class CreateOrderRequest
+{
+    /// <summary>會員的 AuthKey（必填）</summary>
+    public string AuthKey { get; set; } = string.Empty;
+
+    /// <summary>遊戲類型代碼，如 BK / SC（必填）</summary>
+    public string GameType { get; set; } = string.Empty;
+
+    /// <summary>下注金額，單位：點數（必填，最小值 1）</summary>
+    public int Amount { get; set; }
+
+    /// <summary>備註（選填，最多 200 字）</summary>
+    public string? Remark { get; set; }
+}
+
+// ❌ Wrong — 無描述、型別混用、或加 Data Annotation
+public class CreateOrderRequest
+{
+    [Required]
+    public string AuthKey { get; set; } = string.Empty;   // 禁止 attribute，缺 <summary>
+
+    public string AuthKey { get; set; }                   // 缺 <summary>
+    public string? Amount { get; set; }                   // 金額不該是 nullable string
+}
+```
+
+---
+
+## Response Model 規範
+
+### 非 null 欄位推論規則 — MUST
+
+以下欄位語意上「必定有值」，型別使用 **non-nullable**，Swagger 中會顯示為 required：
+
+| 欄位類型 | 語意 | 型別 |
+|---------|------|------|
+| 主鍵（id、authKey） | 資料存在即必有 | `int` / `string`（non-nullable） |
+| 建立時間（createdAt、addTime） | 寫入即產生 | `DateTime`（non-nullable） |
+| 狀態碼（status、enabled） | 永遠是明確值 | `int` / `bool`（non-nullable） |
+| 列表（items、list） | 無資料回傳空陣列而非 null | `List<T>`（non-nullable，初始化為 `new()`） |
+| 業務核心文字（account、name） | 建立時即必填 | `string`（non-nullable） |
+
+以下欄位語意上「可能為 null」，型別使用 **nullable**：
+
+| 欄位類型 | 語意 | 型別 |
+|---------|------|------|
+| 軟刪除時間（deletedAt） | 未刪除時為 null | `DateTime?` |
+| 選填的使用者輸入（email、remark） | 可能未填 | `string?` |
+| 外鍵參照（parentId、relatedId） | 可能無關聯 | `int?` |
+| AI / 第三方回傳（aiResult） | 可能尚未產出 | `string?` |
+
+```csharp
+// ✅ Correct — 語意正確的 nullable 標記
+public class GetOrderResponse
+{
+    /// <summary>訂單 ID</summary>
+    public int Id { get; set; }                          // 主鍵，必定有值
+
+    /// <summary>會員 AuthKey</summary>
+    public string AuthKey { get; set; } = string.Empty; // 核心文字，必定有值
+
+    /// <summary>訂單狀態（0=待處理, 1=完成, 2=取消）</summary>
+    public int Status { get; set; }                      // 狀態碼，必定有值
+
+    /// <summary>建立時間（UTC）</summary>
+    public DateTime CreatedAt { get; set; }              // 建立即產生，必定有值
+
+    /// <summary>備註（若未填則為 null）</summary>
+    public string? Remark { get; set; }                  // 選填，可能為 null
+
+    /// <summary>取消時間（未取消時為 null）</summary>
+    public DateTime? CancelledAt { get; set; }           // 軟狀態，可能為 null
+
+    /// <summary>訂單明細列表</summary>
+    public List<OrderItemDto> Items { get; set; } = new();  // 列表，永不為 null
+}
+
+// ❌ Wrong — 全部 nullable 導致呼叫方無法判斷哪些必定有值
+public class GetOrderResponse
+{
+    public int? Id { get; set; }          // 主鍵不應為 nullable
+    public string? AuthKey { get; set; } // 必定有值不應為 nullable
+    public List<OrderItemDto>? Items { get; set; } // 列表應初始化為空陣列
+}
+```
+
+### 每個 public property 加 XML `<summary>` — MUST
+
+說明內容應包含：
+1. 欄位用途（一行）
+2. 若有列舉值，列出所有合法值與對應意義
+3. 若回傳 null 有特定語意，說明何時為 null
+
+---
+
+## Controller Action 規範
+
+每個 action 加 XML doc，說明端點用途；回傳型別明確（不用 `ActionResult<T>` 省略泛型）：
+
+```csharp
+// ✅ Correct
+/// <summary>查詢會員訂單列表（依日期範圍）</summary>
+[HttpGet("getOrders")]
+public Task<GetOrdersResponse> GetOrders([FromQuery] GetOrdersRequest request)
+    => _orderService.GetOrdersAsync(request);
+
+// ❌ Wrong — 無 XML doc，Swagger 看不到說明
+[HttpGet("getOrders")]
+public Task<IActionResult> GetOrders([FromQuery] GetOrdersRequest request)
+    => ...
+```
+
+---
+
+## Self-Check for Swagger / Model Files
+
+Before finishing, verify:
+- [ ] 每個 Request / Response property 都有 `<summary>`？
+- [ ] Request Model **沒有** `[Required]`、`[Range]`、`[MaxLength]` 等 Data Annotation？
+- [ ] 必填 Request property 在 summary 標明必填，且型別為 non-nullable？
+- [ ] 選填 Request property 在 summary 標明選填，且型別為 nullable（`?`）？
+- [ ] Response property 依語意推論：主鍵/狀態/建立時間/核心文字為 non-nullable？
+- [ ] Response 列表型別（`List<T>`）初始化為 `new()`，不為 null？
+- [ ] 每個 Response property 都有 `<summary>`，且說明何時可能為 null？
+- [ ] Controller action 有 XML `<summary>` 說明用途？

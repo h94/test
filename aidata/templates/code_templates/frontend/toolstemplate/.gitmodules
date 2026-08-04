@@ -1,0 +1,3 @@
+[submodule "aidata"]
+	path = aidata
+	url = https://git.zbdigital.net/architecture/aidata.git

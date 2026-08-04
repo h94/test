@@ -1,0 +1,47 @@
+{
+  "name": "frontendtoolstemplate",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "build": "nuxt build",
+    "build:local": "nuxt build --dotenv .env.local",
+    "build:prd": "nuxt build --dotenv .env.prd",
+    "local": "concurrently \"nuxt dev --dotenv .env.local\" \"npm run type-check\"",
+    "prd": "concurrently \"nuxt dev --dotenv .env.prd\" \"npm run type-check\"",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "start": "node .output/server/index.mjs",
+    "type-check": "vue-tsc --noEmit --watch"
+  },
+  "dependencies": {
+    "@mdi/font": "^7.4.47",
+    "@nuxt/devtools": "^3.2.4",
+    "@types/pako": "^2.0.4",
+    "@vuepic/vue-datepicker": "^6.1.0",
+    "@vueuse/nuxt": "^13.0.0",
+    "dayjs": "^1.11.21",
+    "nuxt": "^4.0.0",
+    "nuxt-tsconfig-relative-paths": "^1.0.8",
+    "pako": "^2.1.0",
+    "vue": "^3.5.17",
+    "vue-router": "^5.1.0",
+    "vue3-toastify": "^0.1.14",
+    "vuetify": "^3.9.7"
+  },
+  "devDependencies": {
+    "@pinia/nuxt": "^0.11.3",
+    "@types/node": "^24.0.0",
+    "concurrently": "^9.2.1",
+    "dayjs-nuxt": "^2.1.9",
+    "nuxt-lodash": "^2.5.3",
+    "pinia": "^3.0.3",
+    "sass": "^1.101.0",
+    "typescript": "~5.9.3",
+    "vite-plugin-vuetify": "^2.1.3",
+    "vue-tsc": "^3.3.6"
+  }
+}

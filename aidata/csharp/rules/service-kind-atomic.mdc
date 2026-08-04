@@ -1,0 +1,60 @@
+---
+description: C# 原子 WebAPI（atomic）— Route 版號、AppSettings DB、Infrastructure 直連
+globs: ["**/*Controller.cs", "**/appsettings*.json", "**/Infrastructure/**/*.cs", "**/*.Infrastructure/**/*.cs"]
+alwaysApply: false
+---
+
+## 適用對象
+
+`kind = atomic` 的 WebAPI（見 `./aidata/webapi/_index.md`）。
+
+原子 Service **直連 DB**（Cassandra / MySQL / PostgreSQL 等）或 Redis / 檔案為主要資料來源；對外 HTTP 為資料擁有者。
+
+---
+
+## Controller Route — MUST
+
+**版號固定為 `v1`**，除非開發人員在任務中明確要求其他版號（如 `v2`），否則一律使用 `v1`。
+
+```csharp
+// ✅ 原子 Service — action route 必須含 v1
+[Route("api/")]
+[HttpGet, Route("v1/newlottery/users")]
+
+// ❌ 整合 Service 寫法（禁止）
+[Route("api")]
+[HttpGet("users")]
+
+// ❌ 省略版號（禁止，除非 README/OpenAPI 該模組已有不同慣例且開發人員明示）
+[HttpGet, Route("newlottery/users")]
+```
+
+- 完整路徑範例：`/api/v1/newlottery/users`
+- 新增端點前查 `./aidata/webapi/{serviceName}/` 的 OpenAPI 或 README；若與 `v1` 不一致，**以開發人員明示為準**，否則預設 `v1`
+
+---
+
+## AppSettings — MUST / MUST NOT
+
+**MUST** 依實際資料源配置：
+- `MySQLSettings`
+- `CassandraSettings`
+- `PostgreSQLSettings`（若有）
+- `RedisSettings`（快取／業務用）
+
+**MUST NOT** 以 `RestfulSettings` 取代 DB 作為主要 CRUD 來源（若另有呼叫下游，為附加用途）。
+
+---
+
+## Infrastructure — MUST
+
+- 資料存取 **MUST** 透過 Provider + DB Manager（見 `layer-infrastructure.mdc`、`libraries.mdc`）
+- **MUST NOT** 新增以 `IRestfulClient` 為主的 DB 替代 Provider
+
+---
+
+## 自檢（atomic 專用）
+
+- [ ] Controller action route 含 `v1/`（未經開發人員明示時不得改用其他版號或省略）？
+- [ ] appsettings 有對應 DB Settings（非僅 RestfulSettings）？
+- [ ] 未在 Infrastructure 以 RestfulClient 當主要資料來源？

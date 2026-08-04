@@ -1,0 +1,30 @@
+---
+description: C# Background Worker（service）— 無 Controller、無對外 URL
+globs: ["**/Program.cs", "**/*Worker*.cs", "**/*Background*.cs", "**/appsettings*.json"]
+alwaysApply: false
+---
+
+## 適用對象
+
+`kind = service` 的 BackgroundService / Worker（見 `./aidata/service/_index.md`）。
+
+---
+
+## 硬規則 — MUST NOT
+
+- **MUST NOT** 新增 `*Controller.cs` 或 HTTP Route
+- **MUST NOT** 在 appsettings 配置對外 WebAPI 端點用途的 RestfulSettings（除非 README 明確為對外呼叫下游）
+
+---
+
+## 參考
+
+- 服務職責與資料流： `./aidata/service/_index.md`、`{service}/README.md`、`documents.md`
+- 共用 C# 規範仍適用：`libraries.mdc`、`layer-service.mdc`、`layer-infrastructure.mdc`（依任務涉及層級）
+
+---
+
+## 自檢（background 專用）
+
+- [ ] 未新增 Controller 或 Route？
+- [ ] 未誤用 WebAPI 的 atomic / integration Route 或 AppSettings 模式？

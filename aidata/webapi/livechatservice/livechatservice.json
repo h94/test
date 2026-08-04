@@ -1,0 +1,2299 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "APIName 1.0.2",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/heart": {
+      "get": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u770B\u6642\u9593",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/version": {
+      "get": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u67E5\u8A62\u7248\u672C",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/issuetype/cachedb": {
+      "get": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u53D6\u5F97DB\u4E2D\u7684IssueTypes",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IssueType"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IssueType"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IssueType"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/issuetype": {
+      "post": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u65B0\u589EDB\u53CARedis\u4E2D\u7684IssueTypes",
+        "requestBody": {
+          "description": "issueType\u7684\u8CC7\u6599(\u542Bcontent \u5FC5\u8981\u53C3\u6578)",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IssueType"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IssueType"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/IssueType"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u4FEE\u6539DB\u53CARedis\u4E2D\u7684IssueTypes",
+        "requestBody": {
+          "description": "issueType\u7684\u8CC7\u6599(\u542Bcontent\uFF0C\u82E5\u7121content\u5247\u5931\u6557-\u56DE\u50B30)",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IssueType"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IssueType"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/IssueType"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u4FEE\u6539DB\u4E2D\u7684IssueTypes:enabled=0",
+        "parameters": [
+          {
+            "name": "issueId",
+            "in": "query",
+            "description": "\u8981\u4FEE\u6539\u7684IssueType\u7684id",
+            "schema": {
+              "type": "integer",
+              "description": "\u8981\u4FEE\u6539\u7684IssueType\u7684id",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/issuetype/cacheredis": {
+      "get": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u53D6\u5F97Redis\u4E2D\u7684IssueTypes",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IssueType"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IssueType"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IssueType"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/channel/upload": {
+      "post": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u4E0A\u50B3\u6A94\u6848",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "files": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    },
+                    "nullable": true
+                  },
+                  "fields": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "nullable": true
+                  }
+                }
+              },
+              "encoding": {
+                "files": {
+                  "style": "form"
+                },
+                "fields": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/token/get": {
+      "get": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u751F\u6210\u4E00\u500Btoken\u4E26\u52A0\u5165\u6578\u64DA\u5EAB",
+        "parameters": [
+          {
+            "name": "expirationtime",
+            "in": "query",
+            "description": "token\u7684\u751F\u547D\u9031\u671F\uFF0C\u55AE\u4F4D\u662F\u79D2\uFF0C\u6700\u5C0F\u503C\u662F0\uFF0C\u6700\u5927\u503C\u662F5\u5929",
+            "schema": {
+              "type": "integer",
+              "description": "token\u7684\u751F\u547D\u9031\u671F\uFF0C\u55AE\u4F4D\u662F\u79D2\uFF0C\u6700\u5C0F\u503C\u662F0\uFF0C\u6700\u5927\u503C\u662F5\u5929",
+              "format": "int32",
+              "default": 60
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/token/check": {
+      "get": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u78BA\u8A8Dtoken\u662F\u5426\u6709\u6548",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "description": "token(\u5B57\u4E32)",
+            "schema": {
+              "type": "string",
+              "description": "token(\u5B57\u4E32)",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/channel/reflash": {
+      "get": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u5237\u65B0\u5728\u7DDA\u7528\u6236",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LastMessage"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LastMessage"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LastMessage"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/channel/cleanup": {
+      "get": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u6E05\u9664Redis\u88E1\u904E\u6642\u7684\u5C0D\u8A71\u7D00\u9304",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/channel/chat": {
+      "get": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u53D6\u5F97\u7528\u6236\u804A\u5929\u5167\u5BB9",
+        "parameters": [
+          {
+            "name": "roomID",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "index",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ChatContent"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ChatContent"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ChatContent"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/channel/updateonlineuser": {
+      "get": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u66F4\u65B0language Code",
+        "parameters": [
+          {
+            "name": "language",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string",
+              "description": "",
+              "nullable": true
+            }
+          },
+          {
+            "name": "roomID",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string",
+              "description": "",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/hello": {
+      "get": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u53D6\u5F97DB\u4E2D\u7684HelloMessage",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/HelloMessage"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HelloMessage"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HelloMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u4FEE\u6539DB\u53CARedis\u4E2D\u7684HelloMessage",
+        "requestBody": {
+          "description": "HelloMessage,\u53EA\u8981\u6709Content\u5373\u53EF,ex:{\u0022content\u0022: \u0022\u6B61\u8FCE\u60A8,\u8ACB\u554F\u6709\u4F55\u6307\u6559\u55CE?\u0022}",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HelloMessage"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HelloMessage"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/HelloMessage"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u4FEE\u6539DB\u53CARedis\u4E2D\u7684HelloMessage",
+        "requestBody": {
+          "description": "HelloMessage,\u53EA\u8981\u6709Content\u5373\u53EF,ex:{\u0022content\u0022: \u0022\u6B61\u8FCE\u60A8,\u8ACB\u554F\u6709\u4F55\u6307\u6559\u55CE?\u0022}",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HelloMessage"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HelloMessage"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/HelloMessage"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/hello/cache": {
+      "get": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u53D6\u5F97Redis\u4E2D\u7684HelloMessage",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/HelloMessage"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HelloMessage"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HelloMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/message/{group}": {
+      "get": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u53D6\u5F97DB\u4E2D\u7684QuickMessage",
+        "parameters": [
+          {
+            "name": "group",
+            "in": "path",
+            "description": "QuickMessage\u5206\u985E.(\u5206\u5225\u6709Common,Payment,Application,CS)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "QuickMessage\u5206\u985E.(\u5206\u5225\u6709Common,Payment,Application,CS)",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/QuickMessage"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/QuickMessage"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/QuickMessage"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/message/cache/{group}": {
+      "get": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u53D6\u5F97Redis\u4E2D\u7684QuickMessage",
+        "parameters": [
+          {
+            "name": "group",
+            "in": "path",
+            "description": "QuickMessage\u5206\u985E.(\u5206\u5225\u6709Common,Payment,Application,CS)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "QuickMessage\u5206\u985E.(\u5206\u5225\u6709Common,Payment,Application,CS)",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/QuickMessage"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/QuickMessage"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/QuickMessage"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/message": {
+      "post": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u65B0\u589EDB\u53CARedis\u4E2D\u7684QuickMessage",
+        "requestBody": {
+          "description": "QuickMessage,\u9700\u8981\u6709grouptype,Content,ex:{\u0022groupType\u0022:\u0022Payment\u0022,\u0022content\u0022: \u0022\u60A8\u7684\u5E33\u865F\u5DF2\u7D93\u88AB\u505C\u7528,\u8ACB\u627E\u4E0A\u7D1A\u806F\u7D61\u5546\u5354\u52A9\u91CD\u65B0\u958B\u901A\u0022}",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuickMessage"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuickMessage"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/QuickMessage"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u4FEE\u6539DB\u53CARedis\u4E2D\u7684QuickMessage",
+        "requestBody": {
+          "description": "QuickMessage,\u9700\u8981\u6709ID,GroupType,Content,enabled,\u4F46\u5982\u679CContent\u70BA\u7A7A\u5247\u53EA\u6709\u66F4\u65B0enabled\u72C0\u614B, ex:{\u0022id\u0022:5,\u0022groupType\u0022:\u0022Payment\u0022,\u0022content\u0022: \u0022\u60A8\u7684\u5E33\u865F\u5DF2\u7D93\u88AB\u505C\u7528,\u8ACB\u627E\u4E0A\u7D1A\u806F\u7D61\u5546\u5354\u52A9\u91CD\u65B0\u958B\u901A\u0022,\u0022enabled\u0022:1}",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuickMessage"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuickMessage"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/QuickMessage"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/logs": {
+      "get": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u53D6\u5F97Messagelog\u5C0D\u8A71\u7D00\u9304",
+        "parameters": [
+          {
+            "name": "hashKey",
+            "in": "query",
+            "description": "\u975E\u5FC5\u8981.\u5EFA\u7ACBChannel\u7684Token",
+            "schema": {
+              "type": "string",
+              "description": "\u975E\u5FC5\u8981.\u5EFA\u7ACBChannel\u7684Token",
+              "nullable": true
+            }
+          },
+          {
+            "name": "connectId",
+            "in": "query",
+            "description": "\u975E\u5FC5\u8981.Channel\u7684Id",
+            "schema": {
+              "type": "string",
+              "description": "\u975E\u5FC5\u8981.Channel\u7684Id",
+              "nullable": true
+            }
+          },
+          {
+            "name": "userData",
+            "in": "query",
+            "description": "\u975E\u5FC5\u8981.\u4F7F\u7528\u8005\u7AEF\u7684\u5E33\u865F",
+            "schema": {
+              "type": "string",
+              "description": "\u975E\u5FC5\u8981.\u4F7F\u7528\u8005\u7AEF\u7684\u5E33\u865F",
+              "nullable": true
+            }
+          },
+          {
+            "name": "agent",
+            "in": "query",
+            "description": "\u975E\u5FC5\u8981.\u5BA2\u670D\u7AEF\u7684\u5E33\u865F",
+            "schema": {
+              "type": "string",
+              "description": "\u975E\u5FC5\u8981.\u5BA2\u670D\u7AEF\u7684\u5E33\u865F",
+              "nullable": true
+            }
+          },
+          {
+            "name": "searchKeyWord",
+            "in": "query",
+            "description": "\u975E\u5FC5\u8981.\u5C0D\u8A71\u7684\u95DC\u9375\u5B57",
+            "schema": {
+              "type": "string",
+              "description": "\u975E\u5FC5\u8981.\u5C0D\u8A71\u7684\u95DC\u9375\u5B57",
+              "nullable": true
+            }
+          },
+          {
+            "name": "dtStart",
+            "in": "query",
+            "description": "\u5FC5\u8981.\u67E5\u8A62\u7684\u65E5\u671F\u6642\u9593,\u6C92\u6709\u586B\u5C07\u7528\u7576\u59290:00\u958B\u59CB",
+            "schema": {
+              "type": "string",
+              "description": "\u5FC5\u8981.\u67E5\u8A62\u7684\u65E5\u671F\u6642\u9593,\u6C92\u6709\u586B\u5C07\u7528\u7576\u59290:00\u958B\u59CB",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "dtEnd",
+            "in": "query",
+            "description": "\u975E\u5FC5\u8981.\u67E5\u8A62\u7684\u65E5\u671F\u6642\u9593,\u6C92\u6709\u586B\u5C07\u7528\u7576\u592923:59\u7D50\u675F",
+            "schema": {
+              "type": "string",
+              "description": "\u975E\u5FC5\u8981.\u67E5\u8A62\u7684\u65E5\u671F\u6642\u9593,\u6C92\u6709\u586B\u5C07\u7528\u7576\u592923:59\u7D50\u675F",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "\u975E\u5FC5\u8981.\u5206\u9801\u5927\u5C0F,\u6700\u5C1110,\u6700\u5927100",
+            "schema": {
+              "type": "integer",
+              "description": "\u975E\u5FC5\u8981.\u5206\u9801\u5927\u5C0F,\u6700\u5C1110,\u6700\u5927100",
+              "format": "int32",
+              "default": 20
+            }
+          },
+          {
+            "name": "pageIndex",
+            "in": "query",
+            "description": "\u975E\u5FC5\u8981.\u7B2C\u5E7E\u9801",
+            "schema": {
+              "type": "integer",
+              "description": "\u975E\u5FC5\u8981.\u7B2C\u5E7E\u9801",
+              "format": "int32",
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogSearchResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogSearchResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogSearchResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/feedback": {
+      "post": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u5C07feedback\u52A0\u5165\u6578\u64DA\u5EAB",
+        "requestBody": {
+          "description": "feedback\u7684\u8CC7\u6599(\u542Bconnectid, score, comment),\u7CFB\u7D71\u6703\u81EA\u52D5\u5224\u5B9A\u662F\u5426\u65B0\u589E\u6216\u4FEE\u6539",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FeedbackPost"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FeedbackPost"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/FeedbackPost"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u5F9E\u6578\u64DA\u5EAB\u8B80\u53D6feedback\u8CC7\u6599",
+        "parameters": [
+          {
+            "name": "connectid",
+            "in": "query",
+            "description": "\u5FC5\u8981\u53C3\u6578\uFF0C\u5C0B\u627E\u7684Feedback\u7684ChatID",
+            "schema": {
+              "type": "string",
+              "description": "\u5FC5\u8981\u53C3\u6578\uFF0C\u5C0B\u627E\u7684Feedback\u7684ChatID",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Feedback"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Feedback"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Feedback"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/feedback/{date}": {
+      "get": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u5F9E\u6578\u64DA\u5EAB\u8B80\u53D6feedback\u8CC7\u6599",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "path",
+            "description": "\u5C0B\u627E\u7684Feedback\u7684(\u958B\u59CB)\u65E5\u671F",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u5C0B\u627E\u7684Feedback\u7684(\u958B\u59CB)\u65E5\u671F",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "enddate",
+            "in": "query",
+            "description": "\u5C0B\u627E\u7684Feedback\u7684\u7D50\u675F\u65E5\u671F\uFF0C\u9ED8\u8A8D\u503C\u7B49\u65BCdate",
+            "schema": {
+              "type": "string",
+              "description": "\u5C0B\u627E\u7684Feedback\u7684\u7D50\u675F\u65E5\u671F\uFF0C\u9ED8\u8A8D\u503C\u7B49\u65BCdate",
+              "format": "date-time",
+              "nullable": true
+            }
+          },
+          {
+            "name": "scorelower",
+            "in": "query",
+            "description": "\u5C0B\u627E\u7684Feedback\u7684\u6700\u4F4E\u5206\u6578\uFF0C\u9ED8\u8A8D\u503C\u7B49\u65BC1",
+            "schema": {
+              "type": "integer",
+              "description": "\u5C0B\u627E\u7684Feedback\u7684\u6700\u4F4E\u5206\u6578\uFF0C\u9ED8\u8A8D\u503C\u7B49\u65BC1",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "scoreupper",
+            "in": "query",
+            "description": "\u5C0B\u627E\u7684Feedback\u7684\u6700\u9AD8\u5206\u6578\uFF0C\u9ED8\u8A8D\u503C\u7B49\u65BC10",
+            "schema": {
+              "type": "integer",
+              "description": "\u5C0B\u627E\u7684Feedback\u7684\u6700\u9AD8\u5206\u6578\uFF0C\u9ED8\u8A8D\u503C\u7B49\u65BC10",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "comment",
+            "in": "query",
+            "description": "\u5C0B\u627E\u7684Feedback\u7684\u610F\u898B\uFF0C\u82E5\u8981\u627E\u7A7A\u5B57\u4E32\u8F38\u5165comment\u5C31\u597D ex: http...?comment",
+            "schema": {
+              "type": "string",
+              "description": "\u5C0B\u627E\u7684Feedback\u7684\u610F\u898B\uFF0C\u82E5\u8981\u627E\u7A7A\u5B57\u4E32\u8F38\u5165comment\u5C31\u597D ex: http...?comment",
+              "default": "",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Feedback"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Feedback"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Feedback"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/feedback/count/{date}": {
+      "get": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u5F9E\u6578\u64DA\u5EAB\u8B80\u53D6feedback\u8CC7\u6599",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "path",
+            "description": "\u7D71\u8A08\u7684Feedback\u7684(\u958B\u59CB)\u65E5\u671F",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u7D71\u8A08\u7684Feedback\u7684(\u958B\u59CB)\u65E5\u671F",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "enddate",
+            "in": "query",
+            "description": "\u7D71\u8A08\u7684Feedback\u7684\u7D50\u675F\u65E5\u671F\uFF0C\u9ED8\u8A8D\u503C\u7B49\u65BCdate",
+            "schema": {
+              "type": "string",
+              "description": "\u7D71\u8A08\u7684Feedback\u7684\u7D50\u675F\u65E5\u671F\uFF0C\u9ED8\u8A8D\u503C\u7B49\u65BCdate",
+              "format": "date-time",
+              "nullable": true
+            }
+          },
+          {
+            "name": "score",
+            "in": "query",
+            "description": "\u662F\u5426\u6309\u7167\u5206\u6578\u5206\u985E\uFF0C\u9ED8\u8A8D\u503C\u7B49\u65BCfalse",
+            "schema": {
+              "type": "boolean",
+              "description": "\u662F\u5426\u6309\u7167\u5206\u6578\u5206\u985E\uFF0C\u9ED8\u8A8D\u503C\u7B49\u65BCfalse",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FeedbackCount"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FeedbackCount"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FeedbackCount"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/thirdparty/accounts": {
+      "post": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u65B0\u589ETelegramBot",
+        "parameters": [
+          {
+            "name": "service",
+            "in": "query",
+            "description": "\u7B2C\u4E09\u65B9\u804A\u5929\u8EDF\u4EF6",
+            "schema": {
+              "type": "string",
+              "description": "\u7B2C\u4E09\u65B9\u804A\u5929\u8EDF\u4EF6",
+              "nullable": true
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "APIToken,BotToken,BotName",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ThirdpartyAccount"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ThirdpartyAccount"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/ThirdpartyAccount"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u522A\u9664TelegramBot",
+        "parameters": [
+          {
+            "name": "service",
+            "in": "query",
+            "description": "\u7B2C\u4E09\u65B9\u804A\u5929\u8EDF\u4EF6",
+            "schema": {
+              "type": "string",
+              "description": "\u7B2C\u4E09\u65B9\u804A\u5929\u8EDF\u4EF6",
+              "nullable": true
+            }
+          },
+          {
+            "name": "companyCode",
+            "in": "query",
+            "description": "\u516C\u53F8\u4EE3\u78BC",
+            "schema": {
+              "type": "string",
+              "description": "\u516C\u53F8\u4EE3\u78BC",
+              "nullable": true
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "MySQL\u7684DATA ID",
+            "schema": {
+              "type": "integer",
+              "description": "MySQL\u7684DATA ID",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u66F4\u65B0TelegramBot",
+        "parameters": [
+          {
+            "name": "service",
+            "in": "query",
+            "description": "\u7B2C\u4E09\u65B9\u804A\u5929\u8EDF\u4EF6",
+            "schema": {
+              "type": "string",
+              "description": "\u7B2C\u4E09\u65B9\u804A\u5929\u8EDF\u4EF6",
+              "nullable": true
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "APIToken,BotToken,BotName",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ThirdpartyAccount"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ThirdpartyAccount"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/ThirdpartyAccount"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "LiveChat"
+        ],
+        "parameters": [
+          {
+            "name": "service",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "bgetall",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ThirdpartyAccount"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ThirdpartyAccount"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ThirdpartyAccount"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/thirdparty/channels": {
+      "post": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u5BEB\u5165Onlineuser \u5BEB\u5230Redis",
+        "requestBody": {
+          "description": "\u4F7F\u7528\u8005\u8A0A\u606F",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OnlineUser"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OnlineUser"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/OnlineUser"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/thirdparty/messages": {
+      "post": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u63A5\u6536Telegram\u8A0A\u606F\u4E26\u5BEB\u5165Redis",
+        "requestBody": {
+          "description": "\u804A\u5929\u8A0A\u606F",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChatContent"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChatContent"
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "$ref": "#/components/schemas/ChatContent"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u53D6\u5F97\u6240\u6709ThirdpartyAccount\u672A\u767C\u9001\u7684\u8A0A\u606F(\u76EE\u524D\u53EA\u6709Telegram),\u5C07\u672A\u767C\u9001\u72C0\u614B\u6539\u6210\u6B63\u5728\u767C\u9001\u72C0\u614B",
+        "parameters": [
+          {
+            "name": "service",
+            "in": "query",
+            "description": "\u7B2C\u4E09\u65B9\u804A\u5929\u8EDF\u4EF6",
+            "schema": {
+              "type": "string",
+              "description": "\u7B2C\u4E09\u65B9\u804A\u5929\u8EDF\u4EF6",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ChatContent"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ChatContent"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ChatContent"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/thirdparty/callback": {
+      "post": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u5C07ChatContent\u7684\u6B63\u5728\u767C\u9001\u72C0\u614B\u6539\u6210\u6210\u529F\u767C\u9001\u72C0\u614B",
+        "parameters": [
+          {
+            "name": "service",
+            "in": "query",
+            "description": "\u7B2C\u4E09\u65B9\u804A\u5929\u8EDF\u4EF6",
+            "schema": {
+              "type": "string",
+              "description": "\u7B2C\u4E09\u65B9\u804A\u5929\u8EDF\u4EF6",
+              "nullable": true
+            }
+          },
+          {
+            "name": "situation",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "description": "",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "\u804A\u5929\u5167\u5BB9\u7684List",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ChatContent"
+                },
+                "description": "\u804A\u5929\u5167\u5BB9\u7684List",
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ChatContent"
+                },
+                "description": "\u804A\u5929\u5167\u5BB9\u7684List",
+                "nullable": true
+              }
+            },
+            "application/*\u002Bjson": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ChatContent"
+                },
+                "description": "\u804A\u5929\u5167\u5BB9\u7684List",
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/thirdparty/suggest": {
+      "get": {
+        "tags": [
+          "LiveChat"
+        ],
+        "summary": "\u7FFB\u8B6F\u7684\u7D50\u679C\u70BAkeyvalue ,key :\u8F38\u5165\u7684\u7E41\u9AD4\u4E2D\u6587keyword , value: \u5C0D\u61C9\u570B\u5225\u7684\u5167\u5BB9",
+        "parameters": [
+          {
+            "name": "keyword",
+            "in": "query",
+            "description": "\u8981\u7FFB\u8B6F\u7684keyword,\u591A\u500B\u53EF\u4EE5\u7528\u9017\u865F\u9694\u958B(ex:\u78BA\u5B9A,\u53D6\u6D88,\u767B\u5165)",
+            "schema": {
+              "type": "string",
+              "description": "\u8981\u7FFB\u8B6F\u7684keyword,\u591A\u500B\u53EF\u4EE5\u7528\u9017\u865F\u9694\u958B(ex:\u78BA\u5B9A,\u53D6\u6D88,\u767B\u5165)",
+              "nullable": true
+            }
+          },
+          {
+            "name": "toCountry",
+            "in": "query",
+            "description": "\u8981\u7FFB\u8B6F\u7684\u570B\u5225,\u8F38\u5165\u5167\u5BB9\u70BACountryCode (ex:en-us,zh-cn)",
+            "schema": {
+              "type": "string",
+              "description": "\u8981\u7FFB\u8B6F\u7684\u570B\u5225,\u8F38\u5165\u5167\u5BB9\u70BACountryCode (ex:en-us,zh-cn)",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Keyword"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Keyword"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Keyword"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "IssueType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "companyCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "type": "string",
+            "nullable": true
+          },
+          "addTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "enabled": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "editTime": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OnlineUser": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "type": "string",
+            "nullable": true
+          },
+          "connectID": {
+            "type": "string",
+            "nullable": true
+          },
+          "roomID": {
+            "type": "string",
+            "nullable": true
+          },
+          "issueType": {
+            "type": "string",
+            "nullable": true
+          },
+          "hashKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "ipAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "device": {
+            "type": "string",
+            "nullable": true
+          },
+          "os": {
+            "type": "string",
+            "nullable": true
+          },
+          "browser": {
+            "type": "string",
+            "nullable": true
+          },
+          "service": {
+            "type": "string",
+            "nullable": true
+          },
+          "language": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LastMessage": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/OnlineUser"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "messageID": {
+            "type": "string",
+            "nullable": true
+          },
+          "time": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ChatContent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "connectID": {
+            "type": "string",
+            "nullable": true
+          },
+          "roomID": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "type": "string",
+            "nullable": true
+          },
+          "time": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "HelloMessage": {
+        "type": "object",
+        "properties": {
+          "companyCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "QuickMessage": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "companyCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "groupType": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "type": "string",
+            "nullable": true
+          },
+          "addTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "enabled": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MessageLog": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "companyCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "hashKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "connectID": {
+            "type": "string",
+            "nullable": true
+          },
+          "addTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "userData": {
+            "type": "string",
+            "nullable": true
+          },
+          "agents": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LogSearchResult": {
+        "type": "object",
+        "properties": {
+          "hashKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "connectId": {
+            "type": "string",
+            "nullable": true
+          },
+          "userData": {
+            "type": "string",
+            "nullable": true
+          },
+          "agent": {
+            "type": "string",
+            "nullable": true
+          },
+          "searchKeyWord": {
+            "type": "string",
+            "nullable": true
+          },
+          "dtStart": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dtEnd": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "messageLogs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MessageLog"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FeedbackPost": {
+        "type": "object",
+        "properties": {
+          "connectid": {
+            "type": "string",
+            "nullable": true
+          },
+          "score": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Feedback": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "connectID": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "addTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "score": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FeedbackCount": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "score": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ThirdpartyAccount": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "companyCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "service": {
+            "type": "string",
+            "nullable": true
+          },
+          "enabled": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "apiToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "botToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "botName": {
+            "type": "string",
+            "nullable": true
+          },
+          "channelSecret": {
+            "type": "string",
+            "nullable": true
+          },
+          "helloMessage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Translate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "keywordID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "countryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "type": "string",
+            "nullable": true
+          },
+          "keywordName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Keyword": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "keywordName": {
+            "type": "string",
+            "nullable": true
+          },
+          "groupId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "kType": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "translates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Translate"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

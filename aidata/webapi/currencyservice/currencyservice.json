@@ -1,0 +1,395 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "APIName 1.0.0",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/heart": {
+      "get": {
+        "tags": [
+          "CurrencyService"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/version": {
+      "get": {
+        "tags": [
+          "CurrencyService"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/cryptodata/{cryptoName}/{fiatMoneyName}": {
+      "get": {
+        "tags": [
+          "CurrencyService"
+        ],
+        "parameters": [
+          {
+            "name": "cryptoName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fiatMoneyName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "stableName",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "USDT"
+            }
+          },
+          {
+            "name": "cryptoSite",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "huobi"
+            }
+          },
+          {
+            "name": "stableSite",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "yahoo"
+            }
+          },
+          {
+            "name": "forexSite",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "yahoo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Quotation"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Quotation"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Quotation"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/cryptodata/{cryptoName}": {
+      "get": {
+        "tags": [
+          "CurrencyService"
+        ],
+        "parameters": [
+          {
+            "name": "cryptoName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "stableName",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "USDT"
+            }
+          },
+          {
+            "name": "cryptoSite",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "huobi"
+            }
+          },
+          {
+            "name": "stableSite",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "yahoo"
+            }
+          },
+          {
+            "name": "forexSite",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "yahoo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Quotation"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Quotation"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Quotation"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/forex/{forexSite}/{fiatMoneyName}": {
+      "get": {
+        "tags": [
+          "CurrencyService"
+        ],
+        "parameters": [
+          {
+            "name": "forexSite",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fiatMoneyName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForexTransfer"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForexTransfer"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForexTransfer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/currency/autocreatetable": {
+      "get": {
+        "tags": [
+          "CurrencyService"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BaseInFo": {
+        "type": "object",
+        "properties": {
+          "cryptoName": {
+            "type": "string",
+            "nullable": true
+          },
+          "stableName": {
+            "type": "string",
+            "nullable": true
+          },
+          "fiatMoneyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "cryptoSite": {
+            "type": "string",
+            "nullable": true
+          },
+          "stableSite": {
+            "type": "string",
+            "nullable": true
+          },
+          "forexSite": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ForexTransfer": {
+        "type": "object",
+        "properties": {
+          "forexSite": {
+            "type": "string",
+            "nullable": true
+          },
+          "forexFiat": {
+            "type": "string",
+            "nullable": true
+          },
+          "transFiat": {
+            "type": "string",
+            "nullable": true
+          },
+          "bid": {
+            "type": "number",
+            "format": "double"
+          },
+          "ask": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FXRate": {
+        "type": "object",
+        "properties": {
+          "crypto": {
+            "type": "number",
+            "format": "double"
+          },
+          "stable": {
+            "type": "number",
+            "format": "double"
+          },
+          "fiatMoneyBid": {
+            "type": "number",
+            "format": "double"
+          },
+          "fiatMoneyAsk": {
+            "type": "number",
+            "format": "double"
+          },
+          "usdBid": {
+            "type": "number",
+            "format": "double"
+          },
+          "usdAsk": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Quotation": {
+        "type": "object",
+        "properties": {
+          "info": {
+            "$ref": "#/components/schemas/BaseInFo"
+          },
+          "bid": {
+            "type": "number",
+            "format": "double"
+          },
+          "ask": {
+            "type": "number",
+            "format": "double"
+          },
+          "fxRate": {
+            "$ref": "#/components/schemas/FXRate"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

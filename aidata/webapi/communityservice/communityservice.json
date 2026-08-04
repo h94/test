@@ -1,0 +1,3972 @@
+{
+    "paths": {
+        "/api/community/{game_type}/articles": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "index",
+                        "description": "發文時間戳",
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^[0-9]+$"
+                        },
+                        "required": false
+                    },
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "description": "文章頁數索引",
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^[0-9]+$"
+                        },
+                        "required": false
+                    },
+                    {
+                        "in": "query",
+                        "name": "show_hidden",
+                        "description": "是否顯示隱藏文章",
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "required": false
+                    },
+                    {
+                        "in": "query",
+                        "name": "leagues",
+                        "description": "聯盟",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": false
+                    },
+                    {
+                        "in": "query",
+                        "name": "articTopics",
+                        "description": "文章類型",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": false
+                    },
+                    {
+                        "in": "query",
+                        "name": "memberShips",
+                        "description": "使用者會員",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ArticleListPageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "summary": "取得球種文章分頁",
+                "tags": [
+                    "article"
+                ]
+            },
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ArticleDocumentResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateArticleArgs"
+                            }
+                        }
+                    }
+                },
+                "summary": "新增文章（參數格式不符等會報錯）",
+                "tags": [
+                    "article"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "game_type",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/community/{game_type}/edit_articles": {
+            "put": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ArticleDocumentResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EditArticleArgs"
+                            }
+                        }
+                    }
+                },
+                "summary": "編輯文章（文章不存在 404）",
+                "tags": [
+                    "article"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "game_type",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/community/{game_type}/articles/{id}": {
+            "delete": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ArticleOkResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "summary": "刪除文章（文章不存在 404）",
+                "tags": [
+                    "article"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "game_type",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                {
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/community/{game_type}/edit_predict": {
+            "put": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ArticleDocumentResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EditPredictArgs"
+                            }
+                        }
+                    }
+                },
+                "summary": "編輯預測單（文章不存在 404）",
+                "tags": [
+                    "article"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "game_type",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/community/{game_type}/articles/{article_id}": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ArticleDocumentResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "summary": "取得某筆文章（找不到時可能回傳空物件）",
+                "tags": [
+                    "article"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "game_type",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                {
+                    "in": "path",
+                    "name": "article_id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/community/backend/user/{user}/articles": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "description": "使用者文章頁數索引",
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^[0-9]+$"
+                        },
+                        "required": false
+                    },
+                    {
+                        "in": "query",
+                        "name": "game_type",
+                        "description": "球種",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ArticleListUserBackendResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "summary": "取得某個玩家的所有文章",
+                "tags": [
+                    "article"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "user",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/community/backend/{game_type}/articles-bytime": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "start",
+                        "description": "開始時間戳",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    },
+                    {
+                        "in": "query",
+                        "name": "end",
+                        "description": "結束時間戳",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    },
+                    {
+                        "in": "query",
+                        "name": "onlyCommentandLikes",
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ArticleDocumentResponse"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "summary": "取得時間段內的所有文章",
+                "tags": [
+                    "article"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "game_type",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/community/{gameType}/top_articles": {
+            "put": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ArticleOkResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/AddTopArticleArgs"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "更新文章置頂狀態（文章不存在 404）",
+                "tags": [
+                    "article"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "gameType",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/community/{gameType}/get_top_articles": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ArticleTopListResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "summary": "取得置頂文章（沒有置頂文章 404）",
+                "tags": [
+                    "article"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "gameType",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/community/{gameType}/hot_articles": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "index",
+                        "description": "發文時間戳",
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^[0-9]+$"
+                        },
+                        "required": false
+                    },
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "description": "熱門文章頁數索引",
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^[0-9]+$"
+                        },
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ArticleListPageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "summary": "取得熱門文章",
+                "tags": [
+                    "article"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "gameType",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/community/{game_type}/articles/{id}/comments": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "show_hidden",
+                        "description": "是否顯示隱藏留言",
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "required": false
+                    },
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "description": "留言頁數索引",
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^[0-9]+$"
+                        },
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CommentPageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "summary": "取得回文分頁（文章不存在 404）",
+                "tags": [
+                    "comment"
+                ]
+            },
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CommentJsonResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateCommentArgs"
+                            }
+                        }
+                    }
+                },
+                "summary": "建立回文（文章或父回文不存在 404）",
+                "tags": [
+                    "comment"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "game_type",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                {
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/community/{game_type}/articles/{article_id}/comments/{comment_id}": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CommentJsonResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "summary": "取得某筆回文（文章或回文不存在 404）",
+                "tags": [
+                    "comment"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "game_type",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                {
+                    "in": "path",
+                    "name": "article_id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                {
+                    "in": "path",
+                    "name": "comment_id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ],
+            "delete": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CommentOkResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "summary": "刪除回文（文章或回文不存在 404）",
+                "tags": [
+                    "comment"
+                ]
+            }
+        },
+        "/api/community/{game_type}/edit_comments": {
+            "put": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CommentJsonResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EditCommentArgs"
+                            }
+                        }
+                    }
+                },
+                "summary": "編輯回文（文章或回文不存在 404）",
+                "tags": [
+                    "comment"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "game_type",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/community/backend/user/{user}/comments-bytime": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "start",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    },
+                    {
+                        "in": "query",
+                        "name": "end",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CommentJsonResponse"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "summary": "取得某玩家於時間區間內的留言",
+                "tags": [
+                    "comment"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "user",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/community/{game_type}/hashtags/update": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HashtagOkResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateHashtagArgs"
+                            }
+                        }
+                    }
+                },
+                "summary": "建立/更新 hashtag",
+                "tags": [
+                    "hashtag"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "game_type",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/community/{game_type}/hashtags": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HashtagBundleResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "summary": "取得某種球種的 hashtag 對照表",
+                "tags": [
+                    "hashtag"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "game_type",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/community/{game_type}/hashtags/{hashtag_type}/{hashtag_id}": {
+            "delete": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HashtagOkResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "summary": "刪除 hashtag（type 不存在 404）",
+                "tags": [
+                    "hashtag"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "game_type",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                {
+                    "in": "path",
+                    "name": "hashtag_type",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                {
+                    "in": "path",
+                    "name": "hashtag_id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/community/{game_type}/articles/{article_id}/likes": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LikeOkResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AddLikeArgs"
+                            }
+                        }
+                    }
+                },
+                "summary": "文章新增讚數（文章不存在 404；已點過該 emoji 409）",
+                "tags": [
+                    "like"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "game_type",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                {
+                    "in": "path",
+                    "name": "article_id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/community/{game_type}/articles/{article_id}/comments/{comment_id}/likes": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LikeOkResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AddLikeArgs"
+                            }
+                        }
+                    }
+                },
+                "summary": "回文新增讚數（文章或回文不存在 404；已點讚 409）",
+                "tags": [
+                    "like"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "game_type",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                {
+                    "in": "path",
+                    "name": "article_id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                {
+                    "in": "path",
+                    "name": "comment_id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/community/{game_type}/comments/{id}/likes": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/LikeDetailItemResponse"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "summary": "取得文章/回文讚數詳細列表",
+                "tags": [
+                    "like"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "game_type",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                {
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/community/{game_type}/articles/{id}/likes": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/LikeDetailItemResponse"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "summary": "取得文章/回文讚數詳細列表",
+                "tags": [
+                    "like"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "game_type",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                {
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/community/backend/analysis/like/find-user-in-article": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BackendLikeIdEmojiItemResponse"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BackendFindUserInArticleArgs"
+                            }
+                        }
+                    }
+                },
+                "summary": "尋找 user 在指定文章內的按讚紀錄",
+                "tags": [
+                    "like"
+                ]
+            }
+        },
+        "/api/community/backend/analysis/like/find-user-in-comment": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BackendLikeIdEmojiItemResponse"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BackendFindUserInCommentArgs"
+                            }
+                        }
+                    }
+                },
+                "summary": "尋找 user 在指定回文內的按讚紀錄",
+                "tags": [
+                    "like"
+                ]
+            }
+        },
+        "/api/community/backend/analysis/like/count": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LikeCountResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BackendGetUserLikeCountArgs"
+                            }
+                        }
+                    }
+                },
+                "summary": "計算 user 在某時間段內的按讚數",
+                "tags": [
+                    "like"
+                ]
+            }
+        },
+        "/api/community/backend/report": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CreateReportResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateReportArgs"
+                            }
+                        }
+                    }
+                },
+                "summary": "建立新的檢舉",
+                "tags": [
+                    "report"
+                ]
+            }
+        },
+        "/api/community/backend/report/{report_id}": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ReportDetailResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "summary": "取得某筆檢舉資訊（檢舉記錄不存在 404）",
+                "tags": [
+                    "report"
+                ]
+            },
+            "put": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ReportUpdateOkResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateReportArgs"
+                            }
+                        }
+                    }
+                },
+                "summary": "更新某筆檢舉狀態（檢舉記錄不存在 404）",
+                "tags": [
+                    "report"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "report_id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/community/mute": {
+            "put": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MutePutResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MuteArgs"
+                            }
+                        }
+                    }
+                },
+                "summary": "隱藏/解除隱藏某玩家時間段的文章/留言",
+                "tags": [
+                    "mute"
+                ]
+            }
+        },
+        "/api/community/mute_single": {
+            "put": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MutePutResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MuteSingleArgs"
+                            }
+                        }
+                    }
+                },
+                "summary": "隱藏/解除隱藏某篇文章/留言（找不到文章/留言時 404）",
+                "tags": [
+                    "mute"
+                ]
+            }
+        },
+        "/api/newlottery/forums": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ForumRowResponse"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "summary": "取得所有看板",
+                "tags": [
+                    "newlottery_forums"
+                ]
+            },
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NewLotteryForumsOkResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ForumArgs"
+                            }
+                        }
+                    }
+                },
+                "summary": "建立看板（名稱重複 409；格式不符 422 等）",
+                "tags": [
+                    "newlottery_forums"
+                ]
+            }
+        },
+        "/api/newlottery/forums/{forum_id}": {
+            "put": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NewLotteryForumsOkResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ForumArgs"
+                            }
+                        }
+                    }
+                },
+                "summary": "編輯看板（看板不存在 404；名稱重複 409 等）",
+                "tags": [
+                    "newlottery_forums"
+                ]
+            },
+            "delete": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NewLotteryForumsOkResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "summary": "刪除看板（看板不存在 404）",
+                "tags": [
+                    "newlottery_forums"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "forum_id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/newlottery/forums/{forum_id}/subjects": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "page_index",
+                        "description": "看板討論索引",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetSubjectsPageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "summary": "取得看板討論分頁（看板不存在 404）",
+                "tags": [
+                    "newlottery_subjects"
+                ]
+            },
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NewLotterySubjectsOkResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateSubjectArgs"
+                            }
+                        }
+                    }
+                },
+                "summary": "新增討論（看板不存在 404）",
+                "tags": [
+                    "newlottery_subjects"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "forum_id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/newlottery/forums/{forum_id}/subjects/{subject_id}": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetNewLotterySingleSubjectResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "summary": "取得單則討論（討論不存在 404）",
+                "tags": [
+                    "newlottery_subjects"
+                ]
+            },
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NewLotterySubjectsOkResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EditSubjectArgs"
+                            }
+                        }
+                    }
+                },
+                "summary": "編輯討論內容（討論不存在 404）",
+                "tags": [
+                    "newlottery_subjects"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "forum_id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                {
+                    "in": "path",
+                    "name": "subject_id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ],
+            "delete": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NewLotterySubjectsOkResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "summary": "刪除討論（討論不存在 404）",
+                "tags": [
+                    "newlottery_subjects"
+                ]
+            }
+        },
+        "/api/newlottery/forums/{forum_id}/subjects/{subject_id}/status": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NewLotterySubjectsOkResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EditSubjectStatusArgs"
+                            }
+                        }
+                    }
+                },
+                "summary": "編輯討論狀態（討論不存在 404）",
+                "tags": [
+                    "newlottery_subjects"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "forum_id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                {
+                    "in": "path",
+                    "name": "subject_id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/newlottery/forums/{forum_id}/subjects/{subject_id}/likes": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetSubjectLikesResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "summary": "取得討論按讚列表（討論不存在 404）",
+                "tags": [
+                    "newlottery_subjects"
+                ]
+            },
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NewLotterySubjectsOkResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AddNewLotteryLikeArgs"
+                            }
+                        }
+                    }
+                },
+                "summary": "討論按讚（討論不存在 404；已按讚 409）",
+                "tags": [
+                    "newlottery_subjects"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "forum_id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                {
+                    "in": "path",
+                    "name": "subject_id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/newlottery/forums/{forum_id}/subjects/{subject_id}/unlike": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NewLotterySubjectsOkResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RemoveNewLotteryLikeArgs"
+                            }
+                        }
+                    }
+                },
+                "summary": "討論收回讚（討論不存在或無按讚紀錄 404）",
+                "tags": [
+                    "newlottery_subjects"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "forum_id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                {
+                    "in": "path",
+                    "name": "subject_id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/newlottery/subjects/{subject_id}/comments": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetNewLotteryCommentsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "summary": "取得討論留言（討論不存在時 404）",
+                "tags": [
+                    "newlottery_comments"
+                ]
+            },
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NewLotteryCommentsOkResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateNewLotteryCommentArgs"
+                            }
+                        }
+                    }
+                },
+                "summary": "新增留言（討論不存在時 404）",
+                "tags": [
+                    "newlottery_comments"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "subject_id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/newlottery/subjects/{subject_id}/comments/{comment_id}": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetNewLotterySingleCommentResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "summary": "取得單一留言（留言不存在 404）",
+                "tags": [
+                    "newlottery_comments"
+                ]
+            },
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NewLotteryCommentsOkResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EditNewLotteryCommentArgs"
+                            }
+                        }
+                    }
+                },
+                "summary": "編輯留言內容（留言不存在時 404）",
+                "tags": [
+                    "newlottery_comments"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "subject_id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                {
+                    "in": "path",
+                    "name": "comment_id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ],
+            "delete": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NewLotteryCommentsOkResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "summary": "刪除留言（留言不存在時 404）",
+                "tags": [
+                    "newlottery_comments"
+                ]
+            }
+        },
+        "/api/newlottery/subjects/{subject_id}/comments/{comment_id}/status": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NewLotteryCommentsOkResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EditCommentStatusArgs"
+                            }
+                        }
+                    }
+                },
+                "summary": "編輯留言狀態（留言不存在時 404）",
+                "tags": [
+                    "newlottery_comments"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "subject_id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                {
+                    "in": "path",
+                    "name": "comment_id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/newlottery/subjects/{subject_id}/comments/{comment_id}/likes": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetNewLotteryCommentLikesResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "summary": "取得留言按讚列表（留言不存在時 404）",
+                "tags": [
+                    "newlottery_comments"
+                ]
+            },
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NewLotteryCommentsOkResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AddNewLotteryLikeArgs"
+                            }
+                        }
+                    }
+                },
+                "summary": "留言按讚（留言不存在 404；已按讚 409）",
+                "tags": [
+                    "newlottery_comments"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "subject_id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                {
+                    "in": "path",
+                    "name": "comment_id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        },
+        "/api/newlottery/subjects/{subject_id}/comments/{comment_id}/unlike": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NewLotteryCommentsOkResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/DEFAULT_ERROR"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RemoveNewLotteryLikeArgs"
+                            }
+                        }
+                    }
+                },
+                "summary": "留言收回讚（留言不存在或無按讚紀錄時 404）",
+                "tags": [
+                    "newlottery_comments"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "subject_id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                {
+                    "in": "path",
+                    "name": "comment_id",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            ]
+        }
+    },
+    "info": {
+        "title": "Community API",
+        "version": "v2026-04-27 14:54"
+    },
+    "tags": [
+        {
+            "name": "article",
+            "description": "article api"
+        },
+        {
+            "name": "comment",
+            "description": "comment api"
+        },
+        {
+            "name": "hashtag",
+            "description": "hashtag api"
+        },
+        {
+            "name": "like",
+            "description": "like api"
+        },
+        {
+            "name": "report",
+            "description": "report api"
+        },
+        {
+            "name": "mute",
+            "description": "mute api"
+        },
+        {
+            "name": "newlottery_forums",
+            "description": "newlottery_forums api"
+        },
+        {
+            "name": "newlottery_subjects",
+            "description": "newlottery_subjects api"
+        },
+        {
+            "name": "newlottery_comments",
+            "description": "newlottery_comments api"
+        }
+    ],
+    "openapi": "3.0.3",
+    "components": {
+        "schemas": {
+            "Error": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "description": "Error code"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "Error name"
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "Error message"
+                    },
+                    "errors": {
+                        "type": "object",
+                        "description": "Errors",
+                        "additionalProperties": {}
+                    }
+                }
+            },
+            "PaginationMetadata": {
+                "type": "object",
+                "properties": {
+                    "total": {
+                        "type": "integer"
+                    },
+                    "total_pages": {
+                        "type": "integer"
+                    },
+                    "first_page": {
+                        "type": "integer"
+                    },
+                    "last_page": {
+                        "type": "integer"
+                    },
+                    "page": {
+                        "type": "integer"
+                    },
+                    "previous_page": {
+                        "type": "integer"
+                    },
+                    "next_page": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "ArticleDocumentResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "articType": {
+                        "type": "string"
+                    },
+                    "game_type": {
+                        "type": "string"
+                    },
+                    "user": {
+                        "type": "string"
+                    },
+                    "userName": {
+                        "type": "string"
+                    },
+                    "content": {
+                        "type": "string"
+                    },
+                    "articTopic": {
+                        "type": "array",
+                        "items": {}
+                    },
+                    "leagues": {
+                        "type": "array",
+                        "items": {}
+                    },
+                    "memberShips": {
+                        "type": "array",
+                        "items": {}
+                    },
+                    "predictContent": {},
+                    "create_timestamp": {
+                        "type": "integer"
+                    },
+                    "edit_timestamp": {
+                        "type": "integer"
+                    },
+                    "comments": {},
+                    "like_count": {},
+                    "commentCount": {
+                        "type": "integer"
+                    },
+                    "rank": {
+                        "type": "integer"
+                    },
+                    "followerCount": {
+                        "type": "integer"
+                    },
+                    "headShotPath": {},
+                    "top": {
+                        "type": "boolean"
+                    },
+                    "hot": {
+                        "type": "boolean"
+                    },
+                    "hot_score": {},
+                    "hidden": {
+                        "type": "boolean",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": true
+            },
+            "ArticleListPageResponse": {
+                "type": "object",
+                "properties": {
+                    "articles": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ArticleDocumentResponse"
+                        }
+                    },
+                    "next_page": {
+                        "type": "boolean"
+                    },
+                    "need_click": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "CreateArticleArgs": {
+                "type": "object",
+                "properties": {
+                    "user": {
+                        "type": "string",
+                        "description": "使用者 authkey"
+                    },
+                    "userName": {
+                        "type": "string",
+                        "description": "使用者名稱"
+                    },
+                    "rank": {
+                        "type": "integer",
+                        "description": "會員等級"
+                    },
+                    "headShotPath": {
+                        "type": "string",
+                        "description": "會員頭像"
+                    },
+                    "followerCount": {
+                        "type": "integer",
+                        "description": "追蹤者數量"
+                    },
+                    "articType": {
+                        "type": "string",
+                        "description": "文章類型"
+                    },
+                    "content": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 2000,
+                        "description": "文章內容"
+                    },
+                    "articTopic": {
+                        "type": "string",
+                        "description": "文章主題"
+                    },
+                    "leagues": {
+                        "type": "string",
+                        "description": "聯盟"
+                    },
+                    "memberShips": {
+                        "type": "string",
+                        "description": "會員"
+                    },
+                    "predictContent": {
+                        "type": "string",
+                        "description": "預測內容"
+                    }
+                },
+                "required": [
+                    "articType",
+                    "content",
+                    "followerCount",
+                    "headShotPath",
+                    "rank",
+                    "user",
+                    "userName"
+                ]
+            },
+            "EditArticleArgs": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "文章id"
+                    },
+                    "content": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 2000,
+                        "description": "文章內容"
+                    }
+                },
+                "required": [
+                    "content",
+                    "id"
+                ]
+            },
+            "ArticleOkResponse": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "example": "successful"
+                    }
+                }
+            },
+            "EditPredictArgs": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "預測單id"
+                    },
+                    "predict": {
+                        "type": "object",
+                        "description": "預測單內容",
+                        "additionalProperties": {}
+                    }
+                },
+                "required": [
+                    "id",
+                    "predict"
+                ]
+            },
+            "ArticleListUserBackendResponse": {
+                "type": "object",
+                "properties": {
+                    "articles": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ArticleDocumentResponse"
+                        }
+                    },
+                    "next_page": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "AddTopArticleArgs": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "文章id"
+                    },
+                    "top": {
+                        "type": "boolean",
+                        "description": "是否為置頂文章"
+                    }
+                },
+                "required": [
+                    "id",
+                    "top"
+                ]
+            },
+            "ArticleTopListResponse": {
+                "type": "object",
+                "properties": {
+                    "articles": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ArticleDocumentResponse"
+                        }
+                    }
+                }
+            },
+            "CommentJsonResponse": {
+                "type": "object",
+                "properties": {
+                    "comment_id": {
+                        "type": "string",
+                        "description": "留言id"
+                    },
+                    "user": {
+                        "type": "string",
+                        "description": "使用者 authkey"
+                    },
+                    "userName": {
+                        "type": "string",
+                        "description": "使用者名稱"
+                    },
+                    "headShotPath": {
+                        "type": "string",
+                        "description": "使用者頭像",
+                        "nullable": true
+                    },
+                    "content": {
+                        "type": "string",
+                        "description": "留言內容"
+                    },
+                    "like_count": {
+                        "description": "按讚數量"
+                    },
+                    "create_timestamp": {
+                        "type": "integer",
+                        "description": "建立時間戳"
+                    },
+                    "edit_timestamp": {
+                        "type": "integer",
+                        "description": "最新編輯時間戳"
+                    },
+                    "resp_comment": {
+                        "description": "回覆留言內容"
+                    }
+                },
+                "additionalProperties": true
+            },
+            "CommentPageResponse": {
+                "type": "object",
+                "properties": {
+                    "comments": {
+                        "description": "留言列表",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CommentJsonResponse"
+                        }
+                    },
+                    "next_page": {
+                        "type": "boolean",
+                        "description": "是否還有下一頁"
+                    },
+                    "need_click": {
+                        "type": "boolean",
+                        "description": "到一定頁數後，是否通知前端需要client手動點選查看更多"
+                    }
+                }
+            },
+            "CreateCommentArgs": {
+                "type": "object",
+                "properties": {
+                    "user": {
+                        "type": "string",
+                        "description": "使用者 authkey"
+                    },
+                    "userName": {
+                        "type": "string",
+                        "description": "使用者名稱"
+                    },
+                    "headShotPath": {
+                        "type": "string",
+                        "description": "使用者頭像"
+                    },
+                    "respCommentID": {
+                        "type": "string",
+                        "description": "回覆留言id"
+                    },
+                    "content": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 200,
+                        "description": "留言內容"
+                    }
+                },
+                "required": [
+                    "content",
+                    "headShotPath",
+                    "user",
+                    "userName"
+                ]
+            },
+            "CommentOkResponse": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "example": "successful"
+                    }
+                }
+            },
+            "EditCommentArgs": {
+                "type": "object",
+                "properties": {
+                    "article_id": {
+                        "type": "string",
+                        "description": "文章id"
+                    },
+                    "comment_id": {
+                        "type": "string",
+                        "description": "留言id"
+                    },
+                    "content": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 200,
+                        "description": "留言內容"
+                    }
+                },
+                "required": [
+                    "article_id",
+                    "comment_id",
+                    "content"
+                ]
+            },
+            "UpdateHashtagArgs": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "leagues",
+                            "articTopics",
+                            "memberShips"
+                        ],
+                        "description": "hashtag 種類"
+                    },
+                    "id": {
+                        "type": "string",
+                        "pattern": "^[^_]+$",
+                        "description": "hashtag id"
+                    },
+                    "data": {
+                        "type": "object",
+                        "description": "更新 hashtag 資料",
+                        "additionalProperties": {}
+                    }
+                },
+                "required": [
+                    "data",
+                    "id",
+                    "type"
+                ]
+            },
+            "HashtagOkResponse": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "example": "successful"
+                    }
+                }
+            },
+            "HashtagBundleResponse": {
+                "type": "object",
+                "properties": {
+                    "leagues": {
+                        "type": "object",
+                        "description": "hashtag 聯盟多語系 mapping",
+                        "additionalProperties": {}
+                    },
+                    "articTopics": {
+                        "type": "object",
+                        "description": "hashtag 文章類型 mapping",
+                        "additionalProperties": {}
+                    },
+                    "memberShips": {
+                        "type": "object",
+                        "description": "hashtag 會員種類 mapping",
+                        "additionalProperties": {}
+                    }
+                }
+            },
+            "AddLikeArgs": {
+                "type": "object",
+                "properties": {
+                    "user": {
+                        "type": "string",
+                        "description": "使用者 authkey"
+                    },
+                    "userName": {
+                        "type": "string",
+                        "description": "使用者暱稱"
+                    },
+                    "rank": {
+                        "type": "integer",
+                        "description": "使用者等級"
+                    },
+                    "emoji": {
+                        "type": "string",
+                        "description": "按讚類型"
+                    },
+                    "headShotPath": {
+                        "type": "string",
+                        "description": "使用者頭像"
+                    }
+                },
+                "required": [
+                    "emoji",
+                    "headShotPath",
+                    "rank",
+                    "user",
+                    "userName"
+                ]
+            },
+            "LikeOkResponse": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "example": "successful"
+                    }
+                }
+            },
+            "LikeDetailItemResponse": {
+                "type": "object",
+                "properties": {
+                    "like_id": {
+                        "type": "string",
+                        "description": "按讚id"
+                    },
+                    "content_id": {
+                        "type": "string",
+                        "description": "被按讚的文章/回文id"
+                    },
+                    "content_type": {
+                        "type": "string",
+                        "description": "按讚的東西"
+                    },
+                    "article_id": {
+                        "description": "文章id"
+                    },
+                    "timestamp": {
+                        "type": "integer",
+                        "description": "按讚時間"
+                    },
+                    "user": {
+                        "type": "string",
+                        "description": "使用者 authkey"
+                    },
+                    "userName": {
+                        "type": "string",
+                        "description": "使用者名稱"
+                    },
+                    "rank": {
+                        "type": "integer",
+                        "description": "使用者等級"
+                    },
+                    "emoji": {
+                        "type": "string",
+                        "description": "按讚類型"
+                    },
+                    "headShotPath": {
+                        "description": "使用者頭像"
+                    }
+                },
+                "additionalProperties": true
+            },
+            "BackendFindUserInArticleArgs": {
+                "type": "object",
+                "properties": {
+                    "user": {
+                        "type": "string",
+                        "description": "使用者 authkey"
+                    },
+                    "articles": {
+                        "type": "array",
+                        "description": "文章列表",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "articles",
+                    "user"
+                ]
+            },
+            "BackendLikeIdEmojiItemResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "按讚id"
+                    },
+                    "emoji": {
+                        "type": "string",
+                        "description": "按讚類型"
+                    }
+                }
+            },
+            "BackendFindUserInCommentArgs": {
+                "type": "object",
+                "properties": {
+                    "user": {
+                        "type": "string",
+                        "description": "使用者 authkey"
+                    },
+                    "comments": {
+                        "type": "array",
+                        "description": "回文列表",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "comments",
+                    "user"
+                ]
+            },
+            "BackendGetUserLikeCountArgs": {
+                "type": "object",
+                "properties": {
+                    "user": {
+                        "type": "string",
+                        "description": "使用者 authkey"
+                    },
+                    "start": {
+                        "type": "integer",
+                        "description": "開始時間戳"
+                    },
+                    "end": {
+                        "type": "integer",
+                        "description": "結束時間戳"
+                    }
+                },
+                "required": [
+                    "user"
+                ]
+            },
+            "LikeCountResponse": {
+                "type": "object",
+                "properties": {
+                    "count": {
+                        "type": "integer",
+                        "description": "按讚數量"
+                    }
+                }
+            },
+            "CreateReportArgs": {
+                "type": "object",
+                "properties": {
+                    "user": {
+                        "type": "string",
+                        "description": "檢舉人 authkey"
+                    },
+                    "userName": {
+                        "type": "string",
+                        "description": "被檢舉人暱稱"
+                    },
+                    "reportedUser": {
+                        "type": "string",
+                        "description": "被檢舉人 authkey"
+                    },
+                    "reportedUserName": {
+                        "type": "string",
+                        "description": "被檢舉人暱稱"
+                    },
+                    "reason": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 100,
+                        "description": "檢舉原因"
+                    },
+                    "article_id": {
+                        "type": "string",
+                        "pattern": "^[A-Za-z0-9]{22}$",
+                        "description": "文章id"
+                    }
+                },
+                "required": [
+                    "article_id",
+                    "reason",
+                    "reportedUser",
+                    "reportedUserName",
+                    "user",
+                    "userName"
+                ]
+            },
+            "CreateReportResponse": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "example": "successful"
+                    },
+                    "report_id": {
+                        "type": "string",
+                        "description": "檢舉id"
+                    }
+                }
+            },
+            "ReportDetailResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "檢舉id"
+                    },
+                    "user": {
+                        "type": "string",
+                        "description": "檢舉人 authkey"
+                    },
+                    "userName": {
+                        "type": "string",
+                        "description": "檢舉人暱稱"
+                    },
+                    "reportedUser": {
+                        "type": "string",
+                        "description": "被檢舉人 authkey"
+                    },
+                    "reportedUserName": {
+                        "type": "string",
+                        "description": "被檢舉人暱稱"
+                    },
+                    "reason": {
+                        "type": "string",
+                        "description": "檢舉原因"
+                    },
+                    "article_id": {
+                        "type": "string",
+                        "description": "文章id"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "檢舉狀態"
+                    },
+                    "timestamp": {
+                        "type": "integer",
+                        "description": "檢舉時間戳"
+                    }
+                }
+            },
+            "UpdateReportArgs": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "open",
+                            "done"
+                        ]
+                    }
+                },
+                "required": [
+                    "status"
+                ]
+            },
+            "ReportUpdateOkResponse": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "example": "successful"
+                    }
+                }
+            },
+            "MuteArgs": {
+                "type": "object",
+                "properties": {
+                    "user": {
+                        "type": "string",
+                        "description": "使用者 authkey"
+                    },
+                    "game_type": {
+                        "type": "string",
+                        "description": "球種"
+                    },
+                    "start": {
+                        "type": "integer",
+                        "description": "開始時間戳"
+                    },
+                    "end": {
+                        "type": "integer",
+                        "description": "結束時間戳"
+                    },
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "mute",
+                            "unmute"
+                        ],
+                        "description": "隱藏/解除隱藏"
+                    }
+                },
+                "required": [
+                    "action",
+                    "end",
+                    "start"
+                ]
+            },
+            "MutePutResponse": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "example": "successful"
+                    }
+                }
+            },
+            "MuteSingleArgs": {
+                "type": "object",
+                "properties": {
+                    "article_id": {
+                        "type": "string",
+                        "description": "文章id"
+                    },
+                    "comment_id": {
+                        "type": "string",
+                        "description": "留言id"
+                    },
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "mute",
+                            "unmute"
+                        ],
+                        "description": "隱藏/解除隱藏"
+                    }
+                },
+                "required": [
+                    "action",
+                    "article_id"
+                ]
+            },
+            "ForumRowResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "看板id"
+                    },
+                    "edit_timestamp": {
+                        "type": "integer",
+                        "description": "最新編輯時間戳"
+                    },
+                    "names": {
+                        "type": "object",
+                        "description": "看板名稱",
+                        "additionalProperties": {}
+                    },
+                    "status": {
+                        "type": "integer",
+                        "description": "看板狀態"
+                    }
+                }
+            },
+            "ForumArgs": {
+                "type": "object",
+                "properties": {
+                    "names": {
+                        "type": "object",
+                        "minLength": 1,
+                        "maxLength": 100,
+                        "additionalProperties": {}
+                    },
+                    "country_code": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "integer",
+                        "enum": [
+                            0,
+                            1
+                        ]
+                    }
+                },
+                "required": [
+                    "names",
+                    "status"
+                ]
+            },
+            "NewLotteryForumsOkResponse": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "example": "successful"
+                    }
+                }
+            },
+            "SubjectListItemResponse": {
+                "type": "object",
+                "properties": {
+                    "subject_id": {
+                        "type": "string",
+                        "description": "討論串id"
+                    },
+                    "subject": {
+                        "type": "string",
+                        "description": "討論串標題"
+                    },
+                    "userName": {
+                        "type": "string",
+                        "description": "討論串建立者名稱"
+                    },
+                    "account": {
+                        "type": "string",
+                        "description": "討論串建立者帳號"
+                    },
+                    "headShotPath": {
+                        "description": "討論串建立者頭像"
+                    },
+                    "commentCount": {
+                        "type": "integer",
+                        "description": "留言數量"
+                    },
+                    "create_timestamp": {
+                        "type": "integer",
+                        "description": "建立時間戳"
+                    },
+                    "edit_timestamp": {
+                        "type": "integer",
+                        "description": "最新更新時間戳"
+                    },
+                    "status": {
+                        "type": "integer",
+                        "description": "討論串狀態"
+                    },
+                    "likeCount": {
+                        "type": "integer",
+                        "description": "按讚數量"
+                    },
+                    "last_comment_id": {
+                        "type": "string",
+                        "description": "最新留言 id"
+                    },
+                    "last_comment_userName": {
+                        "type": "string",
+                        "description": "最新留言的使用者名稱"
+                    },
+                    "last_comment_account": {
+                        "type": "string",
+                        "description": "最新留言的使用者帳號"
+                    },
+                    "last_comment_headShotPath": {
+                        "description": "最新留言的使用者頭像"
+                    },
+                    "last_comment_timestamp": {
+                        "type": "integer",
+                        "description": "最新留言時間戳"
+                    }
+                }
+            },
+            "GetSubjectsPageResponse": {
+                "type": "object",
+                "properties": {
+                    "forum_id": {
+                        "type": "string",
+                        "description": "看板 id"
+                    },
+                    "status": {
+                        "type": "integer",
+                        "description": "看板狀態"
+                    },
+                    "subjects": {
+                        "description": "討論標題陣列",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/SubjectListItemResponse"
+                        }
+                    },
+                    "next_page": {
+                        "type": "boolean",
+                        "description": "是否有下一頁"
+                    },
+                    "page_index": {
+                        "type": "integer",
+                        "description": "看板討論頁數索引"
+                    }
+                }
+            },
+            "CreateSubjectArgs": {
+                "type": "object",
+                "properties": {
+                    "userName": {
+                        "type": "string",
+                        "description": "使用者名稱"
+                    },
+                    "account": {
+                        "type": "string",
+                        "description": "使用者帳號"
+                    },
+                    "headShotPath": {
+                        "type": "string",
+                        "description": "使用這頭像"
+                    },
+                    "subject": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 100,
+                        "description": "討論串標題"
+                    },
+                    "comment": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 2000,
+                        "description": "討論串內容"
+                    },
+                    "status": {
+                        "type": "integer",
+                        "enum": [
+                            0,
+                            1
+                        ],
+                        "description": "討論串狀態"
+                    }
+                },
+                "required": [
+                    "account",
+                    "comment",
+                    "status",
+                    "subject",
+                    "userName"
+                ]
+            },
+            "NewLotterySubjectsOkResponse": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "example": "successful"
+                    }
+                }
+            },
+            "NewLotteryCommentListItemResponse": {
+                "type": "object",
+                "properties": {
+                    "comment_id": {
+                        "type": "string",
+                        "description": "留言id"
+                    },
+                    "userName": {
+                        "type": "string",
+                        "description": "使用者名稱"
+                    },
+                    "account": {
+                        "type": "string",
+                        "description": "使用者帳號"
+                    },
+                    "headShotPath": {
+                        "description": "使用者頭像"
+                    },
+                    "create_timestamp": {
+                        "type": "integer",
+                        "description": "建立時間戳"
+                    },
+                    "edit_timestamp": {
+                        "type": "integer",
+                        "description": "最新編輯時間戳"
+                    },
+                    "comment": {
+                        "type": "string",
+                        "description": "留言內容"
+                    },
+                    "image_path": {
+                        "type": "array",
+                        "description": "留言圖片",
+                        "items": {}
+                    },
+                    "status": {
+                        "type": "integer",
+                        "description": ""
+                    },
+                    "respond": {
+                        "description": "回覆留言id",
+                        "nullable": true
+                    },
+                    "likeCount": {
+                        "type": "integer",
+                        "description": "按讚數量"
+                    }
+                }
+            },
+            "GetNewLotterySingleSubjectResponse": {
+                "type": "object",
+                "properties": {
+                    "subject_id": {
+                        "type": "string",
+                        "description": "討論串id"
+                    },
+                    "subject": {
+                        "type": "string",
+                        "description": "討論串標題"
+                    },
+                    "userName": {
+                        "type": "string",
+                        "description": "討論串建立者名稱"
+                    },
+                    "account": {
+                        "type": "string",
+                        "description": "討論串建立者帳號"
+                    },
+                    "headShotPath": {
+                        "description": "討論串建立者頭像"
+                    },
+                    "commentCount": {
+                        "type": "integer",
+                        "description": "留言數量"
+                    },
+                    "create_timestamp": {
+                        "type": "integer",
+                        "description": "建立時間戳"
+                    },
+                    "edit_timestamp": {
+                        "type": "integer",
+                        "description": "最新更新時間戳"
+                    },
+                    "status": {
+                        "type": "integer",
+                        "description": "討論串狀態"
+                    },
+                    "likeCount": {
+                        "type": "integer",
+                        "description": "按讚數量"
+                    },
+                    "last_comment_id": {
+                        "type": "string",
+                        "description": "最新留言 id"
+                    },
+                    "last_comment_userName": {
+                        "type": "string",
+                        "description": "最新留言的使用者名稱"
+                    },
+                    "last_comment_account": {
+                        "type": "string",
+                        "description": "最新留言的使用者帳號"
+                    },
+                    "last_comment_headShotPath": {
+                        "description": "最新留言的使用者頭像"
+                    },
+                    "last_comment_timestamp": {
+                        "type": "integer",
+                        "description": "最新留言時間戳"
+                    },
+                    "forum_id": {
+                        "type": "string"
+                    },
+                    "comments": {
+                        "description": "留言內容陣列",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/NewLotteryCommentListItemResponse"
+                        }
+                    }
+                }
+            },
+            "EditSubjectArgs": {
+                "type": "object",
+                "properties": {
+                    "subject": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 100,
+                        "description": "討論串標題"
+                    },
+                    "content": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 2000,
+                        "description": "討論串內容"
+                    }
+                },
+                "required": [
+                    "content",
+                    "subject"
+                ]
+            },
+            "EditSubjectStatusArgs": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "integer",
+                        "enum": [
+                            0,
+                            1
+                        ],
+                        "description": "討論串狀態"
+                    }
+                },
+                "required": [
+                    "status"
+                ]
+            },
+            "SubjectLikeItemResponse": {
+                "type": "object",
+                "properties": {
+                    "like_id": {
+                        "type": "string",
+                        "description": "按讚id"
+                    },
+                    "userName": {
+                        "type": "string",
+                        "description": "使用者名稱"
+                    },
+                    "account": {
+                        "type": "string",
+                        "description": "使用者帳號"
+                    },
+                    "headShotPath": {
+                        "description": "使用者頭像"
+                    },
+                    "create_timestamp": {
+                        "type": "integer",
+                        "description": "按讚時間"
+                    }
+                }
+            },
+            "GetSubjectLikesResponse": {
+                "type": "object",
+                "properties": {
+                    "forum_id": {
+                        "type": "string",
+                        "description": "看板id"
+                    },
+                    "subject_id": {
+                        "type": "string",
+                        "description": "討論id"
+                    },
+                    "like_result": {
+                        "description": "按讚列表",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/SubjectLikeItemResponse"
+                        }
+                    }
+                }
+            },
+            "AddNewLotteryLikeArgs": {
+                "type": "object",
+                "properties": {
+                    "userName": {
+                        "type": "string",
+                        "minLength": 1,
+                        "description": "使用者名稱"
+                    },
+                    "account": {
+                        "type": "string",
+                        "minLength": 1,
+                        "description": "使用者帳號"
+                    },
+                    "headShotPath": {
+                        "type": "string",
+                        "description": "使用者頭像"
+                    }
+                },
+                "required": [
+                    "account",
+                    "userName"
+                ]
+            },
+            "RemoveNewLotteryLikeArgs": {
+                "type": "object",
+                "properties": {
+                    "userName": {
+                        "type": "string",
+                        "minLength": 1,
+                        "description": "使用者名稱"
+                    },
+                    "account": {
+                        "type": "string",
+                        "minLength": 1,
+                        "description": "使用者帳號"
+                    }
+                },
+                "required": [
+                    "account",
+                    "userName"
+                ]
+            },
+            "NewLotteryCommentListItemResponse1": {
+                "type": "object",
+                "properties": {
+                    "comment_id": {
+                        "type": "string",
+                        "description": "留言id"
+                    },
+                    "userName": {
+                        "type": "string",
+                        "description": "使用者名稱"
+                    },
+                    "account": {
+                        "type": "string",
+                        "description": "使用者帳號"
+                    },
+                    "headShotPath": {
+                        "description": "使用者頭像"
+                    },
+                    "create_timestamp": {
+                        "type": "integer",
+                        "description": "建立時間戳"
+                    },
+                    "edit_timestamp": {
+                        "type": "integer",
+                        "description": "最新編輯時間戳"
+                    },
+                    "comment": {
+                        "type": "string",
+                        "description": "留言內容"
+                    },
+                    "image_path": {
+                        "type": "array",
+                        "description": "留言圖片",
+                        "items": {}
+                    },
+                    "status": {
+                        "type": "integer",
+                        "description": ""
+                    },
+                    "respond": {
+                        "description": "回覆留言id",
+                        "nullable": true
+                    },
+                    "likeCount": {
+                        "type": "integer",
+                        "description": "按讚數量"
+                    }
+                }
+            },
+            "GetNewLotteryCommentsResponse": {
+                "type": "object",
+                "properties": {
+                    "subject_id": {
+                        "type": "string",
+                        "description": "討論串id"
+                    },
+                    "subject": {
+                        "type": "string",
+                        "description": "討論串標題"
+                    },
+                    "userName": {
+                        "type": "string",
+                        "description": "使用者名稱"
+                    },
+                    "account": {
+                        "type": "string",
+                        "description": "使用者帳號"
+                    },
+                    "headShotPath": {
+                        "description": "使用者頭像"
+                    },
+                    "status": {
+                        "type": "integer",
+                        "description": "討論串狀態"
+                    },
+                    "comments": {
+                        "description": "留言內容陣列",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/NewLotteryCommentListItemResponse1"
+                        }
+                    },
+                    "likeCount": {
+                        "type": "integer",
+                        "description": "按讚數"
+                    },
+                    "last_comment_id": {
+                        "type": "string",
+                        "description": "最新留言id"
+                    },
+                    "last_comment_userName": {
+                        "type": "string",
+                        "description": "最新更新留言者名稱"
+                    },
+                    "last_comment_account": {
+                        "type": "string",
+                        "description": "最新更新留言者帳號"
+                    },
+                    "last_comment_headShotPath": {
+                        "type": "string",
+                        "description": "最新留言者頭像"
+                    },
+                    "last_comment_timestamp": {
+                        "type": "integer",
+                        "description": "最新留言時間戳"
+                    }
+                }
+            },
+            "CreateNewLotteryCommentArgs": {
+                "type": "object",
+                "properties": {
+                    "userName": {
+                        "type": "string",
+                        "minLength": 1,
+                        "description": "使用者名稱"
+                    },
+                    "account": {
+                        "type": "string",
+                        "minLength": 1,
+                        "description": "使用者帳號"
+                    },
+                    "headShotPath": {
+                        "type": "string",
+                        "description": "使用者頭像"
+                    },
+                    "respond": {
+                        "type": "string",
+                        "description": "回覆留言id"
+                    },
+                    "comment": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 2000,
+                        "description": "留言內容"
+                    },
+                    "status": {
+                        "type": "integer",
+                        "enum": [
+                            0,
+                            1
+                        ],
+                        "description": "留言狀態"
+                    }
+                },
+                "required": [
+                    "account",
+                    "comment",
+                    "status",
+                    "userName"
+                ]
+            },
+            "NewLotteryCommentsOkResponse": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "example": "successful"
+                    }
+                }
+            },
+            "GetNewLotterySingleCommentResponse": {
+                "type": "object",
+                "properties": {
+                    "comment_id": {
+                        "type": "string",
+                        "description": "留言id"
+                    },
+                    "userName": {
+                        "type": "string",
+                        "description": "使用者名稱"
+                    },
+                    "account": {
+                        "type": "string",
+                        "description": "使用者帳號"
+                    },
+                    "headShotPath": {
+                        "description": "使用者頭像"
+                    },
+                    "create_timestamp": {
+                        "type": "integer",
+                        "description": "建立時間戳"
+                    },
+                    "edit_timestamp": {
+                        "type": "integer",
+                        "description": "最新編輯時間戳"
+                    },
+                    "comment": {
+                        "type": "string",
+                        "description": "留言內容"
+                    },
+                    "image_path": {
+                        "type": "array",
+                        "description": "留言圖片",
+                        "items": {}
+                    },
+                    "status": {
+                        "type": "integer",
+                        "description": ""
+                    },
+                    "respond": {
+                        "description": "回覆留言id",
+                        "nullable": true
+                    },
+                    "likeCount": {
+                        "type": "integer",
+                        "description": "按讚數量"
+                    },
+                    "subject_id": {
+                        "type": "string",
+                        "description": "討論串id"
+                    }
+                }
+            },
+            "EditNewLotteryCommentArgs": {
+                "type": "object",
+                "properties": {
+                    "comment": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 2000,
+                        "description": "留言內容"
+                    },
+                    "respond": {
+                        "type": "string",
+                        "description": "回覆留言id"
+                    }
+                },
+                "required": [
+                    "comment"
+                ]
+            },
+            "EditCommentStatusArgs": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "integer",
+                        "enum": [
+                            0,
+                            1
+                        ],
+                        "description": "留言狀態"
+                    }
+                },
+                "required": [
+                    "status"
+                ]
+            },
+            "NewLotteryCommentLikeItemResponse": {
+                "type": "object",
+                "properties": {
+                    "like_id": {
+                        "type": "string",
+                        "description": "按讚id"
+                    },
+                    "userName": {
+                        "type": "string",
+                        "description": "使用者名稱"
+                    },
+                    "account": {
+                        "type": "string",
+                        "description": "使用者帳號"
+                    },
+                    "headShotPath": {
+                        "description": "使用者頭像"
+                    },
+                    "create_timestamp": {
+                        "type": "integer",
+                        "description": "按讚時間"
+                    }
+                }
+            },
+            "GetNewLotteryCommentLikesResponse": {
+                "type": "object",
+                "properties": {
+                    "subject_id": {
+                        "type": "string",
+                        "description": "討論串id"
+                    },
+                    "comment_id": {
+                        "type": "string",
+                        "description": "留言id"
+                    },
+                    "like_result": {
+                        "description": "按讚列表",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/NewLotteryCommentLikeItemResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "responses": {
+            "UNPROCESSABLE_ENTITY": {
+                "description": "Unprocessable Entity",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Error"
+                        }
+                    }
+                }
+            },
+            "DEFAULT_ERROR": {
+                "description": "Default error response",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Error"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

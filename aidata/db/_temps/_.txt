@@ -1,0 +1,1 @@
+此資料匣暫存描述service和DB的表,欄位之間的關係,命名規範{dbName}-detail.md

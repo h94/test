@@ -1,0 +1,74 @@
+---
+description: C# 整合 WebAPI（integration）— 無 DB Settings、Gateway RestfulSettings、Route 無版號
+globs: ["**/*Controller.cs", "**/appsettings*.json", "**/Infrastructure/**/*.cs", "**/*.Infrastructure/**/*.cs"]
+alwaysApply: false
+---
+
+## 適用對象
+
+`kind = integration` 的 WebAPI（見 `./aidata/webapi/_index.md`）。
+
+整合 Service **不直連業務 DB**；資料來自 Gateway 呼叫下游原子 Service，以及 Redis / 檔案等非 DB 設定。
+
+---
+
+## Controller Route — MUST
+
+**整合 Service 對外 route 不得含 `v1`**（版號由下游原子 Service 或 Gateway 路徑處理）。
+
+```csharp
+// ✅ 整合 Service — 對外 route 不含 v1
+[Route("api")]
+[HttpGet("users")]
+
+// ❌ 原子 Service 寫法（禁止）
+[Route("api/v1/newlottery")]
+```
+
+- 完整路徑範例：`/api/users`
+- 新增端點前查 `./aidata/webapi/{serviceName}/` 的 OpenAPI 或 README
+
+---
+
+## AppSettings — MUST / MUST NOT
+
+**MUST** 有：
+- `RestfulSettings.Gateway`
+- `RestfulSettings.Settings[]`（每項下游呼叫）
+
+**MUST NOT** 新增：
+- `MySQLSettings`
+- `CassandraSettings`
+- `PostgreSQLSettings`
+
+允許 `RedisSettings`、檔案路徑等非 DB 設定。
+
+---
+
+## RestfulSettings — Gateway 呼叫下游
+
+| 層級 | 路徑範例 |
+|------|----------|
+| 整合 Service 對外 | `/api/users` |
+| appsettings Gateway Uri | `/{serviceName}/api/newlottery/users` |
+| 原子 Service 實際 | `/api/v1/newlottery/users` |
+
+**硬規則**：新增 `RestfulSettings` 項目前 **MUST** 查 `./aidata/webapi/{targetService}/` 的 OpenAPI 或 README，不可自行拼路徑。
+
+`serviceName` 別名見 `./aidata/webapi/_index.md`「服務名稱對照備註」（如 `pricecenter` → `pricecenterservice`）。
+
+---
+
+## Infrastructure — MUST
+
+- 對外 I/O **MUST** 用 `IRestfulClient` + `RestfulSettings`（見 `libraries.mdc`）
+- **MUST NOT** 新增直連 DB 的 Provider
+
+---
+
+## 自檢（integration 專用）
+
+- [ ] Controller route **不含** `v1/`？
+- [ ] appsettings **無** MySQL / Cassandra / PostgreSQL Settings？
+- [ ] 每個 RestfulSettings.Uri 已對照下游 OpenAPI / README？
+- [ ] 未在 Infrastructure 新增 DB Provider？

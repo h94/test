@@ -1,0 +1,212 @@
+---
+description: C# Infrastructure 層規範（Provider / Validator / Transfer、資料存取）
+globs: ["**/Infrastructure/*.cs" , "**/*.Infrastructure/*.cs" , "**/Infrastructure/**/*.cs" , "**/*.Infrastructure/**/*.cs"]
+alwaysApply: false
+---
+
+## Infrastructure — Only Three Class Types Allowed
+
+| Type | Responsibility | Allowed Logic |
+|------|---------------|---------------|
+| **Provider** | Data access / I/O (DB, API, cache, queue, file) | I/O only, no business logic |
+| **Validator** | Validate I/O data before Provider or after external output | Validation only |
+| **Transfer** | Transform data between layers / representations | Mapping only |
+
+**No other class types are allowed in this layer.**
+
+---
+
+## Provider Rules
+
+```
+✅ Retrieves or persists data from external systems
+✅ Returns raw data from the source
+❌ MUST NOT contain business logic
+❌ MUST NOT perform validation
+❌ MUST NOT transform data for presentation
+❌ MUST NOT call Validators or Transfers
+```
+
+```csharp
+// Correct
+public class MemberProvider
+{
+    public Task<MemberDbModel> GetByIdAsync(int id, CancellationToken ct) { ... }
+    // returns raw DB model — no filtering, no DTO conversion
+}
+
+// Wrong
+public class MemberProvider
+{
+    public Task<MemberDTO> GetByIdAsync(int id)  // should not return DTO
+    {
+        if (id <= 0) throw new Exception(...);   // validation in Provider — FORBIDDEN
+        ...
+    }
+}
+```
+
+---
+
+## Validator Rules
+
+```
+✅ Validates input before Provider call
+✅ Validates external output when correctness must be checked
+❌ MUST NOT access external systems or DB
+❌ MUST NOT transform data
+❌ MUST NOT call Providers or Transfers
+```
+
+```csharp
+// Correct
+public class MemberValidator
+{
+    public void ValidateCreateInput(MemberCreateRequest request) { ... }
+    public void ValidateUpdateInput(MemberUpdateRequest request) { ... }
+    public void ValidateAccountFormat(string account) { ... }
+}
+```
+
+---
+
+## Transfer Rules
+
+```
+✅ Converts between: external format ↔ internal model, internal model ↔ DTO, request ↔ input model
+❌ MUST NOT access external systems
+❌ MUST NOT perform validation
+❌ MUST NOT contain business logic
+❌ MUST NOT call Providers or Validators
+```
+
+```csharp
+// Correct
+public class MemberTransfer
+{
+    public MemberModel FromDb(MemberDbModel source) { ... }
+    public MemberDTO ToDTO(MemberModel source) { ... }
+    public MemberUpdateInput ToUpdateInput(MemberUpdateRequest request) { ... }
+}
+```
+
+---
+
+## Grouping Rule — by Domain/Entity, NOT by scenario
+
+**One Transfer and one Validator per domain/entity. Separate scenarios by methods, not classes.**
+
+```
+✅ Correct grouping
+MemberProvider
+MemberValidator   ← all Member validation methods here
+MemberTransfer    ← all Member mapping methods here
+
+❌ Wrong grouping
+MemberDBTransfer       MemberApiTransfer
+MemberInputTransfer    MemberOutputTransfer
+MemberCreateValidator  MemberUpdateValidator
+MemberDBValidator      MemberInputValidator
+```
+
+Do NOT split by: DB vs API, input vs output, create vs update, frontend vs backend usage.
+
+---
+
+## Recommended Flow
+
+```
+Controller / Application Layer
+        ↓
+Validator  (validate input)
+        ↓
+Provider   (fetch / persist data)
+        ↓
+Transfer   (map to response model)
+        ↓
+Response
+```
+
+Incorrect flows:
+```
+Provider → validate internally → transform → return   ❌
+Service → directly access DB/API                      ❌
+Transfer → query database                             ❌
+Validator → call Provider                             ❌
+```
+
+---
+
+## Data Access Conventions
+
+### MySQL
+```csharp
+// Correct
+var cmd = _mysqlManager.CreateDBCommand(connectId);
+cmd.CommandText = "SELECT ...";
+cmd.AddParameter("@userId", MySqlDbType.Int32, userId);
+await cmd.ExecuteEntityAsync<UserDbModel>();
+
+// Wrong — inline SQL in Service, or using Dapper/EF
+```
+- All access through `IMySQLManager` + `IMySQLCommand`
+- SQL stays in Provider classes under `*.Infrastructure/DataAccess`
+- Do NOT inline SQL in Service classes
+
+### Redis
+```csharp
+// Key format: {Module}:{Feature}:{Key}
+var key = $"member:profile:{userId}";
+// Always specify expiration when writing
+await _redisDb.SetAsync(key, value, TimeSpan.FromMinutes(30));
+```
+
+### Cassandra
+```csharp
+// Always include partition key in queries
+// Avoid full table scans
+var session = _cassandraManager.CreateSession(keyspace);
+session.CommandText = "SELECT ... WHERE partition_key = ?";
+```
+
+### PostgreSQL
+```csharp
+var cmd = _pgManager.CreateDBCommand(connectId);
+cmd.CommandText = "SELECT ...";
+cmd.AddParameter("userId", userId);
+await cmd.ExecuteEntityAsync<UserDbModel>();
+```
+
+---
+
+## DI Registration
+
+```csharp
+// Correct — same as Service layer
+[DependencyInjection(typeof(IMemberProvider))]
+public class MemberProvider : IMemberProvider { ... }
+
+[DependencyInjection(typeof(IMemberValidator))]
+public class MemberValidator : IMemberValidator { ... }
+
+[DependencyInjection(typeof(IMemberTransfer))]
+public class MemberTransfer : IMemberTransfer { ... }
+```
+
+Lifetime MUST be Singleton. Do NOT use `AddScoped` in Startup for these types.
+
+---
+
+## Self-Check for Infrastructure Files
+
+Before finishing, verify:
+- [ ] Only Provider / Validator / Transfer classes present?
+- [ ] Provider has no business logic or validation?
+- [ ] Validator has no DB / external system access?
+- [ ] Transfer has no validation or DB access?
+- [ ] Grouped by entity, not by scenario (no `MemberCreateValidator`, `MemberDBTransfer`)?
+- [ ] Data access uses ECCore managers (not raw drivers / Dapper / EF)?
+- [ ] Redis keys follow `{Module}:{Feature}:{Key}` and include expiration?
+- [ ] Cassandra queries include partition key?
+- [ ] `[DependencyInjection]` on each class, Singleton lifetime?
+- [ ] New/modified private methods use camelCase; private fields use `_camelCase` (see `naming.mdc`)?

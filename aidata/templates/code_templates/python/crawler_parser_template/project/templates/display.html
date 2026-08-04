@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Games Viewer</title>
+	<style>
+		/* 整體背景及文字樣式 */
+		body {
+			background-color: #1a1a1a; /* 黑色背景 */
+			color: #ffffff; /* 白色文字 */
+			margin: 0;
+			font-family: Arial, sans-serif;
+		}
+
+		h1 {
+			background-color: #1a1a1a; /* 黑色背景 */
+			color: #ffffff; /* 白色文字 */
+			padding: 10px 20px;
+			margin: 0;
+		}
+
+		div {
+			background-color: #1a1a1a; /* 黑色背景 */
+			color: #ffffff; /* 白色文字 */
+			padding: 10px 20px;
+		}
+
+		label {
+			color: #ffffff; /* 白色文字 */
+			margin-right: 10px;
+		}
+
+		/* 表格樣式 */
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			table-layout: auto;
+			background-color: #1a1a1a; /* 深色背景 */
+		}
+
+		th, td {
+			border: 1px solid #404040; /* 深灰色邊框 */
+			padding: 8px;
+			text-align: left;
+			max-width: 100px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			color: #ffffff; /* 白色文字 */
+		}
+
+		th {
+			background-color: #2c2c2c; /* 深色表頭 */
+			color: #ffffff; /* 表頭文字顏色 */
+		}
+
+		/* 特定欄位的樣式 */
+		th.auto-width, td.auto-width {
+			max-width: none !important;
+			min-width: 100px;
+			white-space: nowrap !important;
+			overflow: visible !important;
+		}
+
+		/* 輸入框樣式 */
+		input[type="text"] {
+			background-color: #1a1a1a; /* 黑色背景 */
+			color: #ffffff; /* 白色文字 */
+			border: 1px solid #404040; /* 深灰色邊框 */
+			padding: 5px;
+			margin-right: 10px;
+		}
+
+		/* 按鈕樣式 */
+		button {
+			background-color: #2c2c2c; /* 深色背景 */
+			color: #ffffff; /* 白色文字 */
+			border: 1px solid #404040; /* 深灰色邊框 */
+			padding: 5px 10px;
+			cursor: pointer;
+			margin-left: 5px;
+		}
+
+		/* 按鈕懸停效果 */
+		button:hover {
+			background-color: #404040; /* 更亮的深灰色 */
+		}
+	</style>
+
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script>
+        const socket = io();
+
+        let gameIdFilter = '';
+        let gameTypeFilter = '';
+        let leagueTeamFilter = '';
+		let gameStatusFilter = '';
+
+        // 动态更新表格数据并应用过滤逻辑
+        socket.on('update_data', (data) => {
+            const tableBody = document.getElementById('table-body');
+            tableBody.innerHTML = ''; // 清空表格
+
+            data.rows
+                .filter(row => {
+                    // 应用过滤逻辑
+                    const matchesGameId = gameIdFilter === '' || row.game_id.includes(gameIdFilter);
+                    const matchesGameType = gameTypeFilter === '' || row.game_type.includes(gameTypeFilter);
+                    const matchesLeagueTeam = leagueTeamFilter === '' ||
+                        `${row.league}${row.team_home}${row.team_away}`.includes(leagueTeamFilter);
+					const matchesGameStatus = gameStatusFilter === '' || row.game_status.includes(gameStatusFilter);
+                    return matchesGameId && matchesGameType && matchesLeagueTeam && matchesGameStatus;
+                })
+                .forEach(row => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+						<td title="${row.game_type}">${row.game_type}</td>
+						<td title="${row.provider_name}">${row.provider_name}</td>
+						<td title="${row.send_time}">${row.send_time}</td>
+						<td title="${row.league}">${row.league}</td>
+						<td title="${row.team_home}">${row.team_home}</td>
+						<td title="${row.team_away}">${row.team_away}</td>
+						<td title="${row.game_date}">${row.game_date}</td>
+						<td title="${row.game_time}">${row.game_time}</td>
+						<td title="${row.game_id}">${row.game_id}</td>
+						<td title="${row.game_status}">${row.game_status}</td>
+						<td title="${row.score_home}">${row.score_home}</td>
+						<td title="${row.score_away}">${row.score_away}</td>
+						<td class="auto-width" title="${row.scores}">${row.scores}</td>
+						<td class="auto-width" title="${row.playbyplay}">${row.playbyplay}</td>
+						<td class="auto-width" title="${row.otherinfo}">${row.otherinfo}</td>
+						<td class="auto-width" title="${row.odds}">${row.odds}</td>
+                    `;
+                    tableBody.appendChild(tr);
+                });
+        });
+
+        // 更新过滤器并刷新表格
+        function updateFilter(type, value) {
+            if (type === 'game_id') gameIdFilter = value;
+            if (type === 'game_type') gameTypeFilter = value;
+            if (type === 'league_team') leagueTeamFilter = value;
+			if (type === 'game_status') gameStatusFilter = value;
+            socket.emit('request_update'); // 请求数据更新
+        }
+
+        // 清除过滤器
+        function clearFilter(type) {
+            if (type === 'game_id') document.getElementById('game-id-filter').value = gameIdFilter = '';
+            if (type === 'game_type') document.getElementById('game-type-filter').value = gameTypeFilter = '';
+            if (type === 'league_team') document.getElementById('league-team-filter').value = leagueTeamFilter = '';
+			if (type === 'game_status') document.getElementById('game-status-filter').value = gameStatusFilter = '';
+            socket.emit('request_update'); // 请求数据更新
+        }
+    </script>
+</head>
+<body>
+    <h1>Games Viewer</h1>
+    <div>
+        <label for="game-type-filter">Filter by game_type:</label>
+        <input id="game-type-filter" type="text" oninput="updateFilter('game_type', this.value)" />
+        <button onclick="clearFilter('game_type')">Clear</button>
+        <label for="game-id-filter">Filter by game_id:</label>
+        <input id="game-id-filter" type="text" oninput="updateFilter('game_id', this.value)" />
+        <button onclick="clearFilter('game_id')">Clear</button>
+        <label for="league-team-filter">Filter by league or team:</label>
+        <input id="league-team-filter" type="text" oninput="updateFilter('league_team', this.value)" />
+        <button onclick="clearFilter('league_team')">Clear</button>
+        <label for="game-status-filter">Filter by game_status:</label>
+        <input id="game-status-filter" type="text" oninput="updateFilter('game_status', this.value)" />
+        <button onclick="clearFilter('game_status')">Clear</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+				<th>game_type</th>
+				<th>provider</th>
+				<th>send_time</th>
+				<th>league</th>
+				<th>team_home</th>
+				<th>team_away</th>
+				<th>game_date</th>
+				<th>game_time</th>
+				<th>game_id</th>
+				<th>game_status</th>
+				<th>score_home</th>
+				<th>score_away</th>
+				<th class="auto-width">scores</th>
+				<th class="auto-width">playbyplay</th>
+				<th class="auto-width">otherinfo</th>
+				<th class="auto-width">odds</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            <!-- 表格数据将通过 WebSocket 动态更新 -->
+        </tbody>
+    </table>
+</body>
+</html>

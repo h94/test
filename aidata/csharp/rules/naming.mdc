@@ -1,0 +1,142 @@
+---
+description: C# 命名規範、資料夾結構、Namespace
+globs: ["**/*.cs"]
+alwaysApply: false
+---
+
+## Class Naming
+
+| Type | Pattern | Example |
+|------|---------|---------|
+| Domain Service | `{Entity}Service` | `UserService` |
+| Infrastructure Provider | `{Entity}Provider` | `UserProvider` |
+| Cache Provider | `{Entity}CacheProvider` | `UserCacheProvider` |
+| DTO Model | `{Entity}` | `User` |
+| Request model | `{Action}{Entity}Request` | `CreateUserRequest` |
+| Response model | `{Action}{Entity}Response` | `CreateUserResponse` |
+
+---
+
+## Interface Naming
+
+All interfaces MUST start with `I`.
+
+```
+✅ IUserService  IUserProvider  ICacheUserService
+❌ UserServiceInterface  UserServiceIface
+```
+
+---
+
+## Method Naming
+
+| Scope | Convention | Example |
+|-------|-----------|---------|
+| Public | PascalCase | `GetUser`, `CreateOrder`, `DeleteProduct` |
+| Private | camelCase | `getUser`, `createOrder`, `deleteProduct` |
+
+```csharp
+// Correct
+public Task<User> GetUser(int userId) { ... }
+private void validateInput(CreateUserRequest request) { ... }
+
+// Wrong — private method using PascalCase
+private void ValidateInput(CreateUserRequest request) { ... }
+```
+
+---
+
+## Legacy Code vs New Code
+
+`naming.mdc` overrides same-file / same-module legacy style. See `./aidata/csharp/.cursor_rules` Priority Order.
+
+| Situation | Rule |
+|-----------|------|
+| **New** private method or field | MUST use camelCase / `_camelCase` — do not copy PascalCase private methods from neighbors |
+| **Modify** existing PascalCase private method | SHOULD rename to camelCase in the same change |
+| **Untouched** legacy PascalCase private code | May remain until that method is edited; do not use as a template for new code |
+
+```csharp
+// Legacy in file (do not copy for new methods)
+private async Task LoadDataAsync() { ... }
+
+// ✅ New private method in same file — still camelCase
+private async Task loadMasterLeagueNameMapsAsync() { ... }
+
+// ❌ Wrong — mimicking legacy PascalCase for new code
+private async Task LoadMasterLeagueNameMapsAsync() { ... }
+```
+
+---
+
+## Private Field Naming
+
+Use underscore + camelCase.
+
+```
+✅ _userService   _userProvider   _kafkaLogger
+❌ _user_Service  _user_Provider  _UserService
+```
+
+---
+
+## Parameters and Local Variables
+
+Use camelCase. No underscores.
+
+```
+✅ userId   request   gameInfo   cancellationToken
+❌ user_Id  game_Info  User_Id
+```
+
+---
+
+## Solution and Project Folder Structure
+
+| Layer | Folder / Project Name |
+|-------|-----------------------|
+| Controllers (host) | `{SolutionName}` |
+| Domain Services | `{SolutionName}.DomainService` |
+| Infrastructure | `{SolutionName}.Infrastructure` |
+| Interfaces | `{SolutionName}.Interface` |
+| Models | `{SolutionName}.Model` |
+
+Reference implementation: `demo/DemoService`
+
+---
+
+## Namespace Rules
+
+| Layer | Namespace |
+|-------|-----------|
+| Controllers | `{SolutionName}.Controllers` |
+| Domain Services | `{SolutionName}.DomainService` |
+| Infrastructure | `{SolutionName}.Infrastructure` |
+| Interfaces | `{SolutionName}.Interface` |
+| Models | `{SolutionName}.Model` |
+
+Use file-scoped namespaces if already used in the repository.
+Match the namespace pattern of neighboring files in the same folder.
+
+---
+
+## Route Naming
+
+Routes MUST use camelCase. MUST NOT use snake-case or kebab-case.
+
+Route segment 中的縮寫（如 AI、API、DB、ID）必須轉成小寫連續字，不能用 `-` 拆字，也不要保留全大寫；例如 AI Merge 應寫成 `aimerge`，不是 `ai-merge` 或 `AIMerge`。
+
+```csharp
+// Correct
+[HttpGet("getUserById")]
+[HttpPost("createUser")]
+[HttpPut("updateUserProfile")]
+[HttpGet("aimerge/backtest/{gameType}/latest")]
+
+// Wrong
+[HttpGet("get-user-by-id")]
+[HttpPost("create_user")]
+[HttpPut("update-user-profile")]
+[HttpGet("ai-merge/backtest/{gameType}/latest")]
+[HttpGet("AIMerge/backtest/{gameType}/latest")]
+```

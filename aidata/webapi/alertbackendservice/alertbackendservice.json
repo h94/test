@@ -1,0 +1,2179 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "AlertBackendService",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/version": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "Root",
+        "description": "\u670D\u52D9\u5B58\u6D3B\u6AA2\u67E5\u3002",
+        "operationId": "root_api_version_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/health": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "Health",
+        "description": "\u542B\u8CC7\u6599\u5EAB\u9023\u7DDA\u6AA2\u67E5\u7684\u5065\u5EB7\u6AA2\u67E5\u3002",
+        "operationId": "health_api_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/alerts/{game_type}": {
+      "post": {
+        "tags": [
+          "alerts"
+        ],
+        "summary": "Search Alerts",
+        "description": "\u8B66\u793A\u5217\u8868\u67E5\u8A62\uFF08\u4E0D\u542B detail \u6B04\u4F4D\uFF09\uFF1Bstart / end \u672A\u5E36\u6642\u9810\u8A2D\u67E5\u53F0\u7063\u6642\u9593\u4ECA\u5929\u6574\u5929\u3002",
+        "operationId": "search_alerts_api_alerts__game_type__post",
+        "parameters": [
+          {
+            "name": "game_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u7403\u7A2E\u4EE3\u78BC\uFF0C\u4E0D\u5206\u5927\u5C0F\u5BEB",
+              "title": "Game Type"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF0C\u4E0D\u5206\u5927\u5C0F\u5BEB"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlertSearchBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/alerts/{alert_id}": {
+      "get": {
+        "tags": [
+          "alerts"
+        ],
+        "summary": "Get Alert",
+        "description": "\u67E5\u8A62\u55AE\u7B46\u8B66\u793A\uFF0C\u56DE\u50B3\u5168\u90E8\u6B04\u4F4D\uFF08\u542B detail\u3001threshold_snapshot\u3001game_info\uFF09\u3002",
+        "operationId": "get_alert_api_alerts__alert_id__get",
+        "parameters": [
+          {
+            "name": "alert_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u8B66\u793A ID",
+              "title": "Alert Id"
+            },
+            "description": "\u8B66\u793A ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "alerts"
+        ],
+        "summary": "Update Alert",
+        "description": "\u66F4\u65B0\u8B66\u793A\u72C0\u614B\u3002",
+        "operationId": "update_alert_api_alerts__alert_id__put",
+        "parameters": [
+          {
+            "name": "alert_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u8B66\u793A ID",
+              "title": "Alert Id"
+            },
+            "description": "\u8B66\u793A ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlertUpdateBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/monitored_play_modes": {
+      "get": {
+        "tags": [
+          "monitored_play_modes"
+        ],
+        "summary": "List Monitored Play Modes",
+        "description": "\u5217\u51FA\u5168\u90E8\u76E3\u63A7\u73A9\u6CD5\u8A2D\u5B9A\uFF1B\u53EF\u7528 game_type \u67E5\u8A62\u55AE\u7B46\u3002",
+        "operationId": "list_monitored_play_modes_api_monitored_play_modes_get",
+        "parameters": [
+          {
+            "name": "game_type",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "\u7403\u7A2E\u4EE3\u78BC",
+              "title": "Game Type"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/monitored_play_modes/{game_type}": {
+      "post": {
+        "tags": [
+          "monitored_play_modes"
+        ],
+        "summary": "Create Monitored Play Modes",
+        "description": "\u65B0\u589E\u76E3\u63A7\u73A9\u6CD5\uFF1B\u5DF2\u5B58\u5728\u56DE 409\u3002",
+        "operationId": "create_monitored_play_modes_api_monitored_play_modes__game_type__post",
+        "parameters": [
+          {
+            "name": "game_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u7403\u7A2E\u4EE3\u78BC",
+              "title": "Game Type"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MonitoredPlayModePostBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "monitored_play_modes"
+        ],
+        "summary": "Update Monitored Play Modes",
+        "description": "\u6574\u5305\u8986\u84CB\u66F4\u65B0\u76E3\u63A7\u73A9\u6CD5\u3002",
+        "operationId": "update_monitored_play_modes_api_monitored_play_modes__game_type__put",
+        "parameters": [
+          {
+            "name": "game_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u7403\u7A2E\u4EE3\u78BC",
+              "title": "Game Type"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MonitoredPlayModePutBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/source_type": {
+      "get": {
+        "tags": [
+          "source_type"
+        ],
+        "summary": "List Source Type",
+        "description": "\u5217\u51FA\u5168\u90E8\u8CC7\u6599\u6E90\u985E\u578B\u8A2D\u5B9A\uFF1B\u53EF\u7528 source \u67E5\u8A62\u55AE\u7B46\u3002",
+        "operationId": "list_source_type_api_source_type_get",
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "\u8CC7\u6599\u6E90",
+              "title": "Source"
+            },
+            "description": "\u8CC7\u6599\u6E90"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/source_type/{source}": {
+      "post": {
+        "tags": [
+          "source_type"
+        ],
+        "summary": "Create Source Type",
+        "description": "\u65B0\u589E\u8CC7\u6599\u6E90\u985E\u578B\uFF1B\u5DF2\u5B58\u5728\u56DE 409\u3002",
+        "operationId": "create_source_type_api_source_type__source__post",
+        "parameters": [
+          {
+            "name": "source",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u8CC7\u6599\u6E90",
+              "title": "Source"
+            },
+            "description": "\u8CC7\u6599\u6E90"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SourceTypeUpsertBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "source_type"
+        ],
+        "summary": "Update Source Type",
+        "description": "\u6574\u5305\u8986\u84CB\u66F4\u65B0\u65E2\u6709\u8CC7\u6599\u6E90\u985E\u578B\u3002",
+        "operationId": "update_source_type_api_source_type__source__put",
+        "parameters": [
+          {
+            "name": "source",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u8CC7\u6599\u6E90",
+              "title": "Source"
+            },
+            "description": "\u8CC7\u6599\u6E90"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SourceTypeUpsertBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "source_type"
+        ],
+        "summary": "Delete Source Type",
+        "description": "\u522A\u9664\u6574\u500B\u8CC7\u6599\u6E90\u985E\u578B\u8A2D\u5B9A\u3002",
+        "operationId": "delete_source_type_api_source_type__source__delete",
+        "parameters": [
+          {
+            "name": "source",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u8CC7\u6599\u6E90",
+              "title": "Source"
+            },
+            "description": "\u8CC7\u6599\u6E90"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sport_alert_sources": {
+      "get": {
+        "tags": [
+          "sport_alert_sources"
+        ],
+        "summary": "List Sport Alert Sources",
+        "description": "\u5217\u51FA\u5168\u90E8\u4E3B\u8F14\u52A9\u4F86\u6E90\u8A2D\u5B9A\uFF1B\u53EF\u7528 game_type \u67E5\u8A62\u55AE\u7B46\u3002",
+        "operationId": "list_sport_alert_sources_api_sport_alert_sources_get",
+        "parameters": [
+          {
+            "name": "game_type",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "\u7403\u7A2E\u4EE3\u78BC",
+              "title": "Game Type"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sport_alert_sources/{game_type}": {
+      "post": {
+        "tags": [
+          "sport_alert_sources"
+        ],
+        "summary": "Create Sport Alert Source",
+        "description": "\u65B0\u589E\u4E3B\u8F14\u52A9\u4F86\u6E90\u8A2D\u5B9A\uFF1B\u5DF2\u5B58\u5728\u56DE 409\u3002",
+        "operationId": "create_sport_alert_source_api_sport_alert_sources__game_type__post",
+        "parameters": [
+          {
+            "name": "game_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u7403\u7A2E\u4EE3\u78BC",
+              "title": "Game Type"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SportAlertSourceBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "sport_alert_sources"
+        ],
+        "summary": "Update Sport Alert Source",
+        "description": "\u6574\u5305\u66F4\u65B0\u4E3B\u8F14\u52A9\u4F86\u6E90\u8A2D\u5B9A\u3002",
+        "operationId": "update_sport_alert_source_api_sport_alert_sources__game_type__put",
+        "parameters": [
+          {
+            "name": "game_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u7403\u7A2E\u4EE3\u78BC",
+              "title": "Game Type"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SportAlertSourceBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scorethreshold_setting": {
+      "get": {
+        "tags": [
+          "scorethreshold_setting"
+        ],
+        "summary": "List Score Threshold",
+        "description": "\u67E5\u8A62\u6BD4\u5206\u95BE\u503C\u8A2D\u5B9A\u3002",
+        "operationId": "list_score_threshold_api_scorethreshold_setting_get",
+        "parameters": [
+          {
+            "name": "game_type",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "\u7403\u7A2E\u4EE3\u78BC",
+              "title": "Game Type"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scorethreshold_setting/{game_type}": {
+      "post": {
+        "tags": [
+          "scorethreshold_setting"
+        ],
+        "summary": "Create Score Threshold",
+        "description": "\u65B0\u589E\u6BD4\u5206\u95BE\u503C\uFF1B\u5DF2\u5B58\u5728\u56DE 409\u3002",
+        "operationId": "create_score_threshold_api_scorethreshold_setting__game_type__post",
+        "parameters": [
+          {
+            "name": "game_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u7403\u7A2E\u4EE3\u78BC",
+              "title": "Game Type"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScoreThresholdBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "scorethreshold_setting"
+        ],
+        "summary": "Update Score Threshold",
+        "description": "\u66F4\u65B0\u65E2\u6709\u6BD4\u5206\u95BE\u503C\u3002",
+        "operationId": "update_score_threshold_api_scorethreshold_setting__game_type__put",
+        "parameters": [
+          {
+            "name": "game_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u7403\u7A2E\u4EE3\u78BC",
+              "title": "Game Type"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScoreThresholdBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/oddthreshold_sport_setting": {
+      "get": {
+        "tags": [
+          "oddthreshold_sport_setting"
+        ],
+        "summary": "List Sport Threshold",
+        "description": "\u67E5\u8A62\u7403\u7A2E\u5C64\u8CE0\u7387\u95BE\u503C\u3002",
+        "operationId": "list_sport_threshold_api_oddthreshold_sport_setting_get",
+        "parameters": [
+          {
+            "name": "game_type",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "\u7403\u7A2E\u4EE3\u78BC",
+              "title": "Game Type"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/oddthreshold_sport_setting/{game_type}": {
+      "post": {
+        "tags": [
+          "oddthreshold_sport_setting"
+        ],
+        "summary": "Create Sport Threshold",
+        "description": "\u65B0\u589E\u7403\u7A2E\u5C64\u8CE0\u7387\u95BE\u503C\uFF1B\u5DF2\u5B58\u5728\u56DE 409\u3002",
+        "operationId": "create_sport_threshold_api_oddthreshold_sport_setting__game_type__post",
+        "parameters": [
+          {
+            "name": "game_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u7403\u7A2E\u4EE3\u78BC",
+              "title": "Game Type"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlaymodeBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "oddthreshold_sport_setting"
+        ],
+        "summary": "Update Sport Threshold",
+        "description": "\u6574\u5305\u8986\u84CB\u66F4\u65B0\u7403\u7A2E\u5C64\u8CE0\u7387\u95BE\u503C\u3002",
+        "operationId": "update_sport_threshold_api_oddthreshold_sport_setting__game_type__put",
+        "parameters": [
+          {
+            "name": "game_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u7403\u7A2E\u4EE3\u78BC",
+              "title": "Game Type"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlaymodeBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/oddthreshold_league_setting": {
+      "get": {
+        "tags": [
+          "oddthreshold_league_setting"
+        ],
+        "summary": "List League Threshold",
+        "description": "\u67E5\u8A62\u806F\u76DF\u5C64\u8CE0\u7387\u95BE\u503C\u3002",
+        "operationId": "list_league_threshold_api_oddthreshold_league_setting_get",
+        "parameters": [
+          {
+            "name": "sitelid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "\u806F\u76DF ID",
+              "title": "Sitelid"
+            },
+            "description": "\u806F\u76DF ID"
+          },
+          {
+            "name": "source",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "\u8CC7\u6599\u6E90",
+              "title": "Source"
+            },
+            "description": "\u8CC7\u6599\u6E90"
+          },
+          {
+            "name": "game_type",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "\u7403\u7A2E\u4EE3\u78BC",
+              "title": "Game Type"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/oddthreshold_league_setting/{source}/{game_type}/{sitelid}": {
+      "post": {
+        "tags": [
+          "oddthreshold_league_setting"
+        ],
+        "summary": "Create League Threshold",
+        "description": "\u65B0\u589E\u806F\u76DF\u5C64\u8CE0\u7387\u95BE\u503C\uFF1B\u5DF2\u5B58\u5728\u56DE 409\u3002",
+        "operationId": "create_league_threshold_api_oddthreshold_league_setting__source___game_type___sitelid__post",
+        "parameters": [
+          {
+            "name": "source",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u8CC7\u6599\u6E90",
+              "title": "Source"
+            },
+            "description": "\u8CC7\u6599\u6E90"
+          },
+          {
+            "name": "game_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u7403\u7A2E\u4EE3\u78BC",
+              "title": "Game Type"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC"
+          },
+          {
+            "name": "sitelid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u806F\u76DF ID",
+              "title": "Sitelid"
+            },
+            "description": "\u806F\u76DF ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeaguePlaymodeBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "oddthreshold_league_setting"
+        ],
+        "summary": "Update League Threshold",
+        "description": "\u6574\u5305\u8986\u84CB\u66F4\u65B0\u806F\u76DF\u5C64\u8CE0\u7387\u95BE\u503C\u3002",
+        "operationId": "update_league_threshold_api_oddthreshold_league_setting__source___game_type___sitelid__put",
+        "parameters": [
+          {
+            "name": "source",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u8CC7\u6599\u6E90",
+              "title": "Source"
+            },
+            "description": "\u8CC7\u6599\u6E90"
+          },
+          {
+            "name": "game_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u7403\u7A2E\u4EE3\u78BC",
+              "title": "Game Type"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC"
+          },
+          {
+            "name": "sitelid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u806F\u76DF ID",
+              "title": "Sitelid"
+            },
+            "description": "\u806F\u76DF ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeaguePlaymodeBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "oddthreshold_league_setting"
+        ],
+        "summary": "Delete League Threshold",
+        "description": "\u522A\u9664\u806F\u76DF\u5C64\u8CE0\u7387\u95BE\u503C\uFF1B\u4E0D\u5B58\u5728\u56DE 404\u3002",
+        "operationId": "delete_league_threshold_api_oddthreshold_league_setting__source___game_type___sitelid__delete",
+        "parameters": [
+          {
+            "name": "source",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u8CC7\u6599\u6E90",
+              "title": "Source"
+            },
+            "description": "\u8CC7\u6599\u6E90"
+          },
+          {
+            "name": "game_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u7403\u7A2E\u4EE3\u78BC",
+              "title": "Game Type"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC"
+          },
+          {
+            "name": "sitelid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u806F\u76DF ID",
+              "title": "Sitelid"
+            },
+            "description": "\u806F\u76DF ID"
+          },
+          {
+            "name": "operator_account",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u64CD\u4F5C\u8005\u5E33\u865F",
+              "title": "Operator Account"
+            },
+            "description": "\u64CD\u4F5C\u8005\u5E33\u865F"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/oddthreshold_game_setting": {
+      "get": {
+        "tags": [
+          "oddthreshold_game_setting"
+        ],
+        "summary": "List Game Threshold",
+        "description": "\u67E5\u8A62\u8CFD\u4E8B\u5C64\u8CE0\u7387\u95BE\u503C\u3002",
+        "operationId": "list_game_threshold_api_oddthreshold_game_setting_get",
+        "parameters": [
+          {
+            "name": "sitegid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "\u8CFD\u4E8B ID",
+              "title": "Sitegid"
+            },
+            "description": "\u8CFD\u4E8B ID"
+          },
+          {
+            "name": "source",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "\u8CC7\u6599\u6E90",
+              "title": "Source"
+            },
+            "description": "\u8CC7\u6599\u6E90"
+          },
+          {
+            "name": "game_type",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "\u7403\u7A2E\u4EE3\u78BC",
+              "title": "Game Type"
+            },
+            "description": "\u7403\u7A2E\u4EE3\u78BC"
+          },
+          {
+            "name": "sitelid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "\u806F\u76DF ID",
+              "title": "Sitelid"
+            },
+            "description": "\u806F\u76DF ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/oddthreshold_game_setting/{sitegid}": {
+      "post": {
+        "tags": [
+          "oddthreshold_game_setting"
+        ],
+        "summary": "Create Game Threshold",
+        "description": "\u65B0\u589E\u8CFD\u4E8B\u5C64\u8CE0\u7387\u95BE\u503C\uFF1B\u5DF2\u5B58\u5728\u56DE 409\u3002",
+        "operationId": "create_game_threshold_api_oddthreshold_game_setting__sitegid__post",
+        "parameters": [
+          {
+            "name": "sitegid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u8CFD\u4E8B ID",
+              "title": "Sitegid"
+            },
+            "description": "\u8CFD\u4E8B ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GamePlaymodeBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "oddthreshold_game_setting"
+        ],
+        "summary": "Update Game Threshold",
+        "description": "\u6574\u5305\u8986\u84CB\u66F4\u65B0\u8CFD\u4E8B\u5C64\u8CE0\u7387\u95BE\u503C\u3002",
+        "operationId": "update_game_threshold_api_oddthreshold_game_setting__sitegid__put",
+        "parameters": [
+          {
+            "name": "sitegid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u8CFD\u4E8B ID",
+              "title": "Sitegid"
+            },
+            "description": "\u8CFD\u4E8B ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GamePlaymodeUpdateBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "oddthreshold_game_setting"
+        ],
+        "summary": "Delete Game Threshold",
+        "description": "\u522A\u9664\u8CFD\u4E8B\u5C64\u8CE0\u7387\u95BE\u503C\uFF1B\u4E0D\u5B58\u5728\u56DE 404\u3002",
+        "operationId": "delete_game_threshold_api_oddthreshold_game_setting__sitegid__delete",
+        "parameters": [
+          {
+            "name": "sitegid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u8CFD\u4E8B ID",
+              "title": "Sitegid"
+            },
+            "description": "\u8CFD\u4E8B ID"
+          },
+          {
+            "name": "operator_account",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u64CD\u4F5C\u8005\u5E33\u865F",
+              "title": "Operator Account"
+            },
+            "description": "\u64CD\u4F5C\u8005\u5E33\u865F"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/internal/webhook-receiver": {
+      "post": {
+        "tags": [
+          "webhooks"
+        ],
+        "summary": "Receive Webhook",
+        "description": "\u63A5\u6536\u672C\u670D\u52D9\u9001\u51FA\u7684 webhook\uFF08Local \u81EA\u6E2C\u7528\uFF09\u3002",
+        "operationId": "receive_webhook_api_internal_webhook_receiver_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": true,
+                "type": "object",
+                "title": "Body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/exports": {
+      "get": {
+        "tags": [
+          "exports"
+        ],
+        "summary": "List Exports",
+        "description": "\u67E5\u8A62\u532F\u51FA\u4EFB\u52D9\u5217\u8868\u3002",
+        "operationId": "list_exports_api_exports_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "exports"
+        ],
+        "summary": "Create Export",
+        "description": "\u5EFA\u7ACB\u532F\u51FA\u4EFB\u52D9\u3002",
+        "operationId": "create_export_api_exports_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExportCreateBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/exports/{export_id}": {
+      "get": {
+        "tags": [
+          "exports"
+        ],
+        "summary": "Get Export",
+        "description": "\u67E5\u8A62\u532F\u51FA\u4EFB\u52D9\u72C0\u614B\u3002",
+        "operationId": "get_export_api_exports__export_id__get",
+        "parameters": [
+          {
+            "name": "export_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "\u532F\u51FA\u4EFB\u52D9 ID",
+              "title": "Export Id"
+            },
+            "description": "\u532F\u51FA\u4EFB\u52D9 ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AlertSearchBody": {
+        "properties": {
+          "start": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start",
+            "description": "\u8D77\u59CB\u65E5\u671F\u6642\u9593\uFF08\u53F0\u7063\u6642\u9593\uFF1B\u672A\u5E36\u6642\u9810\u8A2D\u7576\u5929 00:00\uFF09"
+          },
+          "end": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End",
+            "description": "\u7D50\u675F\u65E5\u671F\u6642\u9593\uFF08\u53F0\u7063\u6642\u9593\uFF1B\u672A\u5E36\u6642\u9810\u8A2D start \u7576\u5929 23:59\uFF0C\u542B\u8A72\u5206\u9418\uFF09"
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source",
+            "description": "\u8CC7\u6599\u6E90"
+          },
+          "league_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "League Id",
+            "description": "\u806F\u76DF ID"
+          }
+        },
+        "type": "object",
+        "title": "AlertSearchBody"
+      },
+      "AlertUpdateBody": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "description": "pending \u6216 ignored"
+          },
+          "operator_account": {
+            "type": "string",
+            "title": "Operator Account",
+            "description": "\u64CD\u4F5C\u8005\u5E33\u865F"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "operator_account"
+        ],
+        "title": "AlertUpdateBody"
+      },
+      "ExportCreateBody": {
+        "properties": {
+          "game_type": {
+            "type": "string",
+            "title": "Game Type",
+            "description": "\u7403\u7A2E\u4EE3\u78BC\uFF0C\u4E0D\u5206\u5927\u5C0F\u5BEB"
+          },
+          "start": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start",
+            "description": "\u8D77\u59CB\u65E5\u671F\u6642\u9593\uFF08\u53F0\u7063\u6642\u9593\uFF1B\u672A\u5E36\u6642\u9810\u8A2D\u7576\u5929 00:00\uFF09"
+          },
+          "end": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End",
+            "description": "\u7D50\u675F\u65E5\u671F\u6642\u9593\uFF08\u53F0\u7063\u6642\u9593\uFF1B\u672A\u5E36\u6642\u9810\u8A2D start \u7576\u5929 23:59\uFF0C\u542B\u8A72\u5206\u9418\uFF09"
+          },
+          "status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Status",
+            "description": "\u72C0\u614B\uFF0Cpending \u6216 ignored"
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source",
+            "description": "\u8CC7\u6599\u6E90"
+          },
+          "league_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "League Id",
+            "description": "\u806F\u76DF ID"
+          },
+          "format": {
+            "type": "string",
+            "title": "Format",
+            "description": "csv \u6216 xlsx",
+            "default": "xlsx"
+          },
+          "operator_account": {
+            "type": "string",
+            "title": "Operator Account",
+            "description": "\u64CD\u4F5C\u8005\u5E33\u865F"
+          }
+        },
+        "type": "object",
+        "required": [
+          "game_type",
+          "operator_account"
+        ],
+        "title": "ExportCreateBody"
+      },
+      "GamePlaymodeBody": {
+        "properties": {
+          "source": {
+            "type": "string",
+            "title": "Source",
+            "description": "\u8CC7\u6599\u6E90"
+          },
+          "gdate": {
+            "type": "string",
+            "title": "Gdate",
+            "description": "\u8CFD\u4E8B\u65E5\u671F"
+          },
+          "sitelid": {
+            "type": "string",
+            "title": "Sitelid",
+            "description": "\u806F\u76DF ID"
+          },
+          "game_type": {
+            "type": "string",
+            "title": "Game Type",
+            "description": "\u7403\u7A2E\u4EE3\u78BC"
+          },
+          "play_mode": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Play Mode",
+            "description": "\u73A9\u6CD5\u95BE\u503C\u8A2D\u5B9A"
+          },
+          "operator_account": {
+            "type": "string",
+            "title": "Operator Account",
+            "description": "\u64CD\u4F5C\u8005\u5E33\u865F"
+          }
+        },
+        "type": "object",
+        "required": [
+          "source",
+          "gdate",
+          "sitelid",
+          "game_type",
+          "play_mode",
+          "operator_account"
+        ],
+        "title": "GamePlaymodeBody"
+      },
+      "GamePlaymodeUpdateBody": {
+        "properties": {
+          "play_mode": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Play Mode",
+            "description": "\u73A9\u6CD5\u95BE\u503C\u8A2D\u5B9A"
+          },
+          "operator_account": {
+            "type": "string",
+            "title": "Operator Account",
+            "description": "\u64CD\u4F5C\u8005\u5E33\u865F"
+          }
+        },
+        "type": "object",
+        "required": [
+          "play_mode",
+          "operator_account"
+        ],
+        "title": "GamePlaymodeUpdateBody"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "LeaguePlaymodeBody": {
+        "properties": {
+          "play_mode": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Play Mode",
+            "description": "\u73A9\u6CD5\u95BE\u503C\u8A2D\u5B9A"
+          },
+          "operator_account": {
+            "type": "string",
+            "title": "Operator Account",
+            "description": "\u64CD\u4F5C\u8005\u5E33\u865F"
+          }
+        },
+        "type": "object",
+        "required": [
+          "play_mode",
+          "operator_account"
+        ],
+        "title": "LeaguePlaymodeBody"
+      },
+      "MonitoredPlayModePostBody": {
+        "properties": {
+          "play_mode": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Play Mode",
+            "description": "\u8981\u65B0\u589E\u7684\u73A9\u6CD5\u6E05\u55AE"
+          },
+          "operator_account": {
+            "type": "string",
+            "title": "Operator Account",
+            "description": "\u64CD\u4F5C\u8005\u5E33\u865F"
+          }
+        },
+        "type": "object",
+        "required": [
+          "play_mode",
+          "operator_account"
+        ],
+        "title": "MonitoredPlayModePostBody"
+      },
+      "MonitoredPlayModePutBody": {
+        "properties": {
+          "play_mode": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Play Mode",
+            "description": "\u73A9\u6CD5\u8207 0/1 \u8A2D\u5B9A\uFF08\u6574\u5305\u8986\u84CB\uFF09"
+          },
+          "operator_account": {
+            "type": "string",
+            "title": "Operator Account",
+            "description": "\u64CD\u4F5C\u8005\u5E33\u865F"
+          }
+        },
+        "type": "object",
+        "required": [
+          "play_mode",
+          "operator_account"
+        ],
+        "title": "MonitoredPlayModePutBody"
+      },
+      "PlaymodeBody": {
+        "properties": {
+          "play_mode": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Play Mode",
+            "description": "\u73A9\u6CD5\u95BE\u503C\u8A2D\u5B9A"
+          },
+          "operator_account": {
+            "type": "string",
+            "title": "Operator Account",
+            "description": "\u64CD\u4F5C\u8005\u5E33\u865F"
+          }
+        },
+        "type": "object",
+        "required": [
+          "play_mode",
+          "operator_account"
+        ],
+        "title": "PlaymodeBody"
+      },
+      "ScoreThresholdBody": {
+        "properties": {
+          "divergence_Y": {
+            "type": "number",
+            "title": "Divergence Y",
+            "description": "\u9EC3\u8272\u5206\u6B67\u95BE\u503C"
+          },
+          "divergence_R": {
+            "type": "number",
+            "title": "Divergence R",
+            "description": "\u7D05\u8272\u5206\u6B67\u95BE\u503C"
+          },
+          "divergence_buffer_sec": {
+            "type": "number",
+            "title": "Divergence Buffer Sec",
+            "description": "\u5206\u6B67\u7DE9\u885D\u79D2\u6578"
+          },
+          "score_correction": {
+            "type": "number",
+            "title": "Score Correction",
+            "description": "\u6BD4\u5206\u4FEE\u6B63\u503C"
+          },
+          "operator_account": {
+            "type": "string",
+            "title": "Operator Account",
+            "description": "\u64CD\u4F5C\u8005\u5E33\u865F"
+          }
+        },
+        "type": "object",
+        "required": [
+          "divergence_Y",
+          "divergence_R",
+          "divergence_buffer_sec",
+          "score_correction",
+          "operator_account"
+        ],
+        "title": "ScoreThresholdBody"
+      },
+      "SourceTypeUpsertBody": {
+        "properties": {
+          "support_type": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Support Type",
+            "description": "\u7403\u7A2E\u8207\u652F\u63F4\u985E\u578B map"
+          },
+          "operator_account": {
+            "type": "string",
+            "title": "Operator Account",
+            "description": "\u64CD\u4F5C\u8005\u5E33\u865F"
+          }
+        },
+        "type": "object",
+        "required": [
+          "support_type",
+          "operator_account"
+        ],
+        "title": "SourceTypeUpsertBody"
+      },
+      "SportAlertSourceBody": {
+        "properties": {
+          "primary": {
+            "type": "string",
+            "title": "Primary",
+            "description": "\u4E3B\u8981\u8CC7\u6599\u6E90"
+          },
+          "secondary": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Secondary",
+            "description": "\u6B21\u8981\u8CC7\u6599\u6E90\u6E05\u55AE"
+          },
+          "operator_account": {
+            "type": "string",
+            "title": "Operator Account",
+            "description": "\u64CD\u4F5C\u8005\u5E33\u865F"
+          }
+        },
+        "type": "object",
+        "required": [
+          "primary",
+          "secondary",
+          "operator_account"
+        ],
+        "title": "SportAlertSourceBody"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

@@ -1,0 +1,129 @@
+---
+description: C# Service 層規範（DomainService、Async、DI、Logging）
+globs: ["**/DomainService/**/*.cs"]
+alwaysApply: false
+---
+
+## Service Responsibilities
+
+- Validate basic input
+- Execute business logic
+- Orchestrate transactions within a **single** data-store boundary
+- Log important business events via `IKafkaLogger`
+- Convert Provider results into response models
+
+---
+
+## Hard Constraints — MUST NOT
+
+| Forbidden | Alternative |
+|-----------|-------------|
+| Write raw SQL directly | Use Provider in Infrastructure |
+| Call external HTTP with raw `HttpClient` | Use Provider wrapping `IRestfulClient` |
+| Use forbidden libraries (`Dapper`, `EF`, `AutoMapper`, etc.) | Use ECCore abstractions |
+| Implement distributed transactions across resources | Use DB stored procedures |
+| Inject or depend on another Service | Refactor to shared Provider or SP |
+
+```csharp
+// Correct — Services are independent
+public class MemberService { public void CreateMember() { ... } }
+public class GameService   { public void CreateGame()   { ... } }
+
+// Wrong — Service injecting another Service
+public class MemberService
+{
+    private readonly GameService _gameService; // FORBIDDEN
+    public MemberService(GameService gameService) { ... }
+}
+```
+
+---
+
+## Async / Await Rules
+
+```csharp
+// Correct
+await _userService.GetUserAsync(userId, cancellationToken);
+
+// Wrong
+_userService.GetUserAsync(userId).Result;
+_userService.GetUserAsync(userId).Wait();
+```
+
+- Use plain `await` — do NOT use `.ConfigureAwait(false)`
+- WebAPI controller actions: include `CancellationToken cancellationToken` when downstream calls are cancellable
+- BackgroundService / Worker: use `stoppingToken` from `ExecuteAsync` and propagate through all async operations
+- Always propagate the active token through Service → Provider; do not drop or replace it
+- Keep async style consistent with surrounding project files
+
+---
+
+## Logging Rules
+
+```csharp
+// Correct — method name + key identifier
+_logger.Log(LogLevel.Error, $"[{nameof(GetUser)}] user not found: {userId}");
+_logger.Log(LogLevel.Error, $"[{nameof(CreateOrder)}] DB write failed: Order, create");
+
+// Wrong
+Console.WriteLine("user not found");
+_logger.Log(LogLevel.Error, "error");  // no context
+```
+
+- Log external API failures: include request name and response code
+- Log DB write failures: include entity name and operation type
+- Do NOT log full request payload if it may contain sensitive data
+
+---
+
+## Dependency Injection Rules
+
+```csharp
+// Correct — attribute-based registration, Singleton lifetime
+[DependencyInjection(typeof(IUserService))]
+public class UserService : IUserService { ... }
+
+// Wrong — manual registration in Startup for standard Service
+services.AddScoped<IUserService, UserService>();
+services.AddSingleton<IUserService, UserService>();
+```
+
+- Decorate **implementation** class with `[DependencyInjection(typeof(IXxx))]`
+  — this replaces manual `services.Add*` in Startup, it is NOT about avoiding Singleton
+- ECCore default lifetime is **Singleton** — do NOT override to Scoped or Transient
+  for standard DomainService / Infrastructure types unless a written exception exists
+- Interface project (`{SolutionName}.Interface`) holds declarations only — not registrations
+- Use constructor injection; do NOT use `new` for injectable types
+
+### Allowed manual registration in Startup (add comment explaining why)
+
+- `AddHttpClient` / named HTTP clients
+- `AddHostedService` / background workers
+- Factory or singleton resources not mapping to a single interface
+- Framework extensions requiring specific startup sequence
+- Do NOT add `AddSwaggerGen` when Startup inherits `ECServiceStartup` (Swagger via `Swashbuckle.AspNetCore` 7.2.0 in `ECService`)
+- `StartupBase` MUST implement `IStartup` — see ECGuide.md §2–§3
+
+---
+
+## Code Style
+
+- Use file-scoped namespaces if already used in the repo
+- Use primary constructors only if already used in the repo
+- Keep methods small and focused
+- Prefer explicit types for service boundaries and models
+- Add comments only for non-obvious business rules
+
+---
+
+## Self-Check for Service Files
+
+Before finishing, verify:
+- [ ] No raw SQL / DB calls?
+- [ ] No raw `HttpClient` calls?
+- [ ] No injection of another Service?
+- [ ] `[DependencyInjection]` on implementation, Singleton lifetime?
+- [ ] `await` used (not `.Result` / `.Wait()`)?
+- [ ] CancellationToken propagated through all async calls?
+- [ ] Logging includes method name and business identifier?
+- [ ] New/modified private methods use camelCase; private fields use `_camelCase` (see `naming.mdc`)?

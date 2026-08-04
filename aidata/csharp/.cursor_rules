@@ -1,0 +1,144 @@
+# C# Development Rules — Index
+
+## Priority Order
+1. Existing project code patterns — **architecture / layering / library usage only** (see scope below)
+2. This document (`aidata/csharp/.cursor_rules`)
+3. `aidata/csharp/ECGuide.md` — when task involves ECCore / ECFramework (see below)
+4. User request
+5. Default framework conventions
+
+On conflict: existing project code and this document first — **except naming** (see below).
+For EC-specific patterns (DI lifetime, Kafka/Loki config, transactions), ECGuide.md Confirmed policy is binding.
+
+### Existing code patterns — scope
+
+| May mimic from neighbors | Must follow `naming.mdc` (not legacy style) |
+|--------------------------|---------------------------------------------|
+| Folder / project structure | private method → camelCase |
+| Provider / Validator / Transfer layout | private field → `_camelCase` |
+| DI attribute style, async style | public method → PascalCase |
+| Error / logging patterns | Route segment → camelCase |
+| Interface naming (`I` prefix) | parameters / locals → camelCase |
+
+**Naming rule:** `./aidata/csharp/rules/naming.mdc` is **binding for all new or modified code**.
+Do **not** copy legacy PascalCase private methods from the same file or module.
+When editing an existing PascalCase private method, rename it to camelCase in the same change.
+Untouched legacy violations may remain until that code is modified — they are **not** a template for new code.
+
+---
+
+## When to read ECGuide.md
+
+Read `aidata/csharp/ECGuide.md` **before or while editing** when the task touches:
+- ECCore: `[DependencyInjection]`, `ECLibraryContainer`, database managers, `IKafkaLogger`, `RestfulRequest`, `IRestfulClient`, `ECException`, `IECConfig`
+- ECFramework: `EDASFramework`, `UseECFramework`, `StartupBase` (`IStartup`), `ECServiceStartup`, exception pipeline, Swagger/metrics
+
+For **net10 / `.csproj` / NuGet** details, see ECGuide.md §11 and `libraries.mdc`.
+
+---
+
+## When to read service-kind rules（必讀 — 先判定 kind）
+
+依 `./aidata/coding-rules.md` 的 **C# Service Kind 判定**，在修改 **Controller**、**appsettings** 或 **Infrastructure 資料來源** 前 **必須** 讀取對應規則：
+
+| kind | 規則檔 | 典型 Repo 範例 |
+|------|--------|----------------|
+| `atomic` | `./aidata/csharp/rules/service-kind-atomic.mdc` | MemberService、PredictService、PaymentService |
+| `integration` | `./aidata/csharp/rules/service-kind-integration.mdc` | NewLotteryBackEndService、PriceBackendService |
+| `service` | `./aidata/csharp/rules/service-kind-background.mdc` | CrawlerService、PredictResultService |
+
+**判定順序**（詳見 `coding-rules.md`）：
+1. `./aidata/webapi/_index.md` 或 `./aidata/service/_index.md` 的 **kind** 欄（權威來源）
+2. Heuristic fallback（DB Settings → atomic；僅 RestfulSettings → integration）
+3. 無法判定 → 先問使用者
+
+**硬規則**：未判定 kind 前，不得新增 Controller Route 或 AppSettings DB/Restful 區塊。
+
+---
+
+## When to read swagger.mdc（WebAPI 專案 — 必讀）
+
+**凡屬 WebAPI 類型專案**，在新增或修改 API 前 **必須**先讀 `./aidata/csharp/rules/swagger.mdc`，並在產出程式碼時一併產生 Swagger 文件。
+
+觸發條件（符合任一即套用）：
+- 專案含 `*Controller.cs` 或 ASP.NET Core WebAPI / `ECServiceStartup` 特徵
+- 任務涉及 `*Request.cs`、`*Response.cs`、API 用 Model/DTO
+- 使用者要求新增/修改 HTTP 端點
+
+**強制產出內容：**
+1. **Input**：每欄位 `<summary>` 詳述用途（含必填/選填與限制）；必填用 non-nullable；選填用 nullable；Model 不加 `[Required]` 等 Data Annotation
+2. **Output**：每欄位 `<summary>` 詳述用途；依語意推論 non-nullable（如 Id、Status、CreatedAt）或 nullable（如 DeletedAt、選填 Remark）
+3. **Controller**：每個 action 有 `<summary>` 說明端點行為
+
+---
+
+## General Principles
+
+- Always follow existing architecture and folder structure
+- Always reuse internal company libraries before .NET built-ins or external packages
+- Do not introduce new NuGet packages unless explicitly requested
+- Do not replace internal abstractions with raw framework calls
+- Prefer `[DependencyInjection(typeof(IXxx))]` attribute on implementation class
+  over manual `services.Add*` registration in Startup.
+  ECCore default lifetime is **Singleton** — do NOT override to Scoped or Transient
+  for standard DomainService / Infrastructure types.
+- Reserve manual Startup registration for documented exceptions only (see `layer-service.mdc`)
+- Before adding a new Service or Provider, read neighbors in the same folder and mimic their **architecture** (layering, DI, Provider layout) — **not** method/field naming if it violates `naming.mdc`
+
+---
+
+## Detailed Rules — Read the relevant file before writing code
+
+| Topic | File |
+|-------|------|
+| Service kind — atomic（Route v1、DB Settings、Provider） | `./aidata/csharp/rules/service-kind-atomic.mdc` |
+| Service kind — integration（Route 無版號、RestfulSettings、無 DB） | `./aidata/csharp/rules/service-kind-integration.mdc` |
+| Service kind — background（無 Controller） | `./aidata/csharp/rules/service-kind-background.mdc` |
+| Required / forbidden libraries, HTTP, logging, data access, config, **net10 / NuGet** | `./aidata/csharp/rules/libraries.mdc` |
+| Naming, folder structure, namespaces | `./aidata/csharp/rules/naming.mdc` |
+| Controller layer rules, route style, error responses | `./aidata/csharp/rules/layer-controller.mdc` |
+| Service layer rules, async, DI, logging | `./aidata/csharp/rules/layer-service.mdc` |
+| Infrastructure layer rules (Provider / Validator / Transfer), data access | `./aidata/csharp/rules/layer-infrastructure.mdc` |
+| Integration / unit test rules (WebApplicationFactory, Moq, forbidden Skip) | `./aidata/csharp/rules/testing.mdc` |
+| Swagger / OpenAPI doc rules (Request/Response XML summary、nullable 推論、禁止 Data Annotation) | `./aidata/csharp/rules/swagger.mdc` |
+
+---
+
+## Reference Files Priority
+
+**Authoritative** (for `.csproj`, TFM, host bootstrap): `demo/DemoService/`, `src/ECService/`, `src/Core/ECCore/`
+
+**Secondary** (C# patterns only; `.csproj` may be stale): `aidata/csharp/.sample/demo/`
+
+Priority:
+1. Same module under **`demo/`** or **`src/`**
+2. Same module under **`.sample/demo/`**
+3. Same layer → same data source type
+
+Primary demo: `demo/DemoService` (host), `DemoService.DomainService`, `DemoService.Infrastructure`, `DemoService.Interface`, `DemoService.Model`
+
+---
+
+## Mandatory Self-Check After Every Code Output
+
+After producing any code, you MUST run this checklist silently and fix violations before replying:
+
+- [ ] Service kind determined from `_index.md` (or user confirmed) and read matching `service-kind-*.mdc`?
+- [ ] **atomic**: routes include `v1/` (default; other version only if developer explicitly requested); appsettings has DB Settings; no Restful-as-primary-DB?
+- [ ] **integration**: routes exclude `v1/`; appsettings has RestfulSettings only (no DB Settings); Gateway URIs match downstream OpenAPI?
+- [ ] **service**: no new Controller or HTTP routes?
+- [ ] No forbidden library used (HttpClient / Dapper / EF / AutoMapper / Serilog / Console.WriteLine — see `libraries.mdc`)
+- [ ] Naming follows `naming.mdc` (new/modified code): private method camelCase, private field `_camelCase`, public method PascalCase — not copied from legacy PascalCase private methods in the same file?
+- [ ] Controller has no business logic, config reads, or direct DB calls
+- [ ] Service does not inject another Service
+- [ ] Infrastructure only contains Provider / Validator / Transfer
+- [ ] DI uses `[DependencyInjection]`, not `AddScoped` in Startup
+- [ ] Async uses plain `await`, not `.Result` / `.Wait()`
+- [ ] Test files: use `WebApplicationFactory<Startup>` (not `new HttpClient()` to deployed URL), no `[Fact(Skip = ...)]`
+- [ ] WebAPI task: read `swagger.mdc` and generated complete Swagger docs (not logic-only)?
+- [ ] Request models: every property has `<summary>`; no Data Annotation on properties; required are non-nullable with 必填 in summary; optional are nullable (`?`)
+- [ ] Response models: every property has `<summary>`; id / status / createdAt / core strings are non-nullable per semantics; nullable fields explain when null; `List<T>` initialized to `new()`
+- [ ] Controller actions: every endpoint has XML `<summary>`?
+
+End your reply with exactly one line:
+`規範自檢：✅ 通過` or `規範自檢：⚠️ 已修正 N 處 — {brief description}`

@@ -1,0 +1,130 @@
+---
+description: C# 必用／禁用 Library 規範（HTTP、Logging、資料存取、Config）
+globs: ["**/*.cs"]
+alwaysApply: false
+---
+
+## Required vs Forbidden Libraries
+
+| Purpose | MUST USE | MUST NOT USE |
+|---------|----------|--------------|
+| Outbound HTTP | `IRestfulClient`, `IRestfulRequest`, `IRestfulResponse`, `IRequestContext` | `HttpClient`, `IHttpClientFactory`, `RestSharp`, `Flurl` |
+| Logging | `IKafkaLogger` | `Console.WriteLine`, `Debug.WriteLine`, `Trace.WriteLine`, `ILogger<T>` (unless wrapped), `Serilog`, `NLog` |
+| MySQL | `IMySQLManager`, `IMySQLCommand` | raw `SqlConnection`, `SqlCommand`, `MySql.Data.MySqlClient`, `Dapper`, `EntityFramework`, `DbContext` |
+| PostgreSQL | `IPostgreSQLManager`, `IDbPostgreSQLCommand` | raw `Npgsql`, `Dapper`, `EntityFramework` |
+| Cassandra | `ICassandraManager`, `ICassandraSession` | raw driver |
+| Redis | `IRedisManager`, `IRedisDB` | StackExchange.Redis direct |
+| Config | `IECConfig.GetAppSettings<T>()` | `GetSection("AppSettings:...").Value` in Service/Controller |
+
+Additional forbidden (unless explicitly requested):
+`AutoMapper`, `MediatR`, `Polly`
+
+---
+
+## HTTP Exception Rule
+
+Raw HTTP (`HttpClient` / `IHttpClientFactory`) is allowed **ONLY** when ECCore gateway is not applicable:
+- External third-party / vendor APIs
+- Internal tools not in ECCore gateway (e.g. GitLab, Confluence)
+- Requests requiring `application/x-www-form-urlencoded`, multipart, streaming, or custom auth not supported by ECCore
+
+**When using raw HTTP:**
+- MUST add a comment explaining why ECCore cannot be used
+- MUST isolate implementation in Infrastructure / Provider layer
+- MUST NOT call raw HTTP from Controller or Service layer
+- MUST NOT introduce new third-party HTTP libraries
+- SHOULD prefer built-in `HttpClient` / `IHttpClientFactory`
+- SHOULD wrap behind a project interface
+
+```csharp
+// Correct — raw HTTP wrapped in Infrastructure, reason documented
+public interface IConfluenceProvider
+{
+    Task CreatePageAsync(CreateConfluencePageRequest request);
+}
+
+// Implementation in Infrastructure — comment explains ECCore exception
+[DependencyInjection(typeof(IConfluenceProvider))]
+public class ConfluenceProvider : IConfluenceProvider
+{
+    // ECCore gateway does not support Confluence; using HttpClient directly
+    private readonly HttpClient _http;
+    ...
+}
+```
+
+---
+
+## Config Access Rules
+
+```
+// CORRECT — typed model via IECConfig in Provider/Infrastructure
+_ecConfig.GetAppSettings<AppSettings>()
+
+// WRONG — string path in Service or Controller
+_ecConfig.GetSection("AppSettings:AI:Provider").Value
+```
+
+Preferred pattern:
+1. Define fields in `{SolutionName}.Model/AppSettings` (inherit `DefaultAppSettings` when applicable)
+2. Read once via `_ecConfig.GetAppSettings<AppSettings>()` in Infrastructure / Provider
+3. Expose typed methods via interface consumed by Service
+
+`GetSection(...)` is allowed **only** for framework/bootstrap/infrastructure concerns requiring dynamic section traversal.
+
+---
+
+## Logging Format Rules
+
+```csharp
+// Correct
+_logger.Log(LogLevel.Error, $"[{nameof(GetUser)}] user id not exist: {userId}");
+
+// Wrong
+Console.WriteLine("user not found");
+```
+
+- Include method name and key business identifier in every log message
+- Log external API failures with request name and response code
+- Log DB write failures with entity name and operation type
+- Do NOT log full request payload if it may contain sensitive data
+
+---
+
+## RestfulSettings Configuration
+
+All `appsettings.{Environment}.json` files must contain a `RestfulSettings` section when using `IRestfulClient`:
+
+```json
+"RestfulSettings": {
+  "Gateway": "http://192.168.55.60",
+  "Settings": [
+    {
+      "Name": "GetTopics",
+      "Method": "post",
+      "Uri": "/memberservice/api/user/topics"
+    }
+  ]
+}
+```
+
+Usage:
+```csharp
+RestfulRequest request = new RestfulRequest(_httpContextAccessor, _config);
+request.CreateRequest("GetTopics");
+return await _restfulClient.SendAsync<List<Topic>>(request);
+```
+
+---
+
+## Project references and NuGet (net10)
+
+| Item | Rule |
+|------|------|
+| TFM | **`net10.0`** — requires **.NET 10 SDK** |
+| ASP.NET class libraries | **`<FrameworkReference Include="Microsoft.AspNetCore.App" />`** |
+| Forbidden | **`Microsoft.AspNetCore.*` 2.x** individual packages |
+| Web host | **`Microsoft.NET.Sdk.Web`** — no duplicate AspNetCore packages |
+| Extensions | **10.0.x** where explicitly referenced in `.csproj` |
+| Transitive pin | Root **`Directory.Build.props`** → **`Newtonsoft.Json` 13.0.3** |
+| Copy from | Sibling `.csproj` under **`demo/`** or **`src/`** |

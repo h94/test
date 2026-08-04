@@ -1,0 +1,3666 @@
+﻿{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "AIReviewAgent Service",
+    "description": "## AI Review Agent Service\r\n\r\n### 目的\r\n- 接收 GitLab Webhook（Push / Merge Request），非同步觸發程式碼與 Plan（`_plans/`）的 AI advisory 審查。\r\n- 提供審查事件／Run／Issue／Bruno 腳本／Portainer mapping 的查詢與維運 REST API（Upgrade4）。\r\n- Review 結果寫入 PostgreSQL（AIReviews），並可補 MR 註解與 Rocket.Chat 通知。\r\n\r\n### 驗證與安全\r\n- **Webhook**：HTTP Header `X-Gitlab-Token` 須與 `AppSettings:GitLab:WebhookSecret` 一致；否則 **401**。\r\n- **Webhook**：須帶 `X-Gitlab-Event`（`Push Hook` / `Merge Request Hook`）；不符則 **400**。\r\n- **其餘 REST**（`/api/reviews/*`、`/api/brunoScripts/*`、`/api/mappings/*`、`/api/heart`、`/api/version`）：內部環境，無額外 Bearer / API Key。\r\n\r\n### HTTP 狀態碼共通\r\n| 狀態 | 說明 |\r\n| --- | --- |\r\n| 202 | Webhook／手動觸發已接受，審查於背景執行。 |\r\n| 200 | 查詢或操作成功（含空列表、rawPayload 為 null 時仍可能 200）。 |\r\n| 204 | 刪除成功（mapping DELETE）。 |\r\n| 400 | JSON 解析失敗、Header 錯誤、必要欄位缺漏。 |\r\n| 401 | Webhook Token 不符或未設定。 |\r\n| 404 | 指定資源不存在（event / run / mapping / bruno script）。 |\r\n| 409 | 狀態不允許操作（例如非 failed 的 event retry、bruno retry）。 |\r\n| 500 | 未預期伺服器錯誤。 |\r\n\r\n### 分頁約定\r\n- Query：`page`（預設 1）、`pageSize`（預設 20，上限 100）。\r\n- Response：`items`、`total`、`page`、`pageSize` 必有；`items` 無資料時為空陣列。\r\n\r\n### HTTP 路由一覽\r\n| Method | Path | 說明 |\r\n| --- | --- | --- |\r\n| POST | `/api/webhook/gitlab/push` | GitLab Push Hook → **202** |\r\n| POST | `/api/webhook/gitlab/mergeRequest` | GitLab MR Hook → **202** |\r\n| GET | `/api/reviews/events` | 事件列表（分頁＋篩選） |\r\n| GET | `/api/reviews/events/{eventId}` | 事件詳情（含 runs 摘要） |\r\n| POST | `/api/reviews/events/{eventId}/retry` | failed → pending（僅改 DB，**不**立即入隊） |\r\n| GET | `/api/reviews/events/{eventId}/rawPayload` | 原始 webhook JSON；DB 為 null 時 body 內 `rawPayloadJson` 為 null |\r\n| GET | `/api/reviews/runs` | Run 列表（跨 event） |\r\n| GET | `/api/reviews/runs/{runId}` | 單筆 Run 詳情 |\r\n| GET | `/api/reviews/runs/{runId}/rawResponse` | AI 原始 JSON；無紀錄時 `rawResponseJson` 為 null |\r\n| GET | `/api/reviews/runs/event/{eventId}` | 同一 event 的全部 runs |\r\n| GET | `/api/reviews/issues` | Issue 列表（跨 run，含 event 衍生欄位） |\r\n| GET | `/api/reviews/issues/run/{runId}` | 單一 run 的 issues（分頁） |\r\n| GET | `/api/reviews/stats/summary` | 儀表板摘要；`range`=7 或 30 |\r\n| GET | `/api/reviews/projects` | distinct `project_key` 下拉清單 |\r\n| POST | `/api/reviews/trigger` | 手動觸發 → **202**（body 為 event id） |\r\n| GET | `/api/brunoScripts` | Bruno 腳本分頁列表 |\r\n| GET | `/api/brunoScripts/{id}` | 單筆（含 scriptContent） |\r\n| GET | `/api/brunoScripts/byPlan` | 依 plan 查版本清單 |\r\n| POST | `/api/brunoScripts/{id}/retry` | failed → pending 並入隊 |\r\n| GET | `/api/catalog/aidataDetailLogs` | Aidata detail 生成 log 分頁列表 |\r\n| PUT | `/api/catalog/aidataDetailLogs/{id}/retry` | 重設 pending 觸發重打 |\r\n| GET | `/api/mappings` | Portainer↔GitLab mapping 列表 |\r\n| GET | `/api/mappings/{portainerKey}` | mapping 詳情（10 欄） |\r\n| POST | `/api/mappings` | 新增 mapping |\r\n| PUT | `/api/mappings/{portainerKey}` | 更新可編輯欄位 |\r\n| DELETE | `/api/mappings/{portainerKey}` | 刪除 mapping → **204** |\r\n| GET | `/api/heart` | 心跳（純文字） |\r\n| GET | `/api/version` | 版本（純文字） |\r\n\r\n### 資料模型列舉\r\n- `review_events.status`：`pending` / `processing` / `completed` / `failed`\r\n- `review_runs.review_type`：`code` / `plan` / `skipped`\r\n- `review_runs.status`：`pending` / `running` / `passed` / `warning` / `failed` / `error` / `skipped` / `ai_unavailable`\r\n- `review_issues.severity`：`low` / `medium` / `high` / `critical`\r\n- `plan_bruno_scripts.status`：`pending` / `processing` / `ready` / `failed`",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/catalog/aidataDetailLogs": {
+      "get": {
+        "tags": [
+          "AidataDetailLog"
+        ],
+        "summary": "分頁查詢 detail 生成 log 清單。",
+        "parameters": [
+          {
+            "name": "TriggerType",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "TriggerSource",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Page",
+            "in": "query",
+            "description": "頁碼，從 1 起算。選填，預設 `1`。",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "description": "每頁筆數。選填，預設 `20`；服務端上限 `100`。",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AidataDetailGenLogListItemPagedResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AidataDetailGenLogListItemPagedResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AidataDetailGenLogListItemPagedResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/catalog/aidataDetailLogs/{id}/retry": {
+      "put": {
+        "tags": [
+          "AidataDetailLog"
+        ],
+        "summary": "重設 status=pending 並觸發重打；processing 時 **409**。",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AidataDetailGenLogRetryResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AidataDetailGenLogRetryResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AidataDetailGenLogRetryResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/brunoScripts": {
+      "get": {
+        "tags": [
+          "BrunoScript"
+        ],
+        "summary": "分頁查詢 Bruno 腳本列表（不含完整 script 正文；含 plan／script commit SHA）。",
+        "parameters": [
+          {
+            "name": "Status",
+            "in": "query",
+            "description": "腳本狀態：`pending` / `processing` / `ready` / `failed`。選填。",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ProjectKey",
+            "in": "query",
+            "description": "`project_key`，ILIKE 模糊。選填。",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PlanCommitSha",
+            "in": "query",
+            "description": "觸發審查的 Plan commit SHA（`plan_commit_sha`）精確比對。選填。",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "DateFrom",
+            "in": "query",
+            "description": "`created_at` 下限。選填。",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "DateTo",
+            "in": "query",
+            "description": "`created_at` 上限。選填。",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "Page",
+            "in": "query",
+            "description": "頁碼，從 1 起算。選填，預設 `1`。",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "description": "每頁筆數。選填，預設 `20`；服務端上限 `100`。",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BrunoScriptListItemPagedResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BrunoScriptListItemPagedResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BrunoScriptListItemPagedResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/brunoScripts/{id}": {
+      "get": {
+        "tags": [
+          "BrunoScript"
+        ],
+        "summary": "取得單筆腳本詳情（含 AIReviewAgentService.Model.BrunoScriptResponse.ScriptContent 正文）。",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "`plan_bruno_scripts.id`。",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BrunoScriptResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BrunoScriptResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BrunoScriptResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/brunoScripts/byPlan": {
+      "get": {
+        "tags": [
+          "BrunoScript"
+        ],
+        "summary": "依 `projectKey` + `planFilePath` 列出所有版本（不含 scriptContent）。",
+        "parameters": [
+          {
+            "name": "projectKey",
+            "in": "query",
+            "description": "專案識別碼。必填。",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "planFilePath",
+            "in": "query",
+            "description": "Plan 路徑（如 `_plans/Foo_Plan.md`）。必填。",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BrunoScriptSummaryResponse"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BrunoScriptSummaryResponse"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BrunoScriptSummaryResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/brunoScripts/{id}/retry": {
+      "post": {
+        "tags": [
+          "BrunoScript"
+        ],
+        "summary": "手動重試失敗腳本：`failed` → `pending` 並重新入隊生成。",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "腳本 id。",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reviews/events": {
+      "get": {
+        "tags": [
+          "Review"
+        ],
+        "summary": "分頁查詢審查事件列表（含 run 統計）。",
+        "parameters": [
+          {
+            "name": "Status",
+            "in": "query",
+            "description": "事件狀態，逗號分隔多值（如 `failed,processing`）。選填。",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "EventType",
+            "in": "query",
+            "description": "事件類型（`push`、`merge_request`、`manual_review` 等）。選填；精確比對。",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ProjectKey",
+            "in": "query",
+            "description": "專案識別碼，ILIKE 模糊搜尋。選填。",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "TriggeredBy",
+            "in": "query",
+            "description": "觸發者 username，前綴比對（ILIKE `value%`）。選填。",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "DateFrom",
+            "in": "query",
+            "description": "`created_at` 下限（含）。選填；ISO 8601。",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "DateTo",
+            "in": "query",
+            "description": "`created_at` 上限（含）。選填；ISO 8601。",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "SortBy",
+            "in": "query",
+            "description": "排序欄位：`created_at`（預設）、`updated_at`、`status`。選填。",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SortOrder",
+            "in": "query",
+            "description": "排序方向：`asc` / `desc`（預設 `desc`）。選填。",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Page",
+            "in": "query",
+            "description": "頁碼，從 1 起算。選填，預設 `1`。",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "description": "每頁筆數。選填，預設 `20`；服務端上限 `100`。",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewEventListItemPagedResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewEventListItemPagedResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewEventListItemPagedResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reviews/events/{eventId}": {
+      "get": {
+        "tags": [
+          "Review"
+        ],
+        "summary": "取得單一事件詳情（含關聯 runs 摘要，不含 raw payload）。",
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "description": "`review_events.id`。",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewEventDetailResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewEventDetailResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewEventDetailResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reviews/events/{eventId}/retry": {
+      "post": {
+        "tags": [
+          "Review"
+        ],
+        "summary": "重試失敗事件：僅將 status 改為 `pending`（不立即入隊，由補償 Worker 掃描）。",
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "description": "須為 `failed` 狀態之事件 id。",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reviews/events/{eventId}/rawPayload": {
+      "get": {
+        "tags": [
+          "Review"
+        ],
+        "summary": "取得事件原始 webhook／手動觸發 JSON（`raw_payload`）。",
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "description": "事件 id。",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewEventRawPayloadResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewEventRawPayloadResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewEventRawPayloadResponse"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reviews/runs": {
+      "get": {
+        "tags": [
+          "Review"
+        ],
+        "summary": "分頁查詢審查 run 列表（可跨 event、JOIN project_key）。",
+        "parameters": [
+          {
+            "name": "EventId",
+            "in": "query",
+            "description": "限定所屬 `review_events.id`。選填。",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "Status",
+            "in": "query",
+            "description": "Run 狀態，逗號分隔。選填。",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ReviewType",
+            "in": "query",
+            "description": "審查類型（`code` / `plan` / `skipped`）。選填。",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ProjectKey",
+            "in": "query",
+            "description": "所屬 event 的 `project_key`，ILIKE 模糊。選填。",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "AiProvider",
+            "in": "query",
+            "description": "AI Provider 精確比對。選填。",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "DateFrom",
+            "in": "query",
+            "description": "`started_at` 下限。選填。",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "DateTo",
+            "in": "query",
+            "description": "`started_at` 上限。選填。",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "SortBy",
+            "in": "query",
+            "description": "排序：`created_at`（預設）、`started_at`、`status`、`project_key`。選填。",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SortOrder",
+            "in": "query",
+            "description": "`asc` / `desc`（預設 `desc`）。選填。",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Page",
+            "in": "query",
+            "description": "頁碼，從 1 起算。選填，預設 `1`。",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "description": "每頁筆數。選填，預設 `20`；服務端上限 `100`。",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewRunListItemPagedResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewRunListItemPagedResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewRunListItemPagedResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reviews/runs/{runId}": {
+      "get": {
+        "tags": [
+          "Review"
+        ],
+        "summary": "讀取單筆 Review Run 詳情（含 issue 計數與 AI 回饋欄位）。",
+        "parameters": [
+          {
+            "name": "runId",
+            "in": "path",
+            "description": "`review_runs.id`。",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewRunResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewRunResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewRunResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reviews/runs/{runId}/rawResponse": {
+      "get": {
+        "tags": [
+          "Review"
+        ],
+        "summary": "取得 AI 原始 JSON 回應（`ai_raw_response`）。",
+        "parameters": [
+          {
+            "name": "runId",
+            "in": "path",
+            "description": "Run id。",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewRunRawResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewRunRawResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewRunRawResponse"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reviews/runs/event/{eventId}": {
+      "get": {
+        "tags": [
+          "Review"
+        ],
+        "summary": "列出同一事件下的全部 runs（既有 API，非分頁）。",
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "description": "事件 id。",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReviewRunResponse"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReviewRunResponse"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReviewRunResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reviews/issues": {
+      "get": {
+        "tags": [
+          "Review"
+        ],
+        "summary": "跨 run 分頁查詢 issues（含 eventId／projectKey／reviewType 衍生欄位）。",
+        "parameters": [
+          {
+            "name": "Severity",
+            "in": "query",
+            "description": "嚴重度（`critical` / `high` / `medium` / `low`）。選填。",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Category",
+            "in": "query",
+            "description": "分類，ILIKE 模糊。選填。",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "RuleId",
+            "in": "query",
+            "description": "規則 ID 精確比對。選填。",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "RunId",
+            "in": "query",
+            "description": "限定 `review_runs.id`。選填。",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "ProjectKey",
+            "in": "query",
+            "description": "所屬 event 的 `project_key`，ILIKE。選填。",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "DateFrom",
+            "in": "query",
+            "description": "`review_issues.created_at` 下限。選填。",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "DateTo",
+            "in": "query",
+            "description": "`review_issues.created_at` 上限。選填。",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "Page",
+            "in": "query",
+            "description": "頁碼，從 1 起算。選填，預設 `1`。",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "description": "每頁筆數。選填，預設 `20`；服務端上限 `100`。",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewIssueListItemPagedResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewIssueListItemPagedResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewIssueListItemPagedResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reviews/issues/run/{runId}": {
+      "get": {
+        "tags": [
+          "Review"
+        ],
+        "summary": "依 run 分頁查詢 issues（Upgrade4 改為分頁回應）。",
+        "parameters": [
+          {
+            "name": "runId",
+            "in": "path",
+            "description": "Run id。",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "Page",
+            "in": "query",
+            "description": "頁碼，從 1 起算。選填，預設 `1`。",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "description": "每頁筆數。選填，預設 `20`；服務端上限 `100`。",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewIssueResponsePagedResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewIssueResponsePagedResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewIssueResponsePagedResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reviews/stats/summary": {
+      "get": {
+        "tags": [
+          "Review"
+        ],
+        "summary": "儀表板摘要統計（含 passRate、pendingEvents、趨勢）。",
+        "parameters": [
+          {
+            "name": "range",
+            "in": "query",
+            "description": "趨勢天數，僅支援 `7` 或 `30`，預設 `7`。",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 7
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewDashboardSummary"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewDashboardSummary"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewDashboardSummary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reviews/projects": {
+      "get": {
+        "tags": [
+          "Review"
+        ],
+        "summary": "取得曾出現在審查事件中的 distinct `project_key`（前端下拉）。",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewProjectsResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewProjectsResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewProjectsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reviews/trigger": {
+      "post": {
+        "tags": [
+          "Review"
+        ],
+        "summary": "手動建立 `review_events` 並入列背景審查。",
+        "requestBody": {
+          "description": "觸發參數，見 AIReviewAgentService.Model.ManualReviewTriggerRequest。",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ManualReviewTriggerRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/mappings": {
+      "get": {
+        "tags": [
+          "ServiceMapping"
+        ],
+        "summary": "分頁查詢 mapping 列表。",
+        "parameters": [
+          {
+            "name": "Kind",
+            "in": "query",
+            "description": "服務類型精確比對。選填。",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "GitlabUrl",
+            "in": "query",
+            "description": "`gitlab_url` ILIKE 模糊。選填。",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PortainerKey",
+            "in": "query",
+            "description": "`portainer_key` ILIKE 模糊。選填。",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "HasMapping",
+            "in": "query",
+            "description": "`true`：僅有有效 GitLab URL；`false`：URL 為 NULL。選填。",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "SortBy",
+            "in": "query",
+            "description": "排序欄位：`portainerKey`（預設）、`gitlabUrl`、`kind`。選填。",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SortOrder",
+            "in": "query",
+            "description": "`asc`（預設）/ `desc`。選填。",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Page",
+            "in": "query",
+            "description": "頁碼，從 1 起算。選填，預設 `1`。",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "description": "每頁筆數。選填，預設 `20`；服務端上限 `100`。",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MappingListItemPagedResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MappingListItemPagedResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MappingListItemPagedResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ServiceMapping"
+        ],
+        "summary": "新增 mapping 列。",
+        "requestBody": {
+          "description": "建立欄位；AIReviewAgentService.Model.MappingCreateRequest.PortainerKey 必填。",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MappingCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MappingKeyResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MappingKeyResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MappingKeyResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/mappings/{portainerKey}": {
+      "get": {
+        "tags": [
+          "ServiceMapping"
+        ],
+        "summary": "取得單筆 mapping 詳情（完整 10 欄，含唯讀 swagger／relate 欄位）。",
+        "parameters": [
+          {
+            "name": "portainerKey",
+            "in": "path",
+            "description": "主鍵（路徑需 URL 編碼，如含 `|`）。",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MappingDetailResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MappingDetailResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MappingDetailResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ServiceMapping"
+        ],
+        "summary": "更新可編輯欄位（未出現在 body 的欄位不變）。",
+        "parameters": [
+          {
+            "name": "portainerKey",
+            "in": "path",
+            "description": "主鍵。",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "可編輯欄位，見 AIReviewAgentService.Model.MappingUpdateRequest。",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MappingUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MappingKeyResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MappingKeyResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MappingKeyResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ServiceMapping"
+        ],
+        "summary": "刪除 mapping 列（實體刪除；不影響已產出 aidata 檔案）。",
+        "parameters": [
+          {
+            "name": "portainerKey",
+            "in": "path",
+            "description": "主鍵。",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/heart": {
+      "get": {
+        "tags": [
+          "System"
+        ],
+        "summary": "Alive 檢查。回傳目前伺服器的當地時間戳（`yyyy-MM-dd HH:mm:ss.fff`），供 Portainer／Load Balancer／監控粗略探活。",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/version": {
+      "get": {
+        "tags": [
+          "System"
+        ],
+        "summary": "回報服務程式版本：`Version` 設定、`Environment`、`Assembly` build 時間，便於對照部署紀錄。",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/webhook/gitlab/push": {
+      "post": {
+        "tags": [
+          "Webhook"
+        ],
+        "summary": "接收 GitLab <strong>Push Hook</strong>。\r\n\r\nHeader：AIReviewAgentService.Model.GitLabWebhookHeaders.Token（需等於設定檔 Secret）、\r\nAIReviewAgentService.Model.GitLabWebhookHeaders.EventType =\r\nAIReviewAgentService.Model.GitLabWebhookEventKinds.PushHook。\r\n\r\nBody：GitLab 官方 Push Hook JSON；此處結構為常見欄位子集並附 AIReviewAgentService.Model.GitLabPushWebhookPayload.ExtensionData 相容擴充欄位。",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GitLabPushWebhookPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/webhook/gitlab/mergeRequest": {
+      "post": {
+        "tags": [
+          "Webhook"
+        ],
+        "summary": "接收 GitLab <strong>Merge Request Hook</strong>。",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GitLabMergeRequestWebhookPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AidataDetailGenLogListItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "triggerType": {
+            "type": "string",
+            "nullable": true
+          },
+          "triggerSource": {
+            "type": "string",
+            "nullable": true
+          },
+          "serviceKind": {
+            "type": "string",
+            "nullable": true
+          },
+          "gitlabUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "relatedSources": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "splitNote": {
+            "type": "string",
+            "nullable": true
+          },
+          "aiProvider": {
+            "type": "string",
+            "nullable": true
+          },
+          "aiModel": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "nullable": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "detail gen log 列表項目（API 回應）。"
+      },
+      "AidataDetailGenLogListItemPagedResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AidataDetailGenLogListItem"
+            },
+            "description": "本頁資料列。必有；無符合資料時為空陣列（非 null）。",
+            "nullable": true
+          },
+          "total": {
+            "type": "integer",
+            "description": "符合篩選條件的總筆數（跨頁）。必有；無資料時為 `0`。",
+            "format": "int32"
+          },
+          "page": {
+            "type": "integer",
+            "description": "目前頁碼（與請求一致，經服務端正規化後）。必有。",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "本頁請求的 pageSize（經上限截斷後）。必有。",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "分頁查詢共用回應包裝。"
+      },
+      "AidataDetailGenLogRetryResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "`PUT /api/catalog/aidataDetailLogs/{id}/retry` 成功回應。"
+      },
+      "BrunoScriptListItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "`catalog.plan_bruno_scripts.id`。必有。",
+            "format": "int64"
+          },
+          "planRunId": {
+            "type": "integer",
+            "description": "對應 `review_runs.id`（plan run）。必有。",
+            "format": "int64"
+          },
+          "planFileName": {
+            "type": "string",
+            "description": "Plan 檔名（由 AIReviewAgentService.Model.BrunoScriptListItem.PlanFilePath 取檔名）。必有；路徑為空時為空字串。",
+            "nullable": true
+          },
+          "planFilePath": {
+            "type": "string",
+            "description": "Plan 完整路徑（如 `_plans/Foo_Plan.md`）。必有。",
+            "nullable": true
+          },
+          "projectKey": {
+            "type": "string",
+            "description": "專案識別碼。必有。",
+            "nullable": true
+          },
+          "version": {
+            "type": "integer",
+            "description": "同 plan 路徑的版本號。必有。",
+            "format": "int32"
+          },
+          "planCommitSha": {
+            "type": "string",
+            "description": "觸發審查的 Plan commit（DB `plan_commit_sha`）。必有。",
+            "nullable": true
+          },
+          "scriptCommitSha": {
+            "type": "string",
+            "description": "推送至 testscripts 的 commit SHA（DB `script_content` 欄位語意）。必有；尚未推送時可能為空字串。",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "description": "腳本狀態。必有。",
+            "nullable": true
+          },
+          "scriptSummary": {
+            "type": "string",
+            "description": "AI 產生的腳本摘要。可為 null（未完成或失敗前）。",
+            "nullable": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "失敗時錯誤訊息。可為 null（非 failed）。",
+            "nullable": true
+          },
+          "aiProvider": {
+            "type": "string",
+            "description": "使用的 AI Provider。可為 null。",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "建立時間（UTC）。必有。",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "更新時間（UTC）。必有。",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "`GET /api/brunoScripts` 列表單筆（不含完整腳本正文）。"
+      },
+      "BrunoScriptListItemPagedResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BrunoScriptListItem"
+            },
+            "description": "本頁資料列。必有；無符合資料時為空陣列（非 null）。",
+            "nullable": true
+          },
+          "total": {
+            "type": "integer",
+            "description": "符合篩選條件的總筆數（跨頁）。必有；無資料時為 `0`。",
+            "format": "int32"
+          },
+          "page": {
+            "type": "integer",
+            "description": "目前頁碼（與請求一致，經服務端正規化後）。必有。",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "本頁請求的 pageSize（經上限截斷後）。必有。",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "分頁查詢共用回應包裝。"
+      },
+      "BrunoScriptResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "腳本主鍵。必有。",
+            "format": "int64"
+          },
+          "planRunId": {
+            "type": "integer",
+            "description": "對應 plan 審查 run 的 `review_runs.id`。必有。",
+            "format": "int64"
+          },
+          "projectKey": {
+            "type": "string",
+            "description": "專案識別碼。必有。",
+            "nullable": true
+          },
+          "planFilePath": {
+            "type": "string",
+            "description": "Plan 檔案路徑。必有。",
+            "nullable": true
+          },
+          "planCommitSha": {
+            "type": "string",
+            "description": "Plan commit SHA。必有。",
+            "nullable": true
+          },
+          "version": {
+            "type": "integer",
+            "description": "版本號。必有。",
+            "format": "int32"
+          },
+          "scriptContent": {
+            "type": "string",
+            "description": "Bruno 腳本正文（.bru 或推送後內容）。必有；`ready` 前可能為空字串。",
+            "nullable": true
+          },
+          "scriptSummary": {
+            "type": "string",
+            "description": "AI 摘要。可為 null 或空（未完成時）。",
+            "nullable": true
+          },
+          "aiProvider": {
+            "type": "string",
+            "description": "AI Provider。可為 null 或空。",
+            "nullable": true
+          },
+          "aiModel": {
+            "type": "string",
+            "description": "AI Model。可為 null 或空。",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "description": "狀態：`pending` / `processing` / `ready` / `failed`。必有。",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "建立時間（UTC）。必有。",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "更新時間（UTC）。必有。",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "`GET /api/brunoScripts/{id}` 回應（含完整腳本正文）。"
+      },
+      "BrunoScriptSummaryResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "腳本主鍵。必有。",
+            "format": "int64"
+          },
+          "planRunId": {
+            "type": "integer",
+            "description": "對應 plan run id。必有。",
+            "format": "int64"
+          },
+          "projectKey": {
+            "type": "string",
+            "description": "專案識別碼。必有。",
+            "nullable": true
+          },
+          "planFilePath": {
+            "type": "string",
+            "description": "Plan 路徑。必有。",
+            "nullable": true
+          },
+          "planCommitSha": {
+            "type": "string",
+            "description": "Plan commit SHA。必有。",
+            "nullable": true
+          },
+          "version": {
+            "type": "integer",
+            "description": "版本號。必有。",
+            "format": "int32"
+          },
+          "scriptSummary": {
+            "type": "string",
+            "description": "腳本摘要。可為空字串。",
+            "nullable": true
+          },
+          "aiProvider": {
+            "type": "string",
+            "description": "AI Provider。可為空。",
+            "nullable": true
+          },
+          "aiModel": {
+            "type": "string",
+            "description": "AI Model。可為空。",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "description": "狀態。必有。",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "建立時間（UTC）。必有。",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "更新時間（UTC）。必有。",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "`GET /api/brunoScripts/byPlan` 版本清單項目（不含 scriptContent）。"
+      },
+      "CategoryCount": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "description": "分類名稱。必有；非空。",
+            "nullable": true
+          },
+          "count": {
+            "type": "integer",
+            "description": "該分類 issue 數。必有。",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "儀表板「問題分類」統計列。"
+      },
+      "GitLabMergeRequestLastCommit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Commit SHA 字串。可為 null。",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "MR 最後 commit 子區塊。"
+      },
+      "GitLabMergeRequestObjectAttributes": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "MR 全域 id。必有。",
+            "format": "int64"
+          },
+          "iid": {
+            "type": "integer",
+            "description": "專案內 MR iid。必有。",
+            "format": "int64"
+          },
+          "target_branch": {
+            "type": "string",
+            "description": "目標分支。可為 null。",
+            "nullable": true
+          },
+          "source_branch": {
+            "type": "string",
+            "description": "來源分支。可為 null。",
+            "nullable": true
+          },
+          "last_commit": {
+            "$ref": "#/components/schemas/GitLabMergeRequestLastCommit"
+          },
+          "action": {
+            "type": "string",
+            "description": "MR 動作（`open`、`update` 等）。可為 null。",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "description": "MR 標題。可為 null。",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Merge Request `object_attributes` 區塊。"
+      },
+      "GitLabMergeRequestWebhookPayload": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/GitLabWebhookUser"
+          },
+          "project": {
+            "$ref": "#/components/schemas/GitLabWebhookProject"
+          },
+          "object_attributes": {
+            "$ref": "#/components/schemas/GitLabMergeRequestObjectAttributes"
+          }
+        },
+        "additionalProperties": { },
+        "description": "GitLab Merge Request Hook request body（結構為簡化子集）。"
+      },
+      "GitLabPushWebhookPayload": {
+        "type": "object",
+        "properties": {
+          "ref": {
+            "type": "string",
+            "description": "Git ref，例如 `refs/heads/main`。",
+            "nullable": true
+          },
+          "before": {
+            "type": "string",
+            "description": "推送前 commit SHA；新分支可能為全零。可為 null。",
+            "nullable": true
+          },
+          "after": {
+            "type": "string",
+            "description": "推送後 commit SHA。Webhook 通常必有。",
+            "nullable": true
+          },
+          "user_username": {
+            "type": "string",
+            "description": "操作者 username。可為 null。",
+            "nullable": true
+          },
+          "project": {
+            "$ref": "#/components/schemas/GitLabWebhookProject"
+          }
+        },
+        "additionalProperties": { },
+        "description": "GitLab Push Hook request body（僅挑出審查會用到的常用欄位；其餘欄位將保留在 ExtensionData）。"
+      },
+      "GitLabWebhookProject": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "GitLab 專案數字 id。必有。",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string",
+            "description": "專案名稱。可為 null。",
+            "nullable": true
+          },
+          "path_with_namespace": {
+            "type": "string",
+            "description": "含 namespace 的路徑（如 `biz/my-service`）。審查用 `project_key` 主要來源；通常必有。",
+            "nullable": true
+          },
+          "web_url": {
+            "type": "string",
+            "description": "專案 Web URL。可為 null。",
+            "nullable": true
+          },
+          "git_http_url": {
+            "type": "string",
+            "description": "HTTP clone URL。可為 null。",
+            "nullable": true
+          },
+          "ssh_url": {
+            "type": "string",
+            "description": "SSH clone URL。可為 null。",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Webhook payload 內的 GitLab 專案區塊。"
+      },
+      "GitLabWebhookUser": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "GitLab username。可為 null。",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Webhook 使用者區塊。"
+      },
+      "ManualReviewTriggerRequest": {
+        "type": "object",
+        "properties": {
+          "projectKey": {
+            "type": "string",
+            "description": "對應 `review_events.project_key`（GitLab 路徑格式）。必填（服務端驗證）。",
+            "nullable": true
+          },
+          "repositoryUrl": {
+            "type": "string",
+            "description": "Git 儲存庫 URL。選填。",
+            "nullable": true
+          },
+          "branchName": {
+            "type": "string",
+            "description": "分支名稱。選填。",
+            "nullable": true
+          },
+          "commitSha": {
+            "type": "string",
+            "description": "目標 commit SHA。選填。",
+            "nullable": true
+          },
+          "mergeRequestIid": {
+            "type": "string",
+            "description": "若為 MR 複審可帶 GitLab MR `iid`。選填；有值時優先走 MR 路徑。",
+            "nullable": true
+          },
+          "triggeredBy": {
+            "type": "string",
+            "description": "手動紀錄觸發者帳號或系統標籤。選填。",
+            "nullable": true
+          },
+          "reviewScope": {
+            "type": "string",
+            "description": "審查範圍（如 `code_and_plan`）。選填。",
+            "nullable": true
+          },
+          "note": {
+            "type": "string",
+            "description": "備註／來源追查用自由文字。選填。",
+            "nullable": true
+          },
+          "rawPayloadJson": {
+            "type": "string",
+            "description": "原始 JSON 快照，寫入 `raw_payload`。選填。",
+            "nullable": true
+          },
+          "beforeCommitSha": {
+            "type": "string",
+            "description": "手動比對起點（等同 Push hook 的 `before`）；與 AIReviewAgentService.Model.ManualReviewTriggerRequest.AfterCommitSha 併用時寫入 `raw_payload.manualReviewCompare`。",
+            "nullable": true
+          },
+          "afterCommitSha": {
+            "type": "string",
+            "description": "手動比對終點（等同 Push hook 的 `after`）。",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "`POST /api/reviews/trigger` 手動觸發審查請求 Body。"
+      },
+      "MappingCreateRequest": {
+        "required": [
+          "portainerKey"
+        ],
+        "type": "object",
+        "properties": {
+          "portainerKey": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Portainer 服務鍵（主鍵，建立後不可變更）。必填。"
+          },
+          "gitlabUrl": {
+            "type": "string",
+            "description": "GitLab HTTPS URL。選填；無法對照可省略或 null。",
+            "nullable": true
+          },
+          "kind": {
+            "type": "string",
+            "description": "服務類型。選填。",
+            "nullable": true
+          },
+          "q7Note": {
+            "type": "string",
+            "description": "備註。選填。",
+            "nullable": true
+          },
+          "openapiUrl": {
+            "type": "string",
+            "description": "OpenAPI URL（API 可編輯）。選填。",
+            "nullable": true
+          },
+          "serviceName": {
+            "type": "string",
+            "description": "服務顯示名稱。選填。",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "`POST /api/mappings` 請求 Body。"
+      },
+      "MappingDetailResponse": {
+        "type": "object",
+        "properties": {
+          "portainerKey": {
+            "type": "string",
+            "description": "Portainer 服務鍵（主鍵）。必有；非空。",
+            "nullable": true
+          },
+          "gitlabUrl": {
+            "type": "string",
+            "description": "GitLab HTTPS clone URL。可為 null（尚未對照或從屬列）。",
+            "nullable": true
+          },
+          "kind": {
+            "type": "string",
+            "description": "服務類型（`webapi` / `service` / `frontend` 等）。可為 null。",
+            "nullable": true
+          },
+          "serviceName": {
+            "type": "string",
+            "description": "服務顯示名稱。可為 null。",
+            "nullable": true
+          },
+          "openapiUrl": {
+            "type": "string",
+            "description": "OpenAPI 文件 URL。可為 null。",
+            "nullable": true
+          },
+          "readmeCatalogSyncLastCheckUtc": {
+            "type": "string",
+            "description": "README 目錄同步最後成功時間（UTC）；Worker 寫入，API 唯讀。可為 null（從未成功）。",
+            "format": "date-time",
+            "nullable": true
+          },
+          "aidataSwaggerSyncLastCheckUtc": {
+            "type": "string",
+            "description": "Aidata Swagger 同步最後成功時間（UTC）；Worker 寫入，API 唯讀。可為 null。",
+            "format": "date-time",
+            "nullable": true
+          },
+          "q7Note": {
+            "type": "string",
+            "description": "備註（第 4 欄 q7_note）。可為 null。",
+            "nullable": true
+          },
+          "swaggerNote": {
+            "type": "string",
+            "description": "Swagger 備註；由 Swagger Worker 維護，API 唯讀。可為 null。",
+            "nullable": true
+          },
+          "relatePortainerKeyJson": {
+            "type": "string",
+            "description": "相關 Portainer 鍵 JSON 字串（`relate_portainer_key` JSONB）；API 唯讀。可為 null。",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "`GET /api/mappings/{portainerKey}` 詳情（完整 10 欄）。"
+      },
+      "MappingKeyResponse": {
+        "type": "object",
+        "properties": {
+          "portainerKey": {
+            "type": "string",
+            "description": "已建立或更新的 Portainer 主鍵。必有。",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "`POST /api/mappings`、`PUT /api/mappings/{portainerKey}` 成功回應。"
+      },
+      "MappingListItem": {
+        "type": "object",
+        "properties": {
+          "portainerKey": {
+            "type": "string",
+            "description": "Portainer 服務鍵（主鍵）。必有；非空。",
+            "nullable": true
+          },
+          "gitlabUrl": {
+            "type": "string",
+            "description": "GitLab HTTPS clone URL。可為 null（尚未對照或從屬列）。",
+            "nullable": true
+          },
+          "kind": {
+            "type": "string",
+            "description": "服務類型（`webapi` / `service` / `frontend` 等）。可為 null。",
+            "nullable": true
+          },
+          "serviceName": {
+            "type": "string",
+            "description": "服務顯示名稱。可為 null。",
+            "nullable": true
+          },
+          "openapiUrl": {
+            "type": "string",
+            "description": "OpenAPI 文件 URL。可為 null。",
+            "nullable": true
+          },
+          "readmeCatalogSyncLastCheckUtc": {
+            "type": "string",
+            "description": "README 目錄同步最後成功時間（UTC）；Worker 寫入，API 唯讀。可為 null（從未成功）。",
+            "format": "date-time",
+            "nullable": true
+          },
+          "aidataSwaggerSyncLastCheckUtc": {
+            "type": "string",
+            "description": "Aidata Swagger 同步最後成功時間（UTC）；Worker 寫入，API 唯讀。可為 null。",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "`GET /api/mappings` 列表單筆（對應 `catalog.portainer_gitlab_mapping` 管理欄位子集）。"
+      },
+      "MappingListItemPagedResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MappingListItem"
+            },
+            "description": "本頁資料列。必有；無符合資料時為空陣列（非 null）。",
+            "nullable": true
+          },
+          "total": {
+            "type": "integer",
+            "description": "符合篩選條件的總筆數（跨頁）。必有；無資料時為 `0`。",
+            "format": "int32"
+          },
+          "page": {
+            "type": "integer",
+            "description": "目前頁碼（與請求一致，經服務端正規化後）。必有。",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "本頁請求的 pageSize（經上限截斷後）。必有。",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "分頁查詢共用回應包裝。"
+      },
+      "MappingUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "gitlabUrl": {
+            "type": "string",
+            "description": "GitLab URL。選填；傳入則更新（可傳 null 清空）。",
+            "nullable": true
+          },
+          "kind": {
+            "type": "string",
+            "description": "服務類型。選填。",
+            "nullable": true
+          },
+          "q7Note": {
+            "type": "string",
+            "description": "備註。選填。",
+            "nullable": true
+          },
+          "serviceName": {
+            "type": "string",
+            "description": "服務名稱。選填。",
+            "nullable": true
+          },
+          "openapiUrl": {
+            "type": "string",
+            "description": "OpenAPI URL。選填。",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "`PUT /api/mappings/{portainerKey}` 請求 Body（僅可編輯欄位；未傳欄位不更新）。"
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      },
+      "ReviewDashboardSummary": {
+        "type": "object",
+        "properties": {
+          "totalEvents": {
+            "type": "integer",
+            "description": "全部 `review_events` 筆數。必有。",
+            "format": "int32"
+          },
+          "totalEventsToday": {
+            "type": "integer",
+            "description": "今日（UTC 日曆日）新增 events。必有。",
+            "format": "int32"
+          },
+          "totalRuns": {
+            "type": "integer",
+            "description": "全部 `review_runs` 筆數。必有。",
+            "format": "int32"
+          },
+          "passedRuns": {
+            "type": "integer",
+            "description": "`status = passed` 的 run 數。必有。",
+            "format": "int32"
+          },
+          "failedRuns": {
+            "type": "integer",
+            "description": "`status = failed` 的 run 數。必有。",
+            "format": "int32"
+          },
+          "aiUnavailableRuns": {
+            "type": "integer",
+            "description": "`status = ai_unavailable` 的 run 數。必有。",
+            "format": "int32"
+          },
+          "pendingRuns": {
+            "type": "integer",
+            "description": "`status` 為 `pending` 或 `processing` 的 run 數。必有。",
+            "format": "int32"
+          },
+          "pendingEvents": {
+            "type": "integer",
+            "description": "`status` 為 `pending` 或 `processing` 的 event 數。必有。",
+            "format": "int32"
+          },
+          "passRate": {
+            "type": "number",
+            "description": "通過率 `passed / (passed + failed)`，範圍 0–1；分母為 0 時為 `0`。必有。",
+            "format": "double"
+          },
+          "totalIssues": {
+            "type": "integer",
+            "description": "全部 issues 筆數。必有。",
+            "format": "int32"
+          },
+          "criticalIssues": {
+            "type": "integer",
+            "description": "Critical 議題總數。必有。",
+            "format": "int32"
+          },
+          "highIssues": {
+            "type": "integer",
+            "description": "High 議題總數。必有。",
+            "format": "int32"
+          },
+          "mediumIssues": {
+            "type": "integer",
+            "description": "Medium 議題總數。必有。",
+            "format": "int32"
+          },
+          "lowIssues": {
+            "type": "integer",
+            "description": "Low 議題總數。必有。",
+            "format": "int32"
+          },
+          "topCategories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CategoryCount"
+            },
+            "description": "前 10 大問題分類。必有；可能為空陣列。",
+            "nullable": true
+          },
+          "trend": {
+            "$ref": "#/components/schemas/TrendData"
+          }
+        },
+        "additionalProperties": false,
+        "description": "`GET /api/reviews/stats/summary` 儀表板摘要。"
+      },
+      "ReviewEventDetailResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "事件主鍵 `review_events.id`。必有。",
+            "format": "int64"
+          },
+          "sourceSystem": {
+            "type": "string",
+            "description": "來源系統（如 `gitlab`、`manual`）。必有；非空字串。",
+            "nullable": true
+          },
+          "eventType": {
+            "type": "string",
+            "description": "事件類型（`push`、`merge_request` 等）。必有；非空字串。",
+            "nullable": true
+          },
+          "projectKey": {
+            "type": "string",
+            "description": "專案識別碼 `project_key`。必有；非空字串。",
+            "nullable": true
+          },
+          "projectName": {
+            "type": "string",
+            "description": "專案顯示名稱。可為 null（GitLab 未提供或未寫入時）。",
+            "nullable": true
+          },
+          "branchName": {
+            "type": "string",
+            "description": "分支名稱。可為 null（非 push/MR 或手動觸發未帶時）。",
+            "nullable": true
+          },
+          "commitSha": {
+            "type": "string",
+            "description": "Commit SHA。可為 null。",
+            "nullable": true
+          },
+          "triggeredBy": {
+            "type": "string",
+            "description": "觸發者 GitLab username 或手動標籤。可為 null。",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "description": "佇列狀態：`pending` / `processing` / `completed` / `failed`。必有。",
+            "nullable": true
+          },
+          "runCount": {
+            "type": "integer",
+            "description": "關聯 `review_runs` 總筆數。必有；無 run 時為 `0`。",
+            "format": "int32"
+          },
+          "criticalRunCount": {
+            "type": "integer",
+            "description": "`critical_count > 0` 的 run 數。必有。",
+            "format": "int32"
+          },
+          "failedRunCount": {
+            "type": "integer",
+            "description": "`status = failed` 的 run 數。必有。",
+            "format": "int32"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "建立時間（UTC）。必有。",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "最後更新時間（UTC）。必有。",
+            "format": "date-time"
+          },
+          "repositoryUrl": {
+            "type": "string",
+            "description": "Git 儲存庫 URL。可為 null。",
+            "nullable": true
+          },
+          "targetBranch": {
+            "type": "string",
+            "description": "MR 目標分支。可為 null（非 MR 事件）。",
+            "nullable": true
+          },
+          "mergeRequestId": {
+            "type": "string",
+            "description": "Merge Request ID（字串）。可為 null。",
+            "nullable": true
+          },
+          "triggeredAt": {
+            "type": "string",
+            "description": "GitLab 事件發生時間（UTC）。可為 null（舊資料或手動觸發）。",
+            "format": "date-time",
+            "nullable": true
+          },
+          "runs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReviewRunSummaryItem"
+            },
+            "description": "關聯 runs 摘要列表。必有；無 run 時為空陣列。",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "`GET /api/reviews/events/{eventId}` 詳情（含關聯 runs 摘要）。"
+      },
+      "ReviewEventListItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "事件主鍵 `review_events.id`。必有。",
+            "format": "int64"
+          },
+          "sourceSystem": {
+            "type": "string",
+            "description": "來源系統（如 `gitlab`、`manual`）。必有；非空字串。",
+            "nullable": true
+          },
+          "eventType": {
+            "type": "string",
+            "description": "事件類型（`push`、`merge_request` 等）。必有；非空字串。",
+            "nullable": true
+          },
+          "projectKey": {
+            "type": "string",
+            "description": "專案識別碼 `project_key`。必有；非空字串。",
+            "nullable": true
+          },
+          "projectName": {
+            "type": "string",
+            "description": "專案顯示名稱。可為 null（GitLab 未提供或未寫入時）。",
+            "nullable": true
+          },
+          "branchName": {
+            "type": "string",
+            "description": "分支名稱。可為 null（非 push/MR 或手動觸發未帶時）。",
+            "nullable": true
+          },
+          "commitSha": {
+            "type": "string",
+            "description": "Commit SHA。可為 null。",
+            "nullable": true
+          },
+          "triggeredBy": {
+            "type": "string",
+            "description": "觸發者 GitLab username 或手動標籤。可為 null。",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "description": "佇列狀態：`pending` / `processing` / `completed` / `failed`。必有。",
+            "nullable": true
+          },
+          "runCount": {
+            "type": "integer",
+            "description": "關聯 `review_runs` 總筆數。必有；無 run 時為 `0`。",
+            "format": "int32"
+          },
+          "criticalRunCount": {
+            "type": "integer",
+            "description": "`critical_count > 0` 的 run 數。必有。",
+            "format": "int32"
+          },
+          "failedRunCount": {
+            "type": "integer",
+            "description": "`status = failed` 的 run 數。必有。",
+            "format": "int32"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "建立時間（UTC）。必有。",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "最後更新時間（UTC）。必有。",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "`GET /api/reviews/events` 列表單筆（對應 `review_events` ＋ run 統計）。"
+      },
+      "ReviewEventListItemPagedResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReviewEventListItem"
+            },
+            "description": "本頁資料列。必有；無符合資料時為空陣列（非 null）。",
+            "nullable": true
+          },
+          "total": {
+            "type": "integer",
+            "description": "符合篩選條件的總筆數（跨頁）。必有；無資料時為 `0`。",
+            "format": "int32"
+          },
+          "page": {
+            "type": "integer",
+            "description": "目前頁碼（與請求一致，經服務端正規化後）。必有。",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "本頁請求的 pageSize（經上限截斷後）。必有。",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "分頁查詢共用回應包裝。"
+      },
+      "ReviewEventRawPayloadResponse": {
+        "type": "object",
+        "properties": {
+          "eventId": {
+            "type": "integer",
+            "description": "事件主鍵（與路徑參數一致）。必有。",
+            "format": "int64"
+          },
+          "sourceSystem": {
+            "type": "string",
+            "description": "來源系統。必有。",
+            "nullable": true
+          },
+          "eventType": {
+            "type": "string",
+            "description": "事件類型。必有。",
+            "nullable": true
+          },
+          "rawPayloadJson": {
+            "type": "string",
+            "description": "原始 webhook／手動觸發 JSON 字串（`review_events.raw_payload`）。可為 null（未儲存或手動觸發未帶 body 時）；非 null 時為 JSON 文字。",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "`GET /api/reviews/events/{eventId}/rawPayload` 回應。"
+      },
+      "ReviewIssueListItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "`review_issues.id`。必有。",
+            "format": "int64"
+          },
+          "runId": {
+            "type": "integer",
+            "description": "所屬 `run_id`。必有。",
+            "format": "int64"
+          },
+          "eventId": {
+            "type": "integer",
+            "description": "所屬 `review_events.id`（經 run JOIN）。必有。",
+            "format": "int64"
+          },
+          "eventProjectKey": {
+            "type": "string",
+            "description": "所屬 event 的 `project_key`。必有。",
+            "nullable": true
+          },
+          "reviewType": {
+            "type": "string",
+            "description": "所屬 run 的 `review_type`。必有。",
+            "nullable": true
+          },
+          "ruleId": {
+            "type": "string",
+            "description": "規則代碼（如 INF-001）。可為 null。",
+            "nullable": true
+          },
+          "severity": {
+            "type": "string",
+            "description": "嚴重度。必有。",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "description": "問題分類。可為 null。",
+            "nullable": true
+          },
+          "filePath": {
+            "type": "string",
+            "description": "檔案路徑。可為 null。",
+            "nullable": true
+          },
+          "lineStart": {
+            "type": "integer",
+            "description": "起始行號。可為 null。",
+            "format": "int32",
+            "nullable": true
+          },
+          "lineEnd": {
+            "type": "integer",
+            "description": "結束行號。可為 null。",
+            "format": "int32",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "description": "標題。可為 null。",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "說明。可為 null。",
+            "nullable": true
+          },
+          "suggestion": {
+            "type": "string",
+            "description": "改善建議。可為 null。",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "建立時間（UTC）。必有。",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "`GET /api/reviews/issues` 列表單筆（含 event／run 衍生欄位）。"
+      },
+      "ReviewIssueListItemPagedResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReviewIssueListItem"
+            },
+            "description": "本頁資料列。必有；無符合資料時為空陣列（非 null）。",
+            "nullable": true
+          },
+          "total": {
+            "type": "integer",
+            "description": "符合篩選條件的總筆數（跨頁）。必有；無資料時為 `0`。",
+            "format": "int32"
+          },
+          "page": {
+            "type": "integer",
+            "description": "目前頁碼（與請求一致，經服務端正規化後）。必有。",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "本頁請求的 pageSize（經上限截斷後）。必有。",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "分頁查詢共用回應包裝。"
+      },
+      "ReviewIssueResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "`review_issues.id`",
+            "format": "int64"
+          },
+          "runId": {
+            "type": "integer",
+            "description": "所屬 run（`review_runs.id`）。",
+            "format": "int64"
+          },
+          "ruleId": {
+            "type": "string",
+            "description": "對應規範代碼（INF-001…）；可為 null。",
+            "nullable": true
+          },
+          "severity": {
+            "type": "string",
+            "description": "`low`｜`medium`｜`high`｜`critical`。必有。",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "description": "例如 architecture、security、logging；可為 null。",
+            "nullable": true
+          },
+          "filePath": {
+            "type": "string",
+            "description": "相對或絕對檔案路徑示意（依 GitLab API 回傳為準）。可為 null。",
+            "nullable": true
+          },
+          "lineStart": {
+            "type": "integer",
+            "description": "起始行號。可為 null。",
+            "format": "int32",
+            "nullable": true
+          },
+          "lineEnd": {
+            "type": "integer",
+            "description": "結束行號。可為 null。",
+            "format": "int32",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "description": "問題標題。可為 null。",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "問題說明。可為 null。",
+            "nullable": true
+          },
+          "suggestion": {
+            "type": "string",
+            "description": "改善建議文字。可為 null。",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "紀錄建立時間（UTC）。可為 null（極少數舊列）。",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "GET /api/reviews/issues/run/{runId}：AI 回報的單一問題列。"
+      },
+      "ReviewIssueResponsePagedResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReviewIssueResponse"
+            },
+            "description": "本頁資料列。必有；無符合資料時為空陣列（非 null）。",
+            "nullable": true
+          },
+          "total": {
+            "type": "integer",
+            "description": "符合篩選條件的總筆數（跨頁）。必有；無資料時為 `0`。",
+            "format": "int32"
+          },
+          "page": {
+            "type": "integer",
+            "description": "目前頁碼（與請求一致，經服務端正規化後）。必有。",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "本頁請求的 pageSize（經上限截斷後）。必有。",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "分頁查詢共用回應包裝。"
+      },
+      "ReviewProjectsResponse": {
+        "type": "object",
+        "properties": {
+          "projects": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "曾出現在 `review_events` 的 distinct `project_key`，字母排序。必有；無資料時為空陣列。",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "`GET /api/reviews/projects` 回應（前端下拉選單）。"
+      },
+      "ReviewRunListItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "`review_runs.id`。必有。",
+            "format": "int64"
+          },
+          "eventId": {
+            "type": "integer",
+            "description": "外鍵 `event_id`。必有。",
+            "format": "int64"
+          },
+          "eventProjectKey": {
+            "type": "string",
+            "description": "所屬事件的 `project_key`。必有（JOIN 取得）。",
+            "nullable": true
+          },
+          "reviewType": {
+            "type": "string",
+            "description": "審查類型。必有。",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "description": "Run 狀態。必有。",
+            "nullable": true
+          },
+          "ruleProfile": {
+            "type": "string",
+            "description": "規則設定檔名稱。可為 null。",
+            "nullable": true
+          },
+          "aiProvider": {
+            "type": "string",
+            "description": "AI Provider。可為 null。",
+            "nullable": true
+          },
+          "aiModel": {
+            "type": "string",
+            "description": "AI Model。可為 null。",
+            "nullable": true
+          },
+          "summary": {
+            "type": "string",
+            "description": "人類可讀摘要。可為 null。",
+            "nullable": true
+          },
+          "totalIssues": {
+            "type": "integer",
+            "description": "Issue 總數。必有。",
+            "format": "int32"
+          },
+          "criticalCount": {
+            "type": "integer",
+            "description": "Critical 數。必有。",
+            "format": "int32"
+          },
+          "highCount": {
+            "type": "integer",
+            "description": "High 數。必有。",
+            "format": "int32"
+          },
+          "mediumCount": {
+            "type": "integer",
+            "description": "Medium 數。必有。",
+            "format": "int32"
+          },
+          "lowCount": {
+            "type": "integer",
+            "description": "Low 數。必有。",
+            "format": "int32"
+          },
+          "startedAt": {
+            "type": "string",
+            "description": "開始時間（UTC）。可為 null。",
+            "format": "date-time",
+            "nullable": true
+          },
+          "finishedAt": {
+            "type": "string",
+            "description": "結束時間（UTC）。可為 null。",
+            "format": "date-time",
+            "nullable": true
+          },
+          "durationMs": {
+            "type": "integer",
+            "description": "耗時毫秒。可為 null。",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "`GET /api/reviews/runs` 列表單筆。"
+      },
+      "ReviewRunListItemPagedResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReviewRunListItem"
+            },
+            "description": "本頁資料列。必有；無符合資料時為空陣列（非 null）。",
+            "nullable": true
+          },
+          "total": {
+            "type": "integer",
+            "description": "符合篩選條件的總筆數（跨頁）。必有；無資料時為 `0`。",
+            "format": "int32"
+          },
+          "page": {
+            "type": "integer",
+            "description": "目前頁碼（與請求一致，經服務端正規化後）。必有。",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "本頁請求的 pageSize（經上限截斷後）。必有。",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "分頁查詢共用回應包裝。"
+      },
+      "ReviewRunRawResponse": {
+        "type": "object",
+        "properties": {
+          "runId": {
+            "type": "integer",
+            "description": "Run 主鍵。必有。",
+            "format": "int64"
+          },
+          "reviewType": {
+            "type": "string",
+            "description": "審查類型。必有。",
+            "nullable": true
+          },
+          "aiProvider": {
+            "type": "string",
+            "description": "AI Provider。可為 null（尚未呼叫 AI）。",
+            "nullable": true
+          },
+          "aiModel": {
+            "type": "string",
+            "description": "AI Model。可為 null。",
+            "nullable": true
+          },
+          "rawResponseJson": {
+            "type": "string",
+            "description": "AI 原始回應 JSON 字串（`ai_raw_response`）。可為 null（未呼叫 AI 或舊資料）；非 null 時為 JSON 文字。",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "`GET /api/reviews/runs/{runId}/rawResponse` 回應。"
+      },
+      "ReviewRunResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "`review_runs.id`",
+            "format": "int64"
+          },
+          "eventId": {
+            "type": "integer",
+            "description": "外鍵對應 `review_events.id`。",
+            "format": "int64"
+          },
+          "reviewType": {
+            "type": "string",
+            "description": "`code`（程式）、`plan`（文件）、必要時 `skipped`（略過）。成功查詢時必有；非空字串。",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "description": "pipeline 級狀態；值域：`pending`、`running`、`passed`、`warning`、\r\n`failed`、`error`、`skipped`、`ai_unavailable`。",
+            "nullable": true
+          },
+          "ruleProfile": {
+            "type": "string",
+            "description": "所選規則集識別，例如 csharp_default。可為 null 或空（舊資料）。",
+            "nullable": true
+          },
+          "rulesVersion": {
+            "type": "string",
+            "description": "規則版控（多用 rules 倉庫 commit SHA）。可為 null。",
+            "nullable": true
+          },
+          "aiProvider": {
+            "type": "string",
+            "description": "實際完成審查時所用的 Provider。可為 null（尚未執行／skipped）。",
+            "nullable": true
+          },
+          "aiModel": {
+            "type": "string",
+            "description": "實際完成審查時所用的 Model。可為 null。",
+            "nullable": true
+          },
+          "startedAt": {
+            "type": "string",
+            "description": "開始執行的 UTC 時間（若尚未開始可為 null）。",
+            "format": "date-time",
+            "nullable": true
+          },
+          "finishedAt": {
+            "type": "string",
+            "description": "結束時間（未完成則為 null）。",
+            "format": "date-time",
+            "nullable": true
+          },
+          "durationMs": {
+            "type": "integer",
+            "description": "耗時毫秒；尚無紀錄可為 null。",
+            "format": "int32",
+            "nullable": true
+          },
+          "summary": {
+            "type": "string",
+            "description": "人類易讀的本次審查摘要。可為 null。",
+            "nullable": true
+          },
+          "totalIssues": {
+            "type": "integer",
+            "description": "Issue 總數。必有（含 0）。",
+            "format": "int32"
+          },
+          "criticalCount": {
+            "type": "integer",
+            "description": "Critical 議題數。必有。",
+            "format": "int32"
+          },
+          "highCount": {
+            "type": "integer",
+            "description": "High 議題數。必有。",
+            "format": "int32"
+          },
+          "mediumCount": {
+            "type": "integer",
+            "description": "Medium 議題數。必有。",
+            "format": "int32"
+          },
+          "lowCount": {
+            "type": "integer",
+            "description": "Low 議題數。必有。",
+            "format": "int32"
+          },
+          "riskAdvisory": {
+            "type": "string",
+            "description": "將嚴重度彙總後的 advisory 級距（示例：`critical` / `high`）；僅提示，無 CI gate；\r\n未有議題時可為空字串。",
+            "nullable": true
+          },
+          "aiFeedback": {
+            "type": "string",
+            "description": "AI 對整體變更的說明，對映 `ai_feedback`；尚未寫入為 null。",
+            "nullable": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "執行層級錯誤（資料庫、Git、規則失敗等非 AI）；成功時為 null。",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "GET /api/reviews/runs/{runId} 回應本體（對應 `review_runs`；並含衍生風險提示）。"
+      },
+      "ReviewRunSummaryItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "`review_runs.id`。必有。",
+            "format": "int64"
+          },
+          "reviewType": {
+            "type": "string",
+            "description": "審查類型：`code` / `plan` / `skipped`。必有。",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "description": "Run 狀態。必有。",
+            "nullable": true
+          },
+          "totalIssues": {
+            "type": "integer",
+            "description": "Issue 總數。必有（含 0）。",
+            "format": "int32"
+          },
+          "criticalCount": {
+            "type": "integer",
+            "description": "Critical 議題數。必有。",
+            "format": "int32"
+          },
+          "highCount": {
+            "type": "integer",
+            "description": "High 議題數。必有。",
+            "format": "int32"
+          },
+          "mediumCount": {
+            "type": "integer",
+            "description": "Medium 議題數。必有。",
+            "format": "int32"
+          },
+          "lowCount": {
+            "type": "integer",
+            "description": "Low 議題數。必有。",
+            "format": "int32"
+          },
+          "aiProvider": {
+            "type": "string",
+            "description": "實際使用的 AI Provider。可為 null（尚未執行或 skipped）。",
+            "nullable": true
+          },
+          "aiModel": {
+            "type": "string",
+            "description": "實際使用的 AI Model。可為 null。",
+            "nullable": true
+          },
+          "startedAt": {
+            "type": "string",
+            "description": "開始時間（UTC）。可為 null（尚未開始）。",
+            "format": "date-time",
+            "nullable": true
+          },
+          "finishedAt": {
+            "type": "string",
+            "description": "結束時間（UTC）。可為 null（進行中）。",
+            "format": "date-time",
+            "nullable": true
+          },
+          "durationMs": {
+            "type": "integer",
+            "description": "耗時毫秒。可為 null。",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "事件詳情內嵌的單筆 run 摘要。"
+      },
+      "TrendData": {
+        "type": "object",
+        "properties": {
+          "lastNDays": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": "每日 event 數量，與 AIReviewAgentService.Model.TrendData.Labels 同索引對應。必有；長度等於 range 天數。",
+            "nullable": true
+          },
+          "labels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "日期標籤（`MM-dd`，UTC）。必有；與 AIReviewAgentService.Model.TrendData.LastNDays 等長。",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "儀表板趨勢圖資料（由舊至新對齊日期）。"
+      }
+    }
+  }
+}

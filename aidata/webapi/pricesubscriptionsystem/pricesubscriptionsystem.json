@@ -1,0 +1,222 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "APIName 2.3.1",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/version": {
+      "get": {
+        "tags": [
+          "PriceSubscriptionSystem"
+        ],
+        "summary": "\u53D6\u5F97\u670D\u52D9\u7248\u672C\u3001\u5EFA\u7F6E\u6642\u9593\u8207\u4E3B\u6A5F\u540D\u7A31",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/heart": {
+      "get": {
+        "tags": [
+          "PriceSubscriptionSystem"
+        ],
+        "summary": "\u5FC3\u8DF3\u6AA2\u67E5\uFF0C\u56DE\u50B3\u4F3A\u670D\u5668\u76EE\u524D\u6642\u9593",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/system/hubinfo": {
+      "get": {
+        "tags": [
+          "PriceSubscriptionSystem"
+        ],
+        "summary": "\u53D6\u5F97 SignalR Hub \u9023\u7DDA\u6E05\u55AE\u8207\u5404\u8CC7\u6599\u6E90\u7AD9\u53F0\u6700\u5F8C\u66F4\u65B0\u6642\u9593\uFF08\u4F9B PriceCenterManager Dashboard \u4F7F\u7528\uFF09",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/HubInfo"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HubInfo"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HubInfo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/schema": {
+      "get": {
+        "tags": [
+          "PriceSubscriptionSystem"
+        ],
+        "summary": "\u53D6\u5F97\u7CFB\u7D71\u652F\u63F4\u7684\u53C3\u6578 Schema\uFF08\u542B\u73A9\u6CD5\u6A21\u5F0F\u5C0D\u7167\u8868 Mapping\uFF09",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "array",
+                    "items": {}
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "array",
+                    "items": {}
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "array",
+                    "items": {}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HubConnectionInfo": {
+        "type": "object",
+        "properties": {
+          "connectId": {
+            "type": "string",
+            "description": "SignalR \u9023\u7DDA\u8B58\u5225\u78BC\uFF08ConnectionId\uFF09",
+            "nullable": true
+          },
+          "gameType": {
+            "type": "string",
+            "description": "\u8A02\u95B1\u7684\u7403\u7A2E\u6216\u7FA4\u7D44\u8B58\u5225\uFF0C\u683C\u5F0F\u5982 SC_bet365.com \u6216\u7AD9\u53F0\u540D\u7A31",
+            "nullable": true
+          },
+          "ip": {
+            "type": "string",
+            "description": "\u5BA2\u6236\u7AEF IP \u4F4D\u5740",
+            "nullable": true
+          },
+          "token": {
+            "type": "string",
+            "description": "\u9023\u7DDA\u9A57\u8B49 Token",
+            "nullable": true
+          },
+          "selSite": {
+            "type": "string",
+            "description": "\u5BA2\u6236\u7AEF\u9078\u64C7\u7684\u8CC7\u6599\u6E90\u7AD9\u53F0\uFF08\u53EF\u591A\u500B\uFF0C\u4EE5\u9017\u865F\u5206\u9694\uFF09",
+            "nullable": true
+          },
+          "connTime": {
+            "type": "string",
+            "description": "\u9023\u7DDA\u5EFA\u7ACB\u6642\u9593\uFF08\u4F3A\u670D\u5668\u672C\u5730\u6642\u9593\uFF09",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "\u55AE\u4E00 SignalR \u5BA2\u6236\u7AEF\u9023\u7DDA\u8CC7\u8A0A"
+      },
+      "HubInfo": {
+        "type": "object",
+        "properties": {
+          "connections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HubConnectionInfo"
+            },
+            "description": "\u76EE\u524D\u6240\u6709\u5DF2\u9023\u7DDA\u7684\u5BA2\u6236\u7AEF\u6E05\u55AE\uFF1B\u7121\u9023\u7DDA\u6642\u70BA\u7A7A\u9663\u5217",
+            "nullable": true
+          },
+          "siteInfo": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HubSiteInfo"
+            },
+            "description": "\u5404\u8CC7\u6599\u6E90\u7AD9\u53F0\u6700\u5F8C\u66F4\u65B0\u6642\u9593\uFF1B\u7121\u8CC7\u6599\u6642\u70BA\u7A7A\u9663\u5217",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "SignalR Hub \u9023\u7DDA\u8207\u8CC7\u6599\u6E90\u7AD9\u53F0\u72C0\u614B\u5F59\u7E3D"
+      },
+      "HubSiteInfo": {
+        "type": "object",
+        "properties": {
+          "site": {
+            "type": "string",
+            "description": "\u8CC7\u6599\u6E90\u7AD9\u53F0\u4EE3\u78BC\uFF08\u5982 bet365.com\uFF09",
+            "nullable": true
+          },
+          "lastUpdTime": {
+            "type": "string",
+            "description": "\u8A72\u7AD9\u53F0\u6700\u5F8C\u4E00\u7B46 Kafka \u8A0A\u606F\u8655\u7406\u6642\u9593\uFF1B\u7121\u8A0A\u606F\u6642\u70BA\u521D\u59CB\u9810\u8A2D\u503C",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "\u8CC7\u6599\u6E90\u7AD9\u53F0 Kafka \u8A0A\u606F\u6700\u5F8C\u66F4\u65B0\u72C0\u614B"
+      }
+    }
+  }
+}
