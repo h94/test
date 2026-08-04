@@ -6,6 +6,7 @@
       <div class="pa-5 h-100">
         <NuxtPage />
       </div>
+      11
     </v-main>
   </v-app>
 </template>
