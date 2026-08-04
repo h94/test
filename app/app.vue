@@ -9,7 +9,8 @@
     </v-main>
   </v-app>
 </template>
-<script lang="ts" setup>
+<script setup lang="ts">
+import { VLoading } from '@/components/loading'
 </script>
 <script lang="ts" setup>
 </script>
