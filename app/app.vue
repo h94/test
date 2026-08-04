@@ -23,6 +23,8 @@ body {
   height: 100vh;
   width: 100vw;
 }
-
+h1{
+  color: red;
+}
 </style>
 
