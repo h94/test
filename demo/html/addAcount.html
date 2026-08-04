@@ -1,0 +1,5126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
+    <title>LB_N1_agent</title>
+  </head>
+  <body>
+    <header> 
+      <section class="menu-navbar sideBar">
+        <button class="navber"><i class="navbar_ic"></i></button>
+        <div class="title"> <span>菜單</span><i class="close_ic"></i></div>
+        <aside> <a href="../index.html"><i class="home_ic"></i><span>首頁</span></a><a href="./balls.html"> <i class="balls_ic"></i><span>球種資訊</span></a>
+          <button class="settlement false"> <i class="settlement_ic"></i><span>待結投注</span>
+            <article>
+              <p>待結投注<i class="pin_ic"> </i></p><a href="./settlement.html?tab=plate" data-tab="plate"> <span>讓球盤</span><span>大小盤</span><span>獨營盤</span><span>滾球</span></a><a href="./settlement.html?tab=score" data-tab="score"> <span>球隊總得分</span></a><a href="./settlement.html?tab=special" data-tab="special"> <span>優勝冠軍盤</span><span>特別盤口</span></a><a href="./settlement.html?tab=mix" data-tab="mix"> <span>混合過關</span></a><a href="./settlement.html?tab=discount" data-tab="discount"> <span>優惠過關盤</span></a><a href="./settlement.html?tab=monitor" data-tab="monitor"> <span>投注監視器</span></a>
+            </article>
+          </button><a href="./report.html"> <i class="report_ic"> </i><span>報表</span></a><a class="active" href="./account.html"> <i class="account_ic"></i><span>帳號管理</span></a><a href="./betting.html"> <i class="betting_ic"></i><span>即時注單</span></a>
+        </aside>
+        <div class="mask"></div>
+      </section>
+      <section class="menu-btns"><a href="#"> <i class="member_ic"></i>新增會員</a><a href="#"> <i class="customer_ic"></i>在線客服</a><a href="#"> <i class="post_ic"></i>公告</a></section>
+      <section class="menu-navbar">
+        <button><i class="setting_ic"> </i></button>
+      </section>
+    </header>
+    <main class="addAccount"> 
+      <section class="titleBlock"> <i class="back_ic"> </i>
+        <h1>管理</h1>
+      </section>
+      <section class="tabBlock">
+        <ul> 
+          <li><a href="./account.html?tab=personalInfo" data-tab="personalInfo">個人資料</a></li>
+          <li><a href="./account.html?tab=subAccount" data-tab="subAccount">子帳號管理</a></li>
+          <li><a href="./account.html?tab=shareholder_m" data-tab="shareholder_m">大股東</a></li>
+          <li><a href="./account.html?tab=shareholder" data-tab="shareholder">股東</a></li>
+          <li><a href="./account.html?tab=agent_m" data-tab="agent_m">總代理</a></li>
+          <li><a href="./account.html?tab=agent" data-tab="agent">代理</a></li>
+          <li><a href="./account.html?tab=member" data-tab="member">會員</a></li>
+          <li><a href="./account.html?tab=treeManagement" data-tab="treeManagement">樹型管理</a></li>
+        </ul>
+      </section>
+      <section class="addAccountBlock"> 
+        <div class="shareholder_m active">
+          <article class="accountSetting">
+            <ul class="title noUnderLine"> 
+              <li> 
+                <p class="red">大股東修改 [ <span class="yellow">ABC88 </span>] <span>(此帳號最後修改時間 )</span></p>
+              </li>
+              <li>
+                <button class="cancel">取消設定</button>
+                <button class="submit">储存設定</button>
+              </li>
+            </ul>
+            <ul> 
+              <li> 
+                <p class="remind">大股票帳號:</p>
+                <label><span>@1</span>
+                  <input type="text">
+                </label>
+                <button>檢測帳號</button>
+                <button class="random">隨機</button>
+              </li>
+              <li> 
+                <p class="remind">大股票名稱:</p>
+                <label>
+                  <input type="text">
+                </label>
+              </li>
+            </ul>
+            <ul>
+              <li> 
+                <p class="remind">密碼:</p>
+                <label>
+                  <input type="text">
+                </label>
+              </li>
+              <li> 
+                <p class="remind">確認密碼:</p>
+                <label>
+                  <input type="text">
+                </label>
+              </li>
+            </ul>
+            <ul> 
+              <li> 
+                <p class="remind">總信用額度:</p>
+                <label>
+                  <input type="text">
+                </label><span>(萬)</span>
+                <button>修改額度</button>
+              </li>
+              <li> 
+                <p class="remind">剩餘額度:</p><span>0 (萬)</span><span>上層可用額度:</span><span class="red">0 (萬)</span>
+              </li>
+            </ul>
+            <ul> 
+              <li> 
+                <p class="remind">新備註:</p>
+                <label>
+                  <input type="text">
+                </label>
+              </li>
+              <li> 
+                <p class="remind">投注狀況:</p>
+                <label class="select">
+                  <p>啟用</p>
+                  <ol> 
+                    <li class="active">啟用</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+              </li>
+            </ul>
+            <ul class="noUnderLine"> 
+              <li> 
+                <p class="remind">拆帳百分比:</p>
+                <button class="setting">快速設定</button>
+                <label class="select">
+                  <p>95%</p>
+                  <ol> 
+                    <li class="active">95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+              </li>
+            </ul>
+            <ul class="ballList">
+              <li> 
+                <label class="select"><span>足球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>美國職籃</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>其他籃球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>美國職棒</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>日本職棒</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>中華職棒</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>其他棒球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>美式足球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>網球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>彩球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>賽馬賽狗</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>指數</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>電競</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>世界盃</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>高爾夫</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>冰球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>拳擊</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>拳擊格鬥</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>羽球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>排球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>桌球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>板球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>撞球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>手球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>世界盃(舊其他足球)</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>足球-歐洲盃</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>娛樂</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+              </li>
+            </ul>
+            <ul class="noUnderLine"> 
+              <li> 
+                <p class="remind">原盤延遲下注秒數：</p>
+                <label class="select">
+                  <p>一般</p>
+                  <ol> 
+                    <li class="active">一般</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+              </li>
+              <li> 
+                <p class="remind">走地延遲下注秒數：</p>
+                <label class="select">
+                  <p>一般</p>
+                  <ol> 
+                    <li class="active">一般</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+              </li>
+              <li> 
+                <p class="remind">過關下注關數限制：</p>
+                <label class="select">
+                  <p>十關</p>
+                  <ol> 
+                    <li class="active">十關</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <p class="red">10關為上限</p>
+              </li>
+            </ul>
+          </article>
+          <article class="fastSetting"> 
+            <ul> 
+              <li> 
+                <p>快速設定</p>
+                <button>全部退水</button>
+                <button>全部不退水</button>
+                <button>帶入上層設定</button>
+              </li>
+            </ul>
+            <ul class="ballList"> 
+              <li>
+                <label class="checkBox">
+                  <input type="checkbox" checked>
+                  <p>全部</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>足球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>美國職籃</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>其他籃球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>美國職棒</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>日本職棒</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>中華職棒</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>其他棒球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>美式足球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>網球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>彩球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>賽馬賽狗</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>指數</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>電競</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>世界盃</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>高爾夫</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>冰球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>拳擊</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>拳擊格鬥</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>羽球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>排球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>桌球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>板球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>撞球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>手球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>世界盃(舊其他足球)</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>足球-歐洲盃</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>娛樂</p>
+                </label>
+              </li>
+            </ul>
+            <ul> 
+              <li class="checkBoxs"> 
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>各項設定(全部)</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>各項設定(不含通關)</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>只設定通關</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox" checked>
+                  <p>只設定走地</p>
+                </label>
+              </li>
+              <li class="numbers">
+                <label class="number">
+                  <p>退水設定</p>
+                  <input type="number"><i class="number_ic"> </i>
+                </label>
+                <label class="number">
+                  <p>單注限額</p>
+                  <input type="number"><i class="number_ic"> </i>
+                </label>
+                <label class="number">
+                  <p>單場限額</p>
+                  <input type="number"><i class="number_ic"> </i>
+                </label>
+                <label class="number">
+                  <p>單邊限額</p>
+                  <input type="number"><i class="number_ic"> </i>
+                </label>
+              </li>
+              <li>
+                <button class="submit">快速設定套用確認 </button>
+              </li>
+            </ul>
+          </article>
+          <article class="ballTabs"> 
+            <div class="swiper">
+              <div class="swiper-wrapper">
+                <button class="swiper-slide active"><i class="soccer_ic"> </i><span>足球</span></button>
+                <button class="swiper-slide"><i class="nba_ic"> </i><span>美國職籃</span></button>
+                <button class="swiper-slide"><i class="otherbasketball_ic"> </i><span>其他籃球</span></button>
+                <button class="swiper-slide"><i class="mlb_ic"> </i><span>美國職棒</span></button>
+                <button class="swiper-slide"><i class="npb_ic"> </i><span>日本職棒</span></button>
+                <button class="swiper-slide"><i class="cpbl_ic"> </i><span>中華職棒</span></button>
+                <button class="swiper-slide"><i class="otherbaseball_ic"> </i><span>其他棒球</span></button>
+                <button class="swiper-slide"><i class="football_ic"> </i><span>美式足球</span></button>
+                <button class="swiper-slide"><i class="tennis_ic"> </i><span>網球</span></button>
+                <button class="swiper-slide"><i class="colorball_ic"> </i><span>彩球</span></button>
+                <button class="swiper-slide"><i class="race_ic"> </i><span>賽馬賽狗</span></button>
+                <button class="swiper-slide"><i class="index_ic"> </i><span>指數</span></button>
+                <button class="swiper-slide"><i class="esports_ic"> </i><span>電競</span></button>
+                <button class="swiper-slide"><i class="worldcup_ic"> </i><span>世界盃</span></button>
+                <button class="swiper-slide"><i class="golf_ic"> </i><span>高爾夫</span></button>
+                <button class="swiper-slide"><i class="icehockey_ic"> </i><span>冰球</span></button>
+                <button class="swiper-slide"><i class="boxing_ic"> </i><span>拳擊</span></button>
+                <button class="swiper-slide"><i class="fighting_ic"> </i><span>拳擊格鬥</span></button>
+                <button class="swiper-slide"><i class="badminton_ic"> </i><span>羽球</span></button>
+                <button class="swiper-slide"><i class="volleyball_ic"> </i><span>排球</span></button>
+                <button class="swiper-slide"><i class="tabletennis_ic"> </i><span>桌球</span></button>
+                <button class="swiper-slide"><i class="cricket_ic"> </i><span>板球</span></button>
+                <button class="swiper-slide"><i class="poolball_ic"> </i><span>撞球</span></button>
+                <button class="swiper-slide"><i class="handball_ic"> </i><span>手球</span></button>
+                <button class="swiper-slide"><i class="othersoccer_ic"> </i><span>世界盃(舊其他足球)</span></button>
+                <button class="swiper-slide"><i class="uefa_ic"> </i><span>足球-歐洲盃</span></button>
+                <button class="swiper-slide"><i class="entertainment_ic"> </i><span>娛樂</span></button>
+              </div>
+            </div><i class="arrow_ic prev"> </i><i class="arrow_ic next"> </i>
+          </article>
+          <article class="data"> 
+            <ul> 
+              <li class="thead"> 
+                <div> <span>足球</span></div>
+                <div><span>讓分 </span></div>
+                <div><span>大小 </span></div>
+                <div><span>獨贏 </span></div>
+                <div><span>單雙 </span></div>
+                <div><span>走地讓球 </span></div>
+                <div><span>走地大小 </span></div>
+                <div><span>波膽 </span></div>
+                <div><span>總入球 </span></div>
+                <div><span>半全場 </span></div>
+                <div><span>讓分過關 </span></div>
+                <div><span>綜合過關 </span></div>
+                <div><span>標準過關 </span></div>
+                <div><span>全部 </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">退佣設定</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">單場限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">單注限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox" checked>
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="underLine">單邊限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+            </ul>
+            <ul> 
+              <li class="thead"> 
+                <div> <span>籃球</span></div>
+                <div><span>讓分 </span></div>
+                <div><span>大小 </span></div>
+                <div><span>獨贏 </span></div>
+                <div><span>單雙 </span></div>
+                <div><span>走地讓球 </span></div>
+                <div><span>走地大小 </span></div>
+                <div><span>波膽 </span></div>
+                <div><span>總入球 </span></div>
+                <div><span>半全場 </span></div>
+                <div><span>讓分過關 </span></div>
+                <div><span>綜合過關 </span></div>
+                <div><span>標準過關 </span></div>
+                <div><span>全部 </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">退佣設定</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">單場限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">單注限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="underLine">單邊限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+            </ul>
+          </article>
+        </div>
+        <div class="shareholder ">
+          <article class="accountSetting">
+            <ul class="title noUnderLine"> 
+              <li> 
+                <p class="red">股東修改 [ <span class="yellow">ABC88 </span>] <span>(此帳號最後修改時間 )</span></p>
+              </li>
+              <li>
+                <button class="cancel">取消設定</button>
+                <button class="submit">储存設定</button>
+              </li>
+            </ul>
+            <ul> 
+              <li> 
+                <p class="remind">大股票帳號:</p>
+                <label><span>@1</span>
+                  <input type="text">
+                </label>
+                <button>檢測帳號</button>
+                <button class="random">隨機</button>
+              </li>
+              <li> 
+                <p class="remind">大股票名稱:</p>
+                <label>
+                  <input type="text">
+                </label>
+              </li>
+            </ul>
+            <ul>
+              <li> 
+                <p class="remind">密碼:</p>
+                <label>
+                  <input type="text">
+                </label>
+              </li>
+              <li> 
+                <p class="remind">確認密碼:</p>
+                <label>
+                  <input type="text">
+                </label>
+              </li>
+            </ul>
+            <ul> 
+              <li> 
+                <p class="remind">總信用額度:</p>
+                <label>
+                  <input type="text">
+                </label><span>(萬)</span>
+                <button>修改額度</button>
+              </li>
+              <li> 
+                <p class="remind">剩餘額度:</p><span>0 (萬)</span><span>上層可用額度:</span><span class="red">0 (萬)</span>
+              </li>
+            </ul>
+            <ul> 
+              <li> 
+                <p class="remind">新備註:</p>
+                <label>
+                  <input type="text">
+                </label>
+              </li>
+              <li> 
+                <p class="remind">投注狀況:</p>
+                <label class="select">
+                  <p>啟用</p>
+                  <ol> 
+                    <li class="active">啟用</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+              </li>
+            </ul>
+            <ul class="noUnderLine"> 
+              <li> 
+                <p class="remind">拆帳百分比:</p>
+                <button class="setting">快速設定</button>
+                <label class="select">
+                  <p>95%</p>
+                  <ol> 
+                    <li class="active">95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+              </li>
+            </ul>
+            <ul class="ballList">
+              <li> 
+                <label class="select"><span>足球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>美國職籃</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>其他籃球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>美國職棒</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>日本職棒</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>中華職棒</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>其他棒球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>美式足球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>網球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>彩球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>賽馬賽狗</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>指數</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>電競</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>世界盃</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>高爾夫</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>冰球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>拳擊</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>拳擊格鬥</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>羽球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>排球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>桌球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>板球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>撞球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>手球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>世界盃(舊其他足球)</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>足球-歐洲盃</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>娛樂</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+              </li>
+            </ul>
+            <ul class="noUnderLine"> 
+              <li> 
+                <p class="remind">原盤延遲下注秒數：</p>
+                <label class="select">
+                  <p>一般</p>
+                  <ol> 
+                    <li class="active">一般</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+              </li>
+              <li> 
+                <p class="remind">走地延遲下注秒數：</p>
+                <label class="select">
+                  <p>一般</p>
+                  <ol> 
+                    <li class="active">一般</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+              </li>
+              <li> 
+                <p class="remind">過關下注關數限制：</p>
+                <label class="select">
+                  <p>十關</p>
+                  <ol> 
+                    <li class="active">十關</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <p class="red">10關為上限</p>
+              </li>
+            </ul>
+          </article>
+          <article class="fastSetting"> 
+            <ul> 
+              <li> 
+                <p>快速設定</p>
+                <button>全部退水</button>
+                <button>全部不退水</button>
+                <button>帶入上層設定</button>
+              </li>
+            </ul>
+            <ul class="ballList"> 
+              <li>
+                <label class="checkBox">
+                  <input type="checkbox" checked>
+                  <p>全部</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>足球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>美國職籃</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>其他籃球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>美國職棒</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>日本職棒</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>中華職棒</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>其他棒球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>美式足球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>網球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>彩球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>賽馬賽狗</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>指數</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>電競</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>世界盃</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>高爾夫</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>冰球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>拳擊</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>拳擊格鬥</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>羽球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>排球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>桌球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>板球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>撞球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>手球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>世界盃(舊其他足球)</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>足球-歐洲盃</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>娛樂</p>
+                </label>
+              </li>
+            </ul>
+            <ul> 
+              <li class="checkBoxs"> 
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>各項設定(全部)</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>各項設定(不含通關)</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>只設定通關</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox" checked>
+                  <p>只設定走地</p>
+                </label>
+              </li>
+              <li class="numbers">
+                <label class="number">
+                  <p>退水設定</p>
+                  <input type="number"><i class="number_ic"> </i>
+                </label>
+                <label class="number">
+                  <p>單注限額</p>
+                  <input type="number"><i class="number_ic"> </i>
+                </label>
+                <label class="number">
+                  <p>單場限額</p>
+                  <input type="number"><i class="number_ic"> </i>
+                </label>
+                <label class="number">
+                  <p>單邊限額</p>
+                  <input type="number"><i class="number_ic"> </i>
+                </label>
+              </li>
+              <li>
+                <button class="submit">快速設定套用確認 </button>
+              </li>
+            </ul>
+          </article>
+          <article class="ballTabs"> 
+            <div class="swiper">
+              <div class="swiper-wrapper">
+                <button class="swiper-slide active"><i class="soccer_ic"> </i><span>足球</span></button>
+                <button class="swiper-slide"><i class="nba_ic"> </i><span>美國職籃</span></button>
+                <button class="swiper-slide"><i class="otherbasketball_ic"> </i><span>其他籃球</span></button>
+                <button class="swiper-slide"><i class="mlb_ic"> </i><span>美國職棒</span></button>
+                <button class="swiper-slide"><i class="npb_ic"> </i><span>日本職棒</span></button>
+                <button class="swiper-slide"><i class="cpbl_ic"> </i><span>中華職棒</span></button>
+                <button class="swiper-slide"><i class="otherbaseball_ic"> </i><span>其他棒球</span></button>
+                <button class="swiper-slide"><i class="football_ic"> </i><span>美式足球</span></button>
+                <button class="swiper-slide"><i class="tennis_ic"> </i><span>網球</span></button>
+                <button class="swiper-slide"><i class="colorball_ic"> </i><span>彩球</span></button>
+                <button class="swiper-slide"><i class="race_ic"> </i><span>賽馬賽狗</span></button>
+                <button class="swiper-slide"><i class="index_ic"> </i><span>指數</span></button>
+                <button class="swiper-slide"><i class="esports_ic"> </i><span>電競</span></button>
+                <button class="swiper-slide"><i class="worldcup_ic"> </i><span>世界盃</span></button>
+                <button class="swiper-slide"><i class="golf_ic"> </i><span>高爾夫</span></button>
+                <button class="swiper-slide"><i class="icehockey_ic"> </i><span>冰球</span></button>
+                <button class="swiper-slide"><i class="boxing_ic"> </i><span>拳擊</span></button>
+                <button class="swiper-slide"><i class="fighting_ic"> </i><span>拳擊格鬥</span></button>
+                <button class="swiper-slide"><i class="badminton_ic"> </i><span>羽球</span></button>
+                <button class="swiper-slide"><i class="volleyball_ic"> </i><span>排球</span></button>
+                <button class="swiper-slide"><i class="tabletennis_ic"> </i><span>桌球</span></button>
+                <button class="swiper-slide"><i class="cricket_ic"> </i><span>板球</span></button>
+                <button class="swiper-slide"><i class="poolball_ic"> </i><span>撞球</span></button>
+                <button class="swiper-slide"><i class="handball_ic"> </i><span>手球</span></button>
+                <button class="swiper-slide"><i class="othersoccer_ic"> </i><span>世界盃(舊其他足球)</span></button>
+                <button class="swiper-slide"><i class="uefa_ic"> </i><span>足球-歐洲盃</span></button>
+                <button class="swiper-slide"><i class="entertainment_ic"> </i><span>娛樂</span></button>
+              </div>
+            </div><i class="arrow_ic prev"> </i><i class="arrow_ic next"> </i>
+          </article>
+          <article class="data"> 
+            <ul> 
+              <li class="thead"> 
+                <div> <span>足球</span></div>
+                <div><span>讓分 </span></div>
+                <div><span>大小 </span></div>
+                <div><span>獨贏 </span></div>
+                <div><span>單雙 </span></div>
+                <div><span>走地讓球 </span></div>
+                <div><span>走地大小 </span></div>
+                <div><span>波膽 </span></div>
+                <div><span>總入球 </span></div>
+                <div><span>半全場 </span></div>
+                <div><span>讓分過關 </span></div>
+                <div><span>綜合過關 </span></div>
+                <div><span>標準過關 </span></div>
+                <div><span>全部 </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">退佣設定</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">單場限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">單注限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox" checked>
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="underLine">單邊限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+            </ul>
+            <ul> 
+              <li class="thead"> 
+                <div> <span>籃球</span></div>
+                <div><span>讓分 </span></div>
+                <div><span>大小 </span></div>
+                <div><span>獨贏 </span></div>
+                <div><span>單雙 </span></div>
+                <div><span>走地讓球 </span></div>
+                <div><span>走地大小 </span></div>
+                <div><span>波膽 </span></div>
+                <div><span>總入球 </span></div>
+                <div><span>半全場 </span></div>
+                <div><span>讓分過關 </span></div>
+                <div><span>綜合過關 </span></div>
+                <div><span>標準過關 </span></div>
+                <div><span>全部 </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">退佣設定</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">單場限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">單注限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="underLine">單邊限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+            </ul>
+          </article>
+        </div>
+        <div class="agent_m ">
+          <article class="accountSetting">
+            <ul class="title noUnderLine"> 
+              <li> 
+                <p class="red">總代理修改 [ <span class="yellow">ABC88 </span>] <span>(此帳號最後修改時間 )</span></p>
+              </li>
+              <li>
+                <button class="cancel">取消設定</button>
+                <button class="submit">储存設定</button>
+              </li>
+            </ul>
+            <ul> 
+              <li> 
+                <p class="remind">大股票帳號:</p>
+                <label><span>@1</span>
+                  <input type="text">
+                </label>
+                <button>檢測帳號</button>
+                <button class="random">隨機</button>
+              </li>
+              <li> 
+                <p class="remind">大股票名稱:</p>
+                <label>
+                  <input type="text">
+                </label>
+              </li>
+            </ul>
+            <ul>
+              <li> 
+                <p class="remind">密碼:</p>
+                <label>
+                  <input type="text">
+                </label>
+              </li>
+              <li> 
+                <p class="remind">確認密碼:</p>
+                <label>
+                  <input type="text">
+                </label>
+              </li>
+            </ul>
+            <ul> 
+              <li> 
+                <p class="remind">總信用額度:</p>
+                <label>
+                  <input type="text">
+                </label><span>(萬)</span>
+                <button>修改額度</button>
+              </li>
+              <li> 
+                <p class="remind">剩餘額度:</p><span>0 (萬)</span><span>上層可用額度:</span><span class="red">0 (萬)</span>
+              </li>
+            </ul>
+            <ul> 
+              <li> 
+                <p class="remind">新備註:</p>
+                <label>
+                  <input type="text">
+                </label>
+              </li>
+              <li> 
+                <p class="remind">投注狀況:</p>
+                <label class="select">
+                  <p>啟用</p>
+                  <ol> 
+                    <li class="active">啟用</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+              </li>
+            </ul>
+            <ul class="noUnderLine"> 
+              <li> 
+                <p class="remind">拆帳百分比:</p>
+                <button class="setting">快速設定</button>
+                <label class="select">
+                  <p>95%</p>
+                  <ol> 
+                    <li class="active">95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+              </li>
+            </ul>
+            <ul class="ballList">
+              <li> 
+                <label class="select"><span>足球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>美國職籃</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>其他籃球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>美國職棒</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>日本職棒</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>中華職棒</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>其他棒球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>美式足球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>網球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>彩球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>賽馬賽狗</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>指數</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>電競</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>世界盃</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>高爾夫</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>冰球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>拳擊</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>拳擊格鬥</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>羽球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>排球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>桌球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>板球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>撞球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>手球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>世界盃(舊其他足球)</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>足球-歐洲盃</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>娛樂</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+              </li>
+            </ul>
+            <ul class="noUnderLine"> 
+              <li> 
+                <p class="remind">原盤延遲下注秒數：</p>
+                <label class="select">
+                  <p>一般</p>
+                  <ol> 
+                    <li class="active">一般</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+              </li>
+              <li> 
+                <p class="remind">走地延遲下注秒數：</p>
+                <label class="select">
+                  <p>一般</p>
+                  <ol> 
+                    <li class="active">一般</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+              </li>
+              <li> 
+                <p class="remind">過關下注關數限制：</p>
+                <label class="select">
+                  <p>十關</p>
+                  <ol> 
+                    <li class="active">十關</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <p class="red">10關為上限</p>
+              </li>
+            </ul>
+          </article>
+          <article class="fastSetting"> 
+            <ul> 
+              <li> 
+                <p>快速設定</p>
+                <button>全部退水</button>
+                <button>全部不退水</button>
+                <button>帶入上層設定</button>
+              </li>
+            </ul>
+            <ul class="ballList"> 
+              <li>
+                <label class="checkBox">
+                  <input type="checkbox" checked>
+                  <p>全部</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>足球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>美國職籃</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>其他籃球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>美國職棒</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>日本職棒</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>中華職棒</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>其他棒球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>美式足球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>網球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>彩球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>賽馬賽狗</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>指數</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>電競</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>世界盃</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>高爾夫</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>冰球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>拳擊</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>拳擊格鬥</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>羽球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>排球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>桌球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>板球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>撞球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>手球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>世界盃(舊其他足球)</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>足球-歐洲盃</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>娛樂</p>
+                </label>
+              </li>
+            </ul>
+            <ul> 
+              <li class="checkBoxs"> 
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>各項設定(全部)</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>各項設定(不含通關)</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>只設定通關</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox" checked>
+                  <p>只設定走地</p>
+                </label>
+              </li>
+              <li class="numbers">
+                <label class="number">
+                  <p>退水設定</p>
+                  <input type="number"><i class="number_ic"> </i>
+                </label>
+                <label class="number">
+                  <p>單注限額</p>
+                  <input type="number"><i class="number_ic"> </i>
+                </label>
+                <label class="number">
+                  <p>單場限額</p>
+                  <input type="number"><i class="number_ic"> </i>
+                </label>
+                <label class="number">
+                  <p>單邊限額</p>
+                  <input type="number"><i class="number_ic"> </i>
+                </label>
+              </li>
+              <li>
+                <button class="submit">快速設定套用確認 </button>
+              </li>
+            </ul>
+          </article>
+          <article class="ballTabs"> 
+            <div class="swiper">
+              <div class="swiper-wrapper">
+                <button class="swiper-slide active"><i class="soccer_ic"> </i><span>足球</span></button>
+                <button class="swiper-slide"><i class="nba_ic"> </i><span>美國職籃</span></button>
+                <button class="swiper-slide"><i class="otherbasketball_ic"> </i><span>其他籃球</span></button>
+                <button class="swiper-slide"><i class="mlb_ic"> </i><span>美國職棒</span></button>
+                <button class="swiper-slide"><i class="npb_ic"> </i><span>日本職棒</span></button>
+                <button class="swiper-slide"><i class="cpbl_ic"> </i><span>中華職棒</span></button>
+                <button class="swiper-slide"><i class="otherbaseball_ic"> </i><span>其他棒球</span></button>
+                <button class="swiper-slide"><i class="football_ic"> </i><span>美式足球</span></button>
+                <button class="swiper-slide"><i class="tennis_ic"> </i><span>網球</span></button>
+                <button class="swiper-slide"><i class="colorball_ic"> </i><span>彩球</span></button>
+                <button class="swiper-slide"><i class="race_ic"> </i><span>賽馬賽狗</span></button>
+                <button class="swiper-slide"><i class="index_ic"> </i><span>指數</span></button>
+                <button class="swiper-slide"><i class="esports_ic"> </i><span>電競</span></button>
+                <button class="swiper-slide"><i class="worldcup_ic"> </i><span>世界盃</span></button>
+                <button class="swiper-slide"><i class="golf_ic"> </i><span>高爾夫</span></button>
+                <button class="swiper-slide"><i class="icehockey_ic"> </i><span>冰球</span></button>
+                <button class="swiper-slide"><i class="boxing_ic"> </i><span>拳擊</span></button>
+                <button class="swiper-slide"><i class="fighting_ic"> </i><span>拳擊格鬥</span></button>
+                <button class="swiper-slide"><i class="badminton_ic"> </i><span>羽球</span></button>
+                <button class="swiper-slide"><i class="volleyball_ic"> </i><span>排球</span></button>
+                <button class="swiper-slide"><i class="tabletennis_ic"> </i><span>桌球</span></button>
+                <button class="swiper-slide"><i class="cricket_ic"> </i><span>板球</span></button>
+                <button class="swiper-slide"><i class="poolball_ic"> </i><span>撞球</span></button>
+                <button class="swiper-slide"><i class="handball_ic"> </i><span>手球</span></button>
+                <button class="swiper-slide"><i class="othersoccer_ic"> </i><span>世界盃(舊其他足球)</span></button>
+                <button class="swiper-slide"><i class="uefa_ic"> </i><span>足球-歐洲盃</span></button>
+                <button class="swiper-slide"><i class="entertainment_ic"> </i><span>娛樂</span></button>
+              </div>
+            </div><i class="arrow_ic prev"> </i><i class="arrow_ic next"> </i>
+          </article>
+          <article class="data"> 
+            <ul> 
+              <li class="thead"> 
+                <div> <span>足球</span></div>
+                <div><span>讓分 </span></div>
+                <div><span>大小 </span></div>
+                <div><span>獨贏 </span></div>
+                <div><span>單雙 </span></div>
+                <div><span>走地讓球 </span></div>
+                <div><span>走地大小 </span></div>
+                <div><span>波膽 </span></div>
+                <div><span>總入球 </span></div>
+                <div><span>半全場 </span></div>
+                <div><span>讓分過關 </span></div>
+                <div><span>綜合過關 </span></div>
+                <div><span>標準過關 </span></div>
+                <div><span>全部 </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">退佣設定</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">單場限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">單注限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox" checked>
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="underLine">單邊限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+            </ul>
+            <ul> 
+              <li class="thead"> 
+                <div> <span>籃球</span></div>
+                <div><span>讓分 </span></div>
+                <div><span>大小 </span></div>
+                <div><span>獨贏 </span></div>
+                <div><span>單雙 </span></div>
+                <div><span>走地讓球 </span></div>
+                <div><span>走地大小 </span></div>
+                <div><span>波膽 </span></div>
+                <div><span>總入球 </span></div>
+                <div><span>半全場 </span></div>
+                <div><span>讓分過關 </span></div>
+                <div><span>綜合過關 </span></div>
+                <div><span>標準過關 </span></div>
+                <div><span>全部 </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">退佣設定</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">單場限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">單注限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="underLine">單邊限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+            </ul>
+          </article>
+        </div>
+        <div class="agent ">
+          <article class="accountSetting">
+            <ul class="title noUnderLine"> 
+              <li> 
+                <p class="red">代理修改 [ <span class="yellow">ABC88 </span>] <span>(此帳號最後修改時間 )</span></p>
+              </li>
+              <li>
+                <button class="cancel">取消設定</button>
+                <button class="submit">储存設定</button>
+              </li>
+            </ul>
+            <ul> 
+              <li> 
+                <p class="remind">大股票帳號:</p>
+                <label><span>@1</span>
+                  <input type="text">
+                </label>
+                <button>檢測帳號</button>
+                <button class="random">隨機</button>
+              </li>
+              <li> 
+                <p class="remind">大股票名稱:</p>
+                <label>
+                  <input type="text">
+                </label>
+              </li>
+            </ul>
+            <ul>
+              <li> 
+                <p class="remind">密碼:</p>
+                <label>
+                  <input type="text">
+                </label>
+              </li>
+              <li> 
+                <p class="remind">確認密碼:</p>
+                <label>
+                  <input type="text">
+                </label>
+              </li>
+            </ul>
+            <ul> 
+              <li> 
+                <p class="remind">總信用額度:</p>
+                <label>
+                  <input type="text">
+                </label><span>(萬)</span>
+                <button>修改額度</button>
+              </li>
+              <li> 
+                <p class="remind">剩餘額度:</p><span>0 (萬)</span><span>上層可用額度:</span><span class="red">0 (萬)</span>
+              </li>
+            </ul>
+            <ul> 
+              <li> 
+                <p class="remind">新備註:</p>
+                <label>
+                  <input type="text">
+                </label>
+              </li>
+              <li> 
+                <p class="remind">投注狀況:</p>
+                <label class="select">
+                  <p>啟用</p>
+                  <ol> 
+                    <li class="active">啟用</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+              </li>
+            </ul>
+            <ul class="noUnderLine"> 
+              <li> 
+                <p class="remind">拆帳百分比:</p>
+                <button class="setting">快速設定</button>
+                <label class="select">
+                  <p>95%</p>
+                  <ol> 
+                    <li class="active">95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+              </li>
+            </ul>
+            <ul class="ballList">
+              <li> 
+                <label class="select"><span>足球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>美國職籃</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>其他籃球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>美國職棒</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>日本職棒</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>中華職棒</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>其他棒球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>美式足球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>網球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>彩球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>賽馬賽狗</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>指數</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>電競</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>世界盃</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>高爾夫</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>冰球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>拳擊</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>拳擊格鬥</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>羽球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>排球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>桌球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>板球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>撞球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>手球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>世界盃(舊其他足球)</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>足球-歐洲盃</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>娛樂</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+              </li>
+            </ul>
+            <ul class="noUnderLine"> 
+              <li> 
+                <p class="remind">原盤延遲下注秒數：</p>
+                <label class="select">
+                  <p>一般</p>
+                  <ol> 
+                    <li class="active">一般</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+              </li>
+              <li> 
+                <p class="remind">走地延遲下注秒數：</p>
+                <label class="select">
+                  <p>一般</p>
+                  <ol> 
+                    <li class="active">一般</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+              </li>
+              <li> 
+                <p class="remind">過關下注關數限制：</p>
+                <label class="select">
+                  <p>十關</p>
+                  <ol> 
+                    <li class="active">十關</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <p class="red">10關為上限</p>
+              </li>
+            </ul>
+          </article>
+          <article class="fastSetting"> 
+            <ul> 
+              <li> 
+                <p>快速設定</p>
+                <button>全部退水</button>
+                <button>全部不退水</button>
+                <button>帶入上層設定</button>
+              </li>
+            </ul>
+            <ul class="ballList"> 
+              <li>
+                <label class="checkBox">
+                  <input type="checkbox" checked>
+                  <p>全部</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>足球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>美國職籃</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>其他籃球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>美國職棒</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>日本職棒</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>中華職棒</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>其他棒球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>美式足球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>網球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>彩球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>賽馬賽狗</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>指數</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>電競</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>世界盃</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>高爾夫</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>冰球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>拳擊</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>拳擊格鬥</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>羽球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>排球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>桌球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>板球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>撞球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>手球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>世界盃(舊其他足球)</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>足球-歐洲盃</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>娛樂</p>
+                </label>
+              </li>
+            </ul>
+            <ul> 
+              <li class="checkBoxs"> 
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>各項設定(全部)</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>各項設定(不含通關)</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>只設定通關</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox" checked>
+                  <p>只設定走地</p>
+                </label>
+              </li>
+              <li class="numbers">
+                <label class="number">
+                  <p>退水設定</p>
+                  <input type="number"><i class="number_ic"> </i>
+                </label>
+                <label class="number">
+                  <p>單注限額</p>
+                  <input type="number"><i class="number_ic"> </i>
+                </label>
+                <label class="number">
+                  <p>單場限額</p>
+                  <input type="number"><i class="number_ic"> </i>
+                </label>
+                <label class="number">
+                  <p>單邊限額</p>
+                  <input type="number"><i class="number_ic"> </i>
+                </label>
+              </li>
+              <li>
+                <button class="submit">快速設定套用確認 </button>
+              </li>
+            </ul>
+          </article>
+          <article class="ballTabs"> 
+            <div class="swiper">
+              <div class="swiper-wrapper">
+                <button class="swiper-slide active"><i class="soccer_ic"> </i><span>足球</span></button>
+                <button class="swiper-slide"><i class="nba_ic"> </i><span>美國職籃</span></button>
+                <button class="swiper-slide"><i class="otherbasketball_ic"> </i><span>其他籃球</span></button>
+                <button class="swiper-slide"><i class="mlb_ic"> </i><span>美國職棒</span></button>
+                <button class="swiper-slide"><i class="npb_ic"> </i><span>日本職棒</span></button>
+                <button class="swiper-slide"><i class="cpbl_ic"> </i><span>中華職棒</span></button>
+                <button class="swiper-slide"><i class="otherbaseball_ic"> </i><span>其他棒球</span></button>
+                <button class="swiper-slide"><i class="football_ic"> </i><span>美式足球</span></button>
+                <button class="swiper-slide"><i class="tennis_ic"> </i><span>網球</span></button>
+                <button class="swiper-slide"><i class="colorball_ic"> </i><span>彩球</span></button>
+                <button class="swiper-slide"><i class="race_ic"> </i><span>賽馬賽狗</span></button>
+                <button class="swiper-slide"><i class="index_ic"> </i><span>指數</span></button>
+                <button class="swiper-slide"><i class="esports_ic"> </i><span>電競</span></button>
+                <button class="swiper-slide"><i class="worldcup_ic"> </i><span>世界盃</span></button>
+                <button class="swiper-slide"><i class="golf_ic"> </i><span>高爾夫</span></button>
+                <button class="swiper-slide"><i class="icehockey_ic"> </i><span>冰球</span></button>
+                <button class="swiper-slide"><i class="boxing_ic"> </i><span>拳擊</span></button>
+                <button class="swiper-slide"><i class="fighting_ic"> </i><span>拳擊格鬥</span></button>
+                <button class="swiper-slide"><i class="badminton_ic"> </i><span>羽球</span></button>
+                <button class="swiper-slide"><i class="volleyball_ic"> </i><span>排球</span></button>
+                <button class="swiper-slide"><i class="tabletennis_ic"> </i><span>桌球</span></button>
+                <button class="swiper-slide"><i class="cricket_ic"> </i><span>板球</span></button>
+                <button class="swiper-slide"><i class="poolball_ic"> </i><span>撞球</span></button>
+                <button class="swiper-slide"><i class="handball_ic"> </i><span>手球</span></button>
+                <button class="swiper-slide"><i class="othersoccer_ic"> </i><span>世界盃(舊其他足球)</span></button>
+                <button class="swiper-slide"><i class="uefa_ic"> </i><span>足球-歐洲盃</span></button>
+                <button class="swiper-slide"><i class="entertainment_ic"> </i><span>娛樂</span></button>
+              </div>
+            </div><i class="arrow_ic prev"> </i><i class="arrow_ic next"> </i>
+          </article>
+          <article class="data"> 
+            <ul> 
+              <li class="thead"> 
+                <div> <span>足球</span></div>
+                <div><span>讓分 </span></div>
+                <div><span>大小 </span></div>
+                <div><span>獨贏 </span></div>
+                <div><span>單雙 </span></div>
+                <div><span>走地讓球 </span></div>
+                <div><span>走地大小 </span></div>
+                <div><span>波膽 </span></div>
+                <div><span>總入球 </span></div>
+                <div><span>半全場 </span></div>
+                <div><span>讓分過關 </span></div>
+                <div><span>綜合過關 </span></div>
+                <div><span>標準過關 </span></div>
+                <div><span>全部 </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">退佣設定</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">單場限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">單注限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox" checked>
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="underLine">單邊限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+            </ul>
+            <ul> 
+              <li class="thead"> 
+                <div> <span>籃球</span></div>
+                <div><span>讓分 </span></div>
+                <div><span>大小 </span></div>
+                <div><span>獨贏 </span></div>
+                <div><span>單雙 </span></div>
+                <div><span>走地讓球 </span></div>
+                <div><span>走地大小 </span></div>
+                <div><span>波膽 </span></div>
+                <div><span>總入球 </span></div>
+                <div><span>半全場 </span></div>
+                <div><span>讓分過關 </span></div>
+                <div><span>綜合過關 </span></div>
+                <div><span>標準過關 </span></div>
+                <div><span>全部 </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">退佣設定</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">單場限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">單注限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="underLine">單邊限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+            </ul>
+          </article>
+        </div>
+        <div class="member ">
+          <article class="accountSetting">
+            <ul class="title noUnderLine"> 
+              <li> 
+                <p class="red">會員修改 [ <span class="yellow">ABC88 </span>] <span>(此帳號最後修改時間 )</span></p>
+              </li>
+              <li>
+                <button class="cancel">取消設定</button>
+                <button class="submit">储存設定</button>
+              </li>
+            </ul>
+            <ul> 
+              <li> 
+                <p class="remind">大股票帳號:</p>
+                <label><span>@1</span>
+                  <input type="text">
+                </label>
+                <button>檢測帳號</button>
+                <button class="random">隨機</button>
+              </li>
+              <li> 
+                <p class="remind">大股票名稱:</p>
+                <label>
+                  <input type="text">
+                </label>
+              </li>
+            </ul>
+            <ul>
+              <li> 
+                <p class="remind">密碼:</p>
+                <label>
+                  <input type="text">
+                </label>
+              </li>
+              <li> 
+                <p class="remind">確認密碼:</p>
+                <label>
+                  <input type="text">
+                </label>
+              </li>
+            </ul>
+            <ul> 
+              <li> 
+                <p class="remind">總信用額度:</p>
+                <label>
+                  <input type="text">
+                </label><span>(萬)</span>
+                <button>修改額度</button>
+              </li>
+              <li> 
+                <p class="remind">剩餘額度:</p><span>0 (萬)</span><span>上層可用額度:</span><span class="red">0 (萬)</span>
+              </li>
+            </ul>
+            <ul> 
+              <li> 
+                <p class="remind">新備註:</p>
+                <label>
+                  <input type="text">
+                </label>
+              </li>
+              <li> 
+                <p class="remind">投注狀況:</p>
+                <label class="select">
+                  <p>啟用</p>
+                  <ol> 
+                    <li class="active">啟用</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+              </li>
+            </ul>
+            <ul class="noUnderLine"> 
+              <li> 
+                <p class="remind">拆帳百分比:</p>
+                <button class="setting">快速設定</button>
+                <label class="select">
+                  <p>95%</p>
+                  <ol> 
+                    <li class="active">95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+              </li>
+            </ul>
+            <ul class="ballList">
+              <li> 
+                <label class="select"><span>足球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>美國職籃</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>其他籃球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>美國職棒</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>日本職棒</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>中華職棒</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>其他棒球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>美式足球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>網球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>彩球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>賽馬賽狗</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>指數</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>電競</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>世界盃</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>高爾夫</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>冰球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>拳擊</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>拳擊格鬥</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>羽球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>排球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>桌球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>板球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>撞球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>手球</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>世界盃(舊其他足球)</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>足球-歐洲盃</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <label class="select"><span>娛樂</span>
+                  <p>95%</p>
+                  <ol> 
+                    <li>95%</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+              </li>
+            </ul>
+            <ul class="noUnderLine"> 
+              <li> 
+                <p class="remind">原盤延遲下注秒數：</p>
+                <label class="select">
+                  <p>一般</p>
+                  <ol> 
+                    <li class="active">一般</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+              </li>
+              <li> 
+                <p class="remind">走地延遲下注秒數：</p>
+                <label class="select">
+                  <p>一般</p>
+                  <ol> 
+                    <li class="active">一般</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+              </li>
+              <li> 
+                <p class="remind">過關下注關數限制：</p>
+                <label class="select">
+                  <p>十關</p>
+                  <ol> 
+                    <li class="active">十關</li>
+                  </ol><i class="select_ic"></i>
+                </label>
+                <p class="red">10關為上限</p>
+              </li>
+            </ul>
+          </article>
+          <article class="fastSetting"> 
+            <ul> 
+              <li> 
+                <p>快速設定</p>
+                <button>全部退水</button>
+                <button>全部不退水</button>
+                <button>帶入上層設定</button>
+              </li>
+            </ul>
+            <ul class="ballList"> 
+              <li>
+                <label class="checkBox">
+                  <input type="checkbox" checked>
+                  <p>全部</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>足球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>美國職籃</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>其他籃球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>美國職棒</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>日本職棒</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>中華職棒</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>其他棒球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>美式足球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>網球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>彩球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>賽馬賽狗</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>指數</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>電競</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>世界盃</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>高爾夫</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>冰球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>拳擊</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>拳擊格鬥</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>羽球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>排球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>桌球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>板球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>撞球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>手球</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>世界盃(舊其他足球)</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>足球-歐洲盃</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>娛樂</p>
+                </label>
+              </li>
+            </ul>
+            <ul> 
+              <li class="checkBoxs"> 
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>各項設定(全部)</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>各項設定(不含通關)</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox">
+                  <p>只設定通關</p>
+                </label>
+                <label class="checkBox">
+                  <input type="checkbox" checked>
+                  <p>只設定走地</p>
+                </label>
+              </li>
+              <li class="numbers">
+                <label class="number">
+                  <p>退水設定</p>
+                  <input type="number"><i class="number_ic"> </i>
+                </label>
+                <label class="number">
+                  <p>單注限額</p>
+                  <input type="number"><i class="number_ic"> </i>
+                </label>
+                <label class="number">
+                  <p>單場限額</p>
+                  <input type="number"><i class="number_ic"> </i>
+                </label>
+                <label class="number">
+                  <p>單邊限額</p>
+                  <input type="number"><i class="number_ic"> </i>
+                </label>
+              </li>
+              <li>
+                <button class="submit">快速設定套用確認 </button>
+              </li>
+            </ul>
+          </article>
+          <article class="ballTabs"> 
+            <div class="swiper">
+              <div class="swiper-wrapper">
+                <button class="swiper-slide active"><i class="soccer_ic"> </i><span>足球</span></button>
+                <button class="swiper-slide"><i class="nba_ic"> </i><span>美國職籃</span></button>
+                <button class="swiper-slide"><i class="otherbasketball_ic"> </i><span>其他籃球</span></button>
+                <button class="swiper-slide"><i class="mlb_ic"> </i><span>美國職棒</span></button>
+                <button class="swiper-slide"><i class="npb_ic"> </i><span>日本職棒</span></button>
+                <button class="swiper-slide"><i class="cpbl_ic"> </i><span>中華職棒</span></button>
+                <button class="swiper-slide"><i class="otherbaseball_ic"> </i><span>其他棒球</span></button>
+                <button class="swiper-slide"><i class="football_ic"> </i><span>美式足球</span></button>
+                <button class="swiper-slide"><i class="tennis_ic"> </i><span>網球</span></button>
+                <button class="swiper-slide"><i class="colorball_ic"> </i><span>彩球</span></button>
+                <button class="swiper-slide"><i class="race_ic"> </i><span>賽馬賽狗</span></button>
+                <button class="swiper-slide"><i class="index_ic"> </i><span>指數</span></button>
+                <button class="swiper-slide"><i class="esports_ic"> </i><span>電競</span></button>
+                <button class="swiper-slide"><i class="worldcup_ic"> </i><span>世界盃</span></button>
+                <button class="swiper-slide"><i class="golf_ic"> </i><span>高爾夫</span></button>
+                <button class="swiper-slide"><i class="icehockey_ic"> </i><span>冰球</span></button>
+                <button class="swiper-slide"><i class="boxing_ic"> </i><span>拳擊</span></button>
+                <button class="swiper-slide"><i class="fighting_ic"> </i><span>拳擊格鬥</span></button>
+                <button class="swiper-slide"><i class="badminton_ic"> </i><span>羽球</span></button>
+                <button class="swiper-slide"><i class="volleyball_ic"> </i><span>排球</span></button>
+                <button class="swiper-slide"><i class="tabletennis_ic"> </i><span>桌球</span></button>
+                <button class="swiper-slide"><i class="cricket_ic"> </i><span>板球</span></button>
+                <button class="swiper-slide"><i class="poolball_ic"> </i><span>撞球</span></button>
+                <button class="swiper-slide"><i class="handball_ic"> </i><span>手球</span></button>
+                <button class="swiper-slide"><i class="othersoccer_ic"> </i><span>世界盃(舊其他足球)</span></button>
+                <button class="swiper-slide"><i class="uefa_ic"> </i><span>足球-歐洲盃</span></button>
+                <button class="swiper-slide"><i class="entertainment_ic"> </i><span>娛樂</span></button>
+              </div>
+            </div><i class="arrow_ic prev"> </i><i class="arrow_ic next"> </i>
+          </article>
+          <article class="data"> 
+            <ul> 
+              <li class="thead"> 
+                <div> <span>足球</span></div>
+                <div><span>讓分 </span></div>
+                <div><span>大小 </span></div>
+                <div><span>獨贏 </span></div>
+                <div><span>單雙 </span></div>
+                <div><span>走地讓球 </span></div>
+                <div><span>走地大小 </span></div>
+                <div><span>波膽 </span></div>
+                <div><span>總入球 </span></div>
+                <div><span>半全場 </span></div>
+                <div><span>讓分過關 </span></div>
+                <div><span>綜合過關 </span></div>
+                <div><span>標準過關 </span></div>
+                <div><span>全部 </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">退佣設定</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">單場限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">單注限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox" checked>
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="underLine">單邊限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+            </ul>
+            <ul> 
+              <li class="thead"> 
+                <div> <span>籃球</span></div>
+                <div><span>讓分 </span></div>
+                <div><span>大小 </span></div>
+                <div><span>獨贏 </span></div>
+                <div><span>單雙 </span></div>
+                <div><span>走地讓球 </span></div>
+                <div><span>走地大小 </span></div>
+                <div><span>波膽 </span></div>
+                <div><span>總入球 </span></div>
+                <div><span>半全場 </span></div>
+                <div><span>讓分過關 </span></div>
+                <div><span>綜合過關 </span></div>
+                <div><span>標準過關 </span></div>
+                <div><span>全部 </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">退佣設定</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">單場限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="blue underLine">單注限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+              <li class="tbody"> 
+                <div>
+                  <label><span class="underLine">單邊限額</span><span class="red underLine">(萬)</span>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="0">
+                </div>
+                <div>
+                  <input type="text" value="100">
+                </div>
+              </li>
+              <li class="detail">
+                <div><span>上限</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red">25</span></div>
+                <div><span class="red"> </span></div>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </main>
+    <section class="filter">
+      <div class="mask"></div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+    <script src="../js/UIComponents.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/swiper.js"></script>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+block header 
+  - let isActice = null
+header 
+  section.menu-navbar.sideBar
+    button.navber
+      i.navbar_ic
+    .title 
+      span 菜單
+      i.close_ic
+    aside 
+      a(href=`${path}/index.html` class=(isActice=="index")&&"active")
+        i.home_ic
+        span 首頁
+      a(href=`${url}/balls.html` class=(isActice=="balls")&&"active") 
+        i.balls_ic
+        span 球種資訊
+      button(class=`settlement ${(isActice=="settlement")&&"active"}`) 
+        //- a(href=`${url}/settlement.html?tab=plate`) 
+        i.settlement_ic
+        span 待結投注
+        article
+          p
+            | 待結投注
+            i.pin_ic 
+          a(href=`${url}/settlement.html?tab=plate` data-tab="plate") 
+            span 讓球盤
+            span 大小盤
+            span 獨營盤
+            span 滾球
+          a(href=`${url}/settlement.html?tab=score` data-tab="score") 
+            span 球隊總得分
+          a(href=`${url}/settlement.html?tab=special` data-tab="special") 
+            span 優勝冠軍盤
+            span 特別盤口
+          a(href=`${url}/settlement.html?tab=mix` data-tab="mix") 
+            span 混合過關
+          a(href=`${url}/settlement.html?tab=discount` data-tab="discount") 
+            span 優惠過關盤
+          a(href=`${url}/settlement.html?tab=monitor` data-tab="monitor") 
+            span 投注監視器
+      a(href=`${url}/report.html` class=(isActice=="report")&&"active") 
+        i.report_ic 
+        span 報表
+      a(href=`${url}/account.html` class=(isActice=="account")&&"active") 
+        i.account_ic
+        span 帳號管理
+      a(href=`${url}/betting.html` class=(isActice=="betting")&&"active") 
+        i.betting_ic
+        span 即時注單
+    .mask
+  section.menu-btns
+    a(href="#") 
+      i.member_ic
+      | 新增會員
+    a(href="#") 
+      i.customer_ic
+      | 在線客服
+    a(href="#") 
+      i.post_ic
+      | 公告
+  section.menu-navbar
+    button
+      i.setting_ic 

@@ -1,0 +1,232 @@
+@use "../base/index" as *;
+
+.filter {
+  .popup {
+    @include position($p: fixed, $set: "center", $z: 10);
+    display: none;
+    width: 100%;
+    height: fit-content;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    &.display {
+      display: block;
+      & ~ .mask {
+        display: block;
+      }
+    }
+    section {
+      @include d_flex;
+      &.title {
+        background: #007bed;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5rem;
+        p {
+          color: #fff;
+          padding: 0 0 0 1rem;
+        }
+        i {
+          width: 2rem;
+          height: 2rem;
+          transform: scale(2);
+          cursor: pointer;
+        }
+      }
+      &.content {
+        background: #e5e5e5;
+        label {
+          @include d_flex($ff: column, $g: 0.3rem);
+          position: relative;
+          p {
+            font-size: 0.8rem;
+            &.remind {
+              &::before {
+                content: "*";
+                color: #d21300;
+              }
+            }
+          }
+          input {
+            width: 100%;
+            padding: 0.5rem;
+            background: #fff;
+            border: 1px solid #858585;
+            border-radius: 0.5rem;
+            font-size: 0.85rem;
+            &:disabled {
+              border-color: #fff;
+              background: #c7c7c7;
+              color: #414343;
+            }
+          }
+          select {
+            width: 100%;
+            background: #fff;
+            border: 1px solid #858585;
+            padding: 0.5rem;
+            border-radius: 0.3rem;
+            cursor: pointer;
+          }
+          i {
+            &.select_ic {
+              @include position($b: 0.75rem, $r: 0.5rem);
+              width: 1rem;
+              height: 1rem;
+              filter: brightness(0);
+              pointer-events: none;
+            }
+          }
+        }
+        .btns {
+          @include d_flex($ai: center, $jc: center, $g: 1.25rem);
+          padding: 0.5rem 0;
+          button {
+            padding: 0.5rem 2.5rem;
+            &.cancel {
+              @include gradient("gray", true, 0.3rem);
+            }
+            &.submit {
+              @include gradient("blue2", true, 0.3rem);
+            }
+          }
+        }
+      }
+    }
+    // 修改密碼
+    &.chagePassword {
+      max-width: 30rem;
+      section {
+        &.content {
+          flex-direction: column;
+          gap: 1rem;
+          padding: 1.25rem;
+          .warn {
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+    // 新增子帳號
+    &.addSubAccount {
+      @extend .chagePassword;
+    }
+    // 拆帳百分比
+    &.percentage {
+      max-width: 37.5rem;
+      section {
+        &.content {
+          padding: 1.5rem;
+          ul {
+            width: 100%;
+            li {
+              display: grid;
+              grid-template-columns: repeat(4, 1fr);
+              place-content: center;
+              &.thead {
+                background: #6994bc;
+                color: #fff;
+              }
+              &.tbody {
+                background: #fff;
+                &:nth-child(odd) {
+                  background: #eee;
+                }
+              }
+              div {
+                text-align: center;
+                padding: 0.5rem 0;
+                font-size: 0.9rem;
+                &:nth-child(2) {
+                  border-right: 1px solid #e5e5e5;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    // 編輯清單
+    &.editList {
+      max-width: 35rem;
+      section {
+        &.content {
+          flex-direction: column;
+          padding: 1rem 1.5rem 2rem;
+          gap: 0.5rem;
+          article {
+            width: 100%;
+            display: grid;
+            gap: 0.25rem 1rem;
+            &.search {
+              grid-template-columns: repeat(2, 1fr);
+              button {
+                max-width: 7.5rem;
+                padding: 0.5rem 0;
+                &.clear {
+                  @include gradient("blue4");
+                }
+                &.include {
+                  @include gradient("orange2");
+                }
+              }
+              label {
+                input {
+                  border-color: #4e98e5;
+                  border-radius: 2rem;
+                  padding: 0.5rem;
+                }
+              }
+            }
+            &.list {
+              grid-template-columns: repeat(2, 1fr);
+              ul {
+                li {
+                  &.thead{
+                    color: #fff;
+                    text-align: center;
+                    background: #6994bc;
+                  }
+                  &.tbody{
+                    background: #fff;
+                    @include d_flex($jc:space-between);
+                    &:nth-child(odd){
+                      background: #eeeeee;
+                    }
+                    &:last-child{
+                      border-bottom: 1px solid #858585;
+                    }
+                  }
+                  span{
+                    display: block;
+                    height: 2rem;
+                    line-height: 2;
+                    padding:0 0.5rem;
+                    font-size: 0.9rem;
+                    &.blue.underLine{
+                      cursor: pointer;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    // 體育類型
+    &.PEType {
+      @extend .editList;
+    }
+    // 體育類型-球種
+    &.ballType{
+      @extend .editList;
+    }
+  }
+  .mask {
+    display: none;
+    width: 100%;
+    height: 100%;
+    @include position($p: fixed, $t: 0, $l: 0, $z: 9);
+    background: #00000080;
+  }
+}

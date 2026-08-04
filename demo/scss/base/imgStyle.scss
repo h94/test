@@ -1,0 +1,272 @@
+@use "sass:map";
+// 公用
+$public: (
+  close_ic: (
+    path: "/icon/",
+    file: "svg",
+  ),
+  search_ic: (
+    path: "/icon/",
+    file: "png",
+  ),
+  select_ic: (
+    path: "/icon/",
+    file: "png",
+  ),
+  number_ic: (
+    path: "/icon/",
+    file: "png",
+  ),
+  back_ic: (
+    path: "/icon/",
+    file: "png",
+  ),
+  refresh_ic: (
+    path: "/icon/",
+    file: "png",
+  ),
+  arrow_ic: (
+    path: "/icon/",
+    file: "png",
+  ),
+  pin_ic: (
+    path: "/icon/",
+    file: "png",
+  ),
+  time_ic: (
+    path: "/icon/",
+    file: "png",
+  ),
+  reorganize_ic: (
+    path: "/icon/",
+    file: "png",
+  ),
+  plus_ic: (
+    path: "/icon/",
+    file: "png",
+  ),
+  // baLL
+  soccer_ic:
+    (
+      path: "/ball/",
+      file: "png",
+    ),
+  nba_ic: (
+    path: "/ball/",
+    file: "png",
+  ),
+  otherbasketball_ic: (
+    path: "/ball/",
+    file: "png",
+  ),
+  mlb_ic: (
+    path: "/ball/",
+    file: "png",
+  ),
+  npb_ic: (
+    path: "/ball/",
+    file: "png",
+  ),
+  cpbl_ic: (
+    path: "/ball/",
+    file: "png",
+  ),
+  otherbaseball_ic: (
+    path: "/ball/",
+    file: "png",
+  ),
+  football_ic: (
+    path: "/ball/",
+    file: "png",
+  ),
+  tennis_ic: (
+    path: "/ball/",
+    file: "png",
+  ),
+  colorball_ic: (
+    path: "/ball/",
+    file: "png",
+  ),
+  race_ic: (
+    path: "/ball/",
+    file: "png",
+  ),
+  index_ic: (
+    path: "/ball/",
+    file: "png",
+  ),
+  esports_ic: (
+    path: "/ball/",
+    file: "png",
+  ),
+  worldcup_ic: (
+    path: "/ball/",
+    file: "png",
+  ),
+  golf_ic: (
+    path: "/ball/",
+    file: "png",
+  ),
+  icehockey_ic: (
+    path: "/ball/",
+    file: "png",
+  ),
+  boxing_ic: (
+    path: "/ball/",
+    file: "png",
+  ),
+  fighting_ic: (
+    path: "/ball/",
+    file: "png",
+  ),
+  badminton_ic: (
+    path: "/ball/",
+    file: "png",
+  ),
+  volleyball_ic: (
+    path: "/ball/",
+    file: "png",
+  ),
+  tabletennis_ic: (
+    path: "/ball/",
+    file: "png",
+  ),
+  cricket_ic: (
+    path: "/ball/",
+    file: "png",
+  ),
+  poolball_ic: (
+    path: "/ball/",
+    file: "png",
+  ),
+  handball_ic: (
+    path: "/ball/",
+    file: "png",
+  ),
+  othersoccer_ic: (
+    path: "/ball/",
+    file: "png",
+  ),
+  uefa_ic: (
+    path: "/ball/",
+    file: "png",
+  ),
+  entertainment_ic: (
+    path: "/ball/",
+    file: "png",
+  ),
+);
+
+// header
+$header: (
+  navbar_ic: (
+    path: "/header/",
+    file: "png",
+  ),
+  balls_ic: (
+    path: "/header/",
+    file: "png",
+  ),
+  account_ic: (
+    path: "/header/",
+    file: "png",
+  ),
+  betting_ic: (
+    path: "/header/",
+    file: "png",
+  ),
+  customer_ic: (
+    path: "/header/",
+    file: "png",
+  ),
+  home_ic: (
+    path: "/header/",
+    file: "png",
+  ),
+  member_ic: (
+    path: "/header/",
+    file: "png",
+  ),
+  post_ic: (
+    path: "/header/",
+    file: "png",
+  ),
+  report_ic: (
+    path: "/header/",
+    file: "png",
+  ),
+  setting_ic: (
+    path: "/header/",
+    file: "png",
+  ),
+  settlement_ic: (
+    path: "/header/",
+    file: "png",
+  ),
+);
+// main-home
+$home: (
+  post_ic: (
+    path: "/icon/",
+    file: "png",
+  ),
+);
+// main-settlement
+$settlement: (
+  plate_ic: (
+    path: "/settlement/",
+    file: "png",
+  ),
+  score_ic: (
+    path: "/settlement/",
+    file: "png",
+  ),
+  special_ic: (
+    path: "/settlement/",
+    file: "png",
+  ),
+  mix_ic: (
+    path: "/settlement/",
+    file: "png",
+  ),
+  discount_ic: (
+    path: "/settlement/",
+    file: "png",
+  ),
+);
+@each $key, $map in $public {
+  .#{$key} {
+    background: url("../img#{map.get($map,path)}#{$key}.#{map.get($map,file)}")
+      no-repeat
+      center/contain;
+  }
+}
+header {
+  @each $key, $map in $header {
+    .#{$key} {
+      background: url("../img#{map.get($map,path)}#{$key}.#{map.get($map,file)}")
+        no-repeat
+        center/contain;
+    }
+  }
+}
+main {
+  &.home {
+    @each $key, $map in $home {
+      .#{$key} {
+        background: url("../img#{map.get($map,path)}#{$key}.#{map.get($map,file)}")
+          no-repeat
+          center/contain;
+      }
+    }
+  }
+  &.settlement {
+    @each $key, $map in $settlement {
+      .#{$key} {
+        background: url("../img#{map.get($map,path)}#{$key}.#{map.get($map,file)}")
+          no-repeat
+          center/contain;
+      }
+    }
+  }
+}

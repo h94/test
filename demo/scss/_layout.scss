@@ -1,0 +1,34 @@
+@use "./base/index" as *;
+@use "./components/index";
+
+:root {
+  // 待結側欄-寬度
+  --asideWidth: 15rem;
+  // header高度
+  --headerHeight: 3.45rem;
+  font-size: 16px;
+  @include rwd_down(tablet) {
+    font-size: 2vw;
+  }
+  @include rwd_down(wide) {
+    --asideWidth: 11rem;
+  }
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  @include rwd_between(tablet, bigPad) {
+    min-width: 1000px;
+  }
+  body {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    color: #000;
+    background: #dfe0e4;
+    padding: var(--headerHeight) 0 0 var(--headerHeight);
+    @include d_flex($ff: column);
+  }
+}

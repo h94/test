@@ -1,0 +1,719 @@
+extends ../pug-compontent/layout.pug
+
+block header 
+  -isActice = "account"
+
+block content
+  main.addAccount 
+    section.titleBlock  
+      i.back_ic 
+      h1 管理
+    section.tabBlock
+      ul 
+        li
+          a(href="./account.html?tab=personalInfo" data-tab="personalInfo") 個人資料
+        li
+          a(href="./account.html?tab=subAccount" data-tab="subAccount") 子帳號管理
+        li
+          a(href="./account.html?tab=shareholder_m" data-tab="shareholder_m") 大股東
+        li
+          a(href="./account.html?tab=shareholder" data-tab="shareholder") 股東
+        li
+          a(href="./account.html?tab=agent_m" data-tab="agent_m") 總代理
+        li
+          a(href="./account.html?tab=agent")(data-tab="agent") 代理
+        li
+          a(href="./account.html?tab=member")(data-tab="member") 會員
+        li
+          a(href="./account.html?tab=treeManagement")(data-tab="treeManagement") 樹型管理
+    section.addAccountBlock 
+      - 
+        const tabs = [
+          {block:"shareholder_m",name:"大股東"},{block:"shareholder",name:"股東"},
+          {block:"agent_m",name:"總代理"},
+          {block:"agent",name:"代理"},
+          {block:"member",name:"會員"}
+        ]
+      each val,index in tabs 
+        div(class=`${val.block} ${index===0?"active":""}`)
+          article.accountSetting
+            ul.title.noUnderLine 
+              li 
+                p.red !{val.name}修改 [ 
+                  span.yellow ABC88 
+                  | ] 
+                  span (此帳號最後修改時間 )
+              li
+                button.cancel 取消設定
+                button.submit 储存設定
+            ul 
+              li 
+                p.remind 大股票帳號:
+                label
+                  span @1
+                  input(type="text")
+                button 檢測帳號
+                button.random 隨機
+              li 
+                p.remind 大股票名稱:
+                label
+                  input(type="text")
+            ul
+              li 
+                p.remind 密碼:
+                label
+                  input(type="text")
+              li 
+                p.remind 確認密碼:
+                label
+                  input(type="text")
+            ul 
+              li 
+                p.remind 總信用額度:
+                label
+                  input(type="text")
+                span (萬)
+                button 修改額度
+              li 
+                p.remind 剩餘額度:
+                span 0 (萬)
+                span 上層可用額度:
+                span.red 0 (萬)
+            ul 
+              li 
+                p.remind 新備註:
+                label
+                  input(type="text")
+              li 
+                p.remind 投注狀況:
+                +select("啟用")
+            ul.noUnderLine 
+              li 
+                p.remind 拆帳百分比:
+                button.setting 快速設定
+                +select("95%") 
+            ul.ballList
+              li 
+                each val in ballList
+                  label.select
+                    span= val.name
+                    p 95%
+                    ol 
+                      li 95%
+                    i.select_ic
+            ul.noUnderLine 
+              li 
+                p.remind 原盤延遲下注秒數：
+                +select("一般")
+              li 
+                p.remind 走地延遲下注秒數：
+                +select("一般")
+              li 
+                p.remind 過關下注關數限制：
+                +select("十關")
+                p.red 10關為上限
+          article.fastSetting 
+            ul 
+              li 
+                p 快速設定
+                button 全部退水
+                button 全部不退水
+                button 帶入上層設定
+            ul.ballList 
+              li
+                label.checkBox
+                  input(type="checkbox" checked)
+                  p 全部
+                each val in ballList
+                  label.checkBox
+                    input(type="checkbox")
+                    p= val.name
+            ul 
+              li.checkBoxs 
+                label.checkBox
+                  input(type="checkbox")
+                  p 各項設定(全部)
+                label.checkBox
+                  input(type="checkbox")
+                  p 各項設定(不含通關)
+                label.checkBox
+                  input(type="checkbox")
+                  p 只設定通關
+                label.checkBox
+                  input(type="checkbox" checked)
+                  p 只設定走地
+              li.numbers
+                label.number
+                  p 退水設定
+                  input(type="number")
+                  i.number_ic 
+                label.number
+                  p 單注限額
+                  input(type="number")
+                  i.number_ic 
+                label.number
+                  p 單場限額
+                  input(type="number")
+                  i.number_ic 
+                label.number
+                  p 單邊限額
+                  input(type="number")
+                  i.number_ic 
+              li
+                button.submit 快速設定套用確認 
+          article.ballTabs 
+            .swiper
+              .swiper-wrapper
+                each val,index in ballList 
+                  button.swiper-slide(class=index===0?"active":"")
+                    i(class=val.icon) 
+                    span= val.name        
+            i.arrow_ic.prev 
+            i.arrow_ic.next 
+          article.data 
+            ul 
+              li.thead 
+                div 
+                  span 足球
+                div
+                  span 讓分 
+                div
+                  span 大小 
+                div
+                  span 獨贏 
+                div
+                  span 單雙 
+                div
+                  span 走地讓球 
+                div
+                  span 走地大小 
+                div
+                  span 波膽 
+                div
+                  span 總入球 
+                div
+                  span 半全場 
+                div
+                  span 讓分過關 
+                div
+                  span 綜合過關 
+                div
+                  span 標準過關 
+                div
+                  span 全部 
+              li.tbody 
+                div
+                  label
+                    span.blue.underLine 退佣設定
+                    input(type="checkbox")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="100")
+              li.detail
+                div
+                  span 上限
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 
+              li.tbody 
+                div
+                  label
+                    span.blue.underLine 單場限額
+                    span.red.underLine (萬)
+                    input(type="checkbox")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="100")
+              li.detail
+                div
+                  span 上限
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 
+              li.tbody 
+                div
+                  label
+                    span.blue.underLine 單注限額
+                    span.red.underLine (萬)
+                    input(type="checkbox" checked)
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="100")
+              li.detail
+                div
+                  span 上限
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 
+              li.tbody 
+                div
+                  label
+                    span.underLine 單邊限額
+                    span.red.underLine (萬)
+                    input(type="checkbox")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="100")
+              li.detail
+                div
+                  span 上限
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 
+            ul 
+              li.thead 
+                div 
+                  span 籃球
+                div
+                  span 讓分 
+                div
+                  span 大小 
+                div
+                  span 獨贏 
+                div
+                  span 單雙 
+                div
+                  span 走地讓球 
+                div
+                  span 走地大小 
+                div
+                  span 波膽 
+                div
+                  span 總入球 
+                div
+                  span 半全場 
+                div
+                  span 讓分過關 
+                div
+                  span 綜合過關 
+                div
+                  span 標準過關 
+                div
+                  span 全部 
+              li.tbody 
+                div
+                  label
+                    span.blue.underLine 退佣設定
+                    input(type="checkbox")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="100")
+              li.detail
+                div
+                  span 上限
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 
+              li.tbody 
+                div
+                  label
+                    span.blue.underLine 單場限額
+                    span.red.underLine (萬)
+                    input(type="checkbox")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="100")
+              li.detail
+                div
+                  span 上限
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 
+              li.tbody 
+                div
+                  label
+                    span.blue.underLine 單注限額
+                    span.red.underLine (萬)
+                    input(type="checkbox")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="100")
+              li.detail
+                div
+                  span 上限
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 
+              li.tbody 
+                div
+                  label
+                    span.underLine 單邊限額
+                    span.red.underLine (萬)
+                    input(type="checkbox")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="0")
+                div
+                  input(type="text" value="100")
+              li.detail
+                div
+                  span 上限
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 25
+                div
+                  span.red 

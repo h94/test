@@ -1,0 +1,48 @@
+// 載入內建模組（必須在最頂端）
+@use "sass:map";
+@use "sass:meta";
+// 裝置斷點表
+$devices: (
+  mobile: 576px,
+  tablet: 768px,
+  bigPad: 1000px,
+  desktop: 1200px,
+  wide: 1400px,
+);
+// 共用：檢查輸入名稱
+@function check_device_name($deviceName) {
+  @if not map.has-key($devices, $deviceName) {
+    $deviceNameList: map.keys($devices);
+    @error '裝置名稱 #{$deviceName} 錯誤，正確關鍵字：#{meta.inspect($deviceNameList)}';
+    // inspect 已收進 meta (中繼資料)模組 -> meta.inspect
+    // inspect() 把資料型別轉成字串（如 list、map、color、number…）
+  }
+  @return $deviceName;
+}
+// rwd_up($bp) = min-width: $bp
+@mixin rwd_up($deviceName) {
+  $breakpoint: map.get($devices, check_device_name($deviceName));
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+// rwd_down($bp) = max-width: $bp
+@mixin rwd_down($deviceName) {
+  $breakpoint: map.get($devices, check_device_name($deviceName));
+  // 確保 max-width 永遠「嚴格小於」 min-width
+  @media (max-width: calc(#{$breakpoint} - 0.02px)) {
+    @content;
+  }
+}
+
+@mixin rwd_between($from_small, $to_large) {
+  $small_bp: map.get($devices, check_device_name($from_small));
+  $large_bp: map.get($devices, check_device_name($to_large));
+  @if $small_bp >= $large_bp {
+    @error 'rwd_between 範圍錯誤：#{$from_small} 須小於 #{$to_large}';
+  }
+
+  @media (min-width: $small_bp) and (max-width: calc($large_bp - 0.02px)) {
+    @content;
+  }
+}

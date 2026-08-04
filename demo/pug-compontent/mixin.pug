@@ -1,0 +1,8 @@
+mixin select(...options)
+  label.select
+    
+    p= options[0]
+    ol 
+      each option,index in options
+        li(class=index===0&&"active")= option
+    i.select_ic

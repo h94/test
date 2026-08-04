@@ -1,0 +1,1056 @@
+extends ../pug-compontent/layout.pug
+
+block header 
+  -isActice = "balls"
+
+block content 
+  main.balls 
+    svg 
+      symbol#paginationBullet(viewBox="0 0 50 10")
+        circle(cx=5 cy=5 r=4 fill="#007aff")
+    section.sportsBlock 
+      article.swiper
+        .swiper-wrapper
+          each val,index in ballList 
+            button.swiper-slide(class=index===0?"active":"")
+              i(class=val.icon) 
+              span= val.name
+      i.arrow_ic.prev 
+      i.arrow_ic.next 
+    section.tabBlock
+      ul 
+        li
+         button(data-tab="gameMode1").active 單式
+        li
+         button(data-tab="gameMode2") 上半場
+        li
+         button(data-tab="gameMode3") 走地
+        li
+         button(data-tab="gameMode4") 波膽
+        li
+         button(data-tab="gameMode5") 半全場
+        li
+         button(data-tab="gameMode6") 總入球
+        li
+         button(data-tab="gameMode7") 綜合過關
+        li
+         button(data-tab="gameMode8") 已開賽
+        li
+         button(data-tab="history") 歷史賽事
+    section.ballsBlock
+      - 
+        const gameModeList = [
+          {mode:"gameMode1",name:"單式"},
+          {mode:"gameMode2",name:"上半場"},
+          {mode:"gameMode3",name:"走地"},
+          {mode:"gameMode4",name:"波膽"},
+          {mode:"gameMode5",name:"半全場"},
+          {mode:"gameMode6",name:"總入球"},
+          {mode:"gameMode7",name:"綜合過關"},
+          {mode:"gameMode8",name:"已開賽"},
+        ]
+      each val,index in gameModeList
+        div(class=`${val.mode} ${index===0?"active":""}`)
+          .selects
+            span.ballTitle 足球_!{val.name}
+            +select("種類  |  佔成")
+            +select("更新  |  15 sec")
+            span.number.active 13
+            +select("排序  |  聯盟")
+            +select("下拉選單")
+          .data
+            ul
+              li(data-index=0) 
+                article.thead
+                  div 
+                    span 聯盟: 美國職業大聯盟 (2)
+                article.tbody
+                  div.serialNum
+                    span 2660001
+                  div.time 
+                    span.gray2 11.11
+                    span.gray2 18:00
+                    button 走地
+                  div.number 
+                    span.gray2 721
+                    span.gray2 722
+                  div.team 
+                    span.blue 丹佛金塊(主)
+                    span 沙加緬度國王
+                i.select_ic
+              li(data-index=1) 
+                article.thead
+                  div 
+                    span 聯盟: 美國職業大聯盟 (2)
+                article.tbody
+                  div.serialNum
+                    span 2660001
+                  div.time 
+                    span.gray2 11.11
+                    span.gray2 18:00
+                    button 走地
+                  div.number 
+                    span.gray2 721
+                    span.gray2 722
+                  div.team 
+                    span.blue 丹佛金塊(主)
+                    span 沙加緬度國王
+                article.tbody
+                  div.serialNum
+                    span 2660001
+                  div.time 
+                    span.gray2 11.11
+                    span.gray2 18:00
+                    button 走地
+                  div.number 
+                    span.gray2 721
+                    span.gray2 722
+                  div.team 
+                    span.blue 丹佛金塊(主)
+                    span 沙加緬度國王
+                article.tbody
+                  div.serialNum
+                    span 2660001
+                  div.time 
+                    span.gray2 11.11
+                    span.gray2 18:00
+                    button 走地
+                  div.number 
+                    span.gray2 721
+                    span.gray2 722
+                  div.team 
+                    span.blue 丹佛金塊(主)
+                    span 沙加緬度國王
+                i.select_ic
+            .swiper
+              .swiper-wrapper
+                ul.swiper-slide
+                  li(data-index=0) 
+                    article.thead
+                      div 
+                        span 獨贏
+                    article.tbody
+                      // 獨贏
+                      div.win 
+                        p
+                          span 
+                          span.red 0.423 
+                          span 0/0
+                        p
+                          span 
+                          span.red 5.000
+                          span 0/0
+                        p
+                          span 
+                          span.red 3.490
+                          span 0/0
+                    svg
+                      use(href=`#p-${val.mode}`)
+                  li(data-index=1) 
+                    article.thead
+                      div 
+                        span 獨贏
+                    article.tbody
+                      // 獨贏
+                      div.win 
+                        p
+                          span 
+                          span.red 0.423 
+                          span 0/0
+                        p
+                          span 
+                          span.red 5.000
+                          span 0/0
+                        p
+                          span 
+                          span.red 3.490
+                          span 0/0
+                    article.tbody
+                      // 獨贏
+                      div.win 
+                        p
+                          span 
+                          span.red 0.423 
+                          span 0/0
+                        p
+                          span 
+                          span.red 5.000
+                          span 0/0
+                        p
+                          span 
+                          span.red 3.490
+                          span 0/0
+                    article.tbody
+                      // 獨贏
+                      div.win 
+                        p
+                          span 
+                          span.red 0.423 
+                          span 0/0
+                        p
+                          span 
+                          span.red 5.000
+                          span 0/0
+                        p
+                          span 
+                          span.red 3.490
+                          span 0/0
+                    svg
+                      use(href=`#p-${val.mode}`) 
+                ul.swiper-slide
+                  li(data-index=0) 
+                    article.thead
+                      div 
+                        span 讓分
+                    article.tbody
+                      // 讓分
+                      div.point 
+                        p
+                          span.blue 1
+                          span.red 0.423 
+                          span 0/0
+                        p
+                          span 
+                          span.red 1.040
+                          span 0/0
+                    svg
+                      use(href=`#p-${val.mode}`) 
+                  li(data-index=1) 
+                    article.thead
+                      div 
+                        span 讓分
+                    article.tbody
+                      // 讓分
+                      div.point 
+                        p
+                          span.blue 1
+                          span.red 0.423 
+                          span 0/0
+                        p
+                          span 
+                          span.red 1.040
+                          span 0/0
+                    article.tbody
+                      // 讓分
+                      div.point 
+                        p
+                          span.blue 1
+                          span.red 0.423 
+                          span 0/0
+                        p
+                          span 
+                          span.red 1.040
+                          span 0/0
+                    article.tbody
+                      // 讓分
+                      div.point 
+                        p
+                          span.blue 1
+                          span.red 0.423 
+                          span 0/0
+                        p
+                          span 
+                          span.red 1.040
+                          span 0/0
+                    svg
+                      use(href=`#p-${val.mode}`) 
+                ul.swiper-slide
+                  li(data-index=0) 
+                    article.thead
+                      div 
+                        span 大小
+                    article.tbody
+                      // 大小
+                      div.size 
+                        p
+                          span.blue 2.5/3
+                          span.red 0.755
+                          span 0/0
+                        p
+                          span 
+                          span.red 1.140
+                          span 0/0
+                    svg
+                      use(href=`#p-${val.mode}`) 
+                  li(data-index=1) 
+                    article.thead
+                      div 
+                        span 大小
+                    article.tbody
+                      // 大小
+                      div.size 
+                        p
+                          span.blue 2.5/3
+                          span.red 0.755
+                          span 0/0
+                        p
+                          span 
+                          span.red 1.140
+                          span 0/0
+                    article.tbody
+                      // 大小
+                      div.size 
+                        p
+                          span.blue 2.5/3
+                          span.red 0.755
+                          span 0/0
+                        p
+                          span 
+                          span.red 1.140
+                          span 0/0
+                    article.tbody
+                      // 大小
+                      div.size 
+                        p
+                          span.blue 2.5/3
+                          span.red 0.755
+                          span 0/0
+                        p
+                          span 
+                          span.red 1.140
+                          span 0/0
+                    svg
+                      use(href=`#p-${val.mode}`) 
+                ul.swiper-slide
+                  li(data-index=0) 
+                    article.thead
+                      div 
+                        span 單雙
+                    article.tbody
+                      // 單雙
+                      div.odds 
+                        p
+                          span 單
+                          span.red 0.755
+                          span 0/0
+                        p
+                          span 雙
+                          span.red 1.140
+                          span 0/0
+                    svg
+                      use(href=`#p-${val.mode}`) 
+                  li(data-index=1) 
+                    article.thead
+                      div 
+                        span 單雙
+                    article.tbody
+                      // 單雙
+                      div.odds 
+                        p
+                          span 單
+                          span.red 0.755
+                          span 0/0
+                        p
+                          span 雙
+                          span.red 1.140
+                          span 0/0
+                    article.tbody
+                      // 單雙
+                      div.odds 
+                        p
+                          span 單
+                          span.red 0.755
+                          span 0/0
+                        p
+                          span 雙
+                          span.red 1.140
+                          span 0/0
+                    article.tbody
+                      // 單雙
+                      div.odds 
+                        p
+                          span 單
+                          span.red 0.755
+                          span 0/0
+                        p
+                          span 雙
+                          span.red 1.140
+                          span 0/0
+                    svg
+                      use(href=`#p-${val.mode}`) 
+                ul.swiper-slide
+                  li(data-index=0) 
+                    article.thead
+                      div 
+                        span 直播
+                    article.tbody
+                      // 直播
+                      div
+                    svg
+                      use(href=`#p-${val.mode}`) 
+                  li(data-index=1) 
+                    article.thead
+                      div 
+                        span 直播
+                    article.tbody
+                      // 直播
+                      div
+                    article.tbody
+                      // 直播
+                      div
+                    article.tbody
+                      // 直播
+                      div
+                    svg
+                      use(href=`#p-${val.mode}`) 
+                ul.swiper-slide
+                  li(data-index=0) 
+                    article.thead
+                      div
+                        span 其他
+                    article.tbody
+                      // 其他
+                      div
+                    svg
+                      use(href=`#p-${val.mode}`) 
+                  li(data-index=1) 
+                    article.thead
+                      div
+                        span 其他
+                    article.tbody
+                      // 其他
+                      div
+                    article.tbody
+                      // 其他
+                      div
+                    article.tbody
+                      // 其他
+                      div
+                    svg
+                      use(href=`#p-${val.mode}`) 
+              svg.swiper-pagination(id=`p-${val.mode}`)
+      .history
+        .selects
+          span.ballTitle 足球_歷史賽事
+          +select("種類  |  佔成")
+          +select("更新  |  15 sec")
+          span.number.active 13
+          +select("排序  |  聯盟")
+          +select("下拉選單")
+        .data
+          ul
+            li(data-index=0) 
+              article.thead
+                div 
+                  span 編號
+                div 
+                  span 時間
+                div 
+                  span 聯盟
+                div 
+                  span 比數
+                div 
+                  span 隊伍
+              article.tbody
+                div.serialNum
+                  span 2660001
+                div.time 
+                  span.gray2 11.11
+                  span.gray2 18:00
+                div.group
+                  span.gray2 美國職業大聯盟 (2)
+                div.count
+                  span.red 3:0
+                div.team 
+                  span.blue 丹佛金塊(主)
+                  span 沙加緬度國王
+              i.select_ic
+            li(data-index=1) 
+              article.thead
+                div 
+                  span 編號
+                div 
+                  span 時間
+                div 
+                  span 聯盟
+                div 
+                  span 比數
+                div 
+                  span 隊伍
+              article.tbody
+                div.serialNum
+                  span 2660001
+                div.time
+                  span.gray2 11.11
+                  span.gray2 18:00
+                div.group
+                  span.gray2 美國職業大聯盟 (2)
+                div.count
+                  span.red 3:0
+                div.team 
+                  span.blue 丹佛金塊(主)
+                  span 沙加緬度國王
+              article.tbody
+                div.serialNum
+                  span 2660001
+                div.time 
+                  span.gray2 11.11
+                  span.gray2 18:00
+                div.group
+                  span.gray2 美國職業大聯盟 (2)
+                div.count
+                  span.red 3:0
+                div.team 
+                  span.blue 丹佛金塊(主)
+                  span 沙加緬度國王
+              article.tbody
+                div.serialNum
+                  span 2660001
+                div.time 
+                  span.gray2 11.11
+                  span.gray2 18:00
+                div.group
+                  span.gray2 美國職業大聯盟 (2)
+                div.count
+                  span.red 3:0
+                div.team 
+                  span.blue 丹佛金塊(主)
+                  span 沙加緬度國王
+              i.select_ic
+            li(data-index=2) 
+              article.thead
+                div 
+                  span 編號
+                div 
+                  span 時間
+                div 
+                  span 聯盟
+                div 
+                  span 比數
+                div 
+                  span 隊伍
+              article.tbody
+                div.serialNum
+                  span 2660001
+                div.time
+                  span.gray2 11.11
+                  span.gray2 18:00
+                div.group
+                  span.gray2 美國職業大聯盟 (2)
+                div.count
+                  span.red 3:0
+                div.team 
+                  span.blue 丹佛金塊(主)
+                  span 沙加緬度國王
+              article.tbody
+                div.serialNum
+                  span 2660001
+                div.time 
+                  span.gray2 11.11
+                  span.gray2 18:00
+                div.group
+                  span.gray2 美國職業大聯盟 (2)
+                div.count
+                  span.red 3:0
+                div.team 
+                  span.blue 丹佛金塊(主)
+                  span 沙加緬度國王
+              article.tbody
+                div.serialNum
+                  span 2660001
+                div.time 
+                  span.gray2 11.11
+                  span.gray2 18:00
+                div.group
+                  span.gray2 美國職業大聯盟 (2)
+                div.count
+                  span.red 3:0
+                div.team 
+                  span.blue 丹佛金塊(主)
+                  span 沙加緬度國王
+              i.select_ic
+          .swiper
+            .swiper-wrapper
+              ul.swiper-slide
+                li(data-index=0) 
+                  article.thead
+                    div 
+                      span 獨贏
+                  article.tbody
+                    // 獨贏
+                    div.win 
+                      p
+                        span 
+                        span 0.423 
+                        span 0/0
+                      p
+                        span 
+                        span 5.000
+                        span 0/0
+                      p
+                        span 
+                        span 3.490
+                        span 0/0
+                  svg 
+                    use(href="#p-history")              
+                li(data-index=1) 
+                  article.thead
+                    div 
+                      span 獨贏
+                  article.tbody
+                    // 獨贏
+                    div.win 
+                      p
+                        span 
+                        span 0.423 
+                        span 0/0
+                      p
+                        span 
+                        span 5.000
+                        span 0/0
+                      p
+                        span 
+                        span 3.490
+                        span 0/0
+                  article.tbody
+                    // 獨贏
+                    div.win 
+                      p
+                        span 
+                        span 0.423 
+                        span 0/0
+                      p
+                        span 
+                        span 5.000
+                        span 0/0
+                      p
+                        span 
+                        span 3.490
+                        span 0/0
+                  article.tbody
+                    // 獨贏
+                    div.win 
+                      p
+                        span 
+                        span 0.423 
+                        span 0/0
+                      p
+                        span 
+                        span 5.000
+                        span 0/0
+                      p
+                        span 
+                        span 3.490
+                        span 0/0
+                  svg 
+                    use(href="#p-history")              
+                li(data-index=2) 
+                  article.thead
+                    div 
+                      span 獨贏
+                  article.tbody
+                    // 獨贏
+                    div.win 
+                      p
+                        span 
+                        span 0.423 
+                        span 0/0
+                      p
+                        span 
+                        span 5.000
+                        span 0/0
+                      p
+                        span 
+                        span 3.490
+                        span 0/0
+                  article.tbody
+                    // 獨贏
+                    div.win 
+                      p
+                        span 
+                        span 0.423 
+                        span 0/0
+                      p
+                        span 
+                        span 5.000
+                        span 0/0
+                      p
+                        span 
+                        span 3.490
+                        span 0/0
+                  article.tbody
+                    // 獨贏
+                    div.win 
+                      p
+                        span 
+                        span 0.423 
+                        span 0/0
+                      p
+                        span 
+                        span 5.000
+                        span 0/0
+                      p
+                        span 
+                        span 3.490
+                        span 0/0
+                  svg 
+                    use(href="#p-history")              
+              ul.swiper-slide
+                li(data-index=0) 
+                  article.thead
+                    div 
+                      span 讓分
+                  article.tbody
+                    // 讓分
+                    div.point 
+                      p
+                        span 1
+                        span 0.423 
+                        span 0/0
+                      p
+                        span 
+                        span 1.040
+                        span 0/0
+                  svg 
+                    use(href="#p-history")              
+                li(data-index=1) 
+                  article.thead
+                    div 
+                      span 讓分
+                  article.tbody
+                    // 讓分
+                    div.point 
+                      p
+                        span 1
+                        span 0.423 
+                        span 0/0
+                      p
+                        span 
+                        span 1.040
+                        span 0/0
+                  article.tbody
+                    // 讓分
+                    div.point 
+                      p
+                        span 1
+                        span 0.423 
+                        span 0/0
+                      p
+                        span 
+                        span 1.040
+                        span 0/0
+                  article.tbody
+                    // 讓分
+                    div.point 
+                      p
+                        span 1
+                        span 0.423 
+                        span 0/0
+                      p
+                        span 
+                        span 1.040
+                        span 0/0
+                  svg 
+                    use(href="#p-history")              
+                li(data-index=2) 
+                  article.thead
+                    div 
+                      span 讓分
+                  article.tbody
+                    // 讓分
+                    div.point 
+                      p
+                        span 1
+                        span 0.423 
+                        span 0/0
+                      p
+                        span 
+                        span 1.040
+                        span 0/0
+                  article.tbody
+                    // 讓分
+                    div.point 
+                      p
+                        span 1
+                        span 0.423 
+                        span 0/0
+                      p
+                        span 
+                        span 1.040
+                        span 0/0
+                  article.tbody
+                    // 讓分
+                    div.point 
+                      p
+                        span 1
+                        span 0.423 
+                        span 0/0
+                      p
+                        span 
+                        span 1.040
+                        span 0/0
+                  svg 
+                    use(href="#p-history")              
+              ul.swiper-slide
+                li(data-index=0) 
+                  article.thead
+                    div 
+                      span 大小
+                  article.tbody
+                    // 大小
+                    div.size 
+                      p
+                        span 2.5/3
+                        span 0.755
+                        span 0/0
+                      p
+                        span 
+                        span 1.140
+                        span 0/0
+                  svg 
+                    use(href="#p-history")              
+                li(data-index=1) 
+                  article.thead
+                    div 
+                      span 大小
+                  article.tbody
+                    // 大小
+                    div.size 
+                      p
+                        span 2.5/3
+                        span 0.755
+                        span 0/0
+                      p
+                        span 
+                        span 1.140
+                        span 0/0
+                  article.tbody
+                    // 大小
+                    div.size 
+                      p
+                        span 2.5/3
+                        span 0.755
+                        span 0/0
+                      p
+                        span 
+                        span 1.140
+                        span 0/0
+                  article.tbody
+                    // 大小
+                    div.size 
+                      p
+                        span 2.5/3
+                        span 0.755
+                        span 0/0
+                      p
+                        span 
+                        span 1.140
+                        span 0/0
+                  svg 
+                    use(href="#p-history")              
+                li(data-index=2) 
+                  article.thead
+                    div 
+                      span 大小
+                  article.tbody
+                    // 大小
+                    div.size 
+                      p
+                        span 2.5/3
+                        span 0.755
+                        span 0/0
+                      p
+                        span 
+                        span 1.140
+                        span 0/0
+                  article.tbody
+                    // 大小
+                    div.size 
+                      p
+                        span 2.5/3
+                        span 0.755
+                        span 0/0
+                      p
+                        span 
+                        span 1.140
+                        span 0/0
+                  article.tbody
+                    // 大小
+                    div.size 
+                      p
+                        span 2.5/3
+                        span 0.755
+                        span 0/0
+                      p
+                        span 
+                        span 1.140
+                        span 0/0
+                  svg 
+                    use(href="#p-history")              
+              ul.swiper-slide
+                li(data-index=0) 
+                  article.thead
+                    div 
+                      span 單雙
+                  article.tbody
+                    // 單雙
+                    div.odds 
+                      p
+                        span 單
+                        span 0.755
+                        span 0/0
+                      p
+                        span 雙
+                        span 1.140
+                        span 0/0
+                  svg 
+                    use(href="#p-history")              
+                li(data-index=1) 
+                  article.thead
+                    div 
+                      span 單雙
+                  article.tbody
+                    // 單雙
+                    div.odds 
+                      p
+                        span 單
+                        span 0.755
+                        span 0/0
+                      p
+                        span 雙
+                        span 1.140
+                        span 0/0
+                  article.tbody
+                    // 單雙
+                    div.odds 
+                      p
+                        span 單
+                        span 0.755
+                        span 0/0
+                      p
+                        span 雙
+                        span 1.140
+                        span 0/0
+                  article.tbody
+                    // 單雙
+                    div.odds 
+                      p
+                        span 單
+                        span 0.755
+                        span 0/0
+                      p
+                        span 雙
+                        span 1.140
+                        span 0/0
+                  svg 
+                    use(href="#p-history")              
+                li(data-index=2) 
+                  article.thead
+                    div 
+                      span 單雙
+                  article.tbody
+                    // 單雙
+                    div.odds 
+                      p
+                        span 單
+                        span 0.755
+                        span 0/0
+                      p
+                        span 雙
+                        span 1.140
+                        span 0/0
+                  article.tbody
+                    // 單雙
+                    div.odds 
+                      p
+                        span 單
+                        span 0.755
+                        span 0/0
+                      p
+                        span 雙
+                        span 1.140
+                        span 0/0
+                  article.tbody
+                    // 單雙
+                    div.odds 
+                      p
+                        span 單
+                        span 0.755
+                        span 0/0
+                      p
+                        span 雙
+                        span 1.140
+                        span 0/0
+                  svg 
+                    use(href="#p-history")              
+              ul.swiper-slide
+                li(data-index=0) 
+                  article.thead
+                    div 
+                      span 直播
+                  article.tbody
+                    // 直播
+                    div
+                  svg 
+                    use(href="#p-history")              
+                li(data-index=1) 
+                  article.thead
+                    div 
+                      span 直播
+                  article.tbody
+                    // 直播
+                    div
+                  article.tbody
+                    // 直播
+                    div
+                  article.tbody
+                    // 直播
+                    div
+                  svg 
+                    use(href="#p-history")              
+                li(data-index=2) 
+                  article.thead
+                    div 
+                      span 直播
+                  article.tbody
+                    // 直播
+                    div
+                  article.tbody
+                    // 直播
+                    div
+                  article.tbody
+                    // 直播
+                    div
+                  svg 
+                    use(href="#p-history")              
+              ul.swiper-slide
+                li(data-index=0) 
+                  article.thead
+                    div
+                      span 其他
+                  article.tbody
+                    // 其他
+                    div
+                  svg 
+                    use(href="#p-history")            
+                li(data-index=1) 
+                  article.thead
+                    div
+                      span 其他
+                  article.tbody
+                    // 其他
+                    div
+                  article.tbody
+                    // 其他
+                    div
+                  article.tbody
+                    // 其他
+                    div
+                  svg 
+                    use(href="#p-history")            
+                li(data-index=2) 
+                  article.thead
+                    div
+                      span 其他
+                  article.tbody
+                    // 其他
+                    div
+                  article.tbody
+                    // 其他
+                    div
+                  article.tbody
+                    // 其他
+                    div
+                  svg 
+                    use(href="#p-history")            
+            svg.swiper-pagination#p-history

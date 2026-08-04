@@ -1,0 +1,1128 @@
+extends ../pug-compontent/layout.pug
+
+block header 
+  -isActice = "settlement"
+
+block content
+  main.settlement
+    section.titleBlock  
+      i.back_ic 
+      h1 待結投注
+    section.settlementBlock
+      //- 讓球盤...
+      .plate
+        article.search 
+          i.time_ic 
+          span 12
+          button.reorganize.active
+            i.reorganize_ic
+          button.pause.active 凍結
+          +select("MyPT") 
+          +select("球種  |  全部") 
+          +select("賽事  |  全部") 
+          label
+            input(type="text" placeholder="使用者名稱/暱稱")
+          +select("產生報告對象  | 擁有下線") 
+          button.submit 提交 
+        article.title 
+          div
+            i.back_ic 
+            p.blue 讓球盤/大小盤/獨營盤/滾球
+          div
+            button 
+              i.refresh_ic
+              | 更新           
+        article.data 
+          ul.active 
+            li.ballName 籃球
+              i.select_ic 
+            li.thead 
+              div.sort 
+                span 
+                  i.plate_ic 
+              div
+                span 時間
+              div 
+                span 賽事
+              div.grid 
+                span 全場
+                span 讓球盤
+                span 小盤
+                span 獨贏盤
+                span.blue 主場
+                span 客場
+                span 大盤
+                span 小盤
+                span 1
+                span x
+                span 2
+              div.grid 
+                span 半場
+                span 讓球盤
+                span 小盤
+                span 獨贏盤
+                span.blue 主場
+                span 客場
+                span 大盤
+                span 小盤
+                span 1
+                span x
+                span 2
+              div.blank 
+                span 
+            -for(let i = 0;i < 3;i++)
+              details(open=i==0?true:false)
+                summary 澳洲 - 全國籃球聯賽
+                  i.select_ic 
+                -for(let j = 1;j <= (i==3?8:4);j++)
+                  li.tbody 
+                    div.sort 
+                      span 1
+                    div 
+                      span 23/12/2025 05:05:00
+                    div.game 
+                      span 
+                        p.blue [主] 墨爾本聯
+                        p 塔斯馬尼亞跳傘員
+                    div.grid 
+                      a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                    div.grid 
+                      a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                    div.grid 
+                      a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                    div.grid 
+                      a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                    div.grid 
+                      span
+                    div.grid 
+                      span
+                    div.grid 
+                      a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                    div.grid 
+                      a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                    div.grid 
+                      a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                    div.grid 
+                      a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                    div.grid 
+                      a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                    div.grid 
+                      a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                    div.grid 
+                      a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                    div.grid 
+                      a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                    div.blank 
+                      span 
+            details(open)
+              summary 澳洲 - 全國籃球聯賽
+                i.select_ic 
+              li.tbody 
+                div.sort 
+                  span 1
+                div 
+                  span 23/12/2025 05:05:00
+                div.game 
+                  span 
+                    p.blue [主] 墨爾本聯
+                    p 塔斯馬尼亞跳傘員
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  span
+                div.grid 
+                  span
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.blank 
+                  span 
+              li.tbody 
+                div.sort 
+                  span 1
+                div 
+                  span 23/12/2025 05:05:00
+                div.game
+                  span 
+                    p.blue [主] 墨爾本聯
+                    p 塔斯馬尼亞跳傘員
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  span
+                div.grid 
+                  span
+                div.grid 
+                  span
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.blank 
+                  span 
+              li.tbody 
+                div.sort 
+                  span 1
+                div 
+                  span 23/12/2025 05:05:00
+                div.game 
+                  span 
+                    p.blue [主] 墨爾本聯
+                    p 塔斯馬尼亞跳傘員
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  span
+                div.grid 
+                  span
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.blank 
+                  span 
+              li.tbody 
+                div.sort 
+                  span 1
+                div 
+                  span 23/12/2025 05:05:00
+                div.game 
+                  span 
+                    p.blue [主] 墨爾本聯
+                    p 塔斯馬尼亞跳傘員
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  span
+                div.grid 
+                  span
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.grid 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                div.blank 
+                  span 
+          ul.noData.active 
+            li.ballName 足球
+              i.select_ic 
+            li.thead 
+              div.sort 
+                span 
+                  i.plate_ic 
+              div
+                span 時間
+              div 
+                span 賽事
+              div.grid 
+                span 全場
+                span 讓球盤
+                span 小盤
+                span 獨贏盤
+                span.blue 主場
+                span 客場
+                span 大盤
+                span 小盤
+                span 1
+                span x
+                span 2
+              div.grid 
+                span 半場
+                span 讓球盤
+                span 小盤
+                span 獨贏盤
+                span.blue 主場
+                span 客場
+                span 大盤
+                span 小盤
+                span 1
+                span x
+                span 2
+              div.blank 
+                span 
+            li.tbody 
+              p 目前沒有資料
+      //- 球隊總得分
+      .score
+        article.search 
+          i.time_ic 
+          span 12
+          button.reorganize.active
+            i.reorganize_ic
+          button.pause.active 凍結
+          +select("MyPT") 
+          +select("球種  |  全部") 
+          +select("賽事  |  全部") 
+          label
+            input(type="text" placeholder="使用者名稱/暱稱")
+          +select("產生報告對象  | 擁有下線") 
+          button.submit 提交 
+        article.title 
+          div
+            i.back_ic 
+            p.blue 球隊總得分
+          div
+            button 
+              i.refresh_ic
+              | 更新           
+        article.data 
+          ul.active 
+            li.ballName 籃球
+              i.select_ic 
+            li.thead 
+              div.sort 
+                span 
+                  i.score_ic 
+              div
+                span 時間
+              div 
+                span 賽事
+              div.grid 
+                span 全場
+                span 比賽隊1
+                span 比賽隊2
+              div.grid 
+                span 全場
+                span 比賽隊1
+                span 比賽隊2
+              div.blank 
+                span 
+            -for(let i = 0;i < 4;i++)
+              details(open=(i==0||i==3)?true:false)
+                summary 澳洲 - 全國籃球聯賽
+                  i.select_ic 
+                -for(let j = 1;j <= (i==3?8:4);j++)
+                  li.tbody 
+                    div.sort 
+                      span= j
+                    div 
+                      span 23/12/2025 05:05:00
+                    div 
+                      span [主] 墨爾本聯-vs-塔斯馬尼亞跳傘員
+                    div.grid 
+                      a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                    div.grid 
+                      a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                    div.grid 
+                      a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                    div.grid 
+                      a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+                    div.blank 
+                      span 
+          ul.noData.active 
+            li.ballName 足球
+              i.select_ic 
+            li.thead 
+              div.sort 
+                span 
+                  i.score_ic 
+              div
+                span 時間
+              div 
+                span 賽事
+              div.grid 
+                span 全場
+                span 比賽隊1
+                span 比賽隊2
+              div.grid 
+                span 全場
+                span 比賽隊1
+                span 比賽隊2
+              div.blank 
+                span 
+            li.tbody 
+              p 目前沒有資料
+      //- 優勝冠軍盤...
+      .special 
+        article.search 
+          i.time_ic 
+          span 12
+          button.reorganize.active
+            i.reorganize_ic
+          button.pause.active 凍結
+          +select("MyPT") 
+          +select("球種  |  全部") 
+          +select("賽事  |  全部") 
+          label
+            input(type="text" placeholder="使用者名稱/暱稱")
+          +select("產生報告對象  | 擁有下線") 
+          button.submit 提交
+        article.title 
+          div
+            i.back_ic 
+            p.blue 優勝冠軍盤/特別盤口
+          div
+            button 
+              i.refresh_ic
+              | 更新              
+        article.data
+          - const name = ["France","Brazil","England","Argentina","Spain","Germany","Portugal","Netherlands","Italy","Belgium","USA","Uruguay"]
+          ul
+            li.ballName 全部
+            li.thead 
+              div
+                span
+                  i.special_ic
+              div 
+                span 選手
+              div 
+                span 總注金
+            li.ballTitle FIFA - World Cup Winner 2026
+            -for(let i = 1;i <= 4; i++)
+              li.tbody 
+                div 
+                  span= i
+                div 
+                  span= name[i-1]
+                div 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+            li.ballTitle FIFA - World Cup Winner 2026
+            -for(let i = 1;i <= 8; i++)
+              li.tbody 
+                div 
+                  span= i
+                div 
+                  span= name[i+3]
+                div 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+          ul
+            li.ballName 全部
+            li.thead 
+              div
+                span
+                  i.special_ic
+              div 
+                span 選手
+              div 
+                span 總注金
+            li.ballTitle FIFA - World Cup Winner 2026
+            -for(let i = 1;i <= 4; i++)
+              li.tbody 
+                div 
+                  span= i
+                div 
+                  span= name[i-1]
+                div 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+            li.ballTitle FIFA - World Cup Winner 2026
+            -for(let i = 1;i <= 8; i++)
+              li.tbody 
+                div 
+                  span= i
+                div 
+                  span= name[i+3]
+                div 
+                  a.blue.underLine(href="./settlement.html?tab=betList") 0.00
+          //- ul.noData
+          //-   li.ballName 足球
+          //-   li.thead 
+          //-     div
+          //-       span
+          //-         i.special_ic
+          //-     div 
+          //-       span 選手
+          //-     div 
+          //-       span 總注金
+          //-   li.tbody
+          //-     p 目前沒有資料
+          //- ul.noData
+          //-   li.ballName 棒球
+          //-   li.thead 
+          //-     div
+          //-       span
+          //-         i.special_ic
+          //-     div 
+          //-       span 選手
+          //-     div 
+          //-       span 總注金
+          //-   li.tbody
+          //-     p 目前沒有資料    
+      //- 混合過關
+      .mix
+        article.search
+          +select("搜尋條件  | 用戶名稱") 
+          label
+            input(type="text")
+          +select("產生報告對象  | 擁有下線") 
+          button.submit 提交
+        article.title
+          div
+            i.back_ic 
+            p.blue 混合過關
+          div 
+            button 
+              i.refresh_ic
+              | 更新
+        article.data
+          ul 
+            li.thead 
+              div.sort 
+                span
+                  i.mix_ic
+              div 
+                span 用戶名稱
+              div 
+                span 暱稱
+              div 
+                span IP
+              div.time
+                span 交易時間
+              div 
+                span 參考編號
+              div 
+                span 賽事
+              div.detail 
+                span 選擇
+              div 
+                span 賠率
+              div 
+                span 總賭金
+              div 
+                span 風險
+              div 
+                span 贏得
+              div 
+                span 數量
+              div 
+                span 狀態
+              div.grid 
+                span 高級主代理
+                span 佔成
+                span 傭金
+              div.grid 
+                span 會員
+                span 佔成
+                span 傭金
+            -for(let i = 1;i <= 8;i++)
+              li.tbody 
+                div.sort 
+                  span= i
+                div 
+                  span C1502012VL
+                div 
+                  span eb7aa512a6
+                div 
+                  span 114.140.129.213
+                div.time 
+                  span 26/12/2025 02:42:05
+                div 
+                  span 2945646668
+                div 
+                  span 混合過關
+                div.detail 
+                  span 
+                    i.plus_ic
+                div 
+                  span 12.455
+                div 
+                  span 100.00
+                div 
+                  span 100.00
+                div 
+                  span 1,245.25
+                div 
+                  span 3
+                div 
+                  span 進行中
+                div.grid 
+                  span 0.00%
+                  span 0.00%
+                div.grid 
+                  span 0.00%
+                  span 0.00%
+              li.tdetail
+                ul 
+                  li.thead
+                    div 
+                      span 比賽時間
+                    div 
+                      span 比賽描述
+                    div 
+                      span 選擇
+                    div 
+                      span 運動類型
+                    div 
+                      span 描述
+                    div 
+                      span 投注類型描述
+                  li.tbody
+                    div 
+                      span 26/12/2025 02:42:05
+                    div 
+                      span 
+                        p Australia - A League
+                        p Newcastle Jets 
+                          span.red 對 
+                          | Macarthur FC
+                    div 
+                      span 
+                        p 
+                          span.red 大 
+                          | [1.75]@
+                          span.red 1.450
+                        p Accepted
+                    div 
+                      span 足球
+                    div 
+                      span 1 Half
+                    div 
+                      span 大小盤
+                  li.tbody
+                    div 
+                      span 26/12/2025 02:42:05
+                    div 
+                      span 
+                        p Australia - A League
+                        p Newcastle Jets 
+                          span.red 對 
+                          | Macarthur FC
+                    div 
+                      span 
+                        p 
+                          span.red 大 
+                          | [1.75]@
+                          span.red 1.450
+                        p Accepted
+                    div 
+                      span 足球
+                    div 
+                      span 1 Half
+                    div 
+                      span 大小盤
+      //- 優惠過關盤
+      .discount 
+        article.search
+          +select("搜尋條件  | 用戶名稱") 
+          label
+            input(type="text")
+          +select("產生報告對象  | 擁有下線") 
+          button.submit 提交
+        article.title
+          div
+            i.back_ic 
+            p.blue 優惠過關盤
+          div 
+            button 
+              i.refresh_ic
+              | 更新
+        article.data
+          ul 
+            li.thead 
+              div.sort 
+                span
+                  i.discount_ic
+              div 
+                span 用戶名稱
+              div 
+                span 暱稱
+              div 
+                span IP
+              div.time 
+                span 交易時間
+              div 
+                span 參考編號
+              div 
+                span 賽事
+              div.detail 
+                span 選擇
+              div 
+                span 賠率
+              div 
+                span 總賭金
+              div 
+                span 風險
+              div 
+                span 贏得
+              div 
+                span 數量
+              div 
+                span 狀態
+              div.grid 
+                span 高級主代理
+                span 佔成
+                span 傭金
+              div.grid 
+                span 會員
+                span 佔成
+                span 傭金
+            -for(let i = 1;i <= 8;i++)
+              li.tbody 
+                div.sort 
+                  span= i
+                div 
+                  span C1502012VL
+                div 
+                  span eb7aa512a6
+                div 
+                  span 114.140.129.213
+                div.time 
+                  span 26/12/2025 02:42:05
+                div 
+                  span 2945646668
+                div 
+                  span 優惠過關盤
+                div.detail 
+                  span 
+                    i.plus_ic
+                div 
+                  span 12.455
+                div 
+                  span 100.00
+                div 
+                  span 100.00
+                div 
+                  span 1,245.25
+                div 
+                  span 3
+                div 
+                  span 進行中
+                div.grid 
+                  span 0.00%
+                  span 0.00%
+                div.grid 
+                  span 0.00%
+                  span 0.00%
+              li.tdetail
+                ul 
+                  li.thead
+                    div 
+                      span 比賽時間
+                    div 
+                      span 比賽描述
+                    div 
+                      span 選擇
+                    div 
+                      span 運動類型
+                    div 
+                      span 描述
+                    div 
+                      span 投注類型描述
+                  li.tbody
+                    div 
+                      span 26/12/2025 02:42:05
+                    div 
+                      span 
+                        p Australia - A League
+                        p Newcastle Jets 
+                          span.red 對 
+                          | Macarthur FC
+                    div 
+                      span 
+                        p 
+                          span.red 大 
+                          | [1.75]@
+                          span.red 1.450
+                        p Accepted
+                    div 
+                      span 足球
+                    div 
+                      span 1 Half
+                    div 
+                      span 大小盤
+                  li.tbody
+                    div 
+                      span 26/12/2025 02:42:05
+                    div 
+                      span 
+                        p Australia - A League
+                        p Newcastle Jets 
+                          span.red 對 
+                          | Macarthur FC
+                    div 
+                      span 
+                        p 
+                          span.red 大 
+                          | [1.75]@
+                          span.red 1.450
+                        p Accepted
+                    div 
+                      span 足球
+                    div 
+                      span 1 Half
+                    div 
+                      span 大小盤
+      //- 投注監視器
+      .monitor 
+        article.search  
+          +select("即時/非即時  | ALL") 
+          +select("更新時間  | Select Value") 
+          +select("投注紀錄  | Select Value") 
+          +select("報告類型  | Select Value") 
+          button(data-popup="editList").editList 編輯清單
+          +select("產生報告對象  | 擁有下線") 
+        article.search  
+          button(data-popup="PEType").PEType 體育類型
+          p.gray 最低風險金額>=
+          label
+            input(Value="0")
+          button.submit 設定
+          button.active 清除結果
+          label.checkBox
+            input(type="checkbox")
+            p.gray 凍結結果  | 
+              span.red 已開啟投注監視器
+        article.title
+          div
+            i.back_ic 
+            p.blue 投注監視器
+          div 
+            button 
+              i.refresh_ic
+              | 更新
+        article.risk
+          p Risk Amount
+          div(style="--f:8;--c:#dfe0e4") 
+            span.number 1
+            span
+          div(style="--f:10;--c:#b6cadf") 
+            span.number 499
+            span
+          div(style="--f:12;--c:#8bb7e3") 
+            span.number 1499
+            span
+          div(style="--f:14;--c:#5fa3e7") 
+            span.number 2999
+            span
+          div(style="--f:16;--c:#f89d71") 
+            span.number 3999
+            span
+          div(style="--f:18;--c:#ec7451") 
+            span.number 4999
+            span
+          div(style="--f:20;--c:#dd5244") 
+            span.number 10000
+            span
+        article.data 
+          ul 
+            li.thead 
+              div 
+                span 彩票
+              div 
+                span 群組名稱
+              div 
+                span 代理商
+              div 
+                span 用戶
+              div 
+                span 暱稱
+              div 
+                span 已下注
+              div.describe 
+                span 描述
+              div 
+                span 貨幣
+              div 
+                span 風險
+              div 
+                span 贏
+            li.tbody 
+              div 
+                span ABC
+              div 
+                span ABC001
+              div 
+                span XX代理
+              div 
+                span C1502012VL
+              div 
+                span eb7aa512a6
+              div 
+                span 100.00
+              div.describe 
+                span ABCDEF
+              div 
+                span TWD
+              div 
+                span 3,000
+              div 
+                span 18,888.20
+            li.tbody 
+              div 
+                span ABC
+              div 
+                span ABC001
+              div 
+                span XX代理
+              div 
+                span C1502012VL
+              div 
+                span eb7aa512a6
+              div 
+                span 100.00
+              div.describe 
+                span ABCDEF
+              div 
+                span TWD
+              div 
+                span 3,000
+              div 
+                span 18,888.20
+            li.tbody 
+              div 
+                span ABC
+              div 
+                span ABC001
+              div 
+                span XX代理
+              div 
+                span C1502012VL
+              div 
+                span eb7aa512a6
+              div 
+                span 100.00
+              div.describe 
+                span ABCDEF
+              div 
+                span TWD
+              div 
+                span 3,000
+              div 
+                span 18,888.20
+            li.tbody 
+              div 
+                span ABC
+              div 
+                span ABC001
+              div 
+                span XX代理
+              div 
+                span C1502012VL
+              div 
+                span eb7aa512a6
+              div 
+                span 100.00
+              div.describe 
+                span ABCDEF
+              div 
+                span TWD
+              div 
+                span 3,000
+              div 
+                span 18,888.20
+      //- betList
+      .betList
+        article.search
+          +select("搜尋條件  | 用戶名稱") 
+          label
+            input(type="text")
+          +select("產生報告對象  | 擁有下線") 
+          button.submit 提交
+        article.title
+          div.back
+            i.back_ic 
+            p.blue Bet List
+          div 
+            button 
+              i.refresh_ic
+              | 更新
+        article.data
+          ul 
+            li.thead 
+              div.sort 
+                span
+                  i.mix_ic
+              div 
+                span 用戶名稱
+              div 
+                span 暱稱
+              div 
+                span IP
+              div.time  
+                span 交易時間
+              div 
+                span 參考編號
+              div 
+                span 賽事
+              div.detail 
+                span 選擇
+              div 
+                span 賠率
+              div 
+                span 總賭金
+              div 
+                span 風險
+              div 
+                span 贏得
+              div 
+                span 數量
+              div 
+                span 狀態
+              div.grid 
+                span 高級主代理
+                span 佔成
+                span 傭金
+              div.grid 
+                span 會員
+                span 佔成
+                span 傭金
+            -for(let i = 1;i <= 8;i++)
+              li.tbody 
+                div.sort 
+                  span= i
+                div 
+                  span C1502012VL
+                div 
+                  span eb7aa512a6
+                div 
+                  span 114.140.129.213
+                div.time 
+                  span 26/12/2025 02:42:05
+                div 
+                  span 2945646668
+                div 
+                  span 優惠過關盤
+                div.detail 
+                  span 
+                    i.plus_ic
+                div 
+                  span 12.455
+                div 
+                  span 100.00
+                div 
+                  span 100.00
+                div 
+                  span 1,245.25
+                div 
+                  span 3
+                div 
+                  span 進行中
+                div.grid 
+                  span 0.00%
+                  span 0.00%
+                div.grid 
+                  span 0.00%
+                  span 0.00%
+              li.tdetail
+                ul 
+                  li.thead
+                    div 
+                      span 比賽時間
+                    div 
+                      span 比賽描述
+                    div 
+                      span 選擇
+                    div 
+                      span 運動類型
+                    div 
+                      span 描述
+                    div 
+                      span 投注類型描述
+                  li.tbody
+                    div 
+                      span 26/12/2025 02:42:05
+                    div 
+                      span 
+                        p Australia - A League
+                        p Newcastle Jets 
+                          span.red 對 
+                          | Macarthur FC
+                    div 
+                      span 
+                        p 
+                          span.red 大 
+                          | [1.75]@
+                          span.red 1.450
+                        p Accepted
+                    div 
+                      span 足球
+                    div 
+                      span 1 Half
+                    div 
+                      span 大小盤
+                  li.tbody
+                    div 
+                      span 26/12/2025 02:42:05
+                    div 
+                      span 
+                        p Australia - A League
+                        p Newcastle Jets 
+                          span.red 對 
+                          | Macarthur FC
+                    div 
+                      span 
+                        p 
+                          span.red 大 
+                          | [1.75]@
+                          span.red 1.450
+                        p Accepted
+                    div 
+                      span 足球
+                    div 
+                      span 1 Half
+                    div 
+                      span 大小盤
+
+block filter
+  - let editList = true
+  - let PEType = true
+  - let ballType = true

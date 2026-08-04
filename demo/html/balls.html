@@ -1,0 +1,3318 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
+    <title>LB_N1_agent</title>
+  </head>
+  <body>
+    <header> 
+      <section class="menu-navbar sideBar">
+        <button class="navber"><i class="navbar_ic"></i></button>
+        <div class="title"> <span>菜單</span><i class="close_ic"></i></div>
+        <aside> <a href="../index.html"><i class="home_ic"></i><span>首頁</span></a><a class="active" href="./balls.html"> <i class="balls_ic"></i><span>球種資訊</span></a>
+          <button class="settlement false"> <i class="settlement_ic"></i><span>待結投注</span>
+            <article>
+              <p>待結投注<i class="pin_ic"> </i></p><a href="./settlement.html?tab=plate" data-tab="plate"> <span>讓球盤</span><span>大小盤</span><span>獨營盤</span><span>滾球</span></a><a href="./settlement.html?tab=score" data-tab="score"> <span>球隊總得分</span></a><a href="./settlement.html?tab=special" data-tab="special"> <span>優勝冠軍盤</span><span>特別盤口</span></a><a href="./settlement.html?tab=mix" data-tab="mix"> <span>混合過關</span></a><a href="./settlement.html?tab=discount" data-tab="discount"> <span>優惠過關盤</span></a><a href="./settlement.html?tab=monitor" data-tab="monitor"> <span>投注監視器</span></a>
+            </article>
+          </button><a href="./report.html"> <i class="report_ic"> </i><span>報表</span></a><a href="./account.html"> <i class="account_ic"></i><span>帳號管理</span></a><a href="./betting.html"> <i class="betting_ic"></i><span>即時注單</span></a>
+        </aside>
+        <div class="mask"></div>
+      </section>
+      <section class="menu-btns"><a href="#"> <i class="member_ic"></i>新增會員</a><a href="#"> <i class="customer_ic"></i>在線客服</a><a href="#"> <i class="post_ic"></i>公告</a></section>
+      <section class="menu-navbar">
+        <button><i class="setting_ic"> </i></button>
+      </section>
+    </header>
+    <main class="balls"> 
+      <svg> 
+        <symbol id="paginationBullet" viewBox="0 0 50 10">
+          <circle cx="5" cy="5" r="4" fill="#007aff"></circle>
+        </symbol>
+      </svg>
+      <section class="sportsBlock"> 
+        <article class="swiper">
+          <div class="swiper-wrapper">
+            <button class="swiper-slide active"><i class="soccer_ic"> </i><span>足球</span></button>
+            <button class="swiper-slide"><i class="nba_ic"> </i><span>美國職籃</span></button>
+            <button class="swiper-slide"><i class="otherbasketball_ic"> </i><span>其他籃球</span></button>
+            <button class="swiper-slide"><i class="mlb_ic"> </i><span>美國職棒</span></button>
+            <button class="swiper-slide"><i class="npb_ic"> </i><span>日本職棒</span></button>
+            <button class="swiper-slide"><i class="cpbl_ic"> </i><span>中華職棒</span></button>
+            <button class="swiper-slide"><i class="otherbaseball_ic"> </i><span>其他棒球</span></button>
+            <button class="swiper-slide"><i class="football_ic"> </i><span>美式足球</span></button>
+            <button class="swiper-slide"><i class="tennis_ic"> </i><span>網球</span></button>
+            <button class="swiper-slide"><i class="colorball_ic"> </i><span>彩球</span></button>
+            <button class="swiper-slide"><i class="race_ic"> </i><span>賽馬賽狗</span></button>
+            <button class="swiper-slide"><i class="index_ic"> </i><span>指數</span></button>
+            <button class="swiper-slide"><i class="esports_ic"> </i><span>電競</span></button>
+            <button class="swiper-slide"><i class="worldcup_ic"> </i><span>世界盃</span></button>
+            <button class="swiper-slide"><i class="golf_ic"> </i><span>高爾夫</span></button>
+            <button class="swiper-slide"><i class="icehockey_ic"> </i><span>冰球</span></button>
+            <button class="swiper-slide"><i class="boxing_ic"> </i><span>拳擊</span></button>
+            <button class="swiper-slide"><i class="fighting_ic"> </i><span>拳擊格鬥</span></button>
+            <button class="swiper-slide"><i class="badminton_ic"> </i><span>羽球</span></button>
+            <button class="swiper-slide"><i class="volleyball_ic"> </i><span>排球</span></button>
+            <button class="swiper-slide"><i class="tabletennis_ic"> </i><span>桌球</span></button>
+            <button class="swiper-slide"><i class="cricket_ic"> </i><span>板球</span></button>
+            <button class="swiper-slide"><i class="poolball_ic"> </i><span>撞球</span></button>
+            <button class="swiper-slide"><i class="handball_ic"> </i><span>手球</span></button>
+            <button class="swiper-slide"><i class="othersoccer_ic"> </i><span>世界盃(舊其他足球)</span></button>
+            <button class="swiper-slide"><i class="uefa_ic"> </i><span>足球-歐洲盃</span></button>
+            <button class="swiper-slide"><i class="entertainment_ic"> </i><span>娛樂</span></button>
+          </div>
+        </article><i class="arrow_ic prev"> </i><i class="arrow_ic next"> </i>
+      </section>
+      <section class="tabBlock">
+        <ul> 
+          <li>
+            <button class="active" data-tab="gameMode1">單式</button>
+          </li>
+          <li>
+            <button data-tab="gameMode2">上半場</button>
+          </li>
+          <li>
+            <button data-tab="gameMode3">走地</button>
+          </li>
+          <li>
+            <button data-tab="gameMode4">波膽</button>
+          </li>
+          <li>
+            <button data-tab="gameMode5">半全場</button>
+          </li>
+          <li>
+            <button data-tab="gameMode6">總入球</button>
+          </li>
+          <li>
+            <button data-tab="gameMode7">綜合過關</button>
+          </li>
+          <li>
+            <button data-tab="gameMode8">已開賽</button>
+          </li>
+          <li>
+            <button data-tab="history">歷史賽事</button>
+          </li>
+        </ul>
+      </section>
+      <section class="ballsBlock">
+        <div class="gameMode1 active">
+          <div class="selects"><span class="ballTitle">足球_單式</span>
+            <label class="select">
+              <p>種類  |  佔成</p>
+              <ol> 
+                <li class="active">種類  |  佔成</li>
+              </ol><i class="select_ic"></i>
+            </label>
+            <label class="select">
+              <p>更新  |  15 sec</p>
+              <ol> 
+                <li class="active">更新  |  15 sec</li>
+              </ol><i class="select_ic"></i>
+            </label><span class="number active">13</span>
+            <label class="select">
+              <p>排序  |  聯盟</p>
+              <ol> 
+                <li class="active">排序  |  聯盟</li>
+              </ol><i class="select_ic"></i>
+            </label>
+            <label class="select">
+              <p>下拉選單</p>
+              <ol> 
+                <li class="active">下拉選單</li>
+              </ol><i class="select_ic"></i>
+            </label>
+          </div>
+          <div class="data">
+            <ul>
+              <li data-index="0"> 
+                <article class="thead">
+                  <div> <span>聯盟: 美國職業大聯盟 (2)</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article><i class="select_ic"></i>
+              </li>
+              <li data-index="1"> 
+                <article class="thead">
+                  <div> <span>聯盟: 美國職業大聯盟 (2)</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article><i class="select_ic"></i>
+              </li>
+            </ul>
+            <div class="swiper">
+              <div class="swiper-wrapper">
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>獨贏</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode1"></use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>獨贏</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode1"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>讓分</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode1"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>讓分</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode1"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>大小</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode1"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>大小</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode1"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>單雙</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode1"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>單雙</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode1"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>直播</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode1"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>直播</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode1"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div><span>其他</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode1"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div><span>其他</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode1"> </use>
+                    </svg>
+                  </li>
+                </ul>
+              </div>
+              <svg class="swiper-pagination" id="p-gameMode1"></svg>
+            </div>
+          </div>
+        </div>
+        <div class="gameMode2 ">
+          <div class="selects"><span class="ballTitle">足球_上半場</span>
+            <label class="select">
+              <p>種類  |  佔成</p>
+              <ol> 
+                <li class="active">種類  |  佔成</li>
+              </ol><i class="select_ic"></i>
+            </label>
+            <label class="select">
+              <p>更新  |  15 sec</p>
+              <ol> 
+                <li class="active">更新  |  15 sec</li>
+              </ol><i class="select_ic"></i>
+            </label><span class="number active">13</span>
+            <label class="select">
+              <p>排序  |  聯盟</p>
+              <ol> 
+                <li class="active">排序  |  聯盟</li>
+              </ol><i class="select_ic"></i>
+            </label>
+            <label class="select">
+              <p>下拉選單</p>
+              <ol> 
+                <li class="active">下拉選單</li>
+              </ol><i class="select_ic"></i>
+            </label>
+          </div>
+          <div class="data">
+            <ul>
+              <li data-index="0"> 
+                <article class="thead">
+                  <div> <span>聯盟: 美國職業大聯盟 (2)</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article><i class="select_ic"></i>
+              </li>
+              <li data-index="1"> 
+                <article class="thead">
+                  <div> <span>聯盟: 美國職業大聯盟 (2)</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article><i class="select_ic"></i>
+              </li>
+            </ul>
+            <div class="swiper">
+              <div class="swiper-wrapper">
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>獨贏</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode2"></use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>獨贏</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode2"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>讓分</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode2"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>讓分</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode2"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>大小</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode2"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>大小</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode2"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>單雙</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode2"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>單雙</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode2"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>直播</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode2"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>直播</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode2"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div><span>其他</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode2"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div><span>其他</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode2"> </use>
+                    </svg>
+                  </li>
+                </ul>
+              </div>
+              <svg class="swiper-pagination" id="p-gameMode2"></svg>
+            </div>
+          </div>
+        </div>
+        <div class="gameMode3 ">
+          <div class="selects"><span class="ballTitle">足球_走地</span>
+            <label class="select">
+              <p>種類  |  佔成</p>
+              <ol> 
+                <li class="active">種類  |  佔成</li>
+              </ol><i class="select_ic"></i>
+            </label>
+            <label class="select">
+              <p>更新  |  15 sec</p>
+              <ol> 
+                <li class="active">更新  |  15 sec</li>
+              </ol><i class="select_ic"></i>
+            </label><span class="number active">13</span>
+            <label class="select">
+              <p>排序  |  聯盟</p>
+              <ol> 
+                <li class="active">排序  |  聯盟</li>
+              </ol><i class="select_ic"></i>
+            </label>
+            <label class="select">
+              <p>下拉選單</p>
+              <ol> 
+                <li class="active">下拉選單</li>
+              </ol><i class="select_ic"></i>
+            </label>
+          </div>
+          <div class="data">
+            <ul>
+              <li data-index="0"> 
+                <article class="thead">
+                  <div> <span>聯盟: 美國職業大聯盟 (2)</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article><i class="select_ic"></i>
+              </li>
+              <li data-index="1"> 
+                <article class="thead">
+                  <div> <span>聯盟: 美國職業大聯盟 (2)</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article><i class="select_ic"></i>
+              </li>
+            </ul>
+            <div class="swiper">
+              <div class="swiper-wrapper">
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>獨贏</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode3"></use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>獨贏</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode3"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>讓分</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode3"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>讓分</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode3"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>大小</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode3"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>大小</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode3"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>單雙</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode3"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>單雙</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode3"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>直播</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode3"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>直播</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode3"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div><span>其他</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode3"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div><span>其他</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode3"> </use>
+                    </svg>
+                  </li>
+                </ul>
+              </div>
+              <svg class="swiper-pagination" id="p-gameMode3"></svg>
+            </div>
+          </div>
+        </div>
+        <div class="gameMode4 ">
+          <div class="selects"><span class="ballTitle">足球_波膽</span>
+            <label class="select">
+              <p>種類  |  佔成</p>
+              <ol> 
+                <li class="active">種類  |  佔成</li>
+              </ol><i class="select_ic"></i>
+            </label>
+            <label class="select">
+              <p>更新  |  15 sec</p>
+              <ol> 
+                <li class="active">更新  |  15 sec</li>
+              </ol><i class="select_ic"></i>
+            </label><span class="number active">13</span>
+            <label class="select">
+              <p>排序  |  聯盟</p>
+              <ol> 
+                <li class="active">排序  |  聯盟</li>
+              </ol><i class="select_ic"></i>
+            </label>
+            <label class="select">
+              <p>下拉選單</p>
+              <ol> 
+                <li class="active">下拉選單</li>
+              </ol><i class="select_ic"></i>
+            </label>
+          </div>
+          <div class="data">
+            <ul>
+              <li data-index="0"> 
+                <article class="thead">
+                  <div> <span>聯盟: 美國職業大聯盟 (2)</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article><i class="select_ic"></i>
+              </li>
+              <li data-index="1"> 
+                <article class="thead">
+                  <div> <span>聯盟: 美國職業大聯盟 (2)</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article><i class="select_ic"></i>
+              </li>
+            </ul>
+            <div class="swiper">
+              <div class="swiper-wrapper">
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>獨贏</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode4"></use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>獨贏</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode4"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>讓分</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode4"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>讓分</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode4"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>大小</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode4"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>大小</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode4"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>單雙</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode4"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>單雙</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode4"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>直播</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode4"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>直播</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode4"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div><span>其他</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode4"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div><span>其他</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode4"> </use>
+                    </svg>
+                  </li>
+                </ul>
+              </div>
+              <svg class="swiper-pagination" id="p-gameMode4"></svg>
+            </div>
+          </div>
+        </div>
+        <div class="gameMode5 ">
+          <div class="selects"><span class="ballTitle">足球_半全場</span>
+            <label class="select">
+              <p>種類  |  佔成</p>
+              <ol> 
+                <li class="active">種類  |  佔成</li>
+              </ol><i class="select_ic"></i>
+            </label>
+            <label class="select">
+              <p>更新  |  15 sec</p>
+              <ol> 
+                <li class="active">更新  |  15 sec</li>
+              </ol><i class="select_ic"></i>
+            </label><span class="number active">13</span>
+            <label class="select">
+              <p>排序  |  聯盟</p>
+              <ol> 
+                <li class="active">排序  |  聯盟</li>
+              </ol><i class="select_ic"></i>
+            </label>
+            <label class="select">
+              <p>下拉選單</p>
+              <ol> 
+                <li class="active">下拉選單</li>
+              </ol><i class="select_ic"></i>
+            </label>
+          </div>
+          <div class="data">
+            <ul>
+              <li data-index="0"> 
+                <article class="thead">
+                  <div> <span>聯盟: 美國職業大聯盟 (2)</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article><i class="select_ic"></i>
+              </li>
+              <li data-index="1"> 
+                <article class="thead">
+                  <div> <span>聯盟: 美國職業大聯盟 (2)</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article><i class="select_ic"></i>
+              </li>
+            </ul>
+            <div class="swiper">
+              <div class="swiper-wrapper">
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>獨贏</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode5"></use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>獨贏</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode5"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>讓分</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode5"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>讓分</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode5"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>大小</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode5"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>大小</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode5"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>單雙</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode5"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>單雙</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode5"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>直播</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode5"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>直播</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode5"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div><span>其他</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode5"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div><span>其他</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode5"> </use>
+                    </svg>
+                  </li>
+                </ul>
+              </div>
+              <svg class="swiper-pagination" id="p-gameMode5"></svg>
+            </div>
+          </div>
+        </div>
+        <div class="gameMode6 ">
+          <div class="selects"><span class="ballTitle">足球_總入球</span>
+            <label class="select">
+              <p>種類  |  佔成</p>
+              <ol> 
+                <li class="active">種類  |  佔成</li>
+              </ol><i class="select_ic"></i>
+            </label>
+            <label class="select">
+              <p>更新  |  15 sec</p>
+              <ol> 
+                <li class="active">更新  |  15 sec</li>
+              </ol><i class="select_ic"></i>
+            </label><span class="number active">13</span>
+            <label class="select">
+              <p>排序  |  聯盟</p>
+              <ol> 
+                <li class="active">排序  |  聯盟</li>
+              </ol><i class="select_ic"></i>
+            </label>
+            <label class="select">
+              <p>下拉選單</p>
+              <ol> 
+                <li class="active">下拉選單</li>
+              </ol><i class="select_ic"></i>
+            </label>
+          </div>
+          <div class="data">
+            <ul>
+              <li data-index="0"> 
+                <article class="thead">
+                  <div> <span>聯盟: 美國職業大聯盟 (2)</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article><i class="select_ic"></i>
+              </li>
+              <li data-index="1"> 
+                <article class="thead">
+                  <div> <span>聯盟: 美國職業大聯盟 (2)</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article><i class="select_ic"></i>
+              </li>
+            </ul>
+            <div class="swiper">
+              <div class="swiper-wrapper">
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>獨贏</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode6"></use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>獨贏</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode6"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>讓分</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode6"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>讓分</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode6"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>大小</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode6"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>大小</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode6"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>單雙</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode6"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>單雙</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode6"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>直播</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode6"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>直播</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode6"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div><span>其他</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode6"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div><span>其他</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode6"> </use>
+                    </svg>
+                  </li>
+                </ul>
+              </div>
+              <svg class="swiper-pagination" id="p-gameMode6"></svg>
+            </div>
+          </div>
+        </div>
+        <div class="gameMode7 ">
+          <div class="selects"><span class="ballTitle">足球_綜合過關</span>
+            <label class="select">
+              <p>種類  |  佔成</p>
+              <ol> 
+                <li class="active">種類  |  佔成</li>
+              </ol><i class="select_ic"></i>
+            </label>
+            <label class="select">
+              <p>更新  |  15 sec</p>
+              <ol> 
+                <li class="active">更新  |  15 sec</li>
+              </ol><i class="select_ic"></i>
+            </label><span class="number active">13</span>
+            <label class="select">
+              <p>排序  |  聯盟</p>
+              <ol> 
+                <li class="active">排序  |  聯盟</li>
+              </ol><i class="select_ic"></i>
+            </label>
+            <label class="select">
+              <p>下拉選單</p>
+              <ol> 
+                <li class="active">下拉選單</li>
+              </ol><i class="select_ic"></i>
+            </label>
+          </div>
+          <div class="data">
+            <ul>
+              <li data-index="0"> 
+                <article class="thead">
+                  <div> <span>聯盟: 美國職業大聯盟 (2)</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article><i class="select_ic"></i>
+              </li>
+              <li data-index="1"> 
+                <article class="thead">
+                  <div> <span>聯盟: 美國職業大聯盟 (2)</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article><i class="select_ic"></i>
+              </li>
+            </ul>
+            <div class="swiper">
+              <div class="swiper-wrapper">
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>獨贏</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode7"></use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>獨贏</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode7"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>讓分</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode7"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>讓分</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode7"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>大小</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode7"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>大小</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode7"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>單雙</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode7"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>單雙</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode7"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>直播</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode7"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>直播</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode7"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div><span>其他</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode7"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div><span>其他</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode7"> </use>
+                    </svg>
+                  </li>
+                </ul>
+              </div>
+              <svg class="swiper-pagination" id="p-gameMode7"></svg>
+            </div>
+          </div>
+        </div>
+        <div class="gameMode8 ">
+          <div class="selects"><span class="ballTitle">足球_已開賽</span>
+            <label class="select">
+              <p>種類  |  佔成</p>
+              <ol> 
+                <li class="active">種類  |  佔成</li>
+              </ol><i class="select_ic"></i>
+            </label>
+            <label class="select">
+              <p>更新  |  15 sec</p>
+              <ol> 
+                <li class="active">更新  |  15 sec</li>
+              </ol><i class="select_ic"></i>
+            </label><span class="number active">13</span>
+            <label class="select">
+              <p>排序  |  聯盟</p>
+              <ol> 
+                <li class="active">排序  |  聯盟</li>
+              </ol><i class="select_ic"></i>
+            </label>
+            <label class="select">
+              <p>下拉選單</p>
+              <ol> 
+                <li class="active">下拉選單</li>
+              </ol><i class="select_ic"></i>
+            </label>
+          </div>
+          <div class="data">
+            <ul>
+              <li data-index="0"> 
+                <article class="thead">
+                  <div> <span>聯盟: 美國職業大聯盟 (2)</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article><i class="select_ic"></i>
+              </li>
+              <li data-index="1"> 
+                <article class="thead">
+                  <div> <span>聯盟: 美國職業大聯盟 (2)</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span>
+                    <button>走地</button>
+                  </div>
+                  <div class="number"> <span class="gray2">721</span><span class="gray2">722</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article><i class="select_ic"></i>
+              </li>
+            </ul>
+            <div class="swiper">
+              <div class="swiper-wrapper">
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>獨贏</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode8"></use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>獨贏</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">5.000</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode8"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>讓分</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode8"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>讓分</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span class="blue">1</span><span class="red">0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode8"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>大小</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode8"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>大小</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span class="blue">2.5/3</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span> </span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode8"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>單雙</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode8"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>單雙</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span class="red">0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span class="red">1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode8"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>直播</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode8"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>直播</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode8"> </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div><span>其他</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode8"> </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div><span>其他</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <svg>
+                      <use href="#p-gameMode8"> </use>
+                    </svg>
+                  </li>
+                </ul>
+              </div>
+              <svg class="swiper-pagination" id="p-gameMode8"></svg>
+            </div>
+          </div>
+        </div>
+        <div class="history">
+          <div class="selects"><span class="ballTitle">足球_歷史賽事</span>
+            <label class="select">
+              <p>種類  |  佔成</p>
+              <ol> 
+                <li class="active">種類  |  佔成</li>
+              </ol><i class="select_ic"></i>
+            </label>
+            <label class="select">
+              <p>更新  |  15 sec</p>
+              <ol> 
+                <li class="active">更新  |  15 sec</li>
+              </ol><i class="select_ic"></i>
+            </label><span class="number active">13</span>
+            <label class="select">
+              <p>排序  |  聯盟</p>
+              <ol> 
+                <li class="active">排序  |  聯盟</li>
+              </ol><i class="select_ic"></i>
+            </label>
+            <label class="select">
+              <p>下拉選單</p>
+              <ol> 
+                <li class="active">下拉選單</li>
+              </ol><i class="select_ic"></i>
+            </label>
+          </div>
+          <div class="data">
+            <ul>
+              <li data-index="0"> 
+                <article class="thead">
+                  <div> <span>編號</span></div>
+                  <div> <span>時間</span></div>
+                  <div> <span>聯盟</span></div>
+                  <div> <span>比數</span></div>
+                  <div> <span>隊伍</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span></div>
+                  <div class="group"><span class="gray2">美國職業大聯盟 (2)</span></div>
+                  <div class="count"><span class="red">3:0</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article><i class="select_ic"></i>
+              </li>
+              <li data-index="1"> 
+                <article class="thead">
+                  <div> <span>編號</span></div>
+                  <div> <span>時間</span></div>
+                  <div> <span>聯盟</span></div>
+                  <div> <span>比數</span></div>
+                  <div> <span>隊伍</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"><span class="gray2">11.11</span><span class="gray2">18:00</span></div>
+                  <div class="group"><span class="gray2">美國職業大聯盟 (2)</span></div>
+                  <div class="count"><span class="red">3:0</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span></div>
+                  <div class="group"><span class="gray2">美國職業大聯盟 (2)</span></div>
+                  <div class="count"><span class="red">3:0</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span></div>
+                  <div class="group"><span class="gray2">美國職業大聯盟 (2)</span></div>
+                  <div class="count"><span class="red">3:0</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article><i class="select_ic"></i>
+              </li>
+              <li data-index="2"> 
+                <article class="thead">
+                  <div> <span>編號</span></div>
+                  <div> <span>時間</span></div>
+                  <div> <span>聯盟</span></div>
+                  <div> <span>比數</span></div>
+                  <div> <span>隊伍</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"><span class="gray2">11.11</span><span class="gray2">18:00</span></div>
+                  <div class="group"><span class="gray2">美國職業大聯盟 (2)</span></div>
+                  <div class="count"><span class="red">3:0</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span></div>
+                  <div class="group"><span class="gray2">美國職業大聯盟 (2)</span></div>
+                  <div class="count"><span class="red">3:0</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article>
+                <article class="tbody">
+                  <div class="serialNum"><span>2660001</span></div>
+                  <div class="time"> <span class="gray2">11.11</span><span class="gray2">18:00</span></div>
+                  <div class="group"><span class="gray2">美國職業大聯盟 (2)</span></div>
+                  <div class="count"><span class="red">3:0</span></div>
+                  <div class="team"> <span class="blue">丹佛金塊(主)</span><span>沙加緬度國王</span></div>
+                </article><i class="select_ic"></i>
+              </li>
+            </ul>
+            <div class="swiper">
+              <div class="swiper-wrapper">
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>獨贏</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span>0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span>5.000</span><span>0/0</span></p>
+                        <p><span> </span><span>3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg> 
+                      <use href="#p-history">             </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>獨贏</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span>0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span>5.000</span><span>0/0</span></p>
+                        <p><span> </span><span>3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span>0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span>5.000</span><span>0/0</span></p>
+                        <p><span> </span><span>3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span>0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span>5.000</span><span>0/0</span></p>
+                        <p><span> </span><span>3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg> 
+                      <use href="#p-history">             </use>
+                    </svg>
+                  </li>
+                  <li data-index="2"> 
+                    <article class="thead">
+                      <div> <span>獨贏</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span>0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span>5.000</span><span>0/0</span></p>
+                        <p><span> </span><span>3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span>0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span>5.000</span><span>0/0</span></p>
+                        <p><span> </span><span>3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 獨贏-->
+                      <div class="win"> 
+                        <p><span> </span><span>0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span>5.000</span><span>0/0</span></p>
+                        <p><span> </span><span>3.490</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg> 
+                      <use href="#p-history">             </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>讓分</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span>1</span><span>0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span>1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg> 
+                      <use href="#p-history">             </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>讓分</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span>1</span><span>0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span>1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span>1</span><span>0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span>1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span>1</span><span>0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span>1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg> 
+                      <use href="#p-history">             </use>
+                    </svg>
+                  </li>
+                  <li data-index="2"> 
+                    <article class="thead">
+                      <div> <span>讓分</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span>1</span><span>0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span>1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span>1</span><span>0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span>1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 讓分-->
+                      <div class="point"> 
+                        <p><span>1</span><span>0.423 </span><span>0/0</span></p>
+                        <p><span> </span><span>1.040</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg> 
+                      <use href="#p-history">             </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>大小</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span>2.5/3</span><span>0.755</span><span>0/0</span></p>
+                        <p><span> </span><span>1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg> 
+                      <use href="#p-history">             </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>大小</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span>2.5/3</span><span>0.755</span><span>0/0</span></p>
+                        <p><span> </span><span>1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span>2.5/3</span><span>0.755</span><span>0/0</span></p>
+                        <p><span> </span><span>1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span>2.5/3</span><span>0.755</span><span>0/0</span></p>
+                        <p><span> </span><span>1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg> 
+                      <use href="#p-history">             </use>
+                    </svg>
+                  </li>
+                  <li data-index="2"> 
+                    <article class="thead">
+                      <div> <span>大小</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span>2.5/3</span><span>0.755</span><span>0/0</span></p>
+                        <p><span> </span><span>1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span>2.5/3</span><span>0.755</span><span>0/0</span></p>
+                        <p><span> </span><span>1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 大小-->
+                      <div class="size"> 
+                        <p><span>2.5/3</span><span>0.755</span><span>0/0</span></p>
+                        <p><span> </span><span>1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg> 
+                      <use href="#p-history">             </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>單雙</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span>0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span>1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg> 
+                      <use href="#p-history">             </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>單雙</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span>0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span>1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span>0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span>1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span>0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span>1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg> 
+                      <use href="#p-history">             </use>
+                    </svg>
+                  </li>
+                  <li data-index="2"> 
+                    <article class="thead">
+                      <div> <span>單雙</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span>0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span>1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span>0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span>1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 單雙-->
+                      <div class="odds"> 
+                        <p><span>單</span><span>0.755</span><span>0/0</span></p>
+                        <p><span>雙</span><span>1.140</span><span>0/0</span></p>
+                      </div>
+                    </article>
+                    <svg> 
+                      <use href="#p-history">             </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div> <span>直播</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <svg> 
+                      <use href="#p-history">             </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div> <span>直播</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <svg> 
+                      <use href="#p-history">             </use>
+                    </svg>
+                  </li>
+                  <li data-index="2"> 
+                    <article class="thead">
+                      <div> <span>直播</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 直播-->
+                      <div></div>
+                    </article>
+                    <svg> 
+                      <use href="#p-history">             </use>
+                    </svg>
+                  </li>
+                </ul>
+                <ul class="swiper-slide">
+                  <li data-index="0"> 
+                    <article class="thead">
+                      <div><span>其他</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <svg> 
+                      <use href="#p-history">           </use>
+                    </svg>
+                  </li>
+                  <li data-index="1"> 
+                    <article class="thead">
+                      <div><span>其他</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <svg> 
+                      <use href="#p-history">           </use>
+                    </svg>
+                  </li>
+                  <li data-index="2"> 
+                    <article class="thead">
+                      <div><span>其他</span></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <article class="tbody">
+                      <!-- 其他-->
+                      <div></div>
+                    </article>
+                    <svg> 
+                      <use href="#p-history">           </use>
+                    </svg>
+                  </li>
+                </ul>
+              </div>
+              <svg class="swiper-pagination" id="p-history"></svg>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <section class="filter">
+      <div class="mask"></div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+    <script src="../js/UIComponents.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/swiper.js"></script>
+  </body>
+</html>

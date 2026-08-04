@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
+    <title>LB_N1_agent</title>
+  </head>
+  <body>
+    <header> 
+      <section class="menu-navbar sideBar">
+        <button class="navber"><i class="navbar_ic"></i></button>
+        <div class="title"> <span>菜單</span><i class="close_ic"></i></div>
+        <aside> <a href="../index.html"><i class="home_ic"></i><span>首頁</span></a><a href="./balls.html"> <i class="balls_ic"></i><span>球種資訊</span></a>
+          <button class="settlement false"> <i class="settlement_ic"></i><span>待結投注</span>
+            <article>
+              <p>待結投注<i class="pin_ic"> </i></p><a href="./settlement.html?tab=plate" data-tab="plate"> <span>讓球盤</span><span>大小盤</span><span>獨營盤</span><span>滾球</span></a><a href="./settlement.html?tab=score" data-tab="score"> <span>球隊總得分</span></a><a href="./settlement.html?tab=special" data-tab="special"> <span>優勝冠軍盤</span><span>特別盤口</span></a><a href="./settlement.html?tab=mix" data-tab="mix"> <span>混合過關</span></a><a href="./settlement.html?tab=discount" data-tab="discount"> <span>優惠過關盤</span></a><a href="./settlement.html?tab=monitor" data-tab="monitor"> <span>投注監視器</span></a>
+            </article>
+          </button><a href="./report.html"> <i class="report_ic"> </i><span>報表</span></a><a class="active" href="./account.html"> <i class="account_ic"></i><span>帳號管理</span></a><a href="./betting.html"> <i class="betting_ic"></i><span>即時注單</span></a>
+        </aside>
+        <div class="mask"></div>
+      </section>
+      <section class="menu-btns"><a href="#"> <i class="member_ic"></i>新增會員</a><a href="#"> <i class="customer_ic"></i>在線客服</a><a href="#"> <i class="post_ic"></i>公告</a></section>
+      <section class="menu-navbar">
+        <button><i class="setting_ic"> </i></button>
+      </section>
+    </header>
+    <main class="account"> 
+      <section class="titleBlock"> <i class="back_ic"> </i>
+        <h1>管理</h1>
+      </section>
+      <section class="tabBlock">
+        <ul> 
+          <li><a href="./account.html?tab=personalInfo" data-tab="personalInfo">個人資料</a></li>
+          <li><a href="./account.html?tab=subAccount" data-tab="subAccount">子帳號管理</a></li>
+          <li><a href="./account.html?tab=shareholder_m" data-tab="shareholder_m">大股東</a></li>
+          <li><a href="./account.html?tab=shareholder" data-tab="shareholder">股東</a></li>
+          <li><a href="./account.html?tab=agent_m" data-tab="agent_m">總代理</a></li>
+          <li><a href="./account.html?tab=agent" data-tab="agent">代理</a></li>
+          <li><a href="./account.html?tab=member" data-tab="member">會員</a></li>
+          <li><a href="./account.html?tab=treeManagement" data-tab="treeManagement">樹型管理</a></li>
+        </ul>
+      </section>
+      <section class="accountBlock"> 
+        <div class="personalInfo active"> 
+          <article class="info"> 
+            <button data-popup="chagePassword">修改密碼</button>
+            <ul> 
+              <li> <span class="remind">帳號：</span><span>abc18</span></li>
+              <li> <span class="remind">會員名稱：</span><span>ABC88</span></li>
+            </ul>
+            <ul>
+              <li> <span class="remind">總信用額度：</span><span>50.00000000</span></li>
+              <li> <span class="remind">剩餘額度：</span><span class="red">50.00000000</span></li>
+            </ul>
+            <ul>
+              <li> <span class="remind">遊戲信用額度</span><span>0.00000000</span></li>
+              <li> <span class="remind">遊戲信用額度</span><span>0.00000000</span></li>
+            </ul>
+            <ul>
+              <li> <span class="remind">是否允許登入：</span><span>是</span></li>
+            </ul>
+            <ul class="percentage"> 
+              <li> <span class="remind">拆帳百分比：</span>
+                <div><span>足球 = 95%</span><span>美國職籃 = 95%</span><span>其他籃球 = 95%</span><span>美國職棒 = 95%</span><span>日本職棒 = 95%</span><span>中華職棒 = 95%</span><span>其他棒球 = 95%</span><span>美式足球 = 95%</span><span>網球 = 95%</span><span>彩球 = 95%</span><span>賽馬賽狗 = 95%</span><span>指數 = 95%</span><span>電競 = 95%</span><span>世界盃 = 95%</span><span>高爾夫 = 95%</span><span>冰球 = 95%</span><span>拳擊 = 95%</span><span>拳擊格鬥 = 95%</span><span>羽球 = 95%</span><span>排球 = 95%</span><span>桌球 = 95%</span><span>板球 = 95%</span><span>撞球 = 95%</span><span>手球 = 95%</span><span>世界盃(舊其他足球) = 95%</span><span>足球-歐洲盃 = 95%</span><span>娛樂 = 95%</span>
+                </div>
+              </li>
+            </ul>
+          </article>
+          <article class="data"> 
+            <ul>
+              <li class="thead"> 
+                <div>足球</div>
+                <div>讓分</div>
+                <div>大小</div>
+                <div>獨贏</div>
+                <div>單雙</div>
+                <div>走地讓球</div>
+                <div>走地大小</div>
+                <div>波膽</div>
+                <div>總入球</div>
+                <div>半全場</div>
+                <div>讓分過關</div>
+                <div>綜合過關</div>
+                <div>標準過關</div>
+              </li>
+              <li class="tbody"> 
+                <div>退水設定</div>
+                <div>100</div>
+                <div>100</div>
+                <div>500</div>
+                <div>100</div>
+                <div>100</div>
+                <div>100</div>
+                <div>500</div>
+                <div>500</div>
+                <div>500</div>
+                <div>525</div>
+                <div>525</div>
+                <div>525</div>
+              </li>
+              <li class="tbody"> 
+                <div>會員單場限額<span class="red">(萬)</span></div>
+                <div>100</div>
+                <div>100</div>
+                <div>500</div>
+                <div>100</div>
+                <div>100</div>
+                <div>100</div>
+                <div>500</div>
+                <div>500</div>
+                <div>500</div>
+                <div>525</div>
+                <div>525</div>
+                <div>525</div>
+              </li>
+              <li class="tbody"> 
+                <div>會員單場限額<span class="red">(萬)</span></div>
+                <div>100</div>
+                <div>100</div>
+                <div>500</div>
+                <div>100</div>
+                <div>100</div>
+                <div>100</div>
+                <div>500</div>
+                <div>500</div>
+                <div>500</div>
+                <div>525</div>
+                <div>525</div>
+                <div>525</div>
+              </li>
+            </ul>
+            <ul>
+              <li class="thead"> 
+                <div>籃球</div>
+                <div>讓分</div>
+                <div>大小</div>
+                <div>獨贏</div>
+                <div>單雙</div>
+                <div>走地讓球</div>
+                <div>走地大小</div>
+                <div>波膽</div>
+                <div>總入球</div>
+                <div>半全場</div>
+                <div>讓分過關</div>
+                <div>綜合過關</div>
+                <div>標準過關</div>
+              </li>
+              <li class="tbody"> 
+                <div>退水設定</div>
+                <div>100</div>
+                <div>100</div>
+                <div>500</div>
+                <div>100</div>
+                <div>100</div>
+                <div>100</div>
+                <div>500</div>
+                <div>500</div>
+                <div>500</div>
+                <div>525</div>
+                <div>525</div>
+                <div>525</div>
+              </li>
+              <li class="tbody"> 
+                <div>會員單場限額<span class="red">(萬)</span></div>
+                <div>100</div>
+                <div>100</div>
+                <div>500</div>
+                <div>100</div>
+                <div>100</div>
+                <div>100</div>
+                <div>500</div>
+                <div>500</div>
+                <div>500</div>
+                <div>525</div>
+                <div>525</div>
+                <div>525</div>
+              </li>
+              <li class="tbody"> 
+                <div>會員單場限額<span class="red">(萬)</span></div>
+                <div>100</div>
+                <div>100</div>
+                <div>500</div>
+                <div>100</div>
+                <div>100</div>
+                <div>100</div>
+                <div>500</div>
+                <div>500</div>
+                <div>500</div>
+                <div>525</div>
+                <div>525</div>
+                <div>525</div>
+              </li>
+            </ul>
+            <ul>
+              <li class="thead"> 
+                <div>籃球半場</div>
+                <div>讓分</div>
+                <div>大小</div>
+                <div>獨贏</div>
+                <div>單雙</div>
+                <div>走地讓球</div>
+                <div>走地大小</div>
+                <div>波膽</div>
+                <div>總入球</div>
+                <div>半全場</div>
+                <div>讓分過關</div>
+                <div>綜合過關</div>
+                <div>標準過關</div>
+              </li>
+              <li class="tbody"> 
+                <div>退水設定</div>
+                <div>100</div>
+                <div>100</div>
+                <div>500</div>
+                <div>100</div>
+                <div>100</div>
+                <div>100</div>
+                <div>500</div>
+                <div>500</div>
+                <div>500</div>
+                <div>525</div>
+                <div>525</div>
+                <div>525</div>
+              </li>
+              <li class="tbody"> 
+                <div>會員單場限額<span class="red">(萬)</span></div>
+                <div>100</div>
+                <div>100</div>
+                <div>500</div>
+                <div>100</div>
+                <div>100</div>
+                <div>100</div>
+                <div>500</div>
+                <div>500</div>
+                <div>500</div>
+                <div>525</div>
+                <div>525</div>
+                <div>525</div>
+              </li>
+              <li class="tbody"> 
+                <div>會員單場限額<span class="red">(萬)</span></div>
+                <div>100</div>
+                <div>100</div>
+                <div>500</div>
+                <div>100</div>
+                <div>100</div>
+                <div>100</div>
+                <div>500</div>
+                <div>500</div>
+                <div>500</div>
+                <div>525</div>
+                <div>525</div>
+                <div>525</div>
+              </li>
+            </ul>
+            <ul>
+              <li class="thead"> 
+                <div>籃球四節</div>
+                <div>讓分</div>
+                <div>大小</div>
+                <div>獨贏</div>
+                <div>單雙</div>
+                <div>走地讓球</div>
+                <div>走地大小</div>
+                <div>波膽</div>
+                <div>總入球</div>
+                <div>半全場</div>
+                <div>讓分過關</div>
+                <div>綜合過關</div>
+                <div>標準過關</div>
+              </li>
+              <li class="tbody"> 
+                <div>退水設定</div>
+                <div>100</div>
+                <div>100</div>
+                <div>500</div>
+                <div>100</div>
+                <div>100</div>
+                <div>100</div>
+                <div>500</div>
+                <div>500</div>
+                <div>500</div>
+                <div>525</div>
+                <div>525</div>
+                <div>525</div>
+              </li>
+              <li class="tbody"> 
+                <div>會員單場限額<span class="red">(萬)</span></div>
+                <div>100</div>
+                <div>100</div>
+                <div>500</div>
+                <div>100</div>
+                <div>100</div>
+                <div>100</div>
+                <div>500</div>
+                <div>500</div>
+                <div>500</div>
+                <div>525</div>
+                <div>525</div>
+                <div>525</div>
+              </li>
+              <li class="tbody"> 
+                <div>會員單場限額<span class="red">(萬)</span></div>
+                <div>100</div>
+                <div>100</div>
+                <div>500</div>
+                <div>100</div>
+                <div>100</div>
+                <div>100</div>
+                <div>500</div>
+                <div>500</div>
+                <div>500</div>
+                <div>525</div>
+                <div>525</div>
+                <div>525</div>
+              </li>
+            </ul>
+          </article>
+        </div>
+        <div class="subAccount"> 
+          <article class="info"> 
+            <p class="red">子帳號管理 [ <span class="yellow">ABC88</span>] </p>
+            <p>1筆資料</p>
+            <button data-popup="addSubAccount">新增帳號</button>
+          </article>
+          <article class="data"> 
+            <ul> 
+              <li class="thead"> 
+                <div>帳號</div>
+                <div>密碼</div>
+                <div>名稱</div>
+                <div>新增日期</div>
+                <div>功能</div>
+              </li>
+              <li class="tbody">
+                <div> <span>ABCD01</span></div>
+                <div> <span>ABCD01</span></div>
+                <div> <span>CD01</span></div>
+                <div class="date"> <span>2025-11-11 08:08:00</span></div>
+                <div> 
+                  <button>修改</button>
+                </div>
+              </li>
+            </ul>
+            <ul class="nodata">
+              <li>目前沒有資料</li>
+            </ul>
+          </article>
+        </div>
+        <div class="shareholder_m">
+          <article class="info"> 
+            <p class="red">abc18 [ <span class="yellow">ABC88</span>] </p>
+            <div class="search"> 
+              <label>
+                <input type="text" placeholder="快速搜尋">
+              </label>
+              <label class="select">
+                <p>abc18 [ ABC88 ]</p>
+                <ol> 
+                  <li class="active">abc18 [ ABC88 ]</li>
+                </ol><i class="select_ic"></i>
+              </label>
+              <label class="select">
+                <p>全部</p>
+                <ol> 
+                  <li class="active">全部</li>
+                </ol><i class="select_ic"></i>
+              </label>
+              <button class="submit">搜尋</button><a href="./addAcount.html?tab=shareholder_m"> 新增帳號</a>
+            </div>
+          </article>
+          <article class="data">
+            <ul> 
+              <li class="thead"> 
+                <div>帳號</div>
+                <div>名稱</div>
+                <div>額度<span class="yellow2">(萬)</span></div>
+                <div>已用<span class="yellow2">(萬)</span></div>
+                <div>投注</div>
+                <div>新增日期</div>
+                <div class="function">功能</div>
+                <div class="percentage">
+                   拆帳百分比
+                  <label>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>股東</div>
+                <div>備註</div>
+                <div>新備註</div>
+              </li>
+              <li class="tbody"> 
+                <div> <a class="blue underLine" href="./account.html?tab=shareholder">ABC88</a></div>
+                <div>AB</div>
+                <div class="blue underLine">1</div>
+                <div class="blue underLine">
+                   0</div>
+                <div> 
+                  <button class="enable">啟用</button>
+                </div>
+                <div>10-28/03:49</div>
+                <div class="function"> 
+                  <button class="disable">停用</button>
+                  <button class="suspend">停押</button>
+                  <button class="reset">重設密碼</button>
+                </div>
+                <div class="percentage"> 
+                  <button class="detail" data-popup="percentage">查看詳細資訊</button>
+                </div>
+                <div>1</div>
+                <div></div>
+                <div> </div>
+              </li>
+              <li class="tbody"> 
+                <div> <a class="blue underLine" href="./account.html?tab=shareholder">ABC88</a></div>
+                <div>AB</div>
+                <div class="blue underLine">1</div>
+                <div class="blue underLine">
+                   0</div>
+                <div> 
+                  <button class="enable">啟用</button>
+                </div>
+                <div>10-28/03:49</div>
+                <div class="function"> 
+                  <button class="disable">停用</button>
+                  <button class="suspend">停押</button>
+                  <button class="reset">重設密碼</button>
+                </div>
+                <div class="percentage"> 
+                  <button class="detail" data-popup="percentage">查看詳細資訊</button>
+                </div>
+                <div>1</div>
+                <div></div>
+                <div> </div>
+              </li>
+              <li class="tbody"> 
+                <div> <a class="blue underLine" href="./account.html?tab=shareholder">ABC88</a></div>
+                <div>AB</div>
+                <div class="blue underLine">1</div>
+                <div class="blue underLine">
+                   0</div>
+                <div> 
+                  <button class="enable">啟用</button>
+                </div>
+                <div>10-28/03:49</div>
+                <div class="function"> 
+                  <button class="disable">停用</button>
+                  <button class="suspend">停押</button>
+                  <button class="reset">重設密碼</button>
+                </div>
+                <div class="percentage"> 
+                  <button class="detail" data-popup="percentage">查看詳細資訊</button>
+                </div>
+                <div>1</div>
+                <div></div>
+                <div> </div>
+              </li>
+            </ul>
+          </article>
+        </div>
+        <div class="shareholder">
+          <article class="info"> 
+            <p class="red">abc18 [ <span class="yellow">ABC88</span>] </p>
+            <div class="search"> 
+              <label>
+                <input type="text" placeholder="快速搜尋">
+              </label>
+              <label class="select">
+                <p>abc18 [ ABC88 ]</p>
+                <ol> 
+                  <li class="active">abc18 [ ABC88 ]</li>
+                </ol><i class="select_ic"></i>
+              </label>
+              <label class="select">
+                <p>全部</p>
+                <ol> 
+                  <li class="active">全部</li>
+                </ol><i class="select_ic"></i>
+              </label>
+              <button class="submit">搜尋</button><a href="./addAcount.html?tab=shareholder">新增帳號</a>
+            </div>
+          </article>
+          <article class="data">
+            <ul> 
+              <li class="thead"> 
+                <div>帳號</div>
+                <div>名稱</div>
+                <div>額度<span class="yellow2">(萬)</span></div>
+                <div>已用<span class="yellow2">(萬)</span></div>
+                <div>投注</div>
+                <div>新增日期</div>
+                <div class="function">功能</div>
+                <div class="percentage">
+                   拆帳百分比
+                  <label>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>股東</div>
+                <div>備註</div>
+                <div>新備註</div>
+              </li>
+              <li class="tbody"> 
+                <div> <a class="blue underLine" href="./account.html?tab=agent_m">ABC88</a></div>
+                <div>AB</div>
+                <div class="blue underLine">1</div>
+                <div class="blue underLine">
+                   0</div>
+                <div> 
+                  <button class="enable">啟用</button>
+                </div>
+                <div>10-28/03:49</div>
+                <div class="function"> 
+                  <button class="disable">停用</button>
+                  <button class="suspend">停押</button>
+                  <button class="reset">重設密碼</button>
+                </div>
+                <div class="percentage"> 
+                  <button class="detail" data-popup="percentage">查看詳細資訊</button>
+                </div>
+                <div>1</div>
+                <div></div>
+                <div> </div>
+              </li>
+              <li class="tbody"> 
+                <div> <a class="blue underLine" href="./account.html?tab=agent_m">ABC88</a></div>
+                <div>AB</div>
+                <div class="blue underLine">1</div>
+                <div class="blue underLine">
+                   0</div>
+                <div> 
+                  <button class="enable">啟用</button>
+                </div>
+                <div>10-28/03:49</div>
+                <div class="function"> 
+                  <button class="disable">停用</button>
+                  <button class="suspend">停押</button>
+                  <button class="reset">重設密碼</button>
+                </div>
+                <div class="percentage"> 
+                  <button class="detail" data-popup="percentage">查看詳細資訊</button>
+                </div>
+                <div>1</div>
+                <div></div>
+                <div> </div>
+              </li>
+              <li class="tbody"> 
+                <div> <a class="blue underLine" href="./account.html?tab=agent_m">ABC88</a></div>
+                <div>AB</div>
+                <div class="blue underLine">1</div>
+                <div class="blue underLine">
+                   0</div>
+                <div> 
+                  <button class="enable">啟用</button>
+                </div>
+                <div>10-28/03:49</div>
+                <div class="function"> 
+                  <button class="disable">停用</button>
+                  <button class="suspend">停押</button>
+                  <button class="reset">重設密碼</button>
+                </div>
+                <div class="percentage"> 
+                  <button class="detail" data-popup="percentage">查看詳細資訊</button>
+                </div>
+                <div>1</div>
+                <div></div>
+                <div> </div>
+              </li>
+            </ul>
+          </article>
+        </div>
+        <div class="agent_m">
+          <article class="info"> 
+            <p class="red">abc18 [ <span class="yellow">ABC88</span>] </p>
+            <div class="search"> 
+              <label>
+                <input type="text" placeholder="快速搜尋">
+              </label>
+              <label class="select">
+                <p>abc18 [ ABC88 ]</p>
+                <ol> 
+                  <li class="active">abc18 [ ABC88 ]</li>
+                </ol><i class="select_ic"></i>
+              </label>
+              <label class="select">
+                <p>全部</p>
+                <ol> 
+                  <li class="active">全部</li>
+                </ol><i class="select_ic"></i>
+              </label>
+              <button class="submit">搜尋</button><a href="./addAcount.html?tab=agent_m">新增帳號</a>
+            </div>
+          </article>
+          <article class="data">
+            <ul> 
+              <li class="thead"> 
+                <div>帳號</div>
+                <div>名稱</div>
+                <div>額度<span class="yellow2">(萬)</span></div>
+                <div>已用<span class="yellow2">(萬)</span></div>
+                <div>投注</div>
+                <div>新增日期</div>
+                <div class="function">功能</div>
+                <div class="percentage">
+                   拆帳百分比
+                  <label>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>股東</div>
+                <div>備註</div>
+                <div>新備註</div>
+              </li>
+              <li class="tbody"> 
+                <div> <a class="blue underLine" href="./account.html?tab=agent">ABC88</a></div>
+                <div>AB</div>
+                <div class="blue underLine">1</div>
+                <div class="blue underLine">
+                   0</div>
+                <div> 
+                  <button class="enable">啟用</button>
+                </div>
+                <div>10-28/03:49</div>
+                <div class="function"> 
+                  <button class="disable">停用</button>
+                  <button class="suspend">停押</button>
+                  <button class="reset">重設密碼</button>
+                </div>
+                <div class="percentage"> 
+                  <button class="detail" data-popup="percentage">查看詳細資訊</button>
+                </div>
+                <div>1</div>
+                <div></div>
+                <div> </div>
+              </li>
+              <li class="tbody"> 
+                <div> <a class="blue underLine" href="./account.html?tab=agent">ABC88</a></div>
+                <div>AB</div>
+                <div class="blue underLine">1</div>
+                <div class="blue underLine">
+                   0</div>
+                <div> 
+                  <button class="enable">啟用</button>
+                </div>
+                <div>10-28/03:49</div>
+                <div class="function"> 
+                  <button class="disable">停用</button>
+                  <button class="suspend">停押</button>
+                  <button class="reset">重設密碼</button>
+                </div>
+                <div class="percentage"> 
+                  <button class="detail" data-popup="percentage">查看詳細資訊</button>
+                </div>
+                <div>1</div>
+                <div></div>
+                <div> </div>
+              </li>
+              <li class="tbody"> 
+                <div> <a class="blue underLine" href="./account.html?tab=agent">ABC88</a></div>
+                <div>AB</div>
+                <div class="blue underLine">1</div>
+                <div class="blue underLine">
+                   0</div>
+                <div> 
+                  <button class="enable">啟用</button>
+                </div>
+                <div>10-28/03:49</div>
+                <div class="function"> 
+                  <button class="disable">停用</button>
+                  <button class="suspend">停押</button>
+                  <button class="reset">重設密碼</button>
+                </div>
+                <div class="percentage"> 
+                  <button class="detail" data-popup="percentage">查看詳細資訊</button>
+                </div>
+                <div>1</div>
+                <div></div>
+                <div> </div>
+              </li>
+            </ul>
+          </article>
+        </div>
+        <div class="agent">
+          <article class="info"> 
+            <p class="red">abc18 [ <span class="yellow">ABC88</span>] </p>
+            <div class="search"> 
+              <label>
+                <input type="text" placeholder="快速搜尋">
+              </label>
+              <label class="select">
+                <p>abc18 [ ABC88 ]</p>
+                <ol> 
+                  <li class="active">abc18 [ ABC88 ]</li>
+                </ol><i class="select_ic"></i>
+              </label>
+              <label class="select">
+                <p>全部</p>
+                <ol> 
+                  <li class="active">全部</li>
+                </ol><i class="select_ic"></i>
+              </label>
+              <button class="submit">搜尋</button><a href="./addAcount.html?tab=agent">新增帳號</a>
+            </div>
+          </article>
+          <article class="data">
+            <ul> 
+              <li class="thead"> 
+                <div>帳號</div>
+                <div>名稱</div>
+                <div>額度<span class="yellow2">(萬)</span></div>
+                <div>已用<span class="yellow2">(萬)</span></div>
+                <div>投注</div>
+                <div>新增日期</div>
+                <div class="function">功能</div>
+                <div class="percentage">
+                   拆帳百分比
+                  <label>
+                    <input type="checkbox">
+                  </label>
+                </div>
+                <div>股東</div>
+                <div>備註</div>
+                <div>新備註</div>
+              </li>
+              <li class="tbody"> 
+                <div> <a class="blue underLine" href="./account.html?tab=member">ABC88</a></div>
+                <div>AB</div>
+                <div class="blue underLine">1</div>
+                <div class="blue underLine">
+                   0</div>
+                <div> 
+                  <button class="enable">啟用</button>
+                </div>
+                <div>10-28/03:49</div>
+                <div class="function"> 
+                  <button class="disable">停用</button>
+                  <button class="suspend">停押</button>
+                  <button class="reset">重設密碼</button>
+                </div>
+                <div class="percentage"> 
+                  <button class="detail" data-popup="percentage">查看詳細資訊</button>
+                </div>
+                <div>1</div>
+                <div></div>
+                <div> </div>
+              </li>
+              <li class="tbody"> 
+                <div> <a class="blue underLine" href="./account.html?tab=member">ABC88</a></div>
+                <div>AB</div>
+                <div class="blue underLine">1</div>
+                <div class="blue underLine">
+                   0</div>
+                <div> 
+                  <button class="enable">啟用</button>
+                </div>
+                <div>10-28/03:49</div>
+                <div class="function"> 
+                  <button class="disable">停用</button>
+                  <button class="suspend">停押</button>
+                  <button class="reset">重設密碼</button>
+                </div>
+                <div class="percentage"> 
+                  <button class="detail" data-popup="percentage">查看詳細資訊</button>
+                </div>
+                <div>1</div>
+                <div></div>
+                <div> </div>
+              </li>
+              <li class="tbody"> 
+                <div> <a class="blue underLine" href="./account.html?tab=member">ABC88</a></div>
+                <div>AB</div>
+                <div class="blue underLine">1</div>
+                <div class="blue underLine">
+                   0</div>
+                <div> 
+                  <button class="enable">啟用</button>
+                </div>
+                <div>10-28/03:49</div>
+                <div class="function"> 
+                  <button class="disable">停用</button>
+                  <button class="suspend">停押</button>
+                  <button class="reset">重設密碼</button>
+                </div>
+                <div class="percentage"> 
+                  <button class="detail" data-popup="percentage">查看詳細資訊</button>
+                </div>
+                <div>1</div>
+                <div></div>
+                <div> </div>
+              </li>
+            </ul>
+          </article>
+        </div>
+        <div class="member">
+          <article class="info"> 
+            <p class="red">abc18 [ <span class="yellow">ABC88</span>] </p>
+            <div class="search"> 
+              <label>
+                <input type="text" placeholder="快速搜尋">
+              </label>
+              <label class="select">
+                <p>abc18 [ ABC88 ]</p>
+                <ol> 
+                  <li class="active">abc18 [ ABC88 ]</li>
+                </ol><i class="select_ic"></i>
+              </label>
+              <label class="select">
+                <p>全部</p>
+                <ol> 
+                  <li class="active">全部</li>
+                </ol><i class="select_ic"></i>
+              </label>
+              <button class="submit">搜尋</button><a href="./addAcount.html?tab=member">新增帳號</a>
+            </div>
+          </article>
+          <article class="data">
+            <ul> 
+              <li class="thead"> 
+                <div>帳號</div>
+                <div>名稱</div>
+                <div>信用額度</div>
+                <div>是否允許登入</div>
+                <div>是否允許下注</div>
+                <div>新增日期</div>
+                <div class="function">功能</div>
+                <div>比賽類別</div>
+                <div>股東</div>
+                <div>備註</div>
+                <div>新備註</div>
+              </li>
+              <li class="tbody"> 
+                <div>ABC88</div>
+                <div>AB</div>
+                <div>10000(元)</div>
+                <div>
+                  <button class="enable">允許登入</button>
+                </div>
+                <div> 
+                  <button class="enable">允許下注</button>
+                </div>
+                <div>10-28/03:49</div>
+                <div class="function"> 
+                  <button class="reset">刪除</button>
+                </div>
+                <div> 
+                  <button class="detail" data-popup="percentage">查看詳細資訊</button>
+                </div>
+                <div>1</div>
+                <div></div>
+                <div> </div>
+              </li>
+              <li class="tbody"> 
+                <div>ABC88</div>
+                <div>AB</div>
+                <div>10000(元)</div>
+                <div>
+                  <button class="enable">允許登入</button>
+                </div>
+                <div> 
+                  <button class="enable">允許下注</button>
+                </div>
+                <div>10-28/03:49</div>
+                <div class="function"> 
+                  <button class="reset">刪除</button>
+                </div>
+                <div> 
+                  <button class="detail" data-popup="percentage">查看詳細資訊</button>
+                </div>
+                <div>1</div>
+                <div></div>
+                <div> </div>
+              </li>
+              <li class="tbody"> 
+                <div>ABC88</div>
+                <div>AB</div>
+                <div>10000(元)</div>
+                <div>
+                  <button class="enable">允許登入</button>
+                </div>
+                <div> 
+                  <button class="enable">允許下注</button>
+                </div>
+                <div>10-28/03:49</div>
+                <div class="function"> 
+                  <button class="reset">刪除</button>
+                </div>
+                <div> 
+                  <button class="detail" data-popup="percentage">查看詳細資訊</button>
+                </div>
+                <div>1</div>
+                <div></div>
+                <div> </div>
+              </li>
+            </ul>
+          </article>
+        </div>
+        <div class="treeManagement">
+          <article class="info"> 
+            <label class="select">
+              <p>abc18 [ ABC88 ]</p>
+              <ol> 
+                <li class="active">abc18 [ ABC88 ]</li>
+              </ol><i class="select_ic"></i>
+            </label>
+            <div class="search"> 
+              <label>
+                <input type="text" placeholder="快速搜尋">
+              </label>
+              <label class="select">
+                <p>全部</p>
+                <ol> 
+                  <li class="active">全部</li>
+                </ol><i class="select_ic"></i>
+              </label>
+              <button class="submit">搜尋</button>
+              <button>新增帳號</button>
+            </div>
+          </article>
+          <article class="data">
+            <div class="tree"> 
+              <ul class="treemap">
+                <li> 
+                  <details open> 
+                    <summary> <span>abc18 [ ABC88 ]</span></summary>
+                    <ul> 
+                      <li> 
+                        <details> 
+                          <summary> <span>abc17 [ ABC87 ]</span></summary>
+                          <ul> 
+                            <li> <span>abc171 [ ABC87 ]</span></li>
+                          </ul>
+                        </details>
+                      </li>
+                      <li> 
+                        <details> 
+                          <summary> <span>abc16 [ ABC87 ]</span></summary>
+                          <ul> 
+                            <li><span> abc161 [ ABC87 ]</span></li>
+                          </ul>
+                        </details>
+                      </li>
+                      <li> 
+                        <details> 
+                          <summary> <span>abc15 [ ABC87 ]</span></summary>
+                          <ul> 
+                            <li> <span>abc151 [ ABC87 ]</span></li>
+                          </ul>
+                        </details>
+                      </li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+            </div>
+            <div class="list">
+              <ul> 
+                <li class="thead"> 
+                  <div>帳號</div>
+                  <div>名稱</div>
+                  <div>額度<span class="yellow2">(萬)</span></div>
+                  <div>已用<span class="yellow2">(萬)</span></div>
+                  <div>投注</div>
+                  <div>新增日期</div>
+                  <div class="function">功能</div>
+                  <div class="percentage">
+                     拆帳百分比
+                    <label>
+                      <input type="checkbox">
+                    </label>
+                  </div>
+                  <div>股東</div>
+                  <div>備註</div>
+                  <div>新備註</div>
+                </li>
+                <li class="tbody"> 
+                  <div>ABC88</div>
+                  <div>AB</div>
+                  <div class="blue underLine">1</div>
+                  <div class="blue underLine">
+                     0</div>
+                  <div> 
+                    <button class="enable">啟用</button>
+                  </div>
+                  <div>10-28/03:49</div>
+                  <div class="function"> 
+                    <button class="disable">停用</button>
+                    <button class="suspend">停押</button>
+                    <button class="reset">重設密碼</button>
+                  </div>
+                  <div class="percentage"> 
+                    <button class="detail" data-popup="percentage">查看詳細資訊</button>
+                  </div>
+                  <div>1</div>
+                  <div></div>
+                  <div> </div>
+                </li>
+                <li class="tbody"> 
+                  <div>ABC88</div>
+                  <div>AB</div>
+                  <div class="blue underLine">1</div>
+                  <div class="blue underLine">
+                     0</div>
+                  <div> 
+                    <button class="enable">啟用</button>
+                  </div>
+                  <div>10-28/03:49</div>
+                  <div class="function"> 
+                    <button class="disable">停用</button>
+                    <button class="suspend">停押</button>
+                    <button class="reset">重設密碼</button>
+                  </div>
+                  <div class="percentage"> 
+                    <button class="detail" data-popup="percentage">查看詳細資訊</button>
+                  </div>
+                  <div>1</div>
+                  <div></div>
+                  <div> </div>
+                </li>
+                <li class="tbody"> 
+                  <div>ABC88</div>
+                  <div>AB</div>
+                  <div class="blue underLine">1</div>
+                  <div class="blue underLine">
+                     0</div>
+                  <div> 
+                    <button class="enable">啟用</button>
+                  </div>
+                  <div>10-28/03:49</div>
+                  <div class="function"> 
+                    <button class="disable">停用</button>
+                    <button class="suspend">停押</button>
+                    <button class="reset">重設密碼</button>
+                  </div>
+                  <div class="percentage"> 
+                    <button class="detail" data-popup="percentage">查看詳細資訊</button>
+                  </div>
+                  <div>1</div>
+                  <div></div>
+                  <div> </div>
+                </li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+    <section class="filter">
+      <div class="popup chagePassword">
+        <section class="title"> 
+          <p>修改密碼</p><i class="close_ic close"></i>
+        </section>
+        <section class="content">
+          <label>
+            <p>帳號</p>
+            <input type="text" disabled value="abc18">
+          </label>
+          <label>
+            <p>原始密碼</p>
+            <input type="text" value="abc18">
+          </label>
+          <label>
+            <p>新密碼</p>
+            <input type="text">
+          </label>
+          <label>
+            <p>確認密碼</p>
+            <input type="text">
+          </label><span class="red warn">這是您第一次登入本系統，請重新建立密碼 (密碼長度6-8位數)</span>
+          <div class="btns"> 
+            <button class="submit close">確認 </button>
+            <button class="cancel close">取消</button>
+          </div>
+        </section>
+      </div>
+      <div class="popup addSubAccount">
+        <section class="title"> 
+          <p>新增子帳號</p><i class="close_ic close"></i>
+        </section>
+        <section class="content">
+          <label>
+            <p class="remind">帳號</p>
+            <input type="text" disabled value="abc18">
+          </label>
+          <label>
+            <p class="remind">名稱</p>
+            <input type="text" value="abc18">
+          </label>
+          <label>
+            <p class="remind">密碼</p>
+            <input type="text">
+          </label>
+          <label>
+            <p class="remind">確認密碼</p>
+            <input type="text">
+          </label>
+          <label class="select">
+            <p>權限</p>
+            <select>
+              <option value="檢視權限">檢視權限</option>
+            </select><i class="select_ic"></i>
+          </label>
+          <div class="btns"> 
+            <button class="submit close">確認 </button>
+            <button class="cancel close">取消</button>
+          </div>
+        </section>
+      </div>
+      <div class="popup percentage">
+        <section class="title"> 
+          <p>拆帳百分比</p><i class="close_ic close"></i>
+        </section>
+        <section class="content">
+          <ul> 
+            <li class="thead"> 
+              <div>球種</div>
+              <div>拆帳百分比</div>
+              <div>球種</div>
+              <div>拆帳百分比</div>
+            </li>
+            <li class="tbody">
+              <div>足球</div>
+              <div>95%</div>
+              <div>美國職籃</div>
+              <div>95%</div>
+            </li>
+            <li class="tbody">
+              <div>其他籃球</div>
+              <div>95%</div>
+              <div>美國職棒</div>
+              <div>95%</div>
+            </li>
+            <li class="tbody">
+              <div>日本職棒</div>
+              <div>95%</div>
+              <div>中華職棒</div>
+              <div>95%</div>
+            </li>
+            <li class="tbody">
+              <div>其他棒球</div>
+              <div>95%</div>
+              <div>美式足球</div>
+              <div>95%</div>
+            </li>
+            <li class="tbody">
+              <div>網球</div>
+              <div>95%</div>
+              <div>彩球</div>
+              <div>95%</div>
+            </li>
+            <li class="tbody">
+              <div>賽馬賽狗</div>
+              <div>95%</div>
+              <div>指數</div>
+              <div>95%</div>
+            </li>
+            <li class="tbody">
+              <div>電競</div>
+              <div>95%</div>
+              <div>世界盃</div>
+              <div>95%</div>
+            </li>
+            <li class="tbody">
+              <div>高爾夫</div>
+              <div>95%</div>
+              <div>冰球</div>
+              <div>95%</div>
+            </li>
+            <li class="tbody">
+              <div>拳擊</div>
+              <div>95%</div>
+              <div>拳擊格鬥</div>
+              <div>95%</div>
+            </li>
+            <li class="tbody">
+              <div>羽球</div>
+              <div>95%</div>
+              <div>排球</div>
+              <div>95%</div>
+            </li>
+            <li class="tbody">
+              <div>桌球</div>
+              <div>95%</div>
+              <div>板球</div>
+              <div>95%</div>
+            </li>
+            <li class="tbody">
+              <div>撞球</div>
+              <div>95%</div>
+              <div>手球</div>
+              <div>95%</div>
+            </li>
+            <li class="tbody">
+              <div>世界盃(舊其他足球)</div>
+              <div>95%</div>
+              <div>足球-歐洲盃</div>
+              <div>95%</div>
+            </li>
+            <li class="tbody">
+              <div>娛樂</div>
+              <div>95%</div>
+            </li>
+          </ul>
+        </section>
+      </div>
+      <div class="mask"></div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+    <script src="../js/UIComponents.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/swiper.js"></script>
+  </body>
+</html>

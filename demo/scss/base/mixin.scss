@@ -1,0 +1,222 @@
+// flex
+@mixin d_flex($jc: null, $ai: null, $ff: null, $g: null) {
+  display: flex;
+  @if $jc != null {
+    justify-content: $jc;
+  }
+  @if $ai != null {
+    align-items: $ai;
+  }
+  @if $ff != null {
+    flex-flow: $ff;
+  }
+  @if $g != null {
+    gap: $g;
+  }
+  @content;
+}
+
+// 文字省略
+@mixin ellipsis($line: 1, $w: 100%) {
+  width: $w;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  @if $line != null {
+    @if $line == 1 {
+      // 設為單行省略
+      white-space: nowrap;
+    } @else {
+      // 指定多行省略
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: $line;
+    }
+  }
+}
+
+@mixin position(
+  $p: absolute,
+  $set: null,
+  $t: null,
+  $r: null,
+  $b: null,
+  $l: null,
+  $z: null
+) {
+  position: $p;
+  // 上下左右中定位
+  @if ($set != null) {
+    @if $set == "center" {
+      inset: 50% auto auto 50%;
+      transform: translate(-50%, -50%);
+    } @else if $set == "top" {
+      inset: 0 auto auto 50%;
+      transform: translateX(-50%);
+    } @else if $set == "right" {
+      inset: 50% 0 auto auto;
+      transform: translateY(-50%);
+    } @else if $set == "bottom" {
+      inset: auto auto 0 50%;
+      transform: translateX(-50%);
+    } @else if $set == "left" {
+      inset: 50% auto auto 0;
+      transform: translateY(-50%);
+    }
+  } @else {
+    @if ($t != null) {
+      top: $t;
+    }
+    @if ($r != null) {
+      right: $r;
+    }
+    @if ($b != null) {
+      bottom: $b;
+    }
+    @if ($l != null) {
+      left: $l;
+    }
+  }
+  @if ($z != null) {
+    z-index: $z;
+  }
+  @content;
+}
+
+// checkbox
+@mixin input($m: null) {
+  @if ($m == "checkbox") {
+    input[type="checkbox"] {
+      width: 1rem;
+      height: 1rem;
+      border-radius: 0.2rem;
+      background: #fff;
+      border: 1px solid #c34235;
+      &:checked {
+        background: #c34235;
+        position: relative;
+        &::after {
+          content: "";
+          width: 0.5rem;
+          height: 0.5rem;
+          border: solid #fff;
+          border-width: 0 0.1rem 0.1rem 0;
+          @include position($t: 40%, $l: 50%);
+          transform: translate(-50%, -50%) rotate(45deg);
+        }
+      }
+    }
+  }
+  @if ($m == "select") {
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    p {
+      width: 100%;
+      color: #000;
+    }
+    i {
+      &.select_ic {
+        @include position($r: 0.5rem);
+        pointer-events: none;
+        width: 0.5rem;
+        height: 0.5rem;
+      }
+    }
+    ol {
+      display: none;
+      @include position($t: calc(100% + 0.1rem), $z: 2, $l: 0);
+      width: 100%;
+      max-height: 18.75rem;
+      background: #fff;
+      border-radius: 0.5rem;
+      border: 1px solid #e7e8ec;
+      box-shadow: 0 0 0.3rem #202a4026;
+      overflow: hidden auto;
+      li {
+        padding: 0.5rem 0.3rem;
+        &:not(:last-child) {
+          border-bottom: 1px solid #bcc0ce;
+        }
+        &:hover,
+        &:active,
+        &.active {
+          background: #bcc0ce;
+          color: #fff;
+        }
+      }
+    }
+    &::after {
+      content: "";
+      @include position($r: 2rem);
+      width: 0.1rem;
+      height: 60%;
+      background: #000;
+      opacity: 0.2;
+    }
+    &.active {
+      ol {
+        display: block;
+      }
+    }
+  }
+  @if ($m == "number") {
+    position: relative;
+    input[type="number"] {
+      background: #fff;
+      border: 1px solid #858585;
+      @content;
+    }
+    i {
+      &.number_ic {
+        @include position($r: 0.5rem);
+        pointer-events: none;
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+    &::after {
+      content: "";
+      @include position($r: 2rem);
+      width: 0.1rem;
+      height: 60%;
+      background: #000;
+      opacity: 0.2;
+    }
+  }
+  @if ($m == "ballBtn") {
+    @include d_flex($ai: center, $g: 0.25rem);
+    width: auto !important;
+    height: 100%;
+    line-height: 2rem;
+    padding: 0rem 0.5rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 1.5rem;
+    touch-action: none;
+    span {
+      @include ellipsis(1, calc(100% - 1.25rem));
+      user-select: none;
+    }
+    i {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+    &:hover,
+    &:active,
+    &.active {
+      i {
+        filter: brightness(0) invert(1);
+      }
+    }
+  }
+}
+
+// animate
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

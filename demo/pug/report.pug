@@ -1,0 +1,170 @@
+extends ../pug-compontent/layout.pug
+
+block header 
+  -isActice = "report"
+
+block content
+  main.report 
+    section.titleBlock  
+      i.back_ic 
+      h1 報表
+      p 足球 
+        span.orange 3
+        |  場比賽 未輸入 比賽得分
+      p 指數 
+        span.orange 7
+        |  場比賽 未輸入 比賽得分
+    section.searchBlock 
+      .selects
+        +select("類別  |  帳務日期")
+        +select("球種  | 全部",...ballList.map(b=>b.name))
+        +select("賽程時段  | 全部")
+        +select("報表分類  | 總帳")
+        +select("投注總類  | 全部")
+      .dates
+        label.date
+          input(type="date" value="2025-11-26")
+          p 到
+          input(type="date" value="2025-11-26")
+        button 昨日
+        button 今日
+        button 明日
+        button 上週
+        button 本周
+        button.submit 確認
+    section.dataBlock
+      -
+        const data = ["全部","足球","籃球"]
+        const dataList = [
+          {name:"AA001(王)",color:"red"},
+          {name:"AA003(老)",color:"green"},
+          {name:"AA004(abab)",color:"green"},
+          {name:"AA004(abab)",color:"green"},
+          {name:"合計",color:"red"}
+        ]
+      article.title
+        div
+          i.back_ic 
+          p.blue 總帳
+        div
+          button 
+            i.refresh_ic
+            | 更新
+          +select("下拉選單")
+      article.data
+        each title in data
+          ul 
+            li.ballName= title
+            li.thead 
+              div 
+                span 總監
+              div 
+                span 筆數
+              div 
+                span 下注金額
+              div 
+                span 有效投注
+              div 
+                span 未過帳金額
+              div.checkBox 
+                span 會員
+                  label
+                    input(type="checkbox" checked)
+                span 結果
+                span 退水
+                span 有效投注量
+              div.checkBox 
+                span 代理
+                  label
+                    input(type="checkbox")
+                span 結果
+                span 退水
+                span 有效投注量
+              div.checkBox 
+                span 總代
+                  label
+                    input(type="checkbox")
+                span 結果
+                span 退水
+                span 有效投注量
+              div.checkBox 
+                span 股東
+                  label
+                    input(type="checkbox")
+                span 結果
+                span 退水
+                span 有效投注量
+              div.checkBox 
+                span 大股東
+                  label
+                    input(type="checkbox")
+                span 結果
+                span 退水
+                span 有效投注量
+              div.checkBox 
+                span 總監
+                  label
+                    input(type="checkbox")
+                span 結果
+                span 退水
+                span 有效投注量
+              div.checkBox 
+                span 大總監
+                  label
+                    input(type="checkbox")
+                span 結果
+                span 退水
+                span 有效投注量
+              div 
+                span 備註 
+              div.checkBox.ballList 
+                span 成數 
+                  label
+                    input(type="checkbox") 
+                each ball in ballList
+                  span= ball.name
+            each data in dataList
+              li.tbody 
+                div 
+                  span= data.name
+                div
+                  span 197 
+                div
+                  span.blue.underLine 439,710 
+                div
+                  span 431,960 
+                div
+                  span 0
+                div.checkBox
+                  span(class=data.color) -56,113
+                  span(class=data.color) 0
+                  span(class=data.color) 0
+                div.checkBox
+                  span(class=data.color) -54,635 
+                  span(class=data.color) 0
+                  span(class=data.color) 0
+                div.checkBox
+                  span(class=data.color) -40,594 
+                  span(class=data.color) 0
+                  span(class=data.color) 0
+                div.checkBox
+                  span(class=data.color) -7,548 
+                  span(class=data.color) 0
+                  span(class=data.color) 0
+                div.checkBox
+                  span(class=data.color) -2,497 
+                  span(class=data.color) 0
+                  span(class=data.color) 0
+                div.checkBox
+                  span(class=data.color) -2,497 
+                  span(class=data.color) 0
+                  span(class=data.color) 0
+                div.checkBox
+                  span(class=data.color) -2,497 
+                  span(class=data.color) 0
+                  span(class=data.color) 0
+                div
+                  span 
+                div.checkBox.ballList
+                  each ball in ballList
+                    span 95

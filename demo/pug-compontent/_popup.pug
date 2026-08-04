@@ -1,0 +1,163 @@
+section.filter
+  block filter
+  -if(chagePassword)
+    .popup.chagePassword
+      section.title 
+        p 修改密碼
+        i.close_ic.close
+      section.content
+        label
+          p 帳號
+          input(type="text" disabled value="abc18")
+        label
+          p 原始密碼
+          input(type="text" value="abc18")
+        label
+          p 新密碼
+          input(type="text")
+        label
+          p 確認密碼
+          input(type="text")
+        span.red.warn 這是您第一次登入本系統，請重新建立密碼 (密碼長度6-8位數)
+        .btns 
+          button.submit.close 確認 
+          button.cancel.close 取消
+  -if(addSubAccount)
+    .popup.addSubAccount
+      section.title 
+        p 新增子帳號
+        i.close_ic.close
+      section.content
+        label
+          p.remind 帳號
+          input(type="text" disabled value="abc18")
+        label
+          p.remind 名稱
+          input(type="text" value="abc18")
+        label
+          p.remind 密碼
+          input(type="text")
+        label
+          p.remind 確認密碼
+          input(type="text")
+        label.select
+          p 權限
+          select
+            option(value="檢視權限") 檢視權限
+          i.select_ic
+        .btns 
+          button.submit.close 確認 
+          button.cancel.close 取消
+  -if(percentage)
+    .popup.percentage
+      section.title 
+        p 拆帳百分比
+        i.close_ic.close
+      section.content
+        ul 
+          li.thead 
+            div 球種
+            div 拆帳百分比
+            div 球種
+            div 拆帳百分比
+          -for(let i = 0;i < ballList.length;i+=2)
+            li.tbody
+              each val,idx in ballList.slice(i,i+2)
+                div= val.name 
+                div 95%
+  -if(editList)
+    .popup.editList
+      section.title 
+        p 編輯清單
+        i.close_ic.close
+      section.content
+        article.search 
+          button.clear 全部排除
+          button.include 全部納入 
+          label
+            input(type="text" placeholder="搜尋")
+          label
+            input(type="text" placeholder="搜尋")
+        article.list
+          ul 
+            li.thead 
+              span 已納入ID
+            li.tbody
+              span.blue.underLine C105(MA)
+            li.tbody
+              span.blue.underLine C105(MA)
+            li.tbody
+              span.blue.underLine C105(MA)
+            li.tbody
+              span.blue.underLine C105(MA)
+          ul 
+            li.thead 
+              span 已排除ID
+            li.tbody
+              span 未找到紀錄
+            li.tbody
+              span
+            li.tbody
+              span
+            li.tbody
+              span
+  -if(PEType)
+    .popup.PEType
+      section.title 
+        p 體育類型
+        i.close_ic.close
+      section.content
+        article.search 
+          button.clear 全部排除
+          button.include 全部納入 
+          label
+            input(type="text" placeholder="搜尋")
+          label
+            input(type="text" placeholder="搜尋")
+        article.list
+          ul 
+            li.thead 
+              span 已納入
+            -for(let i = 0;i <= Math.floor(ballList.length/2);i++)
+              li.tbody
+                span= ballList[i].name
+                span.blue.underLine(data-popup="ballType") 全部
+          ul 
+            li.thead 
+              span 已排除
+            -for(let i = Math.floor(ballList.length/2)+1;i <= ballList.length;i++)
+              li.tbody
+                if(ballList[i])
+                  span= ballList[i].name
+                  span.blue.underLine(data-popup="ballType") 全部
+                else
+                  span
+  -if(ballType)
+    .popup.ballType
+      section.title 
+        p 足球
+        i.close_ic.close
+      section.content
+        article.search 
+          button.clear 全部排除
+          button.include 全部納入 
+          label
+            input(type="text" placeholder="搜尋")
+          label
+            input(type="text" placeholder="搜尋")
+        article.list
+          ul 
+            li.thead 
+              span 已納入
+            li.tbody
+              span.blue.underLine PPA North Carolina
+            li.tbody
+              span.blue.underLine PPA North Carolina
+          ul 
+            li.thead 
+              span 已排除
+            li.tbody
+              span 未找到紀錄
+            li.tbody
+              span
+  .mask

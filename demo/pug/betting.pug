@@ -1,0 +1,642 @@
+extends ../pug-compontent/layout.pug
+
+block header 
+  -isActice = "betting"
+
+block content
+  main.betting 
+    section.titleBlock  
+      i.back_ic 
+      h1 即時注單
+    section.searchBlock 
+      .selects
+        +select("類別  |  帳務日期") 
+        +select("球種  | 全部",...ballList.map(b=>b.name)) 
+        +select("賽程時段  | 全部") 
+        +select("報表分類  | 總帳") 
+        +select("投注總類  | 全部") 
+      .dates
+        label.date
+          input(type="date" value="2025-11-26")
+          p 到
+          input(type="date" value="2025-11-26")
+        button 昨日
+        button 今日
+        button 明日
+        button 上週
+        button 本周
+        button.submit 確認
+    section.dataBlock
+      - 
+        const tabs = [
+          {block:"director",name:"總監",number:"439,710"},
+          {block:"shareholder_m",name:"大股東",number:"99930"},
+          {block:"shareholder",name:"股東",number:"490"},
+          {block:"agent_m",name:"總代理",number:"34710"},
+          {block:"agent",name:"代理",number:"989710"},
+        ]
+        const data = ["全部","足球","籃球"]
+        const dataList = [
+          {name:"AA001(王)",color:"red"},
+          {name:"AA003(老)",color:"green"},
+          {name:"AA004(abab)",color:"green"},
+          {name:"AA004(abab)",color:"green"},
+          {name:"合計",color:"red"}
+        ]
+      each val,index in tabs
+        div(class=`${val.block} ${index===0?"active":""}`)
+          article.title
+            if(tabs[index - 1])
+              a(href=`./betting.html?tab=${tabs[index - 1].block}`)
+                i.back_ic 
+                p.blue= val.name
+            else
+              div
+                i.back_ic
+                p.blue= val.name
+            div
+              button 
+                i.refresh_ic
+                | 更新
+              +select("下拉選單") 
+          article.data
+            each title in data
+              ul 
+                li.ballName= title
+                li.thead 
+                  div 
+                    span= val.name
+                  div 
+                    span 筆數
+                  div 
+                    span 下注金額
+                  div 
+                    span 有效投注
+                  div 
+                    span 未過帳金額
+                  div.checkBox 
+                    span 會員
+                      label
+                        input(type="checkbox" checked)
+                    span 結果
+                    span 退水
+                    span 有效投注量
+                  div.checkBox 
+                    span 代理
+                      label
+                        input(type="checkbox")
+                    span 結果
+                    span 退水
+                    span 有效投注量
+                  div.checkBox 
+                    span 總代
+                      label
+                        input(type="checkbox")
+                    span 結果
+                    span 退水
+                    span 有效投注量
+                  div.checkBox 
+                    span 股東
+                      label
+                        input(type="checkbox")
+                    span 結果
+                    span 退水
+                    span 有效投注量
+                  div.checkBox 
+                    span 大股東
+                      label
+                        input(type="checkbox")
+                    span 結果
+                    span 退水
+                    span 有效投注量
+                  div.checkBox 
+                    span 總監
+                      label
+                        input(type="checkbox")
+                    span 結果
+                    span 退水
+                    span 有效投注量
+                  div.checkBox 
+                    span 大總監
+                      label
+                        input(type="checkbox")
+                    span 結果
+                    span 退水
+                    span 有效投注量
+                  div 
+                    span 備註 
+                  div.checkBox.ballList 
+                    span 成數 
+                      label
+                        input(type="checkbox") 
+                    each ball in ballList
+                      span= ball.name
+                each data in dataList
+                  li.tbody 
+                    div 
+                      span= data.name
+                    div
+                      span 197 
+                    div
+                      if(tabs[index + 1])
+                        a(href=`./betting.html?tab=${tabs[index + 1].block}`).blue.underLine= val.number
+                      else
+                        a(href=`./betting.html?tab=member`).blue.underLine= val.number
+                    div
+                      span 431,960 
+                    div
+                      span 0
+                    div.checkBox
+                      span(class=data.color) -56,113
+                      span(class=data.color) 0
+                      span(class=data.color) 0
+                    div.checkBox
+                      span(class=data.color) -54,635 
+                      span(class=data.color) 0
+                      span(class=data.color) 0
+                    div.checkBox
+                      span(class=data.color) -40,594 
+                      span(class=data.color) 0
+                      span(class=data.color) 0
+                    div.checkBox
+                      span(class=data.color) -7,548 
+                      span(class=data.color) 0
+                      span(class=data.color) 0
+                    div.checkBox
+                      span(class=data.color) -2,497 
+                      span(class=data.color) 0
+                      span(class=data.color) 0
+                    div.checkBox
+                      span(class=data.color) -2,497 
+                      span(class=data.color) 0
+                      span(class=data.color) 0
+                    div.checkBox
+                      span(class=data.color) -2,497 
+                      span(class=data.color) 0
+                      span(class=data.color) 0
+                    div
+                      span 
+                    div.checkBox.ballList
+                      each ball in ballList
+                        span 95
+      .member 
+        article.title
+          a(href=`./betting.html?tab=agent_m`)
+            i.back_ic 
+            p.blue 會員
+          div
+            button 
+              i.refresh_ic
+              | 更新
+        article.data
+          ul 
+            li.ballName 全部
+            li.thead 
+              div 
+                span 時間
+              div 
+                span 單號
+              div 
+                span 下注IP
+              div 
+                span 球賽種類
+              div.content 
+                span 內容
+              div 
+                span 金額
+              div 
+                span 有效下注
+              div.checkBox 
+                span 會員
+                  label
+                    input(type="checkbox")
+                span 結果
+                span 拆帳%
+                span 輸贏
+                span 結果
+              div.checkBox 
+                span 代理
+                  label
+                    input(type="checkbox")
+                span 結果
+                span 拆帳%
+                span 輸贏
+                span 結果
+              div.checkBox 
+                span 總代
+                  label
+                    input(type="checkbox")
+                span 結果
+                span 拆帳%
+                span 輸贏
+                span 結果
+              div.checkBox 
+                span 股東
+                  label
+                    input(type="checkbox")
+                span 結果
+                span 拆帳%
+                span 輸贏
+                span 結果
+              div.checkBox 
+                span 大股東
+                  label
+                    input(type="checkbox")
+                span 結果
+                span 拆帳%
+                span 輸贏
+                span 結果
+              div.checkBox 
+                span 總監
+                  label
+                    input(type="checkbox")
+                span 結果
+                span 拆帳%
+                span 輸贏
+                span 結果
+              div.checkBox 
+                span 大總監
+                  label
+                    input(type="checkbox")
+                span 結果
+                span 拆帳%
+                span 輸贏
+                span 結果
+              div 
+                span 備註 
+              div.checkBox 
+                span 下注端 
+                  label
+                    input(type="checkbox") 
+            li.tbody 
+              div 
+                span 
+                  p 12-10
+                  p 17:35:00
+              div
+                span CPR17214808 
+              div
+                span *. *. 250. 60
+              div
+                span 足球  綜合過關
+              div.content
+                span 
+                  p 
+                    span.gray [FT2062899]
+                    | 卡萊爾 [主] 
+                    span.blue 1球
+                    | 禾京
+                  p (英格蘭全國聯賽)-[讓球] 
+                    span.red 卡萊爾
+                    |　@　
+                    span.red 0.87
+                  p [FT2062999] 布里斯托城 [主] 
+                    span.blue vs
+                    | 萊斯特
+                  p (英格蘭冠軍聯賽)-
+                    span.red 大 2.5
+                    |　@　
+                    span.red 0.96
+                  p [FT2062875] 打比郡 [主] 
+                    span.blue 平手
+                    | 米禾爾
+                  p (英格蘭冠軍聯賽)-[讓球] 
+                    span.red 打比郡
+                    |　@　
+                    span.red 0.79
+                  p [FT2062895] 梅洛小阿根廷 [主] 
+                    span.blue vs
+                    | 亞美尼亞體育
+                  p (阿根廷大都會區乙級聯賽)-[獨贏] 
+                    span.red 梅洛小阿根廷
+                    |　@　
+                    span.red 2.2
+              div
+                span 100
+              div
+                span 0
+              div.checkBox
+                span.green 0
+                span 95%
+                span 0.0
+                span.green 0
+              div.checkBox
+                span.green 0
+                span 95%
+                span 0.0
+                span.green 0
+              div.checkBox
+                span.green 0
+                span 95%
+                span 0.0
+                span.green 0
+              div.checkBox
+                span.green 0
+                span 95%
+                span 0.0
+                span.green 0
+              div.checkBox
+                span.green 0
+                span 95%
+                span 0.0
+                span.green 0
+              div.checkBox
+                span.green 0
+                span 95%
+                span 0.0
+                span.green 0
+              div.checkBox
+                span.green 0
+                span 95%
+                span 0.0
+                span.green 0
+              div
+                span 
+              div.checkBox
+                span 電腦
+                span win10
+            li.tbody 
+              div 
+                span 
+                  p 12-10
+                  p 17:35:00
+              div
+                span CPR17214808 
+              div
+                span *. *. 250. 60
+              div
+                span 足球  綜合過關
+              div.content
+                span 
+                  p 
+                    span.gray [FT2062899]
+                    | 卡萊爾 [主] 
+                    span.blue 1球
+                    | 禾京
+                  p (英格蘭全國聯賽)-[讓球] 
+                    span.red 禾京
+                    |　@　
+                    span.red 0.94
+              div
+                span 100
+              div
+                span 0
+              div.checkBox
+                span.red 0
+                span 95%
+                span 0.0
+                span.red 0
+              div.checkBox
+                span.red 0
+                span 95%
+                span 0.0
+                span.red 0
+              div.checkBox
+                span.red 0
+                span 95%
+                span 0.0
+                span.red 0
+              div.checkBox
+                span.red 0
+                span 95%
+                span 0.0
+                span.red 0
+              div.checkBox
+                span.red 0
+                span 95%
+                span 0.0
+                span.red 0
+              div.checkBox
+                span.red 0
+                span 95%
+                span 0.0
+                span.red 0
+              div.checkBox
+                span.red 0
+                span 95%
+                span 0.0
+                span.red 0
+              div
+                span 
+              div.checkBox
+                span 電腦
+                span win10
+            li.tbody 
+              div 
+                span 
+                  p 12-10
+                  p 17:35:00
+              div
+                span CPR17214808 
+              div
+                span *. *. 250. 60
+              div
+                span 足球  綜合過關
+              div.content
+                span 
+                  p 
+                    span.gray [FT2062899]
+                    | 卡萊爾 [主] 
+                    span.blue 1球
+                    | 禾京
+                  p (英格蘭全國聯賽)-[讓球] 
+                    span.red 禾京
+                    |　@　
+                    span.red 0.94
+              div
+                span 100
+              div
+                span 0
+              div.checkBox
+                span.green 0
+                span 95%
+                span 0.0
+                span.green 0
+              div.checkBox
+                span.green 0
+                span 95%
+                span 0.0
+                span.green 0
+              div.checkBox
+                span.green 0
+                span 95%
+                span 0.0
+                span.green 0
+              div.checkBox
+                span.green 0
+                span 95%
+                span 0.0
+                span.green 0
+              div.checkBox
+                span.green 0
+                span 95%
+                span 0.0
+                span.green 0
+              div.checkBox
+                span.green 0
+                span 95%
+                span 0.0
+                span.green 0
+              div.checkBox
+                span.green 0
+                span 95%
+                span 0.0
+                span.green 0
+              div
+                span 
+              div.checkBox
+                span 電腦
+                span win10
+            li.tbody 
+              div 
+                span 
+                  p 12-10
+                  p 17:35:00
+              div
+                span CPR17214808 
+              div
+                span *. *. 250. 60
+              div
+                span 足球  綜合過關
+              div.content
+                span 
+                  p 
+                    span.gray [FT2062899]
+                    | 卡萊爾 [主] 
+                    span.blue 1球
+                    | 禾京
+                  p (英格蘭全國聯賽)-[讓球] 
+                    span.red 禾京
+                    |　@　
+                    span.red 0.94
+              div
+                span 100
+              div
+                span 0
+              div.checkBox
+                span.red 0
+                span 95%
+                span 0.0
+                span.red 0
+              div.checkBox
+                span.red 0
+                span 95%
+                span 0.0
+                span.red 0
+              div.checkBox
+                span.red 0
+                span 95%
+                span 0.0
+                span.red 0
+              div.checkBox
+                span.red 0
+                span 95%
+                span 0.0
+                span.red 0
+              div.checkBox
+                span.red 0
+                span 95%
+                span 0.0
+                span.red 0
+              div.checkBox
+                span.red 0
+                span 95%
+                span 0.0
+                span.red 0
+              div.checkBox
+                span.red 0
+                span 95%
+                span 0.0
+                span.red 0
+              div
+                span 
+              div.checkBox
+                span 電腦
+                span win10
+            li.tbody.total 
+              div 
+                span 
+              div
+                span  
+              div
+                span 
+              div
+                span 
+              div.content
+                span 4
+              div
+                span 400
+              div
+                span 0
+              div.checkBox
+                span.green 
+                span 
+                span.green 0
+                span.green 0
+              div.checkBox
+                span.green 
+                span 
+                span.green 0
+                span.green 0
+              div.checkBox
+                span.green 
+                span 
+                span.green 0
+                span.green 0
+              div.checkBox
+                span.green 
+                span 
+                span.green 0
+                span.green 0
+              div.checkBox
+                span.green 
+                span 
+                span.green 0
+                span.green 0
+              div.checkBox
+                span.green 
+                span 
+                span.green 0
+                span.green 0
+              div.checkBox
+                span.green 
+                span 
+                span.green 0
+                span.green 0
+              div
+                span 
+              div.checkBox
+                span 
+                span 
+        article.detail
+          ul 
+            li.thead
+              div 
+                span 代理商
+              div 
+                span 筆數
+              div 
+                span 總額
+              div 
+                span 佔成數
+              div 
+                span 退水
+              div 
+                span 可得
+              div 
+                span 上繳
+            li.tbody
+              div 
+                span @62
+              div 
+                span 4
+              div 
+                span 400
+              div 
+                span 95%
+              div 
+                span 0.0
+              div 
+                span 0.0
+              div 
+                span 0

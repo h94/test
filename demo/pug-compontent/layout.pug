@@ -1,0 +1,55 @@
+block isIndex
+  -let isIndex = false
+-let path = isIndex?".":".."
+-let url = isIndex?"./html":"."
+
+-
+  const ballList = [
+    {name:"足球",icon:"soccer_ic"},
+    {name:"美國職籃",icon:"nba_ic"},
+    {name:"其他籃球",icon:"otherbasketball_ic"},
+    {name:"美國職棒",icon:"mlb_ic"},
+    {name:"日本職棒",icon:"npb_ic"},
+    {name:"中華職棒",icon:"cpbl_ic"},
+    {name:"其他棒球",icon:"otherbaseball_ic"},
+    {name:"美式足球",icon:"football_ic"},
+    {name:"網球",icon:"tennis_ic"},
+    {name:"彩球",icon:"colorball_ic"},
+    {name:"賽馬賽狗",icon:"race_ic"},
+    {name:"指數",icon:"index_ic"},
+    {name:"電競",icon:"esports_ic"},
+    {name:"世界盃",icon:"worldcup_ic"},
+    {name:"高爾夫",icon:"golf_ic"},
+    {name:"冰球",icon:"icehockey_ic"},
+    {name:"拳擊",icon:"boxing_ic"},
+    {name:"拳擊格鬥",icon:"fighting_ic"},
+    {name:"羽球",icon:"badminton_ic"},
+    {name:"排球",icon:"volleyball_ic"},
+    {name:"桌球",icon:"tabletennis_ic"},
+    {name:"板球",icon:"cricket_ic"},
+    {name:"撞球",icon:"poolball_ic"},
+    {name:"手球",icon:"handball_ic"},
+    {name:"世界盃(舊其他足球)",icon:"othersoccer_ic"},
+    {name:"足球-歐洲盃",icon:"uefa_ic"},
+    {name:"娛樂",icon:"entertainment_ic"},
+  ]
+
+include ./mixin.pug
+
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    //- link(rel="shortcut icon" href="./img/icon.ico" type="image/x-icon" sizes="64x64")
+    include _css.pug
+      title LB_N1_agent
+  body
+    include _header.pug
+
+    block content
+
+
+    include _popup.pug
+
+    include _js.pug

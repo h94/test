@@ -1,0 +1,2399 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
+    <title>LB_N1_agent</title>
+  </head>
+  <body>
+    <header> 
+      <section class="menu-navbar sideBar">
+        <button class="navber"><i class="navbar_ic"></i></button>
+        <div class="title"> <span>菜單</span><i class="close_ic"></i></div>
+        <aside> <a href="../index.html"><i class="home_ic"></i><span>首頁</span></a><a href="./balls.html"> <i class="balls_ic"></i><span>球種資訊</span></a>
+          <button class="settlement false"> <i class="settlement_ic"></i><span>待結投注</span>
+            <article>
+              <p>待結投注<i class="pin_ic"> </i></p><a href="./settlement.html?tab=plate" data-tab="plate"> <span>讓球盤</span><span>大小盤</span><span>獨營盤</span><span>滾球</span></a><a href="./settlement.html?tab=score" data-tab="score"> <span>球隊總得分</span></a><a href="./settlement.html?tab=special" data-tab="special"> <span>優勝冠軍盤</span><span>特別盤口</span></a><a href="./settlement.html?tab=mix" data-tab="mix"> <span>混合過關</span></a><a href="./settlement.html?tab=discount" data-tab="discount"> <span>優惠過關盤</span></a><a href="./settlement.html?tab=monitor" data-tab="monitor"> <span>投注監視器</span></a>
+            </article>
+          </button><a href="./report.html"> <i class="report_ic"> </i><span>報表</span></a><a href="./account.html"> <i class="account_ic"></i><span>帳號管理</span></a><a class="active" href="./betting.html"> <i class="betting_ic"></i><span>即時注單</span></a>
+        </aside>
+        <div class="mask"></div>
+      </section>
+      <section class="menu-btns"><a href="#"> <i class="member_ic"></i>新增會員</a><a href="#"> <i class="customer_ic"></i>在線客服</a><a href="#"> <i class="post_ic"></i>公告</a></section>
+      <section class="menu-navbar">
+        <button><i class="setting_ic"> </i></button>
+      </section>
+    </header>
+    <main class="betting"> 
+      <section class="titleBlock"> <i class="back_ic"> </i>
+        <h1>即時注單</h1>
+      </section>
+      <section class="searchBlock"> 
+        <div class="selects">
+          <label class="select">
+            <p>類別  |  帳務日期</p>
+            <ol> 
+              <li class="active">類別  |  帳務日期</li>
+            </ol><i class="select_ic"></i>
+          </label>
+          <label class="select">
+            <p>球種  | 全部</p>
+            <ol> 
+              <li class="active">球種  | 全部</li>
+              <li>足球</li>
+              <li>美國職籃</li>
+              <li>其他籃球</li>
+              <li>美國職棒</li>
+              <li>日本職棒</li>
+              <li>中華職棒</li>
+              <li>其他棒球</li>
+              <li>美式足球</li>
+              <li>網球</li>
+              <li>彩球</li>
+              <li>賽馬賽狗</li>
+              <li>指數</li>
+              <li>電競</li>
+              <li>世界盃</li>
+              <li>高爾夫</li>
+              <li>冰球</li>
+              <li>拳擊</li>
+              <li>拳擊格鬥</li>
+              <li>羽球</li>
+              <li>排球</li>
+              <li>桌球</li>
+              <li>板球</li>
+              <li>撞球</li>
+              <li>手球</li>
+              <li>世界盃(舊其他足球)</li>
+              <li>足球-歐洲盃</li>
+              <li>娛樂</li>
+            </ol><i class="select_ic"></i>
+          </label>
+          <label class="select">
+            <p>賽程時段  | 全部</p>
+            <ol> 
+              <li class="active">賽程時段  | 全部</li>
+            </ol><i class="select_ic"></i>
+          </label>
+          <label class="select">
+            <p>報表分類  | 總帳</p>
+            <ol> 
+              <li class="active">報表分類  | 總帳</li>
+            </ol><i class="select_ic"></i>
+          </label>
+          <label class="select">
+            <p>投注總類  | 全部</p>
+            <ol> 
+              <li class="active">投注總類  | 全部</li>
+            </ol><i class="select_ic"></i>
+          </label>
+        </div>
+        <div class="dates">
+          <label class="date">
+            <input type="date" value="2025-11-26">
+            <p>到</p>
+            <input type="date" value="2025-11-26">
+          </label>
+          <button>昨日</button>
+          <button>今日</button>
+          <button>明日</button>
+          <button>上週</button>
+          <button>本周</button>
+          <button class="submit">確認</button>
+        </div>
+      </section>
+      <section class="dataBlock">
+        <div class="director active">
+          <article class="title">
+            <div><i class="back_ic"></i>
+              <p class="blue">總監</p>
+            </div>
+            <div>
+              <button> <i class="refresh_ic"></i>更新</button>
+              <label class="select">
+                <p>下拉選單</p>
+                <ol> 
+                  <li class="active">下拉選單</li>
+                </ol><i class="select_ic"></i>
+              </label>
+            </div>
+          </article>
+          <article class="data">
+            <ul> 
+              <li class="ballName">全部</li>
+              <li class="thead"> 
+                <div> <span>總監</span></div>
+                <div> <span>筆數</span></div>
+                <div> <span>下注金額</span></div>
+                <div> <span>有效投注</span></div>
+                <div> <span>未過帳金額</span></div>
+                <div class="checkBox"> <span>會員
+                    <label>
+                      <input type="checkbox" checked>
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>代理
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總代
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div> <span>備註 </span></div>
+                <div class="checkBox ballList"> <span>成數 
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>足球</span><span>美國職籃</span><span>其他籃球</span><span>美國職棒</span><span>日本職棒</span><span>中華職棒</span><span>其他棒球</span><span>美式足球</span><span>網球</span><span>彩球</span><span>賽馬賽狗</span><span>指數</span><span>電競</span><span>世界盃</span><span>高爾夫</span><span>冰球</span><span>拳擊</span><span>拳擊格鬥</span><span>羽球</span><span>排球</span><span>桌球</span><span>板球</span><span>撞球</span><span>手球</span><span>世界盃(舊其他足球)</span><span>足球-歐洲盃</span><span>娛樂</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA001(王)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder_m">439,710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA003(老)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder_m">439,710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder_m">439,710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder_m">439,710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>合計</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder_m">439,710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+            </ul>
+            <ul> 
+              <li class="ballName">足球</li>
+              <li class="thead"> 
+                <div> <span>總監</span></div>
+                <div> <span>筆數</span></div>
+                <div> <span>下注金額</span></div>
+                <div> <span>有效投注</span></div>
+                <div> <span>未過帳金額</span></div>
+                <div class="checkBox"> <span>會員
+                    <label>
+                      <input type="checkbox" checked>
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>代理
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總代
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div> <span>備註 </span></div>
+                <div class="checkBox ballList"> <span>成數 
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>足球</span><span>美國職籃</span><span>其他籃球</span><span>美國職棒</span><span>日本職棒</span><span>中華職棒</span><span>其他棒球</span><span>美式足球</span><span>網球</span><span>彩球</span><span>賽馬賽狗</span><span>指數</span><span>電競</span><span>世界盃</span><span>高爾夫</span><span>冰球</span><span>拳擊</span><span>拳擊格鬥</span><span>羽球</span><span>排球</span><span>桌球</span><span>板球</span><span>撞球</span><span>手球</span><span>世界盃(舊其他足球)</span><span>足球-歐洲盃</span><span>娛樂</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA001(王)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder_m">439,710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA003(老)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder_m">439,710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder_m">439,710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder_m">439,710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>合計</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder_m">439,710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+            </ul>
+            <ul> 
+              <li class="ballName">籃球</li>
+              <li class="thead"> 
+                <div> <span>總監</span></div>
+                <div> <span>筆數</span></div>
+                <div> <span>下注金額</span></div>
+                <div> <span>有效投注</span></div>
+                <div> <span>未過帳金額</span></div>
+                <div class="checkBox"> <span>會員
+                    <label>
+                      <input type="checkbox" checked>
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>代理
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總代
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div> <span>備註 </span></div>
+                <div class="checkBox ballList"> <span>成數 
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>足球</span><span>美國職籃</span><span>其他籃球</span><span>美國職棒</span><span>日本職棒</span><span>中華職棒</span><span>其他棒球</span><span>美式足球</span><span>網球</span><span>彩球</span><span>賽馬賽狗</span><span>指數</span><span>電競</span><span>世界盃</span><span>高爾夫</span><span>冰球</span><span>拳擊</span><span>拳擊格鬥</span><span>羽球</span><span>排球</span><span>桌球</span><span>板球</span><span>撞球</span><span>手球</span><span>世界盃(舊其他足球)</span><span>足球-歐洲盃</span><span>娛樂</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA001(王)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder_m">439,710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA003(老)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder_m">439,710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder_m">439,710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder_m">439,710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>合計</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder_m">439,710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+            </ul>
+          </article>
+        </div>
+        <div class="shareholder_m ">
+          <article class="title"><a href="./betting.html?tab=director"><i class="back_ic"> </i>
+              <p class="blue">大股東</p></a>
+            <div>
+              <button> <i class="refresh_ic"></i>更新</button>
+              <label class="select">
+                <p>下拉選單</p>
+                <ol> 
+                  <li class="active">下拉選單</li>
+                </ol><i class="select_ic"></i>
+              </label>
+            </div>
+          </article>
+          <article class="data">
+            <ul> 
+              <li class="ballName">全部</li>
+              <li class="thead"> 
+                <div> <span>大股東</span></div>
+                <div> <span>筆數</span></div>
+                <div> <span>下注金額</span></div>
+                <div> <span>有效投注</span></div>
+                <div> <span>未過帳金額</span></div>
+                <div class="checkBox"> <span>會員
+                    <label>
+                      <input type="checkbox" checked>
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>代理
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總代
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div> <span>備註 </span></div>
+                <div class="checkBox ballList"> <span>成數 
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>足球</span><span>美國職籃</span><span>其他籃球</span><span>美國職棒</span><span>日本職棒</span><span>中華職棒</span><span>其他棒球</span><span>美式足球</span><span>網球</span><span>彩球</span><span>賽馬賽狗</span><span>指數</span><span>電競</span><span>世界盃</span><span>高爾夫</span><span>冰球</span><span>拳擊</span><span>拳擊格鬥</span><span>羽球</span><span>排球</span><span>桌球</span><span>板球</span><span>撞球</span><span>手球</span><span>世界盃(舊其他足球)</span><span>足球-歐洲盃</span><span>娛樂</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA001(王)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder">99930</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA003(老)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder">99930</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder">99930</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder">99930</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>合計</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder">99930</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+            </ul>
+            <ul> 
+              <li class="ballName">足球</li>
+              <li class="thead"> 
+                <div> <span>大股東</span></div>
+                <div> <span>筆數</span></div>
+                <div> <span>下注金額</span></div>
+                <div> <span>有效投注</span></div>
+                <div> <span>未過帳金額</span></div>
+                <div class="checkBox"> <span>會員
+                    <label>
+                      <input type="checkbox" checked>
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>代理
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總代
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div> <span>備註 </span></div>
+                <div class="checkBox ballList"> <span>成數 
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>足球</span><span>美國職籃</span><span>其他籃球</span><span>美國職棒</span><span>日本職棒</span><span>中華職棒</span><span>其他棒球</span><span>美式足球</span><span>網球</span><span>彩球</span><span>賽馬賽狗</span><span>指數</span><span>電競</span><span>世界盃</span><span>高爾夫</span><span>冰球</span><span>拳擊</span><span>拳擊格鬥</span><span>羽球</span><span>排球</span><span>桌球</span><span>板球</span><span>撞球</span><span>手球</span><span>世界盃(舊其他足球)</span><span>足球-歐洲盃</span><span>娛樂</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA001(王)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder">99930</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA003(老)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder">99930</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder">99930</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder">99930</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>合計</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder">99930</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+            </ul>
+            <ul> 
+              <li class="ballName">籃球</li>
+              <li class="thead"> 
+                <div> <span>大股東</span></div>
+                <div> <span>筆數</span></div>
+                <div> <span>下注金額</span></div>
+                <div> <span>有效投注</span></div>
+                <div> <span>未過帳金額</span></div>
+                <div class="checkBox"> <span>會員
+                    <label>
+                      <input type="checkbox" checked>
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>代理
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總代
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div> <span>備註 </span></div>
+                <div class="checkBox ballList"> <span>成數 
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>足球</span><span>美國職籃</span><span>其他籃球</span><span>美國職棒</span><span>日本職棒</span><span>中華職棒</span><span>其他棒球</span><span>美式足球</span><span>網球</span><span>彩球</span><span>賽馬賽狗</span><span>指數</span><span>電競</span><span>世界盃</span><span>高爾夫</span><span>冰球</span><span>拳擊</span><span>拳擊格鬥</span><span>羽球</span><span>排球</span><span>桌球</span><span>板球</span><span>撞球</span><span>手球</span><span>世界盃(舊其他足球)</span><span>足球-歐洲盃</span><span>娛樂</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA001(王)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder">99930</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA003(老)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder">99930</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder">99930</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder">99930</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>合計</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=shareholder">99930</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+            </ul>
+          </article>
+        </div>
+        <div class="shareholder ">
+          <article class="title"><a href="./betting.html?tab=shareholder_m"><i class="back_ic"> </i>
+              <p class="blue">股東</p></a>
+            <div>
+              <button> <i class="refresh_ic"></i>更新</button>
+              <label class="select">
+                <p>下拉選單</p>
+                <ol> 
+                  <li class="active">下拉選單</li>
+                </ol><i class="select_ic"></i>
+              </label>
+            </div>
+          </article>
+          <article class="data">
+            <ul> 
+              <li class="ballName">全部</li>
+              <li class="thead"> 
+                <div> <span>股東</span></div>
+                <div> <span>筆數</span></div>
+                <div> <span>下注金額</span></div>
+                <div> <span>有效投注</span></div>
+                <div> <span>未過帳金額</span></div>
+                <div class="checkBox"> <span>會員
+                    <label>
+                      <input type="checkbox" checked>
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>代理
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總代
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div> <span>備註 </span></div>
+                <div class="checkBox ballList"> <span>成數 
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>足球</span><span>美國職籃</span><span>其他籃球</span><span>美國職棒</span><span>日本職棒</span><span>中華職棒</span><span>其他棒球</span><span>美式足球</span><span>網球</span><span>彩球</span><span>賽馬賽狗</span><span>指數</span><span>電競</span><span>世界盃</span><span>高爾夫</span><span>冰球</span><span>拳擊</span><span>拳擊格鬥</span><span>羽球</span><span>排球</span><span>桌球</span><span>板球</span><span>撞球</span><span>手球</span><span>世界盃(舊其他足球)</span><span>足球-歐洲盃</span><span>娛樂</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA001(王)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent_m">490</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA003(老)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent_m">490</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent_m">490</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent_m">490</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>合計</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent_m">490</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+            </ul>
+            <ul> 
+              <li class="ballName">足球</li>
+              <li class="thead"> 
+                <div> <span>股東</span></div>
+                <div> <span>筆數</span></div>
+                <div> <span>下注金額</span></div>
+                <div> <span>有效投注</span></div>
+                <div> <span>未過帳金額</span></div>
+                <div class="checkBox"> <span>會員
+                    <label>
+                      <input type="checkbox" checked>
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>代理
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總代
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div> <span>備註 </span></div>
+                <div class="checkBox ballList"> <span>成數 
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>足球</span><span>美國職籃</span><span>其他籃球</span><span>美國職棒</span><span>日本職棒</span><span>中華職棒</span><span>其他棒球</span><span>美式足球</span><span>網球</span><span>彩球</span><span>賽馬賽狗</span><span>指數</span><span>電競</span><span>世界盃</span><span>高爾夫</span><span>冰球</span><span>拳擊</span><span>拳擊格鬥</span><span>羽球</span><span>排球</span><span>桌球</span><span>板球</span><span>撞球</span><span>手球</span><span>世界盃(舊其他足球)</span><span>足球-歐洲盃</span><span>娛樂</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA001(王)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent_m">490</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA003(老)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent_m">490</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent_m">490</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent_m">490</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>合計</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent_m">490</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+            </ul>
+            <ul> 
+              <li class="ballName">籃球</li>
+              <li class="thead"> 
+                <div> <span>股東</span></div>
+                <div> <span>筆數</span></div>
+                <div> <span>下注金額</span></div>
+                <div> <span>有效投注</span></div>
+                <div> <span>未過帳金額</span></div>
+                <div class="checkBox"> <span>會員
+                    <label>
+                      <input type="checkbox" checked>
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>代理
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總代
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div> <span>備註 </span></div>
+                <div class="checkBox ballList"> <span>成數 
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>足球</span><span>美國職籃</span><span>其他籃球</span><span>美國職棒</span><span>日本職棒</span><span>中華職棒</span><span>其他棒球</span><span>美式足球</span><span>網球</span><span>彩球</span><span>賽馬賽狗</span><span>指數</span><span>電競</span><span>世界盃</span><span>高爾夫</span><span>冰球</span><span>拳擊</span><span>拳擊格鬥</span><span>羽球</span><span>排球</span><span>桌球</span><span>板球</span><span>撞球</span><span>手球</span><span>世界盃(舊其他足球)</span><span>足球-歐洲盃</span><span>娛樂</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA001(王)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent_m">490</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA003(老)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent_m">490</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent_m">490</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent_m">490</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>合計</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent_m">490</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+            </ul>
+          </article>
+        </div>
+        <div class="agent_m ">
+          <article class="title"><a href="./betting.html?tab=shareholder"><i class="back_ic"> </i>
+              <p class="blue">總代理</p></a>
+            <div>
+              <button> <i class="refresh_ic"></i>更新</button>
+              <label class="select">
+                <p>下拉選單</p>
+                <ol> 
+                  <li class="active">下拉選單</li>
+                </ol><i class="select_ic"></i>
+              </label>
+            </div>
+          </article>
+          <article class="data">
+            <ul> 
+              <li class="ballName">全部</li>
+              <li class="thead"> 
+                <div> <span>總代理</span></div>
+                <div> <span>筆數</span></div>
+                <div> <span>下注金額</span></div>
+                <div> <span>有效投注</span></div>
+                <div> <span>未過帳金額</span></div>
+                <div class="checkBox"> <span>會員
+                    <label>
+                      <input type="checkbox" checked>
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>代理
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總代
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div> <span>備註 </span></div>
+                <div class="checkBox ballList"> <span>成數 
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>足球</span><span>美國職籃</span><span>其他籃球</span><span>美國職棒</span><span>日本職棒</span><span>中華職棒</span><span>其他棒球</span><span>美式足球</span><span>網球</span><span>彩球</span><span>賽馬賽狗</span><span>指數</span><span>電競</span><span>世界盃</span><span>高爾夫</span><span>冰球</span><span>拳擊</span><span>拳擊格鬥</span><span>羽球</span><span>排球</span><span>桌球</span><span>板球</span><span>撞球</span><span>手球</span><span>世界盃(舊其他足球)</span><span>足球-歐洲盃</span><span>娛樂</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA001(王)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent">34710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA003(老)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent">34710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent">34710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent">34710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>合計</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent">34710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+            </ul>
+            <ul> 
+              <li class="ballName">足球</li>
+              <li class="thead"> 
+                <div> <span>總代理</span></div>
+                <div> <span>筆數</span></div>
+                <div> <span>下注金額</span></div>
+                <div> <span>有效投注</span></div>
+                <div> <span>未過帳金額</span></div>
+                <div class="checkBox"> <span>會員
+                    <label>
+                      <input type="checkbox" checked>
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>代理
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總代
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div> <span>備註 </span></div>
+                <div class="checkBox ballList"> <span>成數 
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>足球</span><span>美國職籃</span><span>其他籃球</span><span>美國職棒</span><span>日本職棒</span><span>中華職棒</span><span>其他棒球</span><span>美式足球</span><span>網球</span><span>彩球</span><span>賽馬賽狗</span><span>指數</span><span>電競</span><span>世界盃</span><span>高爾夫</span><span>冰球</span><span>拳擊</span><span>拳擊格鬥</span><span>羽球</span><span>排球</span><span>桌球</span><span>板球</span><span>撞球</span><span>手球</span><span>世界盃(舊其他足球)</span><span>足球-歐洲盃</span><span>娛樂</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA001(王)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent">34710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA003(老)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent">34710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent">34710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent">34710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>合計</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent">34710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+            </ul>
+            <ul> 
+              <li class="ballName">籃球</li>
+              <li class="thead"> 
+                <div> <span>總代理</span></div>
+                <div> <span>筆數</span></div>
+                <div> <span>下注金額</span></div>
+                <div> <span>有效投注</span></div>
+                <div> <span>未過帳金額</span></div>
+                <div class="checkBox"> <span>會員
+                    <label>
+                      <input type="checkbox" checked>
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>代理
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總代
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div> <span>備註 </span></div>
+                <div class="checkBox ballList"> <span>成數 
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>足球</span><span>美國職籃</span><span>其他籃球</span><span>美國職棒</span><span>日本職棒</span><span>中華職棒</span><span>其他棒球</span><span>美式足球</span><span>網球</span><span>彩球</span><span>賽馬賽狗</span><span>指數</span><span>電競</span><span>世界盃</span><span>高爾夫</span><span>冰球</span><span>拳擊</span><span>拳擊格鬥</span><span>羽球</span><span>排球</span><span>桌球</span><span>板球</span><span>撞球</span><span>手球</span><span>世界盃(舊其他足球)</span><span>足球-歐洲盃</span><span>娛樂</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA001(王)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent">34710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA003(老)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent">34710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent">34710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent">34710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>合計</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=agent">34710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+            </ul>
+          </article>
+        </div>
+        <div class="agent ">
+          <article class="title"><a href="./betting.html?tab=agent_m"><i class="back_ic"> </i>
+              <p class="blue">代理</p></a>
+            <div>
+              <button> <i class="refresh_ic"></i>更新</button>
+              <label class="select">
+                <p>下拉選單</p>
+                <ol> 
+                  <li class="active">下拉選單</li>
+                </ol><i class="select_ic"></i>
+              </label>
+            </div>
+          </article>
+          <article class="data">
+            <ul> 
+              <li class="ballName">全部</li>
+              <li class="thead"> 
+                <div> <span>代理</span></div>
+                <div> <span>筆數</span></div>
+                <div> <span>下注金額</span></div>
+                <div> <span>有效投注</span></div>
+                <div> <span>未過帳金額</span></div>
+                <div class="checkBox"> <span>會員
+                    <label>
+                      <input type="checkbox" checked>
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>代理
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總代
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div> <span>備註 </span></div>
+                <div class="checkBox ballList"> <span>成數 
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>足球</span><span>美國職籃</span><span>其他籃球</span><span>美國職棒</span><span>日本職棒</span><span>中華職棒</span><span>其他棒球</span><span>美式足球</span><span>網球</span><span>彩球</span><span>賽馬賽狗</span><span>指數</span><span>電競</span><span>世界盃</span><span>高爾夫</span><span>冰球</span><span>拳擊</span><span>拳擊格鬥</span><span>羽球</span><span>排球</span><span>桌球</span><span>板球</span><span>撞球</span><span>手球</span><span>世界盃(舊其他足球)</span><span>足球-歐洲盃</span><span>娛樂</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA001(王)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=member">989710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA003(老)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=member">989710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=member">989710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=member">989710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>合計</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=member">989710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+            </ul>
+            <ul> 
+              <li class="ballName">足球</li>
+              <li class="thead"> 
+                <div> <span>代理</span></div>
+                <div> <span>筆數</span></div>
+                <div> <span>下注金額</span></div>
+                <div> <span>有效投注</span></div>
+                <div> <span>未過帳金額</span></div>
+                <div class="checkBox"> <span>會員
+                    <label>
+                      <input type="checkbox" checked>
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>代理
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總代
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div> <span>備註 </span></div>
+                <div class="checkBox ballList"> <span>成數 
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>足球</span><span>美國職籃</span><span>其他籃球</span><span>美國職棒</span><span>日本職棒</span><span>中華職棒</span><span>其他棒球</span><span>美式足球</span><span>網球</span><span>彩球</span><span>賽馬賽狗</span><span>指數</span><span>電競</span><span>世界盃</span><span>高爾夫</span><span>冰球</span><span>拳擊</span><span>拳擊格鬥</span><span>羽球</span><span>排球</span><span>桌球</span><span>板球</span><span>撞球</span><span>手球</span><span>世界盃(舊其他足球)</span><span>足球-歐洲盃</span><span>娛樂</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA001(王)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=member">989710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA003(老)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=member">989710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=member">989710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=member">989710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>合計</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=member">989710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+            </ul>
+            <ul> 
+              <li class="ballName">籃球</li>
+              <li class="thead"> 
+                <div> <span>代理</span></div>
+                <div> <span>筆數</span></div>
+                <div> <span>下注金額</span></div>
+                <div> <span>有效投注</span></div>
+                <div> <span>未過帳金額</span></div>
+                <div class="checkBox"> <span>會員
+                    <label>
+                      <input type="checkbox" checked>
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>代理
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總代
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div class="checkBox"> <span>大總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>退水</span><span>有效投注量</span></div>
+                <div> <span>備註 </span></div>
+                <div class="checkBox ballList"> <span>成數 
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>足球</span><span>美國職籃</span><span>其他籃球</span><span>美國職棒</span><span>日本職棒</span><span>中華職棒</span><span>其他棒球</span><span>美式足球</span><span>網球</span><span>彩球</span><span>賽馬賽狗</span><span>指數</span><span>電競</span><span>世界盃</span><span>高爾夫</span><span>冰球</span><span>拳擊</span><span>拳擊格鬥</span><span>羽球</span><span>排球</span><span>桌球</span><span>板球</span><span>撞球</span><span>手球</span><span>世界盃(舊其他足球)</span><span>足球-歐洲盃</span><span>娛樂</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA001(王)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=member">989710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA003(老)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=member">989710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=member">989710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>AA004(abab)</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=member">989710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">-56,113</span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-54,635 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-40,594 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-7,548 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">-2,497 </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+              <li class="tbody"> 
+                <div> <span>合計</span></div>
+                <div><span>197 </span></div>
+                <div><a class="blue underLine" href="./betting.html?tab=member">989710</a>
+                </div>
+                <div><span>431,960 </span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">-56,113</span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-54,635 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-40,594 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-7,548 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">-2,497 </span><span class="red">0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox ballList"><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span><span>95</span>
+                </div>
+              </li>
+            </ul>
+          </article>
+        </div>
+        <div class="member"> 
+          <article class="title"><a href="./betting.html?tab=agent_m"><i class="back_ic"> </i>
+              <p class="blue">會員</p></a>
+            <div>
+              <button> <i class="refresh_ic"></i>更新</button>
+            </div>
+          </article>
+          <article class="data">
+            <ul> 
+              <li class="ballName">全部</li>
+              <li class="thead"> 
+                <div> <span>時間</span></div>
+                <div> <span>單號</span></div>
+                <div> <span>下注IP</span></div>
+                <div> <span>球賽種類</span></div>
+                <div class="content"> <span>內容</span></div>
+                <div> <span>金額</span></div>
+                <div> <span>有效下注</span></div>
+                <div class="checkBox"> <span>會員
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>拆帳%</span><span>輸贏</span><span>結果</span></div>
+                <div class="checkBox"> <span>代理
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>拆帳%</span><span>輸贏</span><span>結果</span></div>
+                <div class="checkBox"> <span>總代
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>拆帳%</span><span>輸贏</span><span>結果</span></div>
+                <div class="checkBox"> <span>股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>拆帳%</span><span>輸贏</span><span>結果</span></div>
+                <div class="checkBox"> <span>大股東
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>拆帳%</span><span>輸贏</span><span>結果</span></div>
+                <div class="checkBox"> <span>總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>拆帳%</span><span>輸贏</span><span>結果</span></div>
+                <div class="checkBox"> <span>大總監
+                    <label>
+                      <input type="checkbox">
+                    </label></span><span>結果</span><span>拆帳%</span><span>輸贏</span><span>結果</span></div>
+                <div> <span>備註 </span></div>
+                <div class="checkBox"> <span>下注端 
+                    <label>
+                      <input type="checkbox">
+                    </label></span></div>
+              </li>
+              <li class="tbody"> 
+                <div> <span> 
+                    <p>12-10</p>
+                    <p>17:35:00</p></span></div>
+                <div><span>CPR17214808 </span></div>
+                <div><span>*. *. 250. 60</span></div>
+                <div><span>足球  綜合過關</span></div>
+                <div class="content"><span> 
+                    <p> <span class="gray">[FT2062899]</span>卡萊爾 [主] <span class="blue">1球</span>禾京</p>
+                    <p>(英格蘭全國聯賽)-[讓球] <span class="red">卡萊爾</span>　@　<span class="red">0.87</span></p>
+                    <p>[FT2062999] 布里斯托城 [主] <span class="blue">vs</span>萊斯特</p>
+                    <p>(英格蘭冠軍聯賽)-<span class="red">大 2.5</span>　@　<span class="red">0.96</span></p>
+                    <p>[FT2062875] 打比郡 [主] <span class="blue">平手</span>米禾爾</p>
+                    <p>(英格蘭冠軍聯賽)-[讓球] <span class="red">打比郡</span>　@　<span class="red">0.79</span></p>
+                    <p>[FT2062895] 梅洛小阿根廷 [主] <span class="blue">vs</span>亞美尼亞體育</p>
+                    <p>(阿根廷大都會區乙級聯賽)-[獨贏] <span class="red">梅洛小阿根廷</span>　@　<span class="red">2.2</span></p></span></div>
+                <div><span>100</span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">0</span><span>95%</span><span>0.0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">0</span><span>95%</span><span>0.0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">0</span><span>95%</span><span>0.0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">0</span><span>95%</span><span>0.0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">0</span><span>95%</span><span>0.0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">0</span><span>95%</span><span>0.0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">0</span><span>95%</span><span>0.0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox"><span>電腦</span><span>win10</span></div>
+              </li>
+              <li class="tbody"> 
+                <div> <span> 
+                    <p>12-10</p>
+                    <p>17:35:00</p></span></div>
+                <div><span>CPR17214808 </span></div>
+                <div><span>*. *. 250. 60</span></div>
+                <div><span>足球  綜合過關</span></div>
+                <div class="content"><span> 
+                    <p> <span class="gray">[FT2062899]</span>卡萊爾 [主] <span class="blue">1球</span>禾京</p>
+                    <p>(英格蘭全國聯賽)-[讓球] <span class="red">禾京</span>　@　<span class="red">0.94</span></p></span></div>
+                <div><span>100</span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">0</span><span>95%</span><span>0.0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">0</span><span>95%</span><span>0.0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">0</span><span>95%</span><span>0.0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">0</span><span>95%</span><span>0.0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">0</span><span>95%</span><span>0.0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">0</span><span>95%</span><span>0.0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">0</span><span>95%</span><span>0.0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox"><span>電腦</span><span>win10</span></div>
+              </li>
+              <li class="tbody"> 
+                <div> <span> 
+                    <p>12-10</p>
+                    <p>17:35:00</p></span></div>
+                <div><span>CPR17214808 </span></div>
+                <div><span>*. *. 250. 60</span></div>
+                <div><span>足球  綜合過關</span></div>
+                <div class="content"><span> 
+                    <p> <span class="gray">[FT2062899]</span>卡萊爾 [主] <span class="blue">1球</span>禾京</p>
+                    <p>(英格蘭全國聯賽)-[讓球] <span class="red">禾京</span>　@　<span class="red">0.94</span></p></span></div>
+                <div><span>100</span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green">0</span><span>95%</span><span>0.0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">0</span><span>95%</span><span>0.0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">0</span><span>95%</span><span>0.0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">0</span><span>95%</span><span>0.0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">0</span><span>95%</span><span>0.0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">0</span><span>95%</span><span>0.0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green">0</span><span>95%</span><span>0.0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox"><span>電腦</span><span>win10</span></div>
+              </li>
+              <li class="tbody"> 
+                <div> <span> 
+                    <p>12-10</p>
+                    <p>17:35:00</p></span></div>
+                <div><span>CPR17214808 </span></div>
+                <div><span>*. *. 250. 60</span></div>
+                <div><span>足球  綜合過關</span></div>
+                <div class="content"><span> 
+                    <p> <span class="gray">[FT2062899]</span>卡萊爾 [主] <span class="blue">1球</span>禾京</p>
+                    <p>(英格蘭全國聯賽)-[讓球] <span class="red">禾京</span>　@　<span class="red">0.94</span></p></span></div>
+                <div><span>100</span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="red">0</span><span>95%</span><span>0.0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">0</span><span>95%</span><span>0.0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">0</span><span>95%</span><span>0.0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">0</span><span>95%</span><span>0.0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">0</span><span>95%</span><span>0.0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">0</span><span>95%</span><span>0.0</span><span class="red">0</span></div>
+                <div class="checkBox"><span class="red">0</span><span>95%</span><span>0.0</span><span class="red">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox"><span>電腦</span><span>win10</span></div>
+              </li>
+              <li class="tbody total"> 
+                <div> <span> </span></div>
+                <div><span> </span></div>
+                <div><span> </span></div>
+                <div><span> </span></div>
+                <div class="content"><span>4</span></div>
+                <div><span>400</span></div>
+                <div><span>0</span></div>
+                <div class="checkBox"><span class="green"> </span><span> </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green"> </span><span> </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green"> </span><span> </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green"> </span><span> </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green"> </span><span> </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green"> </span><span> </span><span class="green">0</span><span class="green">0</span></div>
+                <div class="checkBox"><span class="green"> </span><span> </span><span class="green">0</span><span class="green">0</span></div>
+                <div><span> </span></div>
+                <div class="checkBox"><span> </span><span> </span></div>
+              </li>
+            </ul>
+          </article>
+          <article class="detail">
+            <ul> 
+              <li class="thead">
+                <div> <span>代理商</span></div>
+                <div> <span>筆數</span></div>
+                <div> <span>總額</span></div>
+                <div> <span>佔成數</span></div>
+                <div> <span>退水</span></div>
+                <div> <span>可得</span></div>
+                <div> <span>上繳</span></div>
+              </li>
+              <li class="tbody">
+                <div> <span>@62</span></div>
+                <div> <span>4</span></div>
+                <div> <span>400</span></div>
+                <div> <span>95%</span></div>
+                <div> <span>0.0</span></div>
+                <div> <span>0.0</span></div>
+                <div> <span>0</span></div>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </main>
+    <section class="filter">
+      <div class="mask"></div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+    <script src="../js/UIComponents.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/swiper.js"></script>
+  </body>
+</html>

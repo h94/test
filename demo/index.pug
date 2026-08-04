@@ -1,0 +1,44 @@
+extends ./pug-compontent/layout.pug
+block isIndex
+  -isIndex = true
+
+block header 
+  -isActice = "index"
+
+block content
+  main.home
+    section.adBlock
+      p 廣告圖區塊
+    section.searchBlock 
+      a(href="./html/balls.html") 球種資訊
+      a(href="./html/report.html") 報表
+      a(href="./html/account.html") 帳號管理
+      a(href="./html/betting.html") 即時注單
+      label
+        input(type="text" placeholder="搜尋")
+        i.search_ic 
+      +select("下拉選單","下拉選單","下拉選單")
+    section.marpueeBlock 
+      p 我是跑馬燈...我是跑馬燈...我是跑馬燈...我是跑馬燈...我是跑馬燈...
+    section.postBlock
+      .title.blue 
+        i.post_ic 
+        | 最新公告
+      article 
+        p 最新公告:123456789....test
+        p 2025.11.11   18:18:00
+      article 
+        p 系統公告: 暫定系統於今日下午18:00起維護至明天上午8:00.
+        p 2025.11.11   18:18:00
+      article 
+        p 最新公告:123456789....test
+        p 2025.11.11   18:18:00
+      article 
+        p 系統公告: 暫定系統於今日下午18:00起維護至明天上午8:00.
+        p 2025.11.11   18:18:00
+      article 
+        p 最新公告:123456789....test
+        p 2025.11.11   18:18:00
+      article 
+        p 系統公告: 暫定系統於今日下午18:00起維護至明天上午8:00.
+        p 2025.11.11   18:18:00

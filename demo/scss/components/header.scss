@@ -1,0 +1,253 @@
+@use "../base/index" as *;
+
+header {
+  @include position($p: fixed, $t: 0, $l: 0, $z: 9);
+  width: 100%;
+  height: var(--headerHeight);
+  @include d_flex($ai: center);
+  box-shadow: 0 0.1rem 0.5rem #0000004d;
+  section {
+    @include d_flex($ai: center, $jc: flex-start);
+    height: 100%;
+    background: #336bdd;
+    > button {
+      width: 3.5rem;
+      @include d_flex($ai: center, $jc: center);
+      padding: 0 1rem;
+      // flex-grow: 1;
+      height: 100%;
+      transition: all 0.3s;
+    }
+    a {
+      @include d_flex($ai: center, $jc: center);
+      font-size: 1rem;
+    }
+    aside {
+      > button {
+        width: 100%;
+        @include d_flex($ai: center, $jc: center);
+        font-size: 1rem;
+      }
+    }
+    i {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+    &.menu-navbar {
+      width: var(--headerHeight);
+      height: 100%;
+      transition: width 0.3s;
+      aside {
+        @include position($p: absolute, $t: var(--headerHeight), $l: 0);
+        width: var(--headerHeight);
+        height: calc(100vh - var(--headerHeight));
+        border-right: 1px solid #c9c9cb;
+        background: #fff;
+        transition: width 0.3s;
+        @supports (height: 100dvh) {
+          height: calc(100vh - var(--headerHeight));
+        }
+        a,
+        > button {
+          height: var(--headerHeight);
+          padding: 0 1rem;
+          justify-content: flex-start;
+          gap: 0;
+          transition: gap 0.5s;
+          i {
+            filter: grayscale(1) brightness(0);
+            opacity: 0.5;
+            transition:
+              filter 0.3s,
+              opacity 0.3s,
+              scale 0.5s;
+          }
+          span {
+            width: 0;
+            overflow: hidden;
+            font-size: 1rem;
+            // font-weight: bold;
+            text-wrap: nowrap;
+            transition:
+              width 0.5s,
+              color 0.3s;
+          }
+          &.settlement {
+            > a {
+              padding: 0;
+            }
+            article {
+              width: 0;
+              overflow: hidden;
+              @include d_flex($ff: column, $g: 1rem);
+              @include position($t: 0, $l: 100%, $z: 1);
+              height: 100%;
+              background: #c3cbd3;
+              cursor: default;
+              transition:
+                width 0.5s,
+                padding 0.5s;
+              padding: 1rem 0;
+              p {
+                @include d_flex($ai: center, $jc: space-between);
+                width: calc(var(--asideWidth) - 2rem);
+                i {
+                  width: 0.8rem;
+                  height: 0.8rem;
+                  cursor: pointer;
+                  filter: brightness(0);
+                  opacity: 0.6;
+                  transition:
+                    filter 0.5s,
+                    opacity 0.5s;
+                  &:hover {
+                    filter: brightness(1);
+                    opacity: 1;
+                  }
+                }
+              }
+              a {
+                width: calc(var(--asideWidth) - 2rem);
+                height: unset;
+                font-size: 0.85rem;
+                background: #fff;
+                padding: 0.25rem 0.75rem;
+                border-radius: 2rem;
+                flex-wrap: wrap;
+                span {
+                  width: auto;
+                  font-size: inherit;
+                  color: inherit;
+                  transition: none;
+                  &:not(:last-child){
+                    &::after{
+                      content: "/";
+                    }
+                  }
+                }
+                &:hover,
+                &.active {
+                  color: #fff;
+                  background: #6994bc;
+                }
+              }
+              @include rwd_down(wide) {
+                a {
+                  height: 3rem;
+                }
+              }
+            }
+            &:hover,
+            &.show {
+              article {
+                width: var(--asideWidth);
+                padding: 1rem;
+              }
+            }
+            &.show {
+              p {
+                i {
+                  filter: brightness(1);
+                  opacity: 1;
+                }
+              }
+            }
+          }
+          &:hover,
+          &:active,
+          &.active {
+            i {
+              filter: unset;
+              opacity: 1;
+              scale: 1.1;
+            }
+            span {
+              color: #336bdd;
+            }
+          }
+        }
+      }
+      .title {
+        width: 0;
+        height: 100%;
+        overflow: hidden;
+        @include d_flex($ai: center, $jc: space-between);
+        transition:
+          width 0.2s,
+          padding 0.2s;
+        span {
+          color: #fff;
+          font-size: 1.25rem;
+          font-weight: bold;
+          text-wrap: nowrap;
+          scale: 0;
+          transition: scale 0.3s;
+        }
+        i {
+          width: var(--headerHeight);
+          height: 100%;
+          cursor: pointer;
+        }
+      }
+      &.active {
+        width: 18.75rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        > button {
+          // display: none;
+          width: 0;
+          padding: 0;
+        }
+        aside {
+          width: 18.75rem;
+          a,
+          > button {
+            width: 100%;
+            gap: 1.5rem;
+            span {
+              width: calc(100% - (1.25rem + 1.5rem));
+              text-align: left;
+            }
+          }
+        }
+        .title {
+          width: 100%;
+          padding-left: 1rem;
+          background: #336bdd;
+          span {
+            scale: 1;
+          }
+        }
+        .mask {
+          display: block;
+        }
+      }
+    }
+    &.menu-btns {
+      justify-content: flex-end;
+      flex-grow: 1;
+      gap: 2rem;
+      padding: 0 1.25rem;
+      a {
+        color: #fff;
+        gap: 0.5rem;
+        text-wrap: nowrap;
+      }
+    }
+  }
+  .mask {
+    @include position($p: fixed, $t: 0, $r: 0, $z: -1);
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    @supports (height: 100dvh) {
+      height: 100dvh;
+    }
+    background: #0000004d;
+  }
+  &:has(section .settlement:hover, section .settlement.show) ~ main {
+    padding-left: var(--asideWidth);
+  }
+}

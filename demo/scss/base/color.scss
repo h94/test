@@ -1,0 +1,229 @@
+@mixin gradient($m, $a: true, $r: 1.25rem) {
+  border-radius: $r;
+  // 白灰漸層
+  @if ($m== "white") {
+    color: #656565;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    background-image: linear-gradient(#e1e1e1, #fff 50%),
+      linear-gradient(#fff, #e0e1e5);
+    border: 1px solid transparent;
+    box-shadow: 0 0.12rem 0.31rem #0000004d;
+    @if ($a) {
+      &:hover,
+      &:active,
+      &.active {
+        color: #fff;
+        background-image: linear-gradient(#02e7ff, #0157e5),
+          linear-gradient(#b5b5b5, #ffffff);
+        box-shadow: none;
+      }
+    }
+  }
+  // 白藍
+  @if ($m== "white2") {
+    color: #0084ff;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    background-image: linear-gradient(#fff, #fff),
+      linear-gradient(#fff, #e0e1e5);
+    border: 0.12rem solid transparent;
+    box-shadow: 0 0.12rem 0.3rem #0000004d;
+    @if ($a) {
+      &:hover,
+      &:active,
+      &.active {
+        color: #fff;
+        background-image: linear-gradient(#05aaee, #05aaee),
+          linear-gradient(#b5b5b5, #ffffff);
+        box-shadow: none;
+      }
+    }
+  }
+  // 白灰
+  @if ($m== "white3") {
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    background-image: linear-gradient(#f5f5f5, #f5f5f5),
+      linear-gradient(#fff, #e0e1e5);
+    border: 0.12rem solid transparent;
+    box-shadow: 0 0.12rem 0.3rem #0000004d;
+  }
+  // 橘漸層
+  @if ($m== "orange") {
+    color: #000;
+    background: linear-gradient(#ffc256, #f4a924);
+    @if ($a) {
+      &:hover,
+      &:active,
+      &.active {
+        background: #b77c15;
+        color: #fff;
+      }
+    }
+  }
+  @if ($m== "orange2") {
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    color: #fff;
+    background-image: linear-gradient(#f9a47a, #c34235),
+      linear-gradient(#b5b5b5, #ffffff);
+    border: 1px solid transparent;
+    box-shadow: none;
+    @if ($a) {
+      &:hover,
+      &:active,
+      &.active {
+        color: #656565;
+        background-image: linear-gradient(#e1e1e1, #fff 50%),
+          linear-gradient(#fff, #e0e1e5);
+        box-shadow: 0 0.1rem 0.3rem #0000004d;
+      }
+    }
+  }
+  // 綠色
+  @if ($m== "green") {
+    color: #fff;
+    background: #2a9a2c;
+    @if ($a) {
+      &:hover,
+      &:active,
+      &.active {
+        background: #42c745;
+      }
+    }
+  }
+  // 紅色
+  @if ($m== "red") {
+    color: #fff;
+    background: #c34235;
+    @if ($a) {
+      &:hover,
+      &:active,
+      &.active {
+        background: #a82f23;
+      }
+    }
+  }
+  // 棕色
+  @if ($m== "brown") {
+    color: #fff;
+    background: #878073;
+    @if ($a) {
+      &:hover,
+      &:active,
+      &.active {
+        background: #6a6459;
+      }
+    }
+  }
+  // 黃色
+  @if ($m== "yellow") {
+    color: #fff;
+    background: #e89a10;
+    @if ($a) {
+      &:hover,
+      &:active,
+      &.active {
+        background: #cc880f;
+      }
+    }
+  }
+  // 藍色漸層
+  @if ($m== "blue") {
+    color: #fff;
+    background: linear-gradient(#4e99e6, #3e82d7);
+    @if ($a) {
+      &:hover,
+      &:active,
+      &.active {
+        background: linear-gradient(#3e82d7, #4e99e6);
+      }
+    }
+  }
+  // 藍色
+  @if ($m== "blue2") {
+    color: #fff;
+    background: #0084ff;
+    @if ($a) {
+      &:hover,
+      &:active,
+      &.active {
+        background: #0f599d;
+      }
+    }
+  }
+  @if ($m== "blue3") {
+    color: #fff;
+    background: #697d8b;
+    @if ($a) {
+      &:hover,
+      &:active,
+      &.active {
+        background: #336bdd;
+      }
+    }
+  }
+  @if ($m== "blue4") {
+    color: #fff;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    background-image: linear-gradient(#02e7ff, #0157e5),
+      linear-gradient(#b5b5b5, #ffffff);
+    border: 1px solid transparent;
+    box-shadow: none;
+    @if ($a) {
+      &:hover,
+      &:active,
+      &.active {
+        color: #656565;
+        background-image: linear-gradient(#e1e1e1, #fff 50%),
+          linear-gradient(#fff, #e0e1e5);
+        box-shadow: none;
+      }
+    }
+  }
+  // 灰色
+  @if ($m== "gray") {
+    color: #fff;
+    background: #656565;
+    @if ($a) {
+      &:hover,
+      &:active,
+      &.active {
+        background: #414343;
+      }
+    }
+  }
+  @if ($m== "gray2") {
+    color: #000;
+    background: #e4e8eb;
+    @if ($a) {
+      &:hover,
+      &:active,
+      &.active {
+        background: #a3a3a3;
+      }
+    }
+  }
+}
+
+$color: (
+  "red": #d21300,
+  "orange": #c34235,
+  "blue": #014eee,
+  "green": #00a047,
+  "yellow": #d38d12,
+  "yellow2": #ffd050,
+  "gray": #656565,
+  "gray2": #858585,
+);
+.underLine {
+  text-decoration: underline;
+}
+
+@each $key, $val in $color {
+  .#{$key} {
+    color: $val;
+  }
+}

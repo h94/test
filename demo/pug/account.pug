@@ -1,0 +1,870 @@
+extends ../pug-compontent/layout.pug
+
+block header 
+  -isActice = "account"
+
+block content
+  main.account 
+    section.titleBlock  
+      i.back_ic 
+      h1 管理
+    section.tabBlock
+      ul 
+        li
+          a(href="./account.html?tab=personalInfo" data-tab="personalInfo") 個人資料
+        li
+          a(href="./account.html?tab=subAccount" data-tab="subAccount") 子帳號管理
+        li
+          a(href="./account.html?tab=shareholder_m" data-tab="shareholder_m") 大股東
+        li
+          a(href="./account.html?tab=shareholder" data-tab="shareholder") 股東
+        li
+          a(href="./account.html?tab=agent_m" data-tab="agent_m") 總代理
+        li
+          a(href="./account.html?tab=agent")(data-tab="agent") 代理
+        li
+          a(href="./account.html?tab=member")(data-tab="member") 會員
+        li
+          a(href="./account.html?tab=treeManagement")(data-tab="treeManagement") 樹型管理
+    section.accountBlock 
+      .personalInfo.active 
+        article.info 
+          button(data-popup="chagePassword") 修改密碼
+          ul 
+            li 
+              span.remind 帳號：
+              span abc18
+            li 
+              span.remind 會員名稱：
+              span ABC88
+          ul
+            li 
+              span.remind 總信用額度：
+              span 50.00000000
+            li 
+              span.remind 剩餘額度：
+              span.red 50.00000000
+          ul
+            li 
+              span.remind 遊戲信用額度
+              span 0.00000000
+            li 
+              span.remind 遊戲信用額度
+              span 0.00000000
+          ul
+            li 
+              span.remind 是否允許登入：
+              span 是
+          ul.percentage 
+            li 
+              span.remind 拆帳百分比：
+              div
+                each val in ballList
+                  span !{val.name} = 95%
+        article.data 
+          ul
+            li.thead 
+              div 足球
+              div 讓分
+              div 大小
+              div 獨贏
+              div 單雙
+              div 走地讓球
+              div 走地大小
+              div 波膽
+              div 總入球
+              div 半全場
+              div 讓分過關
+              div 綜合過關
+              div 標準過關
+            li.tbody 
+              div 退水設定
+              div 100
+              div 100
+              div 500
+              div 100
+              div 100
+              div 100
+              div 500
+              div 500
+              div 500
+              div 525
+              div 525
+              div 525
+            li.tbody 
+              div 會員單場限額
+                span.red (萬)
+              div 100
+              div 100
+              div 500
+              div 100
+              div 100
+              div 100
+              div 500
+              div 500
+              div 500
+              div 525
+              div 525
+              div 525
+            li.tbody 
+              div 會員單場限額
+                span.red (萬)
+              div 100
+              div 100
+              div 500
+              div 100
+              div 100
+              div 100
+              div 500
+              div 500
+              div 500
+              div 525
+              div 525
+              div 525
+          ul
+            li.thead 
+              div 籃球
+              div 讓分
+              div 大小
+              div 獨贏
+              div 單雙
+              div 走地讓球
+              div 走地大小
+              div 波膽
+              div 總入球
+              div 半全場
+              div 讓分過關
+              div 綜合過關
+              div 標準過關
+            li.tbody 
+              div 退水設定
+              div 100
+              div 100
+              div 500
+              div 100
+              div 100
+              div 100
+              div 500
+              div 500
+              div 500
+              div 525
+              div 525
+              div 525
+            li.tbody 
+              div 會員單場限額
+                span.red (萬)
+              div 100
+              div 100
+              div 500
+              div 100
+              div 100
+              div 100
+              div 500
+              div 500
+              div 500
+              div 525
+              div 525
+              div 525
+            li.tbody 
+              div 會員單場限額
+                span.red (萬)
+              div 100
+              div 100
+              div 500
+              div 100
+              div 100
+              div 100
+              div 500
+              div 500
+              div 500
+              div 525
+              div 525
+              div 525
+          ul
+            li.thead 
+              div 籃球半場
+              div 讓分
+              div 大小
+              div 獨贏
+              div 單雙
+              div 走地讓球
+              div 走地大小
+              div 波膽
+              div 總入球
+              div 半全場
+              div 讓分過關
+              div 綜合過關
+              div 標準過關
+            li.tbody 
+              div 退水設定
+              div 100
+              div 100
+              div 500
+              div 100
+              div 100
+              div 100
+              div 500
+              div 500
+              div 500
+              div 525
+              div 525
+              div 525
+            li.tbody 
+              div 會員單場限額
+                span.red (萬)
+              div 100
+              div 100
+              div 500
+              div 100
+              div 100
+              div 100
+              div 500
+              div 500
+              div 500
+              div 525
+              div 525
+              div 525
+            li.tbody 
+              div 會員單場限額
+                span.red (萬)
+              div 100
+              div 100
+              div 500
+              div 100
+              div 100
+              div 100
+              div 500
+              div 500
+              div 500
+              div 525
+              div 525
+              div 525
+          ul
+            li.thead 
+              div 籃球四節
+              div 讓分
+              div 大小
+              div 獨贏
+              div 單雙
+              div 走地讓球
+              div 走地大小
+              div 波膽
+              div 總入球
+              div 半全場
+              div 讓分過關
+              div 綜合過關
+              div 標準過關
+            li.tbody 
+              div 退水設定
+              div 100
+              div 100
+              div 500
+              div 100
+              div 100
+              div 100
+              div 500
+              div 500
+              div 500
+              div 525
+              div 525
+              div 525
+            li.tbody 
+              div 會員單場限額
+                span.red (萬)
+              div 100
+              div 100
+              div 500
+              div 100
+              div 100
+              div 100
+              div 500
+              div 500
+              div 500
+              div 525
+              div 525
+              div 525
+            li.tbody 
+              div 會員單場限額
+                span.red (萬)
+              div 100
+              div 100
+              div 500
+              div 100
+              div 100
+              div 100
+              div 500
+              div 500
+              div 500
+              div 525
+              div 525
+              div 525
+      .subAccount 
+        article.info 
+          p.red 子帳號管理 [ 
+            span.yellow ABC88
+            | ] 
+          p 1筆資料
+          button(data-popup="addSubAccount") 新增帳號
+        article.data 
+          ul 
+            li.thead 
+              div 帳號
+              div 密碼
+              div 名稱
+              div 新增日期
+              div 功能
+            li.tbody
+              div 
+                span ABCD01
+              div 
+                span ABCD01
+              div 
+                span CD01
+              div.date 
+                span 2025-11-11 08:08:00
+              div 
+                button 修改
+          ul.nodata
+            li 目前沒有資料
+      .shareholder_m
+        article.info 
+          p.red abc18 [ 
+            span.yellow ABC88
+            | ] 
+          .search 
+            label
+              input(type="text" placeholder="快速搜尋")
+            +select("abc18 [ ABC88 ]") 
+            +select("全部") 
+            button.submit 搜尋
+            a(href="./addAcount.html?tab=shareholder_m")  新增帳號
+        article.data
+          ul 
+            li.thead 
+              div 帳號
+              div 名稱
+              div 額度
+                span.yellow2 (萬)
+              div 已用
+                span.yellow2 (萬)
+              div 投注
+              div 新增日期
+              div.function 功能
+              div.percentage 
+                | 拆帳百分比
+                label
+                  input(type="checkbox")
+              div 股東
+              div 備註
+              div 新備註
+            li.tbody 
+              div 
+                a(href="./account.html?tab=shareholder").blue.underLine ABC88
+              div AB
+              div.blue.underLine 1
+              div.blue.underLine 
+                | 0
+              div 
+                button.enable 啟用
+              div 10-28/03:49
+              div.function 
+                button.disable 停用
+                button.suspend 停押
+                button.reset 重設密碼
+              div.percentage 
+                button.detail(data-popup="percentage") 查看詳細資訊
+              div 1
+              div
+              div 
+            li.tbody  
+              div 
+                a(href="./account.html?tab=shareholder").blue.underLine ABC88
+              div AB
+              div.blue.underLine 1
+              div.blue.underLine 
+                | 0
+              div 
+                button.enable 啟用
+              div 10-28/03:49
+              div.function 
+                button.disable 停用
+                button.suspend 停押
+                button.reset 重設密碼
+              div.percentage 
+                button.detail(data-popup="percentage") 查看詳細資訊
+              div 1
+              div
+              div 
+            li.tbody 
+              div 
+                a(href="./account.html?tab=shareholder").blue.underLine ABC88
+              div AB
+              div.blue.underLine 1
+              div.blue.underLine 
+                | 0
+              div 
+                button.enable 啟用
+              div 10-28/03:49
+              div.function 
+                button.disable 停用
+                button.suspend 停押
+                button.reset 重設密碼
+              div.percentage 
+                button.detail(data-popup="percentage") 查看詳細資訊
+              div 1
+              div
+              div 
+      .shareholder
+        article.info 
+          p.red abc18 [ 
+            span.yellow ABC88
+            | ] 
+          .search 
+            label
+              input(type="text" placeholder="快速搜尋")
+            +select("abc18 [ ABC88 ]") 
+            +select("全部") 
+            button.submit 搜尋
+            a(href="./addAcount.html?tab=shareholder") 新增帳號
+        article.data
+          ul 
+            li.thead 
+              div 帳號
+              div 名稱
+              div 額度
+                span.yellow2 (萬)
+              div 已用
+                span.yellow2 (萬)
+              div 投注
+              div 新增日期
+              div.function 功能
+              div.percentage 
+                | 拆帳百分比
+                label
+                  input(type="checkbox")
+              div 股東
+              div 備註
+              div 新備註
+            li.tbody 
+              div 
+                a(href="./account.html?tab=agent_m").blue.underLine ABC88
+              div AB
+              div.blue.underLine 1
+              div.blue.underLine 
+                | 0
+              div 
+                button.enable 啟用
+              div 10-28/03:49
+              div.function 
+                button.disable 停用
+                button.suspend 停押
+                button.reset 重設密碼
+              div.percentage 
+                button.detail(data-popup="percentage") 查看詳細資訊
+              div 1
+              div
+              div 
+            li.tbody  
+              div 
+                a(href="./account.html?tab=agent_m").blue.underLine ABC88
+              div AB
+              div.blue.underLine 1
+              div.blue.underLine 
+                | 0
+              div 
+                button.enable 啟用
+              div 10-28/03:49
+              div.function 
+                button.disable 停用
+                button.suspend 停押
+                button.reset 重設密碼
+              div.percentage 
+                button.detail(data-popup="percentage") 查看詳細資訊
+              div 1
+              div
+              div 
+            li.tbody 
+              div 
+                a(href="./account.html?tab=agent_m").blue.underLine ABC88
+              div AB
+              div.blue.underLine 1
+              div.blue.underLine 
+                | 0
+              div 
+                button.enable 啟用
+              div 10-28/03:49
+              div.function 
+                button.disable 停用
+                button.suspend 停押
+                button.reset 重設密碼
+              div.percentage 
+                button.detail(data-popup="percentage") 查看詳細資訊
+              div 1
+              div
+              div 
+      .agent_m
+        article.info 
+          p.red abc18 [ 
+            span.yellow ABC88
+            | ] 
+          .search 
+            label
+              input(type="text" placeholder="快速搜尋")
+            +select("abc18 [ ABC88 ]") 
+            +select("全部") 
+            button.submit 搜尋
+            a(href="./addAcount.html?tab=agent_m") 新增帳號
+        article.data
+          ul 
+            li.thead 
+              div 帳號
+              div 名稱
+              div 額度
+                span.yellow2 (萬)
+              div 已用
+                span.yellow2 (萬)
+              div 投注
+              div 新增日期
+              div.function 功能
+              div.percentage 
+                | 拆帳百分比
+                label
+                  input(type="checkbox")
+              div 股東
+              div 備註
+              div 新備註
+            li.tbody 
+              div 
+                a(href="./account.html?tab=agent").blue.underLine ABC88
+              div AB
+              div.blue.underLine 1
+              div.blue.underLine 
+                | 0
+              div 
+                button.enable 啟用
+              div 10-28/03:49
+              div.function 
+                button.disable 停用
+                button.suspend 停押
+                button.reset 重設密碼
+              div.percentage 
+                button.detail(data-popup="percentage") 查看詳細資訊
+              div 1
+              div
+              div 
+            li.tbody  
+              div 
+                a(href="./account.html?tab=agent").blue.underLine ABC88
+              div AB
+              div.blue.underLine 1
+              div.blue.underLine 
+                | 0
+              div 
+                button.enable 啟用
+              div 10-28/03:49
+              div.function 
+                button.disable 停用
+                button.suspend 停押
+                button.reset 重設密碼
+              div.percentage 
+                button.detail(data-popup="percentage") 查看詳細資訊
+              div 1
+              div
+              div 
+            li.tbody 
+              div 
+                a(href="./account.html?tab=agent").blue.underLine ABC88
+              div AB
+              div.blue.underLine 1
+              div.blue.underLine 
+                | 0
+              div 
+                button.enable 啟用
+              div 10-28/03:49
+              div.function 
+                button.disable 停用
+                button.suspend 停押
+                button.reset 重設密碼
+              div.percentage 
+                button.detail(data-popup="percentage") 查看詳細資訊
+              div 1
+              div
+              div 
+      .agent
+        article.info 
+          p.red abc18 [ 
+            span.yellow ABC88
+            | ] 
+          .search 
+            label
+              input(type="text" placeholder="快速搜尋")
+            +select("abc18 [ ABC88 ]") 
+            +select("全部") 
+            button.submit 搜尋
+            a(href="./addAcount.html?tab=agent") 新增帳號
+        article.data
+          ul 
+            li.thead 
+              div 帳號
+              div 名稱
+              div 額度
+                span.yellow2 (萬)
+              div 已用
+                span.yellow2 (萬)
+              div 投注
+              div 新增日期
+              div.function 功能
+              div.percentage 
+                | 拆帳百分比
+                label
+                  input(type="checkbox")
+              div 股東
+              div 備註
+              div 新備註
+            li.tbody 
+              div 
+                a(href="./account.html?tab=member").blue.underLine ABC88
+              div AB
+              div.blue.underLine 1
+              div.blue.underLine 
+                | 0
+              div 
+                button.enable 啟用
+              div 10-28/03:49
+              div.function 
+                button.disable 停用
+                button.suspend 停押
+                button.reset 重設密碼
+              div.percentage 
+                button.detail(data-popup="percentage") 查看詳細資訊
+              div 1
+              div
+              div 
+            li.tbody  
+              div 
+                a(href="./account.html?tab=member").blue.underLine ABC88
+              div AB
+              div.blue.underLine 1
+              div.blue.underLine 
+                | 0
+              div 
+                button.enable 啟用
+              div 10-28/03:49
+              div.function 
+                button.disable 停用
+                button.suspend 停押
+                button.reset 重設密碼
+              div.percentage 
+                button.detail(data-popup="percentage") 查看詳細資訊
+              div 1
+              div
+              div 
+            li.tbody 
+              div 
+                a(href="./account.html?tab=member").blue.underLine ABC88
+              div AB
+              div.blue.underLine 1
+              div.blue.underLine 
+                | 0
+              div 
+                button.enable 啟用
+              div 10-28/03:49
+              div.function 
+                button.disable 停用
+                button.suspend 停押
+                button.reset 重設密碼
+              div.percentage 
+                button.detail(data-popup="percentage") 查看詳細資訊
+              div 1
+              div
+              div 
+      .member
+        article.info 
+          p.red abc18 [ 
+            span.yellow ABC88
+            | ] 
+          .search 
+            label
+              input(type="text" placeholder="快速搜尋")
+            +select("abc18 [ ABC88 ]") 
+            +select("全部") 
+            button.submit 搜尋
+            a(href="./addAcount.html?tab=member") 新增帳號
+        article.data
+          ul 
+            li.thead 
+              div 帳號
+              div 名稱
+              div 信用額度
+              div 是否允許登入
+              div 是否允許下注
+              div 新增日期
+              div.function 功能
+              div 比賽類別
+              div 股東
+              div 備註
+              div 新備註
+            li.tbody 
+              div ABC88
+              div AB
+              div 10000(元)
+              div
+                button.enable 允許登入
+              div 
+                button.enable 允許下注
+              div 10-28/03:49
+              div.function 
+                button.reset 刪除
+              div 
+                                button.detail(data-popup="percentage") 查看詳細資訊
+              div 1
+              div
+              div 
+            li.tbody 
+              div ABC88
+              div AB
+              div 10000(元)
+              div
+                button.enable 允許登入
+              div 
+                button.enable 允許下注
+              div 10-28/03:49
+              div.function 
+                button.reset 刪除
+              div 
+                button.detail(data-popup="percentage") 查看詳細資訊
+              div 1
+              div
+              div 
+            li.tbody 
+              div ABC88
+              div AB
+              div 10000(元)
+              div
+                button.enable 允許登入
+              div 
+                button.enable 允許下注
+              div 10-28/03:49
+              div.function 
+                button.reset 刪除
+              div 
+                button.detail(data-popup="percentage") 查看詳細資訊
+              div 1
+              div
+              div 
+      .treeManagement
+        article.info 
+          +select("abc18 [ ABC88 ]") 
+          .search 
+            label
+              input(type="text" placeholder="快速搜尋")
+            +select("全部") 
+            button.submit 搜尋
+            button 新增帳號
+        article.data
+          .tree 
+            ul.treemap
+              li 
+                details(open) 
+                  summary 
+                    span abc18 [ ABC88 ]
+                  ul 
+                    li 
+                      details 
+                        summary 
+                          span abc17 [ ABC87 ]
+                        ul 
+                          li 
+                            span abc171 [ ABC87 ]
+                    li 
+                      details 
+                        summary 
+                          span abc16 [ ABC87 ]
+                        ul 
+                          li
+                            span  abc161 [ ABC87 ]
+                    li 
+                      details 
+                        summary 
+                          span abc15 [ ABC87 ]
+                        ul 
+                          li 
+                            span abc151 [ ABC87 ]
+          .list
+            ul 
+              li.thead 
+                div 帳號
+                div 名稱
+                div 額度
+                  span.yellow2 (萬)
+                div 已用
+                  span.yellow2 (萬)
+                div 投注
+                div 新增日期
+                div.function 功能
+                div.percentage 
+                  | 拆帳百分比
+                  label
+                    input(type="checkbox")
+                div 股東
+                div 備註
+                div 新備註
+              li.tbody 
+                div ABC88
+                div AB
+                div.blue.underLine 1
+                div.blue.underLine 
+                  | 0
+                div 
+                  button.enable 啟用
+                div 10-28/03:49
+                div.function 
+                  button.disable 停用
+                  button.suspend 停押
+                  button.reset 重設密碼
+                div.percentage 
+                  button.detail(data-popup="percentage") 查看詳細資訊
+                div 1
+                div
+                div 
+              li.tbody  
+                div ABC88
+                div AB
+                div.blue.underLine 1
+                div.blue.underLine 
+                  | 0
+                div 
+                  button.enable 啟用
+                div 10-28/03:49
+                div.function 
+                  button.disable 停用
+                  button.suspend 停押
+                  button.reset 重設密碼
+                div.percentage 
+                  button.detail(data-popup="percentage") 查看詳細資訊
+                div 1
+                div
+                div 
+              li.tbody 
+                div ABC88
+                div AB
+                div.blue.underLine 1
+                div.blue.underLine 
+                  | 0
+                div 
+                  button.enable 啟用
+                div 10-28/03:49
+                div.function 
+                  button.disable 停用
+                  button.suspend 停押
+                  button.reset 重設密碼
+                div.percentage 
+                  button.detail(data-popup="percentage") 查看詳細資訊
+                div 1
+                div
+                div 
+
+block filter
+  - let chagePassword = true
+  - let addSubAccount = true
+  - let percentage = true
