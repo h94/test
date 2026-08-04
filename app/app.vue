@@ -6,7 +6,7 @@
       <div class="pa-5 h-100">
         <NuxtPage />
       </div>
-      11
+      1122
     </v-main>
   </v-app>
 </template>
@@ -23,8 +23,10 @@ body {
   height: 100vh;
   width: 100vw;
 }
-h1{
-  color: red;
+main {
+  height: 100vh;
+  overflow: hidden;
+  color: #000;
 }
 </style>
 
