@@ -26,6 +26,7 @@ body {
 main {
   height: 100vh;
   overflow: hidden;
+  color: #000;
 }
 </style>
 
